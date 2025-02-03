@@ -1,11 +1,27 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
-import { isMobile } from "../../utils/screenDimension";
-import FootballDesktopGameDetail from "./desktop";
-import FootballMobileGameDetail from "./mobile";
-import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  expertSocketService,
+  socket,
+  socketService,
+} from "../../socketManager";
+import {
+  betPlacedReset,
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
+import {
+  // getMatchList,
+  selectedBetAction,
+} from "../../store/actions/match/matchListAction";
+import {
+  otherMatchDetailAction,
+  resetOtherMatchDetail,
+  updateMatchRates,
+  updateTeamRatesOnPlaceBet,
+  updateUserBalanceOnPlaceBet,
+} from "../../store/actions/otherMatchActions";
 import {
   getButtonValue,
   getProfileInMatchDetail,
@@ -15,29 +31,11 @@ import {
   updateMatchRatesOnMarketUndeclare,
   updatePlacedbetsDeleteReason,
   updateTeamRatesOnDeleteMatchOther,
-  // updateBalance,
 } from "../../store/actions/user/userAction";
-import {
-  // getMatchList,
-  selectedBetAction,
-} from "../../store/actions/match/matchListAction";
-import {
-  betPlacedReset,
-  getPlacedBets,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
-import {
-  expertSocketService,
-  socket,
-  socketService,
-} from "../../socketManager";
-import {
-  otherMatchDetailAction,
-  resetOtherMatchDetail,
-  updateMatchRates,
-  updateTeamRatesOnPlaceBet,
-  updateUserBalanceOnPlaceBet,
-} from "../../store/actions/otherMatchActions";
+import { AppDispatch, RootState } from "../../store/store";
+import { isMobile } from "../../utils/screenDimension";
+import FootballDesktopGameDetail from "./desktop";
+import FootballMobileGameDetail from "./mobile";
 
 const FootballGameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -117,9 +115,10 @@ const FootballGameDetails = () => {
         if (event?.betType === "quickbookmaker1") {
           navigate(
             `${
-              isMobile
-                ? `/sports`
-                : `/game-list/${event?.gameType || "cricket"}`
+              "/home"
+              // isMobile
+              //   ? `/sports`
+              //   : `/game-list/${event?.gameType || "cricket"}`
             }`
           );
         } else {

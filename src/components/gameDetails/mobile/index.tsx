@@ -6,9 +6,11 @@ import { RootState } from "../../../store/store";
 import { FaTv } from "react-icons/fa";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
+import { expertSocketService, matchSocket } from "../../../socketManager";
 import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
+import NewLoader from "../../commonComponent/newLoader";
 import CommonTabs from "../../commonComponent/tabs";
 import Iframe from "../../iframe/iframe";
 import Bookmaker from "../bookmaker";
@@ -17,14 +19,13 @@ import MatchOdd from "../matchOdd";
 import OtherMarket from "../otherMarket";
 import SessionCricketCasino from "../sessionCricketCasino";
 import MobileSessionFancy from "../sessionFancy/mobileSessionFancy";
+import MobileSessionKhado from "../sessionKhado/mobileSessionFancy";
 import MobileSessionNormal from "../sessionNormal/mobileSessionNormal";
 import MobileSessionOddEven from "../sessionOddEven/mobileSessionOddEven";
 import Tournament from "../tournament";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import NewLoader from "../../commonComponent/newLoader";
-import MobileSessionKhado from "../sessionKhado/mobileSessionFancy";
 
 const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
@@ -85,6 +86,21 @@ const MobileGameDetail = () => {
       console.log(error);
     }
   }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
+
+    useEffect(() => {
+      try {
+        if (matchDetails?.id&&matchSocket) {
+          let currRateInt = setInterval(() => {
+            expertSocketService.match.joinMatchRoom(matchDetails?.id, "user");
+          }, 60000);
+          return () => {
+            clearInterval(currRateInt);
+          };
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }, [matchDetails?.id]);
 
   useEffect(() => {
     try {

@@ -1,26 +1,27 @@
 import { useEffect, useRef, useState } from "react";
-import { Button, Col, Container, Ratio, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 // import "./style.scss";
-import CustomModal from "../../commonComponent/modal";
-import BetTable from "../../otherGameDetaills/betTable/index";
-import PlacedBet from "../../gameDetails/desktop/placeBet";
-import { MatchType } from "../../../utils/enum";
-import { formatDate } from "../../../utils/dateUtils";
-import MyBet from "../../gameDetails/desktop/myBet";
-import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
-import { customSortOnName, getChannelId } from "../../../helpers";
-import Tournament from "../../gameDetails/tournament";
-import MatchOdd from "../../gameDetails/matchOdd";
-import Bookmaker from "../../gameDetails/bookmaker";
-import ManualMarket from "../../gameDetails/manulMarkets";
-import HtFt from "../htft";
 import { IoInformationCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { customSortOnName, getChannelId } from "../../../helpers";
+import { formatDate } from "../../../utils/dateUtils";
+import { MatchType } from "../../../utils/enum";
+import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
+import CustomModal from "../../commonComponent/modal";
 import NewLoader from "../../commonComponent/newLoader";
+import Bookmaker from "../../gameDetails/bookmaker";
+import MyBet from "../../gameDetails/desktop/myBet";
+import PlacedBet from "../../gameDetails/desktop/placeBet";
+import ManualMarket from "../../gameDetails/manulMarkets";
+import MatchOdd from "../../gameDetails/matchOdd";
+import Tournament from "../../gameDetails/tournament";
+import BetTable from "../../otherGameDetaills/betTable/index";
+import HtFt from "../htft";
 // import service from "../../../service";
+import { expertSocketService, matchSocket } from "../../../socketManager";
 import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
 // import Iframe from "../../iframe/iframe";
 
@@ -67,6 +68,25 @@ const FootballDesktopGameDetail = () => {
       console.log(error);
     }
   }, [otherMatchDetails?.id]);
+
+  useEffect(() => {
+    try {
+      if (otherMatchDetails?.id && matchSocket) {
+        let currRateInt = setInterval(() => {
+          expertSocketService.match.joinMatchRoom(
+            otherMatchDetails?.id,
+            "user"
+          );
+        }, 60000);
+        return () => {
+          clearInterval(currRateInt);
+        };
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [otherMatchDetails?.id]);
+
   // useEffect(() => {
   //   if (otherMatchDetails?.eventId) {
   //     let intervalTime = 5000;

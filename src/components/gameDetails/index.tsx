@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  expertSocket,
   expertSocketService,
-  matchSocket,
   socket,
-  socketService,
+  socketService
 } from "../../socketManager";
 import {
   // getMatchList,
@@ -36,8 +34,6 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 // import { isMobile } from "../../utils/screenDimension";
-import DesktopGameDetail from "./desktop";
-import MobileGameDetail from "./mobile";
 import {
   betPlacedReset,
   getPlacedBets,
@@ -45,6 +41,8 @@ import {
   resetRunAmountModal,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
+import DesktopGameDetail from "./desktop";
+import MobileGameDetail from "./mobile";
 
 const GameDetails = () => {
   const dispatch: AppDispatch = useDispatch();

@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { Col, Container, Row, Tab, Ratio } from "react-bootstrap";
+import { Col, Container, Ratio, Row, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { customSortOnName, getChannelId } from "../../../helpers";
 import { RootState } from "../../../store/store";
@@ -12,17 +12,16 @@ import Bookmaker from "../../gameDetails/bookmaker";
 import ManualMarket from "../../gameDetails/manulMarkets";
 import MatchOdd from "../../gameDetails/matchOdd";
 // import PlacedBet from "../../gameDetails/mobile/placeBet";
+import { FaTv } from "react-icons/fa";
+import { expertSocketService, matchSocket } from "../../../socketManager";
+import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
+import NewLoader from "../../commonComponent/newLoader";
 import "../../gameDetails/mobile/style.scss";
 import Tournament from "../../gameDetails/tournament";
 import BetTable from "../betTable";
 import HtFt from "../htft";
 import MyBet from "./myBet";
 import FootballPlaceBet from "./placeBet";
-import NewLoader from "../../commonComponent/newLoader";
-import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
-import service from "../../../service";
-import Iframe from "../../iframe/iframe";
-import { FaTv } from "react-icons/fa";
 
 // import "./style.scss";
 // import BetTable from "../../gameDetails/betTable";
@@ -57,6 +56,23 @@ const FootballMobileGameDetail = () => {
       console.log(error);
     }
   }, [otherMatchDetails?.id]);
+
+
+    useEffect(() => {
+      try {
+        if (otherMatchDetails?.id&&matchSocket) {
+          let currRateInt = setInterval(() => {
+            expertSocketService.match.joinMatchRoom(otherMatchDetails?.id, "user");
+          }, 60000);
+          return () => {
+            clearInterval(currRateInt);
+          };
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }, [otherMatchDetails?.id]);
+
   // useEffect(() => {
   //   if (otherMatchDetails?.eventId) {
   //     let intervalTime = 5000;

@@ -2,30 +2,31 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
+import { expertSocketService, matchSocket } from "../../../socketManager";
 import { RootState } from "../../../store/store";
 import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import CustomModal from "../../commonComponent/modal";
+import NewLoader from "../../commonComponent/newLoader";
+import Iframe from "../../iframe/iframe";
 import Bookmaker from "../bookmaker";
 import ManualMarket from "../manulMarkets";
 import MatchOdd from "../matchOdd";
 import OtherMarket from "../otherMarket";
 import SessionCricketCasino from "../sessionCricketCasino";
 import SessionFancy from "../sessionFancy";
+import SessionKhado from "../sessionKhado";
 import SessionNormal from "../sessionNormal";
 import SessionOddEven from "../sessionOddEven";
+import Tournament from "../tournament";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { Link } from "react-router-dom";
-import Iframe from "../../iframe/iframe";
-import Tournament from "../tournament";
-import NewLoader from "../../commonComponent/newLoader";
-import SessionKhado from "../sessionKhado";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -73,7 +74,7 @@ const DesktopGameDetail = () => {
         setLiveScoreBoardData(response?.data);
         setErrorCount(0);
       }
-    } catch (e: any) {
+    } catch (e) {
       console.log("Error:", e?.message);
       setLiveScoreBoardData(null);
       setErrorCount((prevCount: number) => prevCount + 1);
@@ -105,6 +106,21 @@ const DesktopGameDetail = () => {
       console.log(error);
     }
   }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
+
+  useEffect(() => {
+    try {
+      if (matchDetails?.id && matchSocket) {
+        let currRateInt = setInterval(() => {
+          expertSocketService.match.joinMatchRoom(matchDetails?.id, "user");
+        }, 60000);
+        return () => {
+          clearInterval(currRateInt);
+        };
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [matchDetails?.id]);
 
   useEffect(() => {
     try {
@@ -543,14 +559,13 @@ const DesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {matchDetails?.eventId &&
-                matchDetails?.matchType !== "politics" && (
-                  <Col md={12} className="px-1 pt-1">
-                    <LiveStreamComponent
-                      url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
-                    />
-                  </Col>
-                )}
+              {matchDetails?.eventId && matchDetails?.matchType !== "politics" && (
+                <Col md={12} className="px-1 pt-1">
+                  <LiveStreamComponent
+                    url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
+                  />
+                </Col>
+              )}
               <Col md={12} className="px-1 pt-1">
                 <PlacedBet />
               </Col>
