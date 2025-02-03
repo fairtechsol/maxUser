@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   expertSocketService,
+  matchSocket,
   socket,
   socketService,
 } from "../../socketManager";
@@ -280,7 +281,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, id]);
+  }, [socket, id, matchSocket]);
 
   useEffect(() => {
     try {
