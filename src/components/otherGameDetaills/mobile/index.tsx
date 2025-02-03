@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import { Col, Container, Ratio, Row, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { customSortOnName, getChannelId } from "../../../helpers";
+import { customSortOnName } from "../../../helpers";
 import { RootState } from "../../../store/store";
 import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
@@ -13,6 +13,7 @@ import ManualMarket from "../../gameDetails/manulMarkets";
 import MatchOdd from "../../gameDetails/matchOdd";
 // import PlacedBet from "../../gameDetails/mobile/placeBet";
 import { FaTv } from "react-icons/fa";
+import { expertSocketService, matchSocket } from "../../../socketManager";
 import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
 import NewLoader from "../../commonComponent/newLoader";
 import "../../gameDetails/mobile/style.scss";
@@ -29,7 +30,7 @@ import FootballPlaceBet from "./placeBet";
 
 const FootballMobileGameDetail = () => {
   const [show, setShow] = useState(true);
-  const [channelId, setChannelId] = useState<string>("");
+  // const [channelId, setChannelId] = useState<string>("");
   // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   // const [errorCount, setErrorCount] = useState<number>(0);
   const [showVideo, setShowVideo] = useState(false);
@@ -40,21 +41,36 @@ const FootballMobileGameDetail = () => {
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
-  useEffect(() => {
-    try {
-      if (otherMatchDetails?.eventId) {
-        const callApiForLiveStream = async () => {
-          let result = await getChannelId(otherMatchDetails?.eventId);
-          if (result) {
-            setChannelId(result?.channelNo);
+  // useEffect(() => {
+  //   try {
+  //     if (otherMatchDetails?.eventId) {
+  //       const callApiForLiveStream = async () => {
+  //         let result = await getChannelId(otherMatchDetails?.eventId);
+  //         if (result) {
+  //           setChannelId(result?.channelNo);
+  //         }
+  //       };
+  //       callApiForLiveStream();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [otherMatchDetails?.id]);
+
+      useEffect(() => {
+        try {
+          if (otherMatchDetails?.id && matchSocket) {
+            let currRateInt = setInterval(() => {
+              expertSocketService.match.joinMatchRoom(otherMatchDetails?.id, "user");
+            }, 60000);
+            return () => {
+              clearInterval(currRateInt);
+            };
           }
-        };
-        callApiForLiveStream();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [otherMatchDetails?.id]);
+        } catch (error) {
+          console.log(error);
+        }
+      }, [otherMatchDetails?.id]);
   // useEffect(() => {
   //   if (otherMatchDetails?.eventId) {
   //     let intervalTime = 5000;

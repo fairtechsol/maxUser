@@ -6,7 +6,7 @@ import BetTableHeader from "../../commonComponent/betTableHeader";
 // import "./style.scss";
 import { IoInformationCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { customSortOnName, getChannelId } from "../../../helpers";
+import { customSortOnName } from "../../../helpers";
 import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
@@ -21,6 +21,7 @@ import Tournament from "../../gameDetails/tournament";
 import BetTable from "../../otherGameDetaills/betTable/index";
 import HtFt from "../htft";
 // import service from "../../../service";
+import { expertSocketService, matchSocket } from "../../../socketManager";
 import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
 // import Iframe from "../../iframe/iframe";
 
@@ -29,7 +30,7 @@ const FootballDesktopGameDetail = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
   const [showScoreboard, setShowScoreboard] = useState<boolean>(false);
-  const [_, setChannelId] = useState<string>("");
+  // const [_, setChannelId] = useState<string>("");
   // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   // const [errorCount, setErrorCount] = useState<number>(0);
 
@@ -52,16 +53,34 @@ const FootballDesktopGameDetail = () => {
     };
   }, []);
 
+  // useEffect(() => {
+  //   try {
+  //     if (otherMatchDetails?.eventId) {
+  //       const callApiForLiveStream = async () => {
+  //         let result = await getChannelId(otherMatchDetails?.eventId);
+  //         if (result) {
+  //           setChannelId(result?.channelNo);
+  //         }
+  //       };
+  //       callApiForLiveStream();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [otherMatchDetails?.id]);
+
   useEffect(() => {
     try {
-      if (otherMatchDetails?.eventId) {
-        const callApiForLiveStream = async () => {
-          let result = await getChannelId(otherMatchDetails?.eventId);
-          if (result) {
-            setChannelId(result?.channelNo);
-          }
+      if (otherMatchDetails?.id && matchSocket) {
+        let currRateInt = setInterval(() => {
+          expertSocketService.match.joinMatchRoom(
+            otherMatchDetails?.id,
+            "user"
+          );
+        }, 60000);
+        return () => {
+          clearInterval(currRateInt);
         };
-        callApiForLiveStream();
       }
     } catch (error) {
       console.log(error);

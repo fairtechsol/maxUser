@@ -4,8 +4,8 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getChannelId } from "../../../helpers";
 import service from "../../../service";
+import { expertSocketService, matchSocket } from "../../../socketManager";
 import { RootState } from "../../../store/store";
 import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
 import BetTableHeader from "../../commonComponent/betTableHeader";
@@ -33,7 +33,8 @@ const DesktopGameDetail = () => {
   const [showContactAdmin, setShowContactAdmin] = useState(false);
   const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   const [errorCount, setErrorCount] = useState<number>(0);
-  const [channelId, setChannelId] = useState<string>("");
+  // const [channelId, setChannelId] = useState<string>("");
+  const [currInterval, setCurrInterval] = useState<any>(null);
 
   // const [scoreData, setScoreData] = useState<any>(null);
   // const [loading, setLoading] = useState<boolean>(true);
@@ -85,6 +86,8 @@ const DesktopGameDetail = () => {
       if (matchDetails?.eventId) {
         getScoreBoard(matchDetails?.eventId);
       }
+      clearInterval(currInterval);
+      setCurrInterval(null);
       if (matchDetails?.marketId === marketId) {
         let intervalTime = 5000;
         if (errorCount >= 5 && errorCount < 10) {
@@ -95,9 +98,11 @@ const DesktopGameDetail = () => {
         const interval = setInterval(() => {
           getScoreBoard(matchDetails?.eventId);
         }, intervalTime);
-
+        setCurrInterval(interval);
         return () => {
           clearInterval(interval);
+          clearInterval(currInterval);
+          setCurrInterval(null);
           setLiveScoreBoardData(null);
         };
       }
@@ -106,21 +111,21 @@ const DesktopGameDetail = () => {
     }
   }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
 
-  useEffect(() => {
-    try {
-      if (matchDetails?.eventId) {
-        const callApiForLiveStream = async () => {
-          let result = await getChannelId(matchDetails?.eventId);
-          if (result) {
-            setChannelId(result?.channelNo);
-          }
-        };
-        callApiForLiveStream();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [matchDetails?.id]);
+  // useEffect(() => {
+  //   try {
+  //     if (matchDetails?.eventId) {
+  //       const callApiForLiveStream = async () => {
+  //         let result = await getChannelId(matchDetails?.eventId);
+  //         if (result) {
+  //           setChannelId(result?.channelNo);
+  //         }
+  //       };
+  //       callApiForLiveStream();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [matchDetails?.id]);
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
@@ -151,6 +156,22 @@ const DesktopGameDetail = () => {
 
   //   fetchData();
   // }, [matchDetails]);
+
+  useEffect(() => {
+    try {
+      if (matchDetails?.id && matchSocket) {
+        let currRateInt = setInterval(() => {
+          expertSocketService.match.joinMatchRoom(matchDetails?.id, "user");
+        }, 60000);
+        return () => {
+          clearInterval(currRateInt);
+        };
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [matchDetails?.id]);
+
   return (
     <Container fluid className="pe-0 ps-1">
       <Row className="p-0">
@@ -165,7 +186,9 @@ const DesktopGameDetail = () => {
                     rightComponent={
                       <span className="title-16 fbold text-white">
                         {matchDetails?.startAt &&
-                          moment(matchDetails?.startAt).format("DD/MM/YYYY hh:mm:ss")}
+                          moment(matchDetails?.startAt).format(
+                            "DD/MM/YYYY hh:mm:ss"
+                          )}
                       </span>
                     }
                   />

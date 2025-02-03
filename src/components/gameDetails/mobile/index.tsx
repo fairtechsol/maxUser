@@ -5,8 +5,8 @@ import { RootState } from "../../../store/store";
 // import { formatDate } from "../../../utils/dateUtils";
 import moment from "moment";
 import { FaTv } from "react-icons/fa";
-import { getChannelId } from "../../../helpers";
 import service from "../../../service";
+import { expertSocketService, matchSocket } from "../../../socketManager";
 import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import NewLoader from "../../commonComponent/newLoader";
@@ -30,8 +30,9 @@ const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
   const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   const [errorCount, setErrorCount] = useState<number>(0);
-  const [channelId, setChannelId] = useState<string>("");
+  // const [channelId, setChannelId] = useState<string>("");
   const [showVideo, setShowVideo] = useState(false);
+  const [currInterval, setCurrInterval] = useState<any>(null);
   const { matchDetails, marketId, loading } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -65,6 +66,8 @@ const MobileGameDetail = () => {
       if (matchDetails?.eventId) {
         getScoreBoard(matchDetails?.eventId);
       }
+      clearInterval(currInterval);
+      setCurrInterval(null);
       if (matchDetails?.marketId === marketId) {
         let intervalTime = 5000;
         if (errorCount >= 5 && errorCount < 10) {
@@ -75,9 +78,12 @@ const MobileGameDetail = () => {
         const interval = setInterval(() => {
           getScoreBoard(matchDetails?.eventId);
         }, intervalTime);
+        setCurrInterval(interval);
 
         return () => {
           clearInterval(interval);
+          clearInterval(currInterval);
+          setCurrInterval(null);
           setLiveScoreBoardData(null);
         };
       }
@@ -86,27 +92,42 @@ const MobileGameDetail = () => {
     }
   }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
 
-  useEffect(() => {
-    try {
-      if (matchDetails?.eventId) {
-        const callApiForLiveStream = async () => {
-          let result = await getChannelId(matchDetails?.eventId);
-          if (result) {
-            setChannelId(result?.channelNo);
-          }
-        };
-        callApiForLiveStream();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [matchDetails?.id]);
+  // useEffect(() => {
+  //   try {
+  //     if (matchDetails?.eventId) {
+  //       const callApiForLiveStream = async () => {
+  //         let result = await getChannelId(matchDetails?.eventId);
+  //         if (result) {
+  //           setChannelId(result?.channelNo);
+  //         }
+  //       };
+  //       callApiForLiveStream();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [matchDetails?.id]);
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
   const manualEntries = matchDetails?.manualSessionActive
     ? normalizedData?.filter((item: any) => item?.isManual)
     : [];
+
+    useEffect(() => {
+      try {
+        if (matchDetails?.id && matchSocket) {
+          let currRateInt = setInterval(() => {
+            expertSocketService.match.joinMatchRoom(matchDetails?.id, "user");
+          }, 60000);
+          return () => {
+            clearInterval(currRateInt);
+          };
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }, [matchDetails?.id]);
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
