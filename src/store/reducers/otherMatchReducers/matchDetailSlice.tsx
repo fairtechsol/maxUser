@@ -204,7 +204,6 @@ const otherMatchDetail = createSlice({
           betId,
           matchId,
         } = action.payload;
-        console.log(action.payload);
         if (matchBetType === "tournament") {
           state.otherMatchDetails = {
             ...state.otherMatchDetails,
