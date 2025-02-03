@@ -114,11 +114,12 @@ const FootballGameDetails = () => {
         dispatch(getProfileInMatchDetail());
         if (event?.betType === "quickbookmaker1" || event.isMatchDeclare) {
           navigate(
-            `${
-              isMobile
-                ? `/sports`
-                : `/game-list/${event?.gameType || "cricket"}`
-            }`
+            "/home"
+            // `${
+            //   isMobile
+            //     ? `/sports`
+            //     : `/game-list/${event?.gameType || "cricket"}`
+            // }`
           );
         } else {
           dispatch(getPlacedBets(id));
