@@ -1,10 +1,11 @@
-import { Col, Container, Row, Table,Modal } from "react-bootstrap";
+import { Col, Container, Modal, Row, Table } from "react-bootstrap";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { formatNumber } from "../../../../helpers";
 import {
   betPlaceSuccessReset,
   placeBet,
@@ -17,7 +18,6 @@ import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
 import ButtonValues from "../../mobile/buttonValues";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
-import { formatNumber } from "../../../../helpers";
 
 const placeBetHeader = [
   {
@@ -198,14 +198,14 @@ const PlacedBet = () => {
         }
       } else if (selectedBet?.team?.matchBetType === "tournament") {
         setMatchOddLoading(true);
-        setTimeout(() => {
+        // setTimeout(() => {
           dispatch(
             placeBet({
               url: ApiConstants.BET.PLACEBETTOURNAMENT,
               data: JSON.stringify(payloadForTournament),
             })
           );
-        }, getProfile?.delayTime * 1000);
+        // }, getProfile?.delayTime * 1000);
       } else {
         dispatch(
           placeBet({
