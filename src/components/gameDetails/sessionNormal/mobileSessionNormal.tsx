@@ -11,8 +11,6 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { AppDispatch, RootState } from "../../../store/store";
 import RunBoxTable from "../betTable/runBoxTable";
 import "./style.scss";
-import { IoInformationCircle } from "react-icons/io5";
-import {OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -21,10 +19,10 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   const { runAmount, runAmountModal } = useSelector(
     (state: RootState) => state.bets
   );
-  const startAtTime = new Date(detail.startAt); 
-  const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  const shouldShowInfoIcon = new Date() < hideTime;
-  const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
+  // const startAtTime = new Date(detail.startAt); 
+  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
+  // const shouldShowInfoIcon = new Date() < hideTime;
+  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -104,7 +102,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size13">{title}</span>
-          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>}
+          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{

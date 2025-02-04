@@ -1,15 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, handleSize } from "../../../helpers";
+import { getRunAmountMeter, resetRunAmountModalKhado } from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
-import "./style.scss";
-import {  getRunAmountMeter, resetRunAmountModalKhado } from "../../../store/actions/betPlace/betPlaceActions";
-import { useSelector } from "react-redux";
-import { Modal } from "react-bootstrap";
 import RunBoxTable from "../betTable/runBoxTable";
-import { useEffect } from "react";
-import { IoInformationCircle } from "react-icons/io5";
-import {OverlayTrigger, Tooltip } from "react-bootstrap";
+import "./style.scss";
 
 const MobileSessionKhado = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -17,10 +14,10 @@ const MobileSessionKhado = ({ title, data, detail }) => {
   const { runAmount, runAmountModalKhado } = useSelector(
     (state: RootState) => state.bets
   );
-  const startAtTime = new Date(detail.startAt); 
-  const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  const shouldShowInfoIcon = new Date() < hideTime;
-  const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
+  // const startAtTime = new Date(detail.startAt); 
+  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
+  // const shouldShowInfoIcon = new Date() < hideTime;
+  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -81,7 +78,7 @@ const MobileSessionKhado = ({ title, data, detail }) => {
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size13">{title}</span>
-          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>}
+          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{
