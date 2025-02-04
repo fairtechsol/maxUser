@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Modal, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
@@ -13,9 +13,8 @@ import { ApiConstants, matchBettingType } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";
-import "./style.scss";
-import { Modal } from "react-bootstrap";
 import ButtonValues from "../buttonValues";
+import "./style.scss";
 interface PlaceBetProps {
   show: boolean;
   setShow: any;
@@ -348,14 +347,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
         }
       } else if (selectedBet?.team?.matchBetType === "tournament") {
         setMatchOddLoading(true);
-        setTimeout(() => {
+        // setTimeout(() => {
           dispatch(
             placeBet({
               url: ApiConstants.BET.PLACEBETTOURNAMENT,
               data: JSON.stringify(payloadForTournament),
             })
           );
-        }, getProfile?.delayTime * 1000);
+        // }, getProfile?.delayTime * 1000);
       } else {
         dispatch(
           placeBet({
