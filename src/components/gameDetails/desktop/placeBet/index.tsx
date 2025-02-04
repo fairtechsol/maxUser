@@ -198,14 +198,23 @@ const PlacedBet = () => {
         }
       } else if (selectedBet?.team?.matchBetType === "tournament") {
         setMatchOddLoading(true);
-        // setTimeout(() => {
+        if (selectedBet?.data?.name == "MATCH_ODDS") {
+          setTimeout(() => {
+            dispatch(
+              placeBet({
+                url: ApiConstants.BET.PLACEBETTOURNAMENT,
+                data: JSON.stringify(payloadForTournament),
+              })
+            );
+          }, getProfile?.delayTime * 1000);
+        } else {
           dispatch(
             placeBet({
               url: ApiConstants.BET.PLACEBETTOURNAMENT,
               data: JSON.stringify(payloadForTournament),
             })
           );
-        // }, getProfile?.delayTime * 1000);
+        }
       } else {
         dispatch(
           placeBet({
@@ -580,7 +589,7 @@ const PlacedBet = () => {
           ></button>
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
-          <ButtonValues  setShow={setShow}/>
+          <ButtonValues setShow={setShow} />
         </Modal.Body>
       </Modal>
     </>

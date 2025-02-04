@@ -66,7 +66,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
   }, [buttonValues]);
 
   useEffect(() => {
-    setStake(selectedBet?.team?.stake===0?"":selectedBet?.team?.stake);
+    setStake(selectedBet?.team?.stake === 0 ? "" : selectedBet?.team?.stake);
   }, [selectedBet]);
 
   useEffect(() => {
@@ -168,7 +168,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
         parseFloat(handleProfitLoss(data?.runners?.id, id)) - parseFloat(stake);
     }
     // console.log(id,'first',data)
-    return profit ? (profit)?.toFixed(2) : "";
+    return profit ? profit?.toFixed(2) : "";
   };
 
   const handleTeamRates = (type: any, team: string) => {
@@ -369,14 +369,23 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
         }
       } else if (selectedBet?.team?.matchBetType === "tournament") {
         setMatchOddLoading(true);
-        // setTimeout(() => {
+        if (selectedBet?.data?.name == "MATCH_ODDS") {
+          setTimeout(() => {
+            dispatch(
+              placeBet({
+                url: ApiConstants.BET.PLACEBETTOURNAMENT,
+                data: JSON.stringify(payloadForTournament),
+              })
+            );
+          }, getProfile?.delayTime * 1000);
+        } else {
           dispatch(
             placeBet({
               url: ApiConstants.BET.PLACEBETTOURNAMENT,
               data: JSON.stringify(payloadForTournament),
             })
           );
-        // }, getProfile?.delayTime * 1000);
+        }
       } else {
         dispatch(
           placeBet({
@@ -706,14 +715,16 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                           </div>
                           <div className="row">
                             <div className="col-md-12">
-                              <span className={`f400 title-12 ${
+                              <span
+                                className={`f400 title-12 ${
                                   handleTeamRates(
                                     selectedBet?.team?.matchBetType,
                                     "B"
                                   ) > 0
                                     ? "color-green"
                                     : "color-red"
-                                }`}>
+                                }`}
+                              >
                                 {handleTeamRates(
                                   selectedBet?.team?.matchBetType,
                                   "B"
@@ -724,14 +735,16 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                           {selectedBet?.team?.teamC && (
                             <div className="row">
                               <div className="col-md-12">
-                                <span className={`f400 title-12 ${
-                                  handleTeamRates(
-                                    selectedBet?.team?.matchBetType,
-                                    "C"
-                                  ) > 0
-                                    ? "color-green"
-                                    : "color-red"
-                                }`}>
+                                <span
+                                  className={`f400 title-12 ${
+                                    handleTeamRates(
+                                      selectedBet?.team?.matchBetType,
+                                      "C"
+                                    ) > 0
+                                      ? "color-green"
+                                      : "color-red"
+                                  }`}
+                                >
                                   {handleTeamRates(
                                     selectedBet?.team?.matchBetType,
                                     "C"
