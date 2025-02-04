@@ -352,6 +352,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 data: JSON.stringify(payloadForTournament),
               })
             );
+            setMatchOddLoading(false);
           }, getProfile?.delayTime * 1000);
         } else {
           dispatch(
