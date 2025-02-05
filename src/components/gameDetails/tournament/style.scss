@@ -11,14 +11,15 @@
   display: flex;
   flex-direction: column;
   background-color: #f2f2f2;
+  position: relative;
 }
-.tournamentTitle{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 3px 6px;
-    background-color: #fece5d;
+.tournamentTitle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 6px;
+  background-color: #fece5d;
 }
 .tournamentTitleTxt {
   color: #ffffff;
@@ -187,6 +188,19 @@
   background-color: #373636d6;
   height: 100%;
   z-index: 999;
+}
+
+.outer-suspended-overlayRatestournament {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373636d6;
+  height: 100%;
+  z-index: 999;
+  right: 0px;
+  bottom: 0px;
 }
 
 .suspendedTxttournament {

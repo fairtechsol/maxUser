@@ -11,8 +11,8 @@ const Tournament = ({ title, box, data, detail }) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
+  // const startAtTime = new Date(detail.startAt);
+  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000);
   // const shouldShowInfoIcon = new Date() < hideTime;
   // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
@@ -42,9 +42,9 @@ const Tournament = ({ title, box, data, detail }) => {
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       runnerId: runner?.id?.toString(),
-      runners:data,
-      min:data?.minBet ,
-      max:data?.maxBet ,
+      runners: data,
+      min: data?.minBet,
+      max: data?.maxBet,
     };
     dispatch(
       selectedBetAction({
@@ -77,7 +77,11 @@ const Tournament = ({ title, box, data, detail }) => {
         <div className="tournamentBackLayTab">
           <div className="tournamentMinMaxBox">
             <span className="tournamentMinMax">
-            {data?.minBet===data?.maxBet? `Max:${formatNumber(data?.maxBet)}` :`Min:${formatNumber(data?.minBet)} Max:${formatNumber(data?.maxBet)}`}
+              {data?.minBet === data?.maxBet
+                ? `Max:${formatNumber(data?.maxBet)}`
+                : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
+                    data?.maxBet
+                  )}`}
             </span>
           </div>
           <div
@@ -104,6 +108,25 @@ const Tournament = ({ title, box, data, detail }) => {
             {box === 6 && <div className="tournamentEmptyBox"></div>}
           </div>
         </div>
+        {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
+          data?.gtype == "match" && (
+            <div
+              className={`outer-suspended-overlayRatestournament ${
+                box === 6 ? "rateBoxWidth" : "rateBoxWidth2"
+              }`}
+              style={{
+                height: `${data?.runners?.length * 45}px`,
+                bottom: data?.rem ? "20px" : "0px",
+              }}
+            >
+              <span
+                className={`suspendTextCmmn`}
+                style={{ textTransform: "uppercase" }}
+              >
+                {data?.status}
+              </span>
+            </div>
+          )}
         {data?.runners?.length > 0 &&
           data?.runners?.map((item: any, index: any) => {
             return (
@@ -131,47 +154,50 @@ const Tournament = ({ title, box, data, detail }) => {
                           : "color-red"
                       } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
-                     {profitLossObj?.[item.id] ? selectedBet?.team?.betId===data?.id ? parseFloat(profitLossObj?.[item.id]) +
-                        manualProfitLoss(
+                      {profitLossObj?.[item.id]
+                        ? selectedBet?.team?.betId === data?.id
+                          ? parseFloat(profitLossObj?.[item.id]) +
+                            manualProfitLoss(
+                              selectedBet,
+                              item?.nat || item?.runnerName,
+                              data?.type,
+                              data?.gtype
+                            )
+                          : profitLossObj?.[item.id]
+                        : ""}
+                    </span>
+                    {selectedBet?.team?.betId === data?.id ? (
+                      <span
+                        className="title-12 f-400"
+                        style={{
+                          color:
+                            manualProfitLoss(
+                              selectedBet,
+                              item?.nat || item?.runnerName,
+                              data?.type,
+                              data?.gtype
+                            ) > 0
+                              ? "#086f3f"
+                              : "#bd1828",
+                        }}
+                      >
+                        {manualProfitLoss(
                           selectedBet,
                           item?.nat || item?.runnerName,
                           data?.type,
                           data?.gtype
-                        ):profitLossObj?.[item.id]:""}
-                    </span>
-                    {
-                      selectedBet?.team?.betId===data?.id ? 
-                      <span
-                      className="title-12 f-400"
-                      style={{
-                        color:
-                          manualProfitLoss(
-                            selectedBet,
-                            item?.nat || item?.runnerName,
-                            data?.type,
-                            data?.gtype
-                          ) > 0
-                            ? "#086f3f"
-                            : "#bd1828",
-                      }}
-                    >
-                      {manualProfitLoss(
-                        selectedBet,
-                        item?.nat || item?.runnerName,
-                        data?.type,
-                        data?.gtype
-                      ) === 0
-                        ? ""
-                        : manualProfitLoss(
-                            selectedBet,
-                            item?.nat || item?.runnerName,
-                            data?.type,
-                            data?.gtype
-                          )?.toFixed(2)}
-                    </span>
-                    : ""
-                    }
-                    
+                        ) === 0
+                          ? ""
+                          : manualProfitLoss(
+                              selectedBet,
+                              item?.nat || item?.runnerName,
+                              data?.type,
+                              data?.gtype
+                            )?.toFixed(2)}
+                      </span>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
                 <div
@@ -181,11 +207,21 @@ const Tournament = ({ title, box, data, detail }) => {
                       : "tournament2RateBox rateBoxWidth2"
                   }
                 >
-                  {(item?.status !== "ACTIVE" && item?.status !== "OPEN" && item?.status !== "") && (
-                    <div className="suspended-overlayRatestournament">
-                      <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{item?.status}</span>
-                    </div>
-                  )}
+                  {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
+                  data?.gtype == "match"
+                    ? ""
+                    : item?.status !== "ACTIVE" &&
+                      item?.status !== "OPEN" &&
+                      item?.status !== "" && (
+                        <div className="suspended-overlayRatestournament">
+                          <span
+                            className={`suspendTextCmmn`}
+                            style={{ textTransform: "uppercase" }}
+                          >
+                            {item?.status}
+                          </span>
+                        </div>
+                      )}
                   {box === 6 ? (
                     <>
                       {(item?.ex?.availableToBack?.length > 0
