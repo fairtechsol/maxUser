@@ -343,7 +343,6 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
 const MatchListRow = ({ item, matchType }: any) => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-
   const navigate = useNavigate();
 
   return (
@@ -405,7 +404,9 @@ const MatchListRow = ({ item, matchType }: any) => {
               <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
             )}
             {/* Bookmaker Icon */}
-            {item?.bm == "True" || item?.bm == true ? (
+            {item?.bm == "True" ||
+            item?.bm == true ||
+            item?.isBookmaker.length > 0 ? (
               <span className="bookmaker">
                 <img src="/ic_bm.png" alt={"bookmaker"} />
               </span>

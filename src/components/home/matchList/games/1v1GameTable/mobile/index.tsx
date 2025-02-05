@@ -286,7 +286,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   )}
 
                                   {/* Bookmaker */}
-                                  {item?.bm === "True" || item?.bm === true ? (
+                                  {item?.bm === "True" || item?.bm === true||item?.isBookmaker.length > 0 ? (
                                     <span className="bookmaker">
                                       <img src={bm} alt="fancy" />
                                     </span>
