@@ -108,25 +108,29 @@ const Tournament = ({ title, box, data, detail }) => {
             {box === 6 && <div className="tournamentEmptyBox"></div>}
           </div>
         </div>
-        {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
-          data?.gtype == "match" && (
-            <div
-              className={`outer-suspended-overlayRatestournament ${
-                box === 6 ? "rateBoxWidth" : "rateBoxWidth2"
-              }`}
-              style={{
-                height: `${data?.runners?.length * 45}px`,
-                bottom: data?.rem ? "20px" : "0px",
-              }}
+        {(!data?.isActive ||
+          (!["ACTIVE", "OPEN", ""].includes(data?.status) &&
+            data?.gtype == "match")) && (
+          <div
+            className={`outer-suspended-overlayRatestournament ${
+              box === 6 ? "rateBoxWidth" : "rateBoxWidth2"
+            }`}
+            style={{
+              height: `${data?.runners?.length * 45}px`,
+              bottom: data?.rem ? "20px" : "0px",
+            }}
+          >
+            <span
+              className={`suspendTextCmmn`}
+              style={{ textTransform: "uppercase" }}
             >
-              <span
-                className={`suspendTextCmmn`}
-                style={{ textTransform: "uppercase" }}
-              >
-                {data?.status}
-              </span>
-            </div>
-          )}
+              {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
+              data?.gtype == "match"
+                ? data?.status
+                : ""}
+            </span>
+          </div>
+        )}
         {data?.runners?.length > 0 &&
           data?.runners?.map((item: any, index: any) => {
             return (

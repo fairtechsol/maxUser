@@ -334,7 +334,6 @@ const FootballMobileGameDetail = () => {
                             (item: any, index: number) => (
                               <div key={index} className="pe-0 ps-0">
                                 {item?.activeStatus === "live" &&
-                                  item?.isActive &&
                                   (item?.name === "HT/FT" ? (
                                     <Col
                                       className="g-0"
