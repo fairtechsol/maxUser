@@ -92,21 +92,7 @@ const MobileGameDetail = () => {
     }
   }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
 
-  // useEffect(() => {
-  //   try {
-  //     if (matchDetails?.eventId) {
-  //       const callApiForLiveStream = async () => {
-  //         let result = await getChannelId(matchDetails?.eventId);
-  //         if (result) {
-  //           setChannelId(result?.channelNo);
-  //         }
-  //       };
-  //       callApiForLiveStream();
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [matchDetails?.id]);
+
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
@@ -128,6 +114,8 @@ const MobileGameDetail = () => {
         console.log(error);
       }
     }, [matchDetails?.id]);
+
+    
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />

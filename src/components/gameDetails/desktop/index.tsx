@@ -111,21 +111,6 @@ const DesktopGameDetail = () => {
     }
   }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
 
-  // useEffect(() => {
-  //   try {
-  //     if (matchDetails?.eventId) {
-  //       const callApiForLiveStream = async () => {
-  //         let result = await getChannelId(matchDetails?.eventId);
-  //         if (result) {
-  //           setChannelId(result?.channelNo);
-  //         }
-  //       };
-  //       callApiForLiveStream();
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [matchDetails?.id]);
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
@@ -133,29 +118,6 @@ const DesktopGameDetail = () => {
     ? normalizedData?.filter((item: any) => item?.isManual)
     : [];
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       //console.log("fetch",matchDetails?.eventId)
-  //       const response = await fetch(
-  //         `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${1809072133}`
-  //       );
-
-  //       if (!response.ok) {
-  //         throw new Error("Network response was not ok");
-  //       }
-
-  //       const result = await response.json();
-  //       setScoreData(result);
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [matchDetails]);
 
   useEffect(() => {
     try {
