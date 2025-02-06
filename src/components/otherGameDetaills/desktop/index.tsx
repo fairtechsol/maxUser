@@ -270,7 +270,6 @@ const FootballDesktopGameDetail = () => {
                     (item: any, index: number) => (
                       <div key={index}>
                         {item?.activeStatus === "live" &&
-                          item?.isActive &&
                           (item?.name === "HT/FT" ? (
                             <Col md={12} style={{ marginTop: "8px" }}>
                               <HtFt

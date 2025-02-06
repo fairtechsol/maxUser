@@ -227,7 +227,7 @@ const DesktopGameDetail = () => {
                     ?.sort((a: any, b: any) => a.sNo - b.sNo)
                     ?.map((item: any, index: number) => (
                       <div key={index}>
-                        {item?.activeStatus === "live" && item?.isActive && (
+                        {item?.activeStatus === "live" && (
                           <Col md={12} style={{ marginTop: "8px" }}>
                             <Tournament
                               title={item?.name}

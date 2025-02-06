@@ -115,7 +115,7 @@ const MobileGameDetail = () => {
       }
     }, [matchDetails?.id]);
 
-    
+
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -222,7 +222,7 @@ const MobileGameDetail = () => {
                       {matchDetails?.other?.length > 0 &&
                         matchDetails?.other?.map((item: any, index: number) => (
                           <div key={index} className="p-0">
-                            {item?.activeStatus === "live" && item?.isActive && (
+                            {item?.activeStatus === "live" && (
                               <Col className="g-0" md={12}>
                                 <OtherMarket
                                   title={item?.name}
@@ -251,7 +251,7 @@ const MobileGameDetail = () => {
                           ?.sort((a: any, b: any) => a.sNo - b.sNo)
                           ?.map((item: any, index: number) => (
                             <div className="p-0" key={index}>
-                              {item?.activeStatus === "live" && item?.isActive && (
+                              {item?.activeStatus === "live" && (
                                 <Col className="g-0" md={12}>
                                   <Tournament
                                     title={item?.name}
@@ -487,7 +487,7 @@ const MobileGameDetail = () => {
                           ?.sort((a: any, b: any) => a.sNo - b.sNo)
                           ?.map((item: any, index: number) => (
                             <div className="p-0" key={index}>
-                              {item?.activeStatus === "live" && item?.isActive && (
+                              {item?.activeStatus === "live" && (
                                 <Col className="g-0" md={12}>
                                   <Tournament
                                     title={item?.name}
