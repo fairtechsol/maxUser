@@ -159,7 +159,7 @@ const RaceDetail = () => {
   
   const fetchLiveData = useCallback(async () => {
     try {
-      const response = await axios.get(`${baseUrls.matchSocket}/getExpertRateDetails/${id}`, {
+      const response = await axios.get(`${baseUrls.matchSocket}/getUserRateDetails/${id}`, {
         // headers: {
         //   Authorization: `Bearer ${sessionStorage.getItem("jwtExpert")}`,
         // },
