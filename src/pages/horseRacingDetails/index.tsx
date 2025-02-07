@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef , useCallback } from "react";
 import {isMobile} from "../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
@@ -29,8 +29,11 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import HorseRaceDetailMobile from "../../components/horseRacing/mobile/betTable";
 import HorseRaceDetailDesktop from "../../components/horseRacing/desktop/betTable";
+import axios from "axios";
+import { baseUrls } from "../../utils/constants";
 
 const RaceDetail = () => {
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
@@ -113,14 +116,14 @@ const RaceDetail = () => {
   useEffect(() => {
     try {
       if (success && socket) {
-        expertSocketService.match.getMatchRatesOff(id);
+        // expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
         socketService.userBalance.declaredMatchResultAllUserOff();
         socketService.userBalance.matchDeleteBetOff();
         socketService.userBalance.updateDeleteReasonOff();
         expertSocketService.match.joinMatchRoom(id, "user");
-        expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
+        // expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
@@ -136,7 +139,7 @@ const RaceDetail = () => {
     try {
       return () => {
         expertSocketService.match.leaveMatchRoom(id);
-        expertSocketService.match.getMatchRatesOff(id);
+        // expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
         socketService.userBalance.declaredMatchResultAllUserOff();
@@ -152,6 +155,47 @@ const RaceDetail = () => {
       console.log(e);
     }
   }, [id]);
+
+  
+  const fetchLiveData = useCallback(async () => {
+    try {
+      const response = await axios.get(`${baseUrls.matchSocket}/getExpertRateDetails/${id}`, {
+        // headers: {
+        //   Authorization: `Bearer ${sessionStorage.getItem("jwtExpert")}`,
+        // },
+      });
+      setMatchRatesInRedux(response.data);
+      // console.log("Live Data:", response.data);
+    } catch (error) {
+      console.error("Error fetching live data:", error);
+    }
+  }, [id]);
+
+  const handleVisibilityChange = useCallback(() => {
+    if (document.visibilityState === "visible") {
+      if (!intervalRef.current) {
+        fetchLiveData(); // Fetch once immediately
+        intervalRef.current = setInterval(fetchLiveData, 500);
+      }
+    } else if (document.visibilityState === "hidden") {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }
+  }, [intervalRef, fetchLiveData]);
+
+  useEffect(() => {
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    handleVisibilityChange();
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [handleVisibilityChange]);
 
   return isMobile ? <HorseRaceDetailMobile /> : <HorseRaceDetailDesktop />;
 };

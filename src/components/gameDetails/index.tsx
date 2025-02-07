@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef , useCallback  } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -44,8 +44,11 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
+import axios from "axios";
+import { baseUrls } from "../../utils/constants";
 
 const GameDetails = () => {
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -252,7 +255,7 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       if (socket) {
-        expertSocketService.match.getMatchRatesOff(id);
+        // expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
@@ -287,7 +290,7 @@ const GameDetails = () => {
     try {
       return () => {
         expertSocketService.match.leaveMatchRoom(id);
-        expertSocketService.match.getMatchRatesOff(id);
+        // expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
@@ -318,6 +321,46 @@ const GameDetails = () => {
     }
   }, [id]);
 
+  const fetchLiveData = useCallback(async () => {
+    try {
+      const response = await axios.get(`${baseUrls.matchSocket}/getExpertRateDetails/${id}`, {
+        // headers: {
+        //   Authorization: `Bearer ${sessionStorage.getItem("jwtExpert")}`,
+        // },
+      });
+      setMatchRatesInRedux(response.data);
+      // console.log("Live Data:", response.data);
+    } catch (error) {
+      console.error("Error fetching live data:", error);
+    }
+  }, [id]);
+
+  const handleVisibilityChange = useCallback(() => {
+    if (document.visibilityState === "visible") {
+      if (!intervalRef.current) {
+        fetchLiveData(); // Fetch once immediately
+        intervalRef.current = setInterval(fetchLiveData, 500);
+      }
+    } else if (document.visibilityState === "hidden") {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }
+  }, [intervalRef, fetchLiveData]);
+
+  useEffect(() => {
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    handleVisibilityChange();
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [handleVisibilityChange]);
+
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
@@ -330,12 +373,12 @@ const GameDetails = () => {
           dispatch(getPlacedBets(id));
           setTimeout(() => {
             expertSocketService.match.joinMatchRoom(id, "user");
-            expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
+            // expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
           }, 500);
         }
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);
-        expertSocketService.match.getMatchRatesOff(id);
+        // expertSocketService.match.getMatchRatesOff(id);
       }
     };
 
