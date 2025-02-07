@@ -33,7 +33,7 @@ import axios from "axios";
 import { baseUrls } from "../../utils/constants";
 
 const RaceDetail = () => {
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<number | null>(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();

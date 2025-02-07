@@ -40,7 +40,7 @@ import axios from "axios";
 import { baseUrls } from "../../utils/constants";
 
 const FootballGameDetails = () => {
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<number | null>(null);
   const dispatch: AppDispatch = useDispatch();
   const { success } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
