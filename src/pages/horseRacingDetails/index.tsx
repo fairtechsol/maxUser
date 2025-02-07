@@ -175,7 +175,7 @@ const RaceDetail = () => {
     if (document.visibilityState === "visible") {
       if (!intervalRef.current) {
         fetchLiveData(); // Fetch once immediately
-        intervalRef.current = setInterval(fetchLiveData, 500);
+        intervalRef.current = window.setInterval(fetchLiveData, 500) as unknown as number;
       }
     } else if (document.visibilityState === "hidden") {
       if (intervalRef.current) {
