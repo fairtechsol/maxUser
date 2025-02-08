@@ -264,7 +264,7 @@ const GameDetails = () => {
         socketService.userBalance.sessionResultUnDeclareOff();
         socketService.userBalance.updateDeleteReasonOff();
         expertSocketService.match.joinMatchRoom(id, "user");
-        expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
+        // expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
