@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Table, Modal } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Modal, Table } from "react-bootstrap";
 // import { FiMonitor } from "react-icons/fi";
 import moment from "moment-timezone";
+import { FaHome, FaLock } from "react-icons/fa";
 import { FiMonitor } from "react-icons/fi";
 import { Img } from "react-image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { AppDispatch, RootState } from "../../../../../../store/store";
-import {
-  availableGameType,
-  casinoIcons,
-} from "../../../../../../utils/constants";
-import ContactAdmin from "../../../../../commonComponent/contactAdmin";
-import HorseRacingComponentList from "../../../../../horseRacing";
-import BackLayComponent from "./backlayComponent";
-import "./style.scss";
-import { FaLock } from "react-icons/fa";
+import { maxbetLogo } from "../../../../../../assets/images";
 import { expertSocketService } from "../../../../../../socketManager";
-import { useDispatch } from "react-redux";
 import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
 import {
   liveCasinoList,
   liveCasinoLogin,
 } from "../../../../../../store/actions/cards/cardDetail";
-import { FaHome } from "react-icons/fa";
-import { maxbetLogo } from "../../../../../../assets/images";
-import { liveCasinoGameList } from "../../../../../../utils/constants";
+import { AppDispatch, RootState } from "../../../../../../store/store";
+import {
+  availableGameType,
+  casinoIcons,
+  liveCasinoGameList,
+} from "../../../../../../utils/constants";
+import ContactAdmin from "../../../../../commonComponent/contactAdmin";
+import HorseRacingComponentList from "../../../../../horseRacing";
+import BackLayComponent from "./backlayComponent";
+import "./style.scss";
 const tableHeading = [
   {
     id: "game",
@@ -108,7 +106,6 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
       setDataList(sortedArr);
     }
   }, [liveCasinoData, liveCasinoGameList]);
-
 
   const handleModal = (data: any) => {
     if (data?.game_id) {
@@ -345,8 +342,6 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
 
 const MatchListRow = ({ item, matchType }: any) => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const currentTime = new Date().getTime();
-  const startAt = new Date(item?.startAt).getTime();
 
   const navigate = useNavigate();
 
@@ -409,9 +404,11 @@ const MatchListRow = ({ item, matchType }: any) => {
               <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
             )}
             {/* Bookmaker Icon */}
-            {item?.isBookmaker?.length > 0 ? (
+            {item?.bm == "True" ||
+            item?.bm == true ||
+            item?.isBookmaker.length > 0 ? (
               <span className="bookmaker">
-                <img src="/ic_bm.png" alt={"fancy"} />
+                <img src="/ic_bm.png" alt={"bookmaker"} />
               </span>
             ) : (
               <span style={{ width: "18px", height: "16px" }}></span> // Placeholder space

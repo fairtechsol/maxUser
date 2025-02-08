@@ -12,13 +12,13 @@ export let cardSocket: any = null;
 
 export const initialiseSocket = () => {
   socket = io(baseUrls.socket, {
-    transports: [`${Constants.WEBSOCKET}`],
+    transports: [`${Constants.WEBSOCKET}`,`${Constants.POLLING}`],
     auth: {
       token: `${sessionStorage.getItem("jwtMaxUser")}`,
     },
   });
   expertSocket = io(baseUrls.expertSocket, {
-    transports: [`${Constants.WEBSOCKET}`],
+    transports: [`${Constants.WEBSOCKET}`,`${Constants.POLLING}`],
     auth: {
       token: `${sessionStorage.getItem("jwtMaxUser")}`,
     },
@@ -28,14 +28,12 @@ export const initialiseSocket = () => {
       // process.env.NODE_ENV === "production"
       //   ? `${Constants.POLLING}`
       //   :
-         `${Constants.WEBSOCKET}`,
+         `${Constants.WEBSOCKET}`,`${Constants.POLLING}`
     ],
   });
   cardSocket = io(baseUrls.cardSocket, {
-    transports: [
-      process.env.NODE_ENV === "production"
-        ? `${Constants.WEBSOCKET}`
-        : `${Constants.WEBSOCKET}`,
+    transports: [`${Constants.POLLING}`,`${Constants.WEBSOCKET}`,
+
     ],
   });
 };
