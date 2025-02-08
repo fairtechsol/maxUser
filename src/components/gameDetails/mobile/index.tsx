@@ -115,7 +115,6 @@ const MobileGameDetail = () => {
       }
     }, [matchDetails?.id]);
 
-
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -179,7 +178,7 @@ const MobileGameDetail = () => {
                             <Col md={12}>
                               <Ratio aspectRatio="16x9">
                                 <iframe
-                                  src={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
+                                  src={`${liveStreamCricketPageUrl}${matchDetails?.tournament?.[0]?.gmid}`}
                                   title="Live Stream"
                                   referrerPolicy="strict-origin-when-cross-origin"
                                 ></iframe>

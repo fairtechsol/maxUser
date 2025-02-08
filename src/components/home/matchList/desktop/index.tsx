@@ -1,12 +1,9 @@
 import { useEffect } from "react";
 import { Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { expertSocketService } from "../../../../socketManager";
-import { AppDispatch, RootState } from "../../../../store/store";
+import { RootState } from "../../../../store/store";
 // import { onTabSwitch } from "../../../../utils/tabSwitch";
-import { useDispatch } from "react-redux";
-import { useParams,useLocation } from "react-router-dom";
-import { updateMatchOddRates } from "../../../../store/actions/match/matchListAction";
+import { useLocation, useParams } from "react-router-dom";
 import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
