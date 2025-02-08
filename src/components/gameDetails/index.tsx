@@ -53,7 +53,6 @@ const GameDetails = () => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 1199);
@@ -319,31 +318,38 @@ const GameDetails = () => {
   }, [id]);
 
   useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        if (!socket.connected) {
-          socketService.connect();
+    try {
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === "visible") {
+          if (!socket.connected) {
+            socketService.connect();
+          }
+          if (id) {
+            dispatch(selectedBetAction(null));
+            // dispatch(matchDetailAction(id));
+            dispatch(getPlacedBets(id));
+            setTimeout(() => {
+              expertSocketService.match.joinMatchRoom(id, "user");
+              expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
+            }, 500);
+          }
+        } else if (document.visibilityState === "hidden") {
+          expertSocketService.match.leaveMatchRoom(id);
+          expertSocketService.match.getMatchRatesOff(id);
         }
-        if (id) {
-          dispatch(selectedBetAction(null));
-          // dispatch(matchDetailAction(id));
-          dispatch(getPlacedBets(id));
-          setTimeout(() => {
-            expertSocketService.match.joinMatchRoom(id, "user");
-            expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
-          }, 500);
-        }
-      } else if (document.visibilityState === "hidden") {
-        expertSocketService.match.leaveMatchRoom(id);
-        expertSocketService.match.getMatchRatesOff(id);
-      }
-    };
+      };
 
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, [socket, id]);
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+      return () => {
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibilityChange
+        );
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, [socket, id,matchSocket]);
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };

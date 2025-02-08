@@ -92,21 +92,7 @@ const MobileGameDetail = () => {
     }
   }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
 
-  // useEffect(() => {
-  //   try {
-  //     if (matchDetails?.eventId) {
-  //       const callApiForLiveStream = async () => {
-  //         let result = await getChannelId(matchDetails?.eventId);
-  //         if (result) {
-  //           setChannelId(result?.channelNo);
-  //         }
-  //       };
-  //       callApiForLiveStream();
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [matchDetails?.id]);
+
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
@@ -235,7 +221,7 @@ const MobileGameDetail = () => {
                       {matchDetails?.other?.length > 0 &&
                         matchDetails?.other?.map((item: any, index: number) => (
                           <div key={index} className="p-0">
-                            {item?.activeStatus === "live" && item?.isActive && (
+                            {item?.activeStatus === "live" && (
                               <Col className="g-0" md={12}>
                                 <OtherMarket
                                   title={item?.name}
@@ -264,7 +250,7 @@ const MobileGameDetail = () => {
                           ?.sort((a: any, b: any) => a.sNo - b.sNo)
                           ?.map((item: any, index: number) => (
                             <div className="p-0" key={index}>
-                              {item?.activeStatus === "live" && item?.isActive && (
+                              {item?.activeStatus === "live" && (
                                 <Col className="g-0" md={12}>
                                   <Tournament
                                     title={item?.name}
@@ -500,7 +486,7 @@ const MobileGameDetail = () => {
                           ?.sort((a: any, b: any) => a.sNo - b.sNo)
                           ?.map((item: any, index: number) => (
                             <div className="p-0" key={index}>
-                              {item?.activeStatus === "live" && item?.isActive && (
+                              {item?.activeStatus === "live" && (
                                 <Col className="g-0" md={12}>
                                   <Tournament
                                     title={item?.name}
