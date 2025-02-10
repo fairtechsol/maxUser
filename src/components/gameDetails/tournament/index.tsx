@@ -54,7 +54,7 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
-  const key = `${data.id}_profitLoss_${detail.id}`;
+  const key = `${data.parentBetId || data.id}_profitLoss_${detail.id}`;
 
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
@@ -146,7 +146,9 @@ const Tournament = ({ title, box, data, detail }) => {
                   <div className="d-flex flex-row justify-content-between w-100">
                     <span
                       className={`${
-                        parseFloat(profitLossObj?.[item.id]) +
+                        parseFloat(
+                          profitLossObj?.[item.parentRunnerId || item.id]
+                        ) +
                           manualProfitLoss(
                             selectedBet,
                             item?.nat || item?.runnerName,
@@ -158,19 +160,23 @@ const Tournament = ({ title, box, data, detail }) => {
                           : "color-red"
                       } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
-                      {profitLossObj?.[item.id]
-                        ? selectedBet?.team?.betId === data?.id
-                          ? parseFloat(profitLossObj?.[item.id]) +
+                      {profitLossObj?.[item.parentRunnerId || item.id]
+                        ? selectedBet?.team?.betId ===
+                          (data.parentBetId || data?.id)
+                          ? parseFloat(
+                              profitLossObj?.[item.parentRunnerId || item.id]
+                            ) +
                             manualProfitLoss(
                               selectedBet,
                               item?.nat || item?.runnerName,
                               data?.type,
                               data?.gtype
                             )
-                          : profitLossObj?.[item.id]
+                          : profitLossObj?.[item.parentRunnerId || item.id]
                         : ""}
                     </span>
-                    {selectedBet?.team?.betId === data?.id ? (
+                    {selectedBet?.team?.betId ===
+                    (data.parentBetId || data?.id) ? (
                       <span
                         className="title-12 f-400"
                         style={{
