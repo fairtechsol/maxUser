@@ -333,6 +333,9 @@ const GameDetails = () => {
           if (!socket.connected) {
             socketService.connect();
           }
+          if (!matchSocket.connected) {
+            matchService.connect();
+          }
           if (id) {
             dispatch(selectedBetAction(null));
             // dispatch(matchDetailAction(id));

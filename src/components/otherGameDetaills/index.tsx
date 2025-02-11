@@ -5,6 +5,7 @@ import {
   expertSocketService,
   socket,
   socketService,
+  matchSocket,
   matchService,
 } from "../../socketManager";
 import {
@@ -247,6 +248,9 @@ const FootballGameDetails = () => {
       if (document.visibilityState === "visible") {
         if (!socket.connected) {
           socketService.connect();
+        }
+        if (!matchSocket.connected) {
+          matchService.connect();
         }
         if (id) {
           dispatch(selectedBetAction(null));
