@@ -176,7 +176,7 @@ const MobileGameDetail = () => {
                             <Col md={12}>
                               <Ratio aspectRatio="16x9">
                                 <iframe
-                                  src={`${liveStreamCricketPageUrl}${matchDetails?.tournament?.[0]?.gmid}`}
+                                  src={`${liveStreamCricketPageUrl}${matchDetails?.gmid}`}
                                   title="Live Stream"
                                   referrerPolicy="strict-origin-when-cross-origin"
                                 ></iframe>
