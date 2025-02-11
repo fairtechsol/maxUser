@@ -6,6 +6,7 @@ import {
   matchSocket,
   socket,
   socketService,
+  matchService,
 } from "../../socketManager";
 import {
   // getMatchList,
@@ -53,6 +54,14 @@ const GameDetails = () => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
+
+  useEffect(() => {
+    matchService.connect();
+    return () => {
+      matchService.disconnect(); 
+    };
+  }, []);
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 1199);
