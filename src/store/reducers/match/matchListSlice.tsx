@@ -36,6 +36,7 @@ interface InitialState {
   selectedBet: any;
   searchedMatchList: any;
   marketId: string;
+  liveScoreBoardData?: any;
 }
 
 const initialState: InitialState = {
@@ -49,6 +50,7 @@ const initialState: InitialState = {
   selectedBet: null,
   searchedMatchList: null,
   marketId: "",
+  liveScoreBoardData:null,
 };
 
 const matchListSlice = createSlice({
@@ -169,6 +171,7 @@ const matchListSlice = createSlice({
           setWinner,
           completeManual,
           tournament,
+          scoreBoard
         } = action.payload;
 
         // let removedsessionBettings =
@@ -221,6 +224,7 @@ const matchListSlice = createSlice({
         //   }
         // });
         state.loading = false;
+        state.liveScoreBoardData=scoreBoard?.data;
         let parsedSessionBettings =
           state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
         const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];

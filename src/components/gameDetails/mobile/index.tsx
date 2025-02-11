@@ -5,9 +5,8 @@ import { RootState } from "../../../store/store";
 // import { formatDate } from "../../../utils/dateUtils";
 import moment from "moment";
 import { FaTv } from "react-icons/fa";
-import service from "../../../service";
 import { expertSocketService, matchSocket } from "../../../socketManager";
-import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
+import { liveStreamCricketPageUrl } from "../../../utils/constants";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import NewLoader from "../../commonComponent/newLoader";
 import CommonTabs from "../../commonComponent/tabs";
@@ -28,69 +27,68 @@ import "./style.scss";
 
 const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
-  const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
-  const [errorCount, setErrorCount] = useState<number>(0);
+  // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
+  // const [errorCount, setErrorCount] = useState<number>(0);
   // const [channelId, setChannelId] = useState<string>("");
   const [showVideo, setShowVideo] = useState(false);
-  const [currInterval, setCurrInterval] = useState<any>(null);
-  const { matchDetails, marketId, loading } = useSelector(
+  // const [currInterval, setCurrInterval] = useState<any>(null);
+  const { matchDetails, liveScoreBoardData, loading } = useSelector(
     (state: RootState) => state.match.matchList
   );
-
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const getScoreBoard = async (eventId: string) => {
-    try {
-      const response: any = await service.get(
-        // `https://fairscore7.com/score/getMatchScore/${marketId}`
-        // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
-        //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        `${Constants.thirdPartyLive}/cricketScore?eventId=${eventId}`
-      );
-      if (response?.success !== false) {
-        setLiveScoreBoardData(response?.data);
-        setErrorCount(0);
-      }
-      // if (response) {
-      //   setLiveScoreBoardData(response?.data);
-      //   setErrorCount(0);
-      // }
-    } catch (e) {
-      console.log("Error:", e?.message);
-      setLiveScoreBoardData(null);
-      setErrorCount((prevCount: number) => prevCount + 1);
-    }
-  };
+  // const getScoreBoard = async (eventId: string) => {
+  //   try {
+  //     const response: any = await service.get(
+  //       // `https://fairscore7.com/score/getMatchScore/${marketId}`
+  //       // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
+  //       //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+  //       `${Constants.thirdPartyLive}/cricketScore?eventId=${eventId}`
+  //     );
+  //     if (response?.success !== false) {
+  //       setLiveScoreBoardData(response?.data);
+  //       setErrorCount(0);
+  //     }
+  //     // if (response) {
+  //     //   setLiveScoreBoardData(response?.data);
+  //     //   setErrorCount(0);
+  //     // }
+  //   } catch (e) {
+  //     console.log("Error:", e?.message);
+  //     setLiveScoreBoardData(null);
+  //     setErrorCount((prevCount: number) => prevCount + 1);
+  //   }
+  // };
 
-  useEffect(() => {
-    try {
-      if (matchDetails?.eventId) {
-        getScoreBoard(matchDetails?.eventId);
-      }
-      clearInterval(currInterval);
-      setCurrInterval(null);
-      if (matchDetails?.marketId === marketId) {
-        let intervalTime = 5000;
-        if (errorCount >= 5 && errorCount < 10) {
-          intervalTime = 60000;
-        } else if (errorCount >= 10) {
-          intervalTime = 600000;
-        }
-        const interval = setInterval(() => {
-          getScoreBoard(matchDetails?.eventId);
-        }, intervalTime);
-        setCurrInterval(interval);
+  // useEffect(() => {
+  //   try {
+  //     if (matchDetails?.eventId) {
+  //       getScoreBoard(matchDetails?.eventId);
+  //     }
+  //     clearInterval(currInterval);
+  //     setCurrInterval(null);
+  //     if (matchDetails?.marketId === marketId) {
+  //       let intervalTime = 5000;
+  //       if (errorCount >= 5 && errorCount < 10) {
+  //         intervalTime = 60000;
+  //       } else if (errorCount >= 10) {
+  //         intervalTime = 600000;
+  //       }
+  //       const interval = setInterval(() => {
+  //         getScoreBoard(matchDetails?.eventId);
+  //       }, intervalTime);
+  //       setCurrInterval(interval);
 
-        return () => {
-          clearInterval(interval);
-          clearInterval(currInterval);
-          setCurrInterval(null);
-          setLiveScoreBoardData(null);
-        };
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
+  //       return () => {
+  //         clearInterval(interval);
+  //         clearInterval(currInterval);
+  //         setCurrInterval(null);
+  //         setLiveScoreBoardData(null);
+  //       };
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
 
 
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
