@@ -545,7 +545,7 @@ const MatchListRow = ({ item, matchType }: any) => {
               backRate={
                 item?.back12 || item?.section?.[2]?.odds?.[0]?.odds || 0
               }
-              layRate={item?.lay12 || item?.section?.[2]?.odds?.[0]?.odds || 0}
+              layRate={item?.lay12 || item?.section?.[2]?.odds?.[1]?.odds || 0}
               active={false}
             />
           </td>
@@ -559,7 +559,7 @@ const MatchListRow = ({ item, matchType }: any) => {
               backRate={
                 item?.back11 || item?.section?.[1]?.odds?.[0]?.odds || 0
               }
-              layRate={item?.lay11 || item?.section?.[1]?.odds?.[0]?.odds || 0}
+              layRate={item?.lay11 || item?.section?.[1]?.odds?.[1]?.odds || 0}
               active={false}
             />
           </td>
