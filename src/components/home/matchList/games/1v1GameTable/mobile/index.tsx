@@ -334,7 +334,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   }
                                   layRate={
                                     item?.lay12 ||
-                                    item?.section?.[2]?.odds?.[0]?.odds ||
+                                    item?.section?.[2]?.odds?.[1]?.odds ||
                                     0
                                   }
                                   active={false}
@@ -356,7 +356,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   }
                                   layRate={
                                     item?.lay11 ||
-                                    item?.section?.[1]?.odds?.[0]?.odds ||
+                                    item?.section?.[1]?.odds?.[1]?.odds ||
                                     0
                                   }
                                   active={false}
