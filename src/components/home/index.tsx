@@ -29,12 +29,7 @@ const MatchList = ({ setMatchType, matchType }: any) => {
       {isMobile ? (
         <SportsFilters setMatchType={setMatchType} matchType={matchType} />
       ) : (
-        <>
-        <div>
-          for checking
-        </div>
         <DesktopMatchList setMatchType={setMatchType} matchType={matchType} />
-        </>
       )}
     </>
   );
