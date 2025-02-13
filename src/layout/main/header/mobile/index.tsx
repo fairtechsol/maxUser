@@ -27,6 +27,7 @@ const MobileHeader = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [activeSport, setActiveSport] = useState(sportsRules[0]?.sportName);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleSelect = (sportName) => {
     setActiveSport(sportName); // Update active tab
@@ -90,7 +91,10 @@ const MobileHeader = () => {
             setShow={handleClickExposureModalOpen}
           />
           <div>
-            <Dropdown>
+            <Dropdown
+            show={showDropdown}
+            onToggle={() => setShowDropdown(!showDropdown)}
+            >
               <Dropdown.Toggle
                 id="dropdown-custom-components"
                 className="title-14"
@@ -120,6 +124,7 @@ const MobileHeader = () => {
                       <Dropdown.Item
                         className="title-16px d-flex justify-content-between"
                         onClick={(e) => {
+                          setShowDropdown(!showDropdown)
                           e.stopPropagation();
                           if (item?.link) {
                             navigate(item.link);
