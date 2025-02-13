@@ -5,6 +5,8 @@ import {
   expertSocketService,
   socket,
   socketService,
+  matchSocket,
+  matchService,
 } from "../../socketManager";
 import {
   betPlacedReset,
@@ -44,6 +46,14 @@ const FootballGameDetails = () => {
   );
   const navigate = useNavigate();
   const { id, type } = useParams();
+
+  useEffect(() => {
+    matchService.connect();
+    return () => {
+      matchService.disconnect(); 
+    };
+  }, []);
+
   useEffect(() => {
     dispatch(getButtonValue());
   }, [dispatch]);
@@ -238,6 +248,9 @@ const FootballGameDetails = () => {
       if (document.visibilityState === "visible") {
         if (!socket.connected) {
           socketService.connect();
+        }
+        if (!matchSocket.connected) {
+          matchService.connect();
         }
         if (id) {
           dispatch(selectedBetAction(null));
