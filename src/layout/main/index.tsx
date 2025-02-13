@@ -59,6 +59,10 @@ const MainLayout = () => {
     dispatch(getProfile());
   };
 
+  const handleRefreshAll = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     if (sessionStorage.getItem("isAuthenticator") === "false") {
       sessionStorage.clear();
@@ -90,6 +94,7 @@ const MainLayout = () => {
       socketService.userBalance.matchDeleteBet(getUserProfile);
       socketService.userBalance.sessionDeleteBet(getUserProfile);
       socketService.userBalance.sessionDeleteBet(getUserProfile);
+      socketService.userBalance.hardRefreshAll(handleRefreshAll);
       socketService.card.cardResult(handleMatchResult);
     } else {
       socketService.disconnect();
