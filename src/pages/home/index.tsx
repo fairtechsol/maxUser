@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MatchList from "../../components/home";
+import MatchList from "../../components/home/index1";
 import {
   expertSocketService,
   socket,
