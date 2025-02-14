@@ -74,8 +74,7 @@ const FootballDesktopGameDetail = () => {
       if (otherMatchDetails?.id && matchSocket) {
         let currRateInt = setInterval(() => {
           expertSocketService.match.joinMatchRoom(
-            otherMatchDetails?.id,
-            "user"
+            otherMatchDetails?.id
           );
         }, 60000);
         return () => {

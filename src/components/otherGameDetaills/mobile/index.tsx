@@ -61,7 +61,7 @@ const FootballMobileGameDetail = () => {
         try {
           if (otherMatchDetails?.id && matchSocket) {
             let currRateInt = setInterval(() => {
-              expertSocketService.match.joinMatchRoom(otherMatchDetails?.id, "user");
+              expertSocketService.match.joinMatchRoom(otherMatchDetails?.id);
             }, 60000);
             return () => {
               clearInterval(currRateInt);

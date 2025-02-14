@@ -56,11 +56,13 @@ const GameDetails = () => {
   );
 
   useEffect(() => {
-    matchService.connect();
+    if (id) {
+      matchService.connect([id]);
+    }
     return () => {
       matchService.disconnect(); 
     };
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -271,7 +273,7 @@ const GameDetails = () => {
         socketService.userBalance.sessionNoResultOff();
         socketService.userBalance.sessionResultUnDeclareOff();
         socketService.userBalance.updateDeleteReasonOff();
-        expertSocketService.match.joinMatchRoom(id, "user");
+        expertSocketService.match.joinMatchRoom(id);
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
@@ -294,7 +296,7 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       return () => {
-        expertSocketService.match.leaveMatchRoom(id);
+        // expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
@@ -338,12 +340,12 @@ const GameDetails = () => {
             // dispatch(matchDetailAction(id));
             dispatch(getPlacedBets(id));
             setTimeout(() => {
-              expertSocketService.match.joinMatchRoom(id, "user");
+              expertSocketService.match.joinMatchRoom(id);
               expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
             }, 500);
           }
         } else if (document.visibilityState === "hidden") {
-          expertSocketService.match.leaveMatchRoom(id);
+          // expertSocketService.match.leaveMatchRoom(id);
           expertSocketService.match.getMatchRatesOff(id);
         }
       };
