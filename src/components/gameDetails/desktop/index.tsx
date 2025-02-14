@@ -566,7 +566,7 @@ const DesktopGameDetail = () => {
               {matchDetails?.eventId && matchDetails?.matchType !== "politics" && (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent
-                    url={`${liveStreamCricketPageUrl}${matchDetails?.tournament?.[0]?.gmid}`}
+                    url={`${liveStreamCricketPageUrl}${matchDetails?.gmid}`}
                   />
                 </Col>
               )}

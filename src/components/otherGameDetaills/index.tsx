@@ -246,12 +246,9 @@ const FootballGameDetails = () => {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
-        if (!socket.connected) {
-          socketService.connect();
-        }
-        if (!matchSocket.connected) {
-          matchService.connect();
-        }
+        // if (!socket.connected) {
+        //   socketService.connect();
+        // }
         if (id) {
           dispatch(selectedBetAction(null));
           // dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));

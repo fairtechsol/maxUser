@@ -269,6 +269,7 @@ const matchListSlice = createSlice({
         });
         state.matchDetails = {
           ...state.matchDetails,
+          gmid: action.payload?.gmid,
           manualSessionActive:
             sessionBettings && sessionBettings?.length >= 0 ? true : false,
           apiSessionActive:
