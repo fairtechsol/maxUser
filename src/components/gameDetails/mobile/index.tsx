@@ -170,7 +170,7 @@ const MobileGameDetail = () => {
                     <Row className="ms-0">
                       {/* Conditionally render the LiveStreamComponent if channelId is valid */}
 
-                      {showVideo && (
+                      {!sessionStorage.getItem("isDemo") && showVideo && (
                         <Container className="px-0">
                           <Row className="justify-content-md-center">
                             <Col md={12}>
