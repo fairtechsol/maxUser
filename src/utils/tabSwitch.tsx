@@ -1,16 +1,16 @@
 import { expertSocketService } from "../socketManager";
 
-export const onTabSwitch = (matchList: any, roleName: any) => {
+export const onTabSwitch = (matchList: any) => {
   if (document.visibilityState === "hidden") {
     expertSocketService.match.leaveAllRooms();
     matchList?.forEach((element: any) => {
-      expertSocketService.match.leaveMatchRoom(element?.id);
+      // expertSocketService.match.leaveMatchRoom(element?.id);
     });
   } else {
     // Tab is active, join the room
     if (matchList) {
       matchList?.forEach((element: any) => {
-        expertSocketService.match.joinMatchRoom(element?.id, roleName);
+        expertSocketService.match.joinMatchRoom(element?.id);
       });
     }
   }

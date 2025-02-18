@@ -40,6 +40,9 @@ export const userBalanceSocketService = {
   updateDeleteReason: (callback: any) => {
     socket?.on("updateDeleteReason", callback);
   },
+  hardRefreshAll: (callback: any) => {
+    socket?.on("hardRefreshAll", callback);
+  },
   updateUserBalanceOff: () => {
     socket?.off("updateUserBalance");
   },
@@ -78,5 +81,8 @@ export const userBalanceSocketService = {
   },
   updateDeleteReasonOff: () => {
     socket?.off("updateDeleteReason");
+  },
+  hardRefreshAllOff: () => {
+    socket?.off("hardRefreshAll");
   },
 };

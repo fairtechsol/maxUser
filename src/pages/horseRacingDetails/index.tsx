@@ -122,7 +122,7 @@ const RaceDetail = () => {
         socketService.userBalance.declaredMatchResultAllUserOff();
         socketService.userBalance.matchDeleteBetOff();
         socketService.userBalance.updateDeleteReasonOff();
-        expertSocketService.match.joinMatchRoom(id, "user");
+        expertSocketService.match.joinMatchRoom(id);
         // expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
@@ -138,7 +138,7 @@ const RaceDetail = () => {
   useEffect(() => {
     try {
       return () => {
-        expertSocketService.match.leaveMatchRoom(id);
+        // expertSocketService.match.leaveMatchRoom(id);
         // expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();

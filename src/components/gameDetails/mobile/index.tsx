@@ -102,7 +102,7 @@ const MobileGameDetail = () => {
       try {
         if (matchDetails?.id && matchSocket) {
           let currRateInt = setInterval(() => {
-            expertSocketService.match.joinMatchRoom(matchDetails?.id, "user");
+            expertSocketService.match.joinMatchRoom(matchDetails?.id);
           }, 60000);
           return () => {
             clearInterval(currRateInt);
@@ -170,7 +170,7 @@ const MobileGameDetail = () => {
                     <Row className="ms-0">
                       {/* Conditionally render the LiveStreamComponent if channelId is valid */}
 
-                      {showVideo && (
+                      {!sessionStorage.getItem("isDemo") && showVideo && (
                         <Container className="px-0">
                           <Row className="justify-content-md-center">
                             <Col md={12}>

@@ -23,15 +23,29 @@ export const initialiseSocket = () => {
       token: `${sessionStorage.getItem("jwtMaxUser")}`,
     },
   });
+  // matchSocket = io(baseUrls.matchSocket, {
+  //   transports: [
+  //     process.env.NODE_ENV === "production"
+  //       ? `${Constants.POLLING}`
+  //       : `${Constants.WEBSOCKET}`,
+  //   ],
+  // });
+  cardSocket = io(baseUrls.cardSocket, {
+    transports: [`${Constants.POLLING}`, `${Constants.WEBSOCKET}`],
+  });
+};
+
+export const initialiseMatchSocket = (matchId: string[]) => {
   matchSocket = io(baseUrls.matchSocket, {
     transports: [
       process.env.NODE_ENV === "production"
         ? `${Constants.POLLING}`
         : `${Constants.WEBSOCKET}`,
     ],
-  });
-  cardSocket = io(baseUrls.cardSocket, {
-    transports: [`${Constants.POLLING}`, `${Constants.WEBSOCKET}`],
+    query: {
+      matchIdArray: matchId,
+      roleName: "user"
+    },
   });
 };
 
@@ -41,20 +55,40 @@ export const socketService = {
     // Connect to the socket server
     socket?.connect();
     expertSocket?.connect();
-    matchSocket?.connect();
+    // matchSocket?.connect();
     cardSocket?.connect();
   },
   disconnect: () => {
     // Disconnect from the socket server
     socket?.disconnect();
     expertSocket?.disconnect();
-    matchSocket?.disconnect();
+    // matchSocket?.disconnect();
     cardSocket?.disconnect();
   },
   auth: { ...authSocketService },
   userBalance: { ...userBalanceSocketService },
   card: { ...cardSocketService },
   // Add other socket-related methods as needed
+};
+
+export const matchService = {
+  connect: (matchId: string[]) => {
+    initialiseMatchSocket(matchId);
+    matchSocket?.connect();
+
+    matchSocket?.on("reconnect", () => {
+      console.log("match reconnet");
+    });
+    matchSocket?.on("disconnect", () => {
+      console.log("match disconnect");
+    });
+    matchSocket?.on("connect", () => {
+      console.log("match connect");
+    });
+  },
+  disconnect: () => {
+    matchSocket?.disconnect();
+  },
 };
 
 export const expertSocketService = {

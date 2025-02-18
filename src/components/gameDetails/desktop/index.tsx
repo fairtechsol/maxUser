@@ -122,7 +122,7 @@ const DesktopGameDetail = () => {
     try {
       if (matchDetails?.id && matchSocket) {
         let currRateInt = setInterval(() => {
-          expertSocketService.match.joinMatchRoom(matchDetails?.id, "user");
+          expertSocketService.match.joinMatchRoom(matchDetails?.id);
         }, 60000);
         return () => {
           clearInterval(currRateInt);

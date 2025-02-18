@@ -5,6 +5,8 @@ import {
   expertSocketService,
   socket,
   socketService,
+  matchSocket,
+  matchService,
 } from "../../socketManager";
 import {
   betPlacedReset,
@@ -44,6 +46,16 @@ const FootballGameDetails = () => {
   );
   const navigate = useNavigate();
   const { id, type } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      matchService.connect([id]);
+    }
+    return () => {
+      matchService.disconnect(); 
+    };
+  }, [id]);
+
   useEffect(() => {
     dispatch(getButtonValue());
   }, [dispatch]);
@@ -191,7 +203,7 @@ const FootballGameDetails = () => {
         socketService.userBalance.matchDeleteBetOff();
         socketService.userBalance.matchResultUnDeclaredOff();
         socketService.userBalance.updateDeleteReasonOff();
-        expertSocketService.match.joinMatchRoom(id, "user");
+        expertSocketService.match.joinMatchRoom(id);
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
@@ -210,7 +222,7 @@ const FootballGameDetails = () => {
   useEffect(() => {
     try {
       return () => {
-        expertSocketService.match.leaveMatchRoom(id);
+        // expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
@@ -243,11 +255,11 @@ const FootballGameDetails = () => {
           dispatch(selectedBetAction(null));
           // dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
           dispatch(getPlacedBets(id));
-          expertSocketService.match.joinMatchRoom(id, "user");
+          expertSocketService.match.joinMatchRoom(id);
           expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         }
       } else if (document.visibilityState === "hidden") {
-        expertSocketService.match.leaveMatchRoom(id);
+        // expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
       }
     };
