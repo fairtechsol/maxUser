@@ -66,7 +66,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   };
 
   useEffect(() => {
-    const newMarketArr = [...(data?.section || []), ...(manual || [])];
+    const newMarketArr = [ ...(manual || []),...(data?.section || [])];
     setMarketArr(newMarketArr);
   }, [data, manual]);
 
