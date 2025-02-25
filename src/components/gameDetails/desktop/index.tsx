@@ -523,8 +523,7 @@ const DesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {matchDetails?.eventId &&
-                tvData?.tvData?.iframeUrl &&
+              {matchDetails?.eventId  &&
                 matchDetails?.matchType !== "politics" && (
                   <Col md={12} className="px-1 pt-1">
                     <LiveStreamComponent

@@ -98,7 +98,7 @@ const FootballDesktopGameDetail = () => {
                 {/* {liveScoreBoardData && (
                   <Iframe data={liveScoreBoardData} width="100%" />
                 )} */}
-                {showScoreboard && tvData?.scoreData?.iframeUrl && (
+                {showScoreboard &&  (
                   <div
                     style={{
                       height: "250px",
@@ -342,7 +342,7 @@ const FootballDesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {otherMatchDetails?.eventId && tvData?.tvData?.iframeUrl && (
+              {otherMatchDetails?.eventId &&  (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent
                     url={
