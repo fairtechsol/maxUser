@@ -5,8 +5,8 @@ import { RootState } from "../../../store/store";
 // import { formatDate } from "../../../utils/dateUtils";
 import moment from "moment";
 import { FaTv } from "react-icons/fa";
-import { expertSocketService, matchSocket } from "../../../socketManager";
-import { liveStreamCricketPageUrl } from "../../../utils/constants";
+import { liveStreamPageUrl } from "../../../utils/constants";
+import { getTvData } from "../../../utils/tvUrlGet";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import NewLoader from "../../commonComponent/newLoader";
 import CommonTabs from "../../commonComponent/tabs";
@@ -36,60 +36,13 @@ const MobileGameDetail = () => {
     (state: RootState) => state.match.matchList
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  // const getScoreBoard = async (eventId: string) => {
-  //   try {
-  //     const response: any = await service.get(
-  //       // `https://fairscore7.com/score/getMatchScore/${marketId}`
-  //       // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
-  //       //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-  //       `${Constants.thirdPartyLive}/cricketScore?eventId=${eventId}`
-  //     );
-  //     if (response?.success !== false) {
-  //       setLiveScoreBoardData(response?.data);
-  //       setErrorCount(0);
-  //     }
-  //     // if (response) {
-  //     //   setLiveScoreBoardData(response?.data);
-  //     //   setErrorCount(0);
-  //     // }
-  //   } catch (e) {
-  //     console.log("Error:", e?.message);
-  //     setLiveScoreBoardData(null);
-  //     setErrorCount((prevCount: number) => prevCount + 1);
-  //   }
-  // };
+  const [tvData, setTvData] = useState<any>(null);
 
-  // useEffect(() => {
-  //   try {
-  //     if (matchDetails?.eventId) {
-  //       getScoreBoard(matchDetails?.eventId);
-  //     }
-  //     clearInterval(currInterval);
-  //     setCurrInterval(null);
-  //     if (matchDetails?.marketId === marketId) {
-  //       let intervalTime = 5000;
-  //       if (errorCount >= 5 && errorCount < 10) {
-  //         intervalTime = 60000;
-  //       } else if (errorCount >= 10) {
-  //         intervalTime = 600000;
-  //       }
-  //       const interval = setInterval(() => {
-  //         getScoreBoard(matchDetails?.eventId);
-  //       }, intervalTime);
-  //       setCurrInterval(interval);
-
-  //       return () => {
-  //         clearInterval(interval);
-  //         clearInterval(currInterval);
-  //         setCurrInterval(null);
-  //         setLiveScoreBoardData(null);
-  //       };
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
-
+  useEffect(() => {
+    if (matchDetails?.eventId) {
+      getTvData(matchDetails?.eventId, setTvData);
+    }
+  }, [matchDetails?.id]);
 
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
@@ -97,21 +50,6 @@ const MobileGameDetail = () => {
   const manualEntries = matchDetails?.manualSessionActive
     ? normalizedData?.filter((item: any) => item?.isManual)
     : [];
-
-    useEffect(() => {
-      try {
-        if (matchDetails?.id && matchSocket) {
-          let currRateInt = setInterval(() => {
-            expertSocketService.match.joinMatchRoom(matchDetails?.id);
-          }, 60000);
-          return () => {
-            clearInterval(currRateInt);
-          };
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }, [matchDetails?.id]);
 
   return (
     <div>
@@ -170,21 +108,28 @@ const MobileGameDetail = () => {
                     <Row className="ms-0">
                       {/* Conditionally render the LiveStreamComponent if channelId is valid */}
 
-                      {!sessionStorage.getItem("isDemo") && showVideo && (
-                        <Container className="px-0">
-                          <Row className="justify-content-md-center">
-                            <Col md={12}>
-                              <Ratio aspectRatio="16x9">
-                                <iframe
-                                  src={`${liveStreamCricketPageUrl}${matchDetails?.gmid}`}
-                                  title="Live Stream"
-                                  referrerPolicy="strict-origin-when-cross-origin"
-                                ></iframe>
-                              </Ratio>
-                            </Col>
-                          </Row>
-                        </Container>
-                      )}
+                      {!sessionStorage.getItem("isDemo") &&
+                        showVideo &&
+                        tvData?.tvData?.iframeUrl && (
+                          <Container className="px-0">
+                            <Row className="justify-content-md-center">
+                              <Col md={12}>
+                                <Ratio aspectRatio="16x9">
+                                  <iframe
+                                    src={
+                                      import.meta.env.VITE_NODE_ENV ==
+                                      "production"
+                                        ? tvData?.tvData?.iframeUrl
+                                        : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
+                                    }
+                                    title="Live Stream"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                  ></iframe>
+                                </Ratio>
+                              </Col>
+                            </Row>
+                          </Container>
+                        )}
                       {liveScoreBoardData && (
                         <Iframe data={liveScoreBoardData} width="100%" />
                       )}

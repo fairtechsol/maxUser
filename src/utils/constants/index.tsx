@@ -474,6 +474,7 @@ export const cardUrl = import.meta.env.VITE_CARD_VIDEO_BASE_URL;
 export const cardUrlMain = import.meta.env.VITE_CARD_VIDEO_BASE_URL;
 export const liveStreamCricketPageUrl = import.meta.env
   .VITE_CRICKET_LIVE_STREAM_BASE_URL;
+export const tvApi = import.meta.env.VITE_TV_API;
 export const liveStreamPageUrl = import.meta.env.VITE_OTHER_LIVE_STREAM_BASE_URL;
 export const scoreBoardUrlMain = import.meta.env.VITE_SCORE_VITE_CARD_BASE_URL;
 

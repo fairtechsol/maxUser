@@ -13,8 +13,11 @@ import ManualMarket from "../../gameDetails/manulMarkets";
 import MatchOdd from "../../gameDetails/matchOdd";
 // import PlacedBet from "../../gameDetails/mobile/placeBet";
 import { FaTv } from "react-icons/fa";
-import { expertSocketService, matchSocket } from "../../../socketManager";
-import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
+import {
+  liveStreamPageUrl,
+  scoreBoardUrlMain
+} from "../../../utils/constants";
+import { getTvData } from "../../../utils/tvUrlGet";
 import NewLoader from "../../commonComponent/newLoader";
 import "../../gameDetails/mobile/style.scss";
 import Tournament from "../../gameDetails/tournament";
@@ -34,6 +37,7 @@ const FootballMobileGameDetail = () => {
   // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   // const [errorCount, setErrorCount] = useState<number>(0);
   const [showVideo, setShowVideo] = useState(false);
+  const [tvData, setTvData] = useState<any>(null);
 
   const { otherMatchDetails, loading } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
@@ -41,77 +45,15 @@ const FootballMobileGameDetail = () => {
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
-  // useEffect(() => {
-  //   try {
-  //     if (otherMatchDetails?.eventId) {
-  //       const callApiForLiveStream = async () => {
-  //         let result = await getChannelId(otherMatchDetails?.eventId);
-  //         if (result) {
-  //           setChannelId(result?.channelNo);
-  //         }
-  //       };
-  //       callApiForLiveStream();
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [otherMatchDetails?.id]);
-
-      useEffect(() => {
-        try {
-          if (otherMatchDetails?.id && matchSocket) {
-            let currRateInt = setInterval(() => {
-              expertSocketService.match.joinMatchRoom(otherMatchDetails?.id);
-            }, 60000);
-            return () => {
-              clearInterval(currRateInt);
-            };
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      }, [otherMatchDetails?.id]);
-  // useEffect(() => {
-  //   if (otherMatchDetails?.eventId) {
-  //     let intervalTime = 5000;
-  //     if (errorCount >= 5 && errorCount < 10) {
-  //       intervalTime = 60000;
-  //     } else if (errorCount >= 10) {
-  //       intervalTime = 600000;
-  //     }
-  //     const interval = setInterval(() => {
-  //       getScoreBoard(otherMatchDetails?.eventId);
-  //     }, intervalTime);
-
-  //     return () => {
-  //       clearInterval(interval);
-  //       setLiveScoreBoardData(null);
-  //     };
-  //   }
-  // }, [otherMatchDetails?.id, otherMatchDetails?.eventId, errorCount]);
-
-  // const getScoreBoard = async (eventId: string) => {
-  //   try {
-  //     const response: any = await service.get(
-  //       // `https://fairscore7.com/score/getMatchScore/${marketId}`
-  //       // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
-  //       //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-  //       `https://dpmatka.in/sr.php?eventid=${eventId}&sportid=${
-  //         otherMatchDetails?.matchType === "football" ? "1" : "2"
-  //       }`
-  //     );
-  //     // {"success":false,"msg":"Not found"}
-  //     //console.log("response 11:", response);
-  //     if (response?.success !== false) {
-  //       setLiveScoreBoardData(response?.data);
-  //       setErrorCount(0);
-  //     }
-  //   } catch (e: any) {
-  //     console.log("Error:", e?.message);
-  //     setLiveScoreBoardData(null);
-  //     setErrorCount((prevCount: number) => prevCount + 1);
-  //   }
-  // };
+  useEffect(() => {
+    if (otherMatchDetails?.eventId) {
+      getTvData(
+        otherMatchDetails?.eventId,
+        setTvData,
+        otherMatchDetails?.matchType
+      );
+    }
+  }, [otherMatchDetails?.id]);
 
   return (
     <div>
@@ -187,80 +129,58 @@ const FootballMobileGameDetail = () => {
                         }
                       />
                     </Col> */}
-                        {!sessionStorage.getItem("isDemo") && showVideo && (
-                          <Container className="px-0">
-                            <Row className="justify-content-md-center">
-                              <Col md={12}>
-                                <Ratio aspectRatio="16x9">
-                                  <iframe
-                                    src={
-                                      import.meta.env.VITE_NODE_ENV == "production"
-                                        ? `${liveStreamPageUrl}${
-                                            otherMatchDetails?.eventId
-                                          }&sportid=${
-                                            otherMatchDetails?.matchType ===
-                                            "football"
-                                              ? "1"
-                                              : "2"
-                                          }`
-                                        : `${liveStreamPageUrl}${
-                                            otherMatchDetails?.eventId
-                                          }/${
-                                            otherMatchDetails?.matchType ===
-                                            "football"
-                                              ? "1"
-                                              : "2"
-                                          }`
-                                    }
-                                    title="Live Stream"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                  ></iframe>
-                                </Ratio>
-                              </Col>
-                            </Row>
-                          </Container>
-                        )}
-                        <div
-                          style={{
-                            height: "250px",
-                            backgroundPosition: "center",
-                            backgroundSize: "cover",
-                            position: "relative",
-                            marginLeft: "4px",
-                            marginRight: "4px",
-                            width: "calc(100%-8px)",
-                          }}
-                        >
-                          <iframe
+                        {!sessionStorage.getItem("isDemo") &&
+                          showVideo &&
+                          tvData?.tvData?.iframeUrl && (
+                            <Container className="px-0">
+                              <Row className="justify-content-md-center">
+                                <Col md={12}>
+                                  <Ratio aspectRatio="16x9">
+                                    <iframe
+                                      src={
+                                        import.meta.env.VITE_NODE_ENV ==
+                                        "production"
+                                          ? tvData?.tvData?.iframeUrl
+                                          : `${liveStreamPageUrl}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
+                                      }
+                                      title="Live Stream"
+                                      referrerPolicy="strict-origin-when-cross-origin"
+                                    ></iframe>
+                                  </Ratio>
+                                </Col>
+                              </Row>
+                            </Container>
+                          )}
+                        {tvData?.scoreData?.iframeUrl && (
+                          <div
                             style={{
-                              height: "100%",
-                              position: "absolute",
-                              width: "100%",
-                              left: 0,
-                              top: 0,
+                              height: "250px",
+                              backgroundPosition: "center",
+                              backgroundSize: "cover",
+                              position: "relative",
+                              marginLeft: "4px",
+                              marginRight: "4px",
+                              width: "calc(100%-8px)",
                             }}
-                            src={
-                              import.meta.env.VITE_NODE_ENV == "production"
-                                ? `${scoreBoardUrlMain}${
-                                    otherMatchDetails?.eventId
-                                  }&sportid=${
-                                    otherMatchDetails?.matchType === "football"
-                                      ? "1"
-                                      : "2"
-                                  }`
-                                : 
-                                  `${scoreBoardUrlMain}${
-                                    otherMatchDetails?.eventId
-                                  }/${
-                                    otherMatchDetails?.matchType === "football"
-                                      ? "1"
-                                      : "2"
-                                  }`
-                            }
-                            title="Live Stream"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                          ></iframe>
-                        </div>
+                          >
+                            <iframe
+                              style={{
+                                height: "100%",
+                                position: "absolute",
+                                width: "100%",
+                                left: 0,
+                                top: 0,
+                              }}
+                              src={
+                                import.meta.env.VITE_NODE_ENV == "production"
+                                  ? tvData?.scoreCard?.iframeUrl
+                                  : `${scoreBoardUrlMain}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
+                              }
+                              title="Live Stream"
+                              referrerPolicy="strict-origin-when-cross-origin"
+                            ></iframe>
+                          </div>
+                        )}
                         {/* {liveScoreBoardData && (
                         <Iframe data={liveScoreBoardData} width="100%" />
                       )} */}
