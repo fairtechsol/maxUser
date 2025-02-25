@@ -113,7 +113,7 @@ const FootballDesktopGameDetail = () => {
                       }}
                       src={
                         import.meta.env.VITE_NODE_ENV == "production"
-                          ? tvData?.scoreCard?.iframeUrl
+                          ? tvData?.scoreData?.iframeUrl
                           : `${scoreBoardUrlMain}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
                       }
                       title="Live Stream"
