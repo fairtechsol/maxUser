@@ -5,9 +5,7 @@ import { IoInformationCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../store/store";
-import {
-  liveStreamPageUrl
-} from "../../../utils/constants";
+import { liveStreamPageUrl } from "../../../utils/constants";
 import { getTvData } from "../../../utils/tvUrlGet";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
@@ -63,7 +61,13 @@ const DesktopGameDetail = () => {
 
   useEffect(() => {
     if (matchDetails?.eventId) {
-      getTvData(matchDetails?.eventId, setTvData);
+      getTvData(
+        matchDetails?.eventId,
+        setTvData,
+        matchDetails?.matchType,
+        true,
+        true
+      );
     }
   }, [matchDetails?.id]);
 
@@ -529,6 +533,9 @@ const DesktopGameDetail = () => {
                           ? tvData?.tvData?.iframeUrl
                           : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
                       }
+                      eventId={matchDetails?.eventId}
+                      matchType={matchDetails?.matchType}
+                      setTvData={setTvData}
                     />
                   </Col>
                 )}

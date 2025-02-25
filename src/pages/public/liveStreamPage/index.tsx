@@ -28,7 +28,7 @@ const LiveStreamPage = () => {
   };
   useEffect(() => {
     if (vidId && import.meta.env.VITE_NODE_ENV == "production") {
-      getTvData(vidId, setTvData, sportId);
+      getTvData(vidId, setTvData, sportId, true);
     }
   }, [vidId]);
   return (

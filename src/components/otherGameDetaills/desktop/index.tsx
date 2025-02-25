@@ -21,10 +21,7 @@ import Tournament from "../../gameDetails/tournament";
 import BetTable from "../../otherGameDetaills/betTable/index";
 import HtFt from "../htft";
 // import service from "../../../service";
-import {
-  liveStreamPageUrl,
-  scoreBoardUrlMain
-} from "../../../utils/constants";
+import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
 import { getTvData } from "../../../utils/tvUrlGet";
 // import Iframe from "../../iframe/iframe";
 
@@ -62,7 +59,8 @@ const FootballDesktopGameDetail = () => {
       getTvData(
         otherMatchDetails?.eventId,
         setTvData,
-        otherMatchDetails?.matchType
+        otherMatchDetails?.matchType,
+        true
       );
     }
   }, [otherMatchDetails?.id]);
@@ -78,7 +76,16 @@ const FootballDesktopGameDetail = () => {
                   <BetTableHeader
                     customClass="py-1"
                     title={otherMatchDetails?.title}
-                    setShowScoreboard={setShowScoreboard}
+                    setShowScoreboard={(e) => {
+                      getTvData(
+                        otherMatchDetails?.eventId,
+                        setTvData,
+                        otherMatchDetails?.matchType,
+                        false,
+                        true
+                      );
+                      setShowScoreboard(e);
+                    }}
                     rightComponent={
                       <span className="title-16 fbold text-white">
                         {/* {formatDate(otherMatchDetails?.startAt)} */}
@@ -343,6 +350,9 @@ const FootballDesktopGameDetail = () => {
                         ? tvData?.tvData?.iframeUrl
                         : `${liveStreamPageUrl}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
                     }
+                    eventId={otherMatchDetails?.eventId}
+                    sportId={otherMatchDetails?.matchType}
+                    setTvData={setTvData}
                   />
                 </Col>
               )}

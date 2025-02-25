@@ -29,7 +29,7 @@ const ScoreBoardPage = () => {
 
   useEffect(() => {
     if (vidId && import.meta.env.VITE_NODE_ENV == "production") {
-      getTvData(vidId, setTvData, sportsId);
+      getTvData(vidId, setTvData, sportsId,false,true);
     }
   }, [vidId]);
   return (

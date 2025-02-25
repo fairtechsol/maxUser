@@ -40,7 +40,13 @@ const MobileGameDetail = () => {
 
   useEffect(() => {
     if (matchDetails?.eventId) {
-      getTvData(matchDetails?.eventId, setTvData);
+      getTvData(
+        matchDetails?.eventId,
+        setTvData,
+        matchDetails?.matchType,
+        true,
+        true
+      );
     }
   }, [matchDetails?.id]);
 
@@ -84,7 +90,18 @@ const MobileGameDetail = () => {
           matchDetails?.eventId &&
             matchDetails?.matchType !== "politics" && {
               name: (
-                <div onClick={() => setShowVideo(!showVideo)} className="ps-5">
+                <div
+                  onClick={() => {
+                    getTvData(
+                      matchDetails?.eventId,
+                      setTvData,
+                      matchDetails?.matchType,
+                      true
+                    );
+                    setShowVideo(!showVideo);
+                  }}
+                  className="ps-5"
+                >
                   <FaTv size={15} />
                 </div>
               ),

@@ -13,10 +13,7 @@ import ManualMarket from "../../gameDetails/manulMarkets";
 import MatchOdd from "../../gameDetails/matchOdd";
 // import PlacedBet from "../../gameDetails/mobile/placeBet";
 import { FaTv } from "react-icons/fa";
-import {
-  liveStreamPageUrl,
-  scoreBoardUrlMain
-} from "../../../utils/constants";
+import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
 import { getTvData } from "../../../utils/tvUrlGet";
 import NewLoader from "../../commonComponent/newLoader";
 import "../../gameDetails/mobile/style.scss";
@@ -50,7 +47,9 @@ const FootballMobileGameDetail = () => {
       getTvData(
         otherMatchDetails?.eventId,
         setTvData,
-        otherMatchDetails?.matchType
+        otherMatchDetails?.matchType,
+        true,
+        true
       );
     }
   }, [otherMatchDetails?.id]);
@@ -90,7 +89,16 @@ const FootballMobileGameDetail = () => {
             // id: "live",
             name: (
               <div
-                onClick={() => setShowVideo(!showVideo)}
+                onClick={() => {
+                  setShowVideo(!showVideo);
+
+                  getTvData(
+                    otherMatchDetails?.eventId,
+                    setTvData,
+                    otherMatchDetails?.matchType,
+                    true
+                  );
+                }}
                 className="ps-5"
                 // style={{  lineHeight: 1.22 }}
               >
