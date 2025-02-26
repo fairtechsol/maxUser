@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTvData } from "../../../utils/tvUrlGet";
 
-const LiveStreamPage = () => {
+const LiveStreamPageInternal = () => {
   const { vidId, sportId } = useParams();
   const [tvData, setTvData] = useState<any>(null);
 
@@ -34,7 +34,7 @@ const LiveStreamPage = () => {
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
-        src={`https://maxbet07.com/liveStreamInternal/${vidId}/${sportId}`}
+        src={tvData?.tvData?.iframeUrl}
         frameBorder="0"
         allow="autoplay; fullscreen"
         allowFullScreen
@@ -43,4 +43,4 @@ const LiveStreamPage = () => {
   );
 };
 
-export default LiveStreamPage;
+export default LiveStreamPageInternal;
