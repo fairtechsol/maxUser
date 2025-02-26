@@ -92,12 +92,21 @@ const MobileGameDetail = () => {
               name: (
                 <div
                   onClick={() => {
-                    getTvData(
-                      matchDetails?.eventId,
-                      setTvData,
-                      matchDetails?.matchType,
-                      true
-                    );
+                    if (!showVideo) {
+                      getTvData(
+                        matchDetails?.eventId,
+                        setTvData,
+                        matchDetails?.matchType,
+                        true
+                      );
+                    } else {
+                      setTvData((prev: any) => {
+                        return {
+                          ...prev,
+                          tvData: null,
+                        };
+                      });
+                    }
                     setShowVideo(!showVideo);
                   }}
                   className="ps-5"
@@ -125,28 +134,26 @@ const MobileGameDetail = () => {
                     <Row className="ms-0">
                       {/* Conditionally render the LiveStreamComponent if channelId is valid */}
 
-                      {!sessionStorage.getItem("isDemo") &&
-                        showVideo &&
-                         (
-                          <Container className="px-0">
-                            <Row className="justify-content-md-center">
-                              <Col md={12}>
-                                <Ratio aspectRatio="16x9">
-                                  <iframe
-                                    src={
-                                      import.meta.env.VITE_NODE_ENV ==
-                                      "production"
-                                        ? tvData?.tvData?.iframeUrl
-                                        : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
-                                    }
-                                    title="Live Stream"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                  ></iframe>
-                                </Ratio>
-                              </Col>
-                            </Row>
-                          </Container>
-                        )}
+                      {!sessionStorage.getItem("isDemo") && showVideo && (
+                        <Container className="px-0">
+                          <Row className="justify-content-md-center">
+                            <Col md={12}>
+                              <Ratio aspectRatio="16x9">
+                                <iframe
+                                  src={
+                                    import.meta.env.VITE_NODE_ENV ==
+                                    "production"
+                                      ? tvData?.tvData?.iframeUrl
+                                      : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
+                                  }
+                                  title="Live Stream"
+                                  referrerPolicy="strict-origin-when-cross-origin"
+                                ></iframe>
+                              </Ratio>
+                            </Col>
+                          </Row>
+                        </Container>
+                      )}
                       {liveScoreBoardData && (
                         <Iframe data={liveScoreBoardData} width="100%" />
                       )}

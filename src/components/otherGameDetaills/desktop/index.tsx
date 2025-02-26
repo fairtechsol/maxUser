@@ -60,6 +60,7 @@ const FootballDesktopGameDetail = () => {
         otherMatchDetails?.eventId,
         setTvData,
         otherMatchDetails?.matchType,
+        true,
         true
       );
     }
@@ -77,13 +78,23 @@ const FootballDesktopGameDetail = () => {
                     customClass="py-1"
                     title={otherMatchDetails?.title}
                     setShowScoreboard={(e) => {
-                      getTvData(
-                        otherMatchDetails?.eventId,
-                        setTvData,
-                        otherMatchDetails?.matchType,
-                        false,
-                        true
-                      );
+                      if (e) {
+                        getTvData(
+                          otherMatchDetails?.eventId,
+                          setTvData,
+                          otherMatchDetails?.matchType,
+                          false,
+                          true
+                        );
+                      }
+                      else {
+                        setTvData((prev: any) => {
+                          return {
+                            ...prev,
+                            scoreData: null,
+                          };
+                        });
+                      }
                       setShowScoreboard(e);
                     }}
                     rightComponent={
@@ -98,7 +109,7 @@ const FootballDesktopGameDetail = () => {
                 {/* {liveScoreBoardData && (
                   <Iframe data={liveScoreBoardData} width="100%" />
                 )} */}
-                {showScoreboard &&  (
+                {showScoreboard && (
                   <div
                     style={{
                       height: "250px",
@@ -342,7 +353,7 @@ const FootballDesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {otherMatchDetails?.eventId &&  (
+              {otherMatchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent
                     url={
@@ -351,7 +362,7 @@ const FootballDesktopGameDetail = () => {
                         : `${liveStreamPageUrl}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
                     }
                     eventId={otherMatchDetails?.eventId}
-                    sportId={otherMatchDetails?.matchType}
+                    marketType={otherMatchDetails?.matchType}
                     setTvData={setTvData}
                   />
                 </Col>
