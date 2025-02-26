@@ -1,8 +1,12 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { scoreBoardUrlMain } from "../../../utils/constants";
+import { getTvData } from "../../../utils/tvUrlGet";
 
 const ScoreBoardPage = () => {
   const { vidId, sportsId } = useParams();
+  const [tvData, setTvData] = useState<any>(null);
+
   const iframeStyles: any = {
     position: "absolute",
     top: 0,
@@ -22,13 +26,19 @@ const ScoreBoardPage = () => {
     overflow: "hidden",
     zIndex: -1,
   };
+
+  useEffect(() => {
+    if (vidId && import.meta.env.VITE_NODE_ENV == "production") {
+      getTvData(vidId, setTvData, sportsId,false,true);
+    }
+  }, [vidId]);
   return (
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
         src={
           import.meta.env.VITE_NODE_ENV == "production"
-            ? `${scoreBoardUrlMain}${vidId}&sportid=${sportsId}`
+            ? tvData?.scoreData?.iframeUrl
             : `${scoreBoardUrlMain}${vidId}/${sportsId}`
         }
         frameBorder="0"

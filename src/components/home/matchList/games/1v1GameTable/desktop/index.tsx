@@ -361,7 +361,7 @@ const MatchListRow = ({ item, matchType }: any) => {
             //     : `other-game-detail/${matchType}`
             // }/${item?.id}`}
             onClick={() => {
-              expertSocketService.match.joinMatchRoom(item?.id, "user");
+              expertSocketService.match.joinMatchRoom(item?.id);
 
               navigate(
                 `/${

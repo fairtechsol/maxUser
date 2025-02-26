@@ -48,11 +48,13 @@ const FootballGameDetails = () => {
   const { id, type } = useParams();
 
   useEffect(() => {
-    matchService.connect();
+    if (id) {
+      matchService.connect([id]);
+    }
     return () => {
       matchService.disconnect(); 
     };
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     dispatch(getButtonValue());
@@ -201,7 +203,7 @@ const FootballGameDetails = () => {
         socketService.userBalance.matchDeleteBetOff();
         socketService.userBalance.matchResultUnDeclaredOff();
         socketService.userBalance.updateDeleteReasonOff();
-        expertSocketService.match.joinMatchRoom(id, "user");
+        expertSocketService.match.joinMatchRoom(id);
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
@@ -220,7 +222,7 @@ const FootballGameDetails = () => {
   useEffect(() => {
     try {
       return () => {
-        expertSocketService.match.leaveMatchRoom(id);
+        // expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
@@ -246,21 +248,18 @@ const FootballGameDetails = () => {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
-        if (!socket.connected) {
-          socketService.connect();
-        }
-        if (!matchSocket.connected) {
-          matchService.connect();
-        }
+        // if (!socket.connected) {
+        //   socketService.connect();
+        // }
         if (id) {
           dispatch(selectedBetAction(null));
           // dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
           dispatch(getPlacedBets(id));
-          expertSocketService.match.joinMatchRoom(id, "user");
+          expertSocketService.match.joinMatchRoom(id);
           expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         }
       } else if (document.visibilityState === "hidden") {
-        expertSocketService.match.leaveMatchRoom(id);
+        // expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
       }
     };

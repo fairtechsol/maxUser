@@ -269,6 +269,7 @@ const matchListSlice = createSlice({
         });
         state.matchDetails = {
           ...state.matchDetails,
+          gmid: action.payload?.gmid,
           manualSessionActive:
             sessionBettings && sessionBettings?.length >= 0 ? true : false,
           apiSessionActive:
@@ -279,7 +280,16 @@ const matchListSlice = createSlice({
           bookmaker: bookmaker,
           bookmaker2: bookmaker2,
           other,
-          tournament: tournament,
+          tournament: tournament?.sort((a: any, b: any) => {
+            // Primary sort by sno (ascending)
+            if (a.sno !== b.sno) {
+              return a.sno - b.sno;
+            }
+            // If sno values are equal, sort so that null parentId comes first
+            if (a.parentBetId === null && b.parentBetId !== null) return -1;
+            if (a.parentBetId !== null && b.parentBetId === null) return 1;
+            return 0;
+          }),
           manualTiedMatch: manualTideMatch,
           marketCompleteMatch: marketCompleteMatch,
           marketCompleteMatch1: marketCompleteMatch1,

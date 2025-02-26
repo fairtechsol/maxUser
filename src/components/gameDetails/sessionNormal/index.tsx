@@ -70,7 +70,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
   const oddIndexArray = [];
 
   useEffect(() => {
-    const newMarketArr = [...(data?.section || []), ...(manual || [])];
+    const newMarketArr = [...(manual || []),...(data?.section || [])];
     setMarketArr(newMarketArr);
   }, [data, manual]);
 

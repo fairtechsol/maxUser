@@ -1,15 +1,15 @@
 import { expertSocket, matchSocket } from ".";
 
 export const matchSocketService = {
-  joinMatchRoom: (matchId: any, roleName: any) => {
+  joinMatchRoom: (matchId: any) => {
     expertSocket?.emit("matchRoom", {
       id: matchId,
     });
 
-    matchSocket?.emit("initCricketData", {
-      matchId: matchId,
-      roleName: roleName,
-    });
+    // matchSocket?.emit("initCricketData", {
+    //   matchId: matchId,
+    //   roleName: roleName,
+    // });
   },
   leaveAllRooms: () => {
     matchSocket?.emit("leaveAll");

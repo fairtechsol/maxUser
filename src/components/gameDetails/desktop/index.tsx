@@ -4,9 +4,9 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { expertSocketService, matchSocket } from "../../../socketManager";
 import { RootState } from "../../../store/store";
-import { liveStreamCricketPageUrl } from "../../../utils/constants";
+import { liveStreamPageUrl } from "../../../utils/constants";
+import { getTvData } from "../../../utils/tvUrlGet";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import CustomModal from "../../commonComponent/modal";
@@ -35,7 +35,7 @@ const DesktopGameDetail = () => {
   // const [channelId, setChannelId] = useState<string>("");
   // const [currInterval, setCurrInterval] = useState<any>(null);
 
-  // const [scoreData, setScoreData] = useState<any>(null);
+  const [tvData, setTvData] = useState<any>(null);
   // const [loading, setLoading] = useState<boolean>(true);
   // const [error, setError] = useState<string | null>(null);
 
@@ -59,56 +59,17 @@ const DesktopGameDetail = () => {
     };
   }, []);
 
-  // const getScoreBoard = async (eventId: string) => {
-  //   try {
-  //     const response: any = await service.get(
-  //       // `https://fairscore7.com/score/getMatchScore/${marketId}`
-  //       // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
-  //       //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-  //       `${Constants.thirdPartyLive}/cricketScore?eventId=${eventId}`
-  //     );
-  //     // {"success":false,"msg":"Not found"}
-  //     //console.log("response 11:", response);
-  //     if (response?.success !== false) {
-  //       setLiveScoreBoardData(response?.data);
-  //       setErrorCount(0);
-  //     }
-  //   } catch (e) {
-  //     console.log("Error:", e?.message);
-  //     setLiveScoreBoardData(null);
-  //     setErrorCount((prevCount: number) => prevCount + 1);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   try {
-  //     if (matchDetails?.eventId) {
-  //       getScoreBoard(matchDetails?.eventId);
-  //     }
-  //     clearInterval(currInterval);
-  //     setCurrInterval(null);
-  //     if (matchDetails?.marketId === marketId) {
-  //       let intervalTime = 5000;
-  //       if (errorCount >= 5 && errorCount < 10) {
-  //         intervalTime = 60000;
-  //       } else if (errorCount >= 10) {
-  //         intervalTime = 600000;
-  //       }
-  //       const interval = setInterval(() => {
-  //         getScoreBoard(matchDetails?.eventId);
-  //       }, intervalTime);
-  //       setCurrInterval(interval);
-  //       return () => {
-  //         clearInterval(interval);
-  //         clearInterval(currInterval);
-  //         setCurrInterval(null);
-  //         setLiveScoreBoardData(null);
-  //       };
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
+  useEffect(() => {
+    if (matchDetails?.eventId) {
+      getTvData(
+        matchDetails?.eventId,
+        setTvData,
+        matchDetails?.matchType,
+        true,
+        true
+      );
+    }
+  }, [matchDetails?.id]);
 
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
@@ -117,21 +78,20 @@ const DesktopGameDetail = () => {
     ? normalizedData?.filter((item: any) => item?.isManual)
     : [];
 
-
-  useEffect(() => {
-    try {
-      if (matchDetails?.id && matchSocket) {
-        let currRateInt = setInterval(() => {
-          expertSocketService.match.joinMatchRoom(matchDetails?.id, "user");
-        }, 60000);
-        return () => {
-          clearInterval(currRateInt);
-        };
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [matchDetails?.id]);
+  // useEffect(() => {
+  //   try {
+  //     if (matchDetails?.id && matchSocket) {
+  //       let currRateInt = setInterval(() => {
+  //         expertSocketService.match.joinMatchRoom(matchDetails?.id);
+  //       }, 60000);
+  //       return () => {
+  //         clearInterval(currRateInt);
+  //       };
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [matchDetails?.id]);
 
   return (
     <Container fluid className="pe-0 ps-1">
@@ -563,13 +523,21 @@ const DesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {matchDetails?.eventId && matchDetails?.matchType !== "politics" && (
-                <Col md={12} className="px-1 pt-1">
-                  <LiveStreamComponent
-                    url={`${liveStreamCricketPageUrl}${matchDetails?.tournament?.[0]?.gmid}`}
-                  />
-                </Col>
-              )}
+              {matchDetails?.eventId  &&
+                matchDetails?.matchType !== "politics" && (
+                  <Col md={12} className="px-1 pt-1">
+                    <LiveStreamComponent
+                      url={
+                        import.meta.env.VITE_NODE_ENV == "production"
+                          ? tvData?.tvData?.iframeUrl
+                          : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
+                      }
+                      eventId={matchDetails?.eventId}
+                      matchType={matchDetails?.matchType}
+                      setTvData={setTvData}
+                    />
+                  </Col>
+                )}
               <Col md={12} className="px-1 pt-1">
                 <PlacedBet />
               </Col>

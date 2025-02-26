@@ -1,8 +1,12 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { liveStreamPageUrl } from "../../../utils/constants";
+import { getTvData } from "../../../utils/tvUrlGet";
 
 const LiveStreamPage = () => {
   const { vidId, sportId } = useParams();
+  const [tvData, setTvData] = useState<any>(null);
+
   const iframeStyles: any = {
     position: "absolute",
     top: 0,
@@ -22,14 +26,18 @@ const LiveStreamPage = () => {
     overflow: "hidden",
     zIndex: -1,
   };
-
+  useEffect(() => {
+    if (vidId && import.meta.env.VITE_NODE_ENV == "production") {
+      getTvData(vidId, setTvData, sportId, true);
+    }
+  }, [vidId]);
   return (
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
         src={
           import.meta.env.VITE_NODE_ENV == "production"
-            ? `${liveStreamPageUrl}${vidId}&sportid=${sportId}`
+            ? tvData?.tvData?.iframeUrl
             : `${liveStreamPageUrl}${vidId}/${sportId}`
         }
         frameBorder="0"
