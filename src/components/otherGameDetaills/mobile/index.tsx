@@ -98,6 +98,14 @@ const FootballMobileGameDetail = () => {
                       true
                     );
                   }
+                  else {
+                    setTvData((prev: any) => {
+                      return {
+                        ...prev,
+                        tvData: null,
+                      };
+                    });
+                  }
                   setShowVideo(!showVideo);
                 }}
                 className="ps-5"

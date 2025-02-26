@@ -60,6 +60,7 @@ const FootballDesktopGameDetail = () => {
         otherMatchDetails?.eventId,
         setTvData,
         otherMatchDetails?.matchType,
+        true,
         true
       );
     }
@@ -85,6 +86,14 @@ const FootballDesktopGameDetail = () => {
                           false,
                           true
                         );
+                      }
+                      else {
+                        setTvData((prev: any) => {
+                          return {
+                            ...prev,
+                            scoreData: null,
+                          };
+                        });
                       }
                       setShowScoreboard(e);
                     }}

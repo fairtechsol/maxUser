@@ -99,6 +99,13 @@ const MobileGameDetail = () => {
                         matchDetails?.matchType,
                         true
                       );
+                    } else {
+                      setTvData((prev: any) => {
+                        return {
+                          ...prev,
+                          tvData: null,
+                        };
+                      });
                     }
                     setShowVideo(!showVideo);
                   }}
