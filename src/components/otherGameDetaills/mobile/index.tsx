@@ -90,14 +90,15 @@ const FootballMobileGameDetail = () => {
             name: (
               <div
                 onClick={() => {
+                  if (!showVideo) {
+                    getTvData(
+                      otherMatchDetails?.eventId,
+                      setTvData,
+                      otherMatchDetails?.matchType,
+                      true
+                    );
+                  }
                   setShowVideo(!showVideo);
-
-                  getTvData(
-                    otherMatchDetails?.eventId,
-                    setTvData,
-                    otherMatchDetails?.matchType,
-                    true
-                  );
                 }}
                 className="ps-5"
                 // style={{  lineHeight: 1.22 }}
@@ -137,29 +138,27 @@ const FootballMobileGameDetail = () => {
                         }
                       />
                     </Col> */}
-                        {!sessionStorage.getItem("isDemo") &&
-                          showVideo &&
-                           (
-                            <Container className="px-0">
-                              <Row className="justify-content-md-center">
-                                <Col md={12}>
-                                  <Ratio aspectRatio="16x9">
-                                    <iframe
-                                      src={
-                                        import.meta.env.VITE_NODE_ENV ==
-                                        "production"
-                                          ? tvData?.tvData?.iframeUrl
-                                          : `${liveStreamPageUrl}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
-                                      }
-                                      title="Live Stream"
-                                      referrerPolicy="strict-origin-when-cross-origin"
-                                    ></iframe>
-                                  </Ratio>
-                                </Col>
-                              </Row>
-                            </Container>
-                          )}
-                        { (
+                        {!sessionStorage.getItem("isDemo") && showVideo && (
+                          <Container className="px-0">
+                            <Row className="justify-content-md-center">
+                              <Col md={12}>
+                                <Ratio aspectRatio="16x9">
+                                  <iframe
+                                    src={
+                                      import.meta.env.VITE_NODE_ENV ==
+                                      "production"
+                                        ? tvData?.tvData?.iframeUrl
+                                        : `${liveStreamPageUrl}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
+                                    }
+                                    title="Live Stream"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                  ></iframe>
+                                </Ratio>
+                              </Col>
+                            </Row>
+                          </Container>
+                        )}
+                        {
                           <div
                             style={{
                               height: "250px",
@@ -188,7 +187,7 @@ const FootballMobileGameDetail = () => {
                               referrerPolicy="strict-origin-when-cross-origin"
                             ></iframe>
                           </div>
-                        )}
+                        }
                         {/* {liveScoreBoardData && (
                         <Iframe data={liveScoreBoardData} width="100%" />
                       )} */}

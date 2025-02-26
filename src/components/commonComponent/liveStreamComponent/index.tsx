@@ -10,7 +10,9 @@ const LiveStreamComponent = ({ url, eventId, marketType, setTvData }: any) => {
       <RightPanelContainer
         title={"Live Stream"}
         setShowVideo={(e: any) => {
-          getTvData(eventId, setTvData, marketType, true);
+          if (!showVideo) {
+            getTvData(eventId, setTvData, marketType, true);
+          }
           setShowVideo(e);
         }}
       >
