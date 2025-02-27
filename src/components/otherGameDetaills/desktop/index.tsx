@@ -78,7 +78,7 @@ const FootballDesktopGameDetail = () => {
                     customClass="py-1"
                     title={otherMatchDetails?.title}
                     setShowScoreboard={(e) => {
-                      if (e) {
+                      if (!showScoreboard) {
                         getTvData(
                           otherMatchDetails?.eventId,
                           setTvData,
