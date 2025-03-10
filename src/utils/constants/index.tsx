@@ -3766,13 +3766,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/lankesh.jpeg",
     game_code: "MAC88-VTGLN101",
   }, //
-  {
-    game_id: 1,
-    url: "/ballbyball",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
-    game_name: "Ball By Ball",
-  }, //
+  // {
+  //   game_id: 1,
+  //   url: "/ballbyball",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+  //   game_name: "Ball By Ball",
+  // }, //
   {
     game_id: "150034",
     game_name: "Super Over",
@@ -3783,13 +3783,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/super_over.webp",
     game_code: "MAC88-Y1SPO101",
   }, //
-  {
-    game_id: 2,
-    url: "/superover",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
-    game_name: "Super Over",
-  }, //
+  // {
+  //   game_id: 2,
+  //   url: "/superover",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
+  //   game_name: "Super Over",
+  // }, //
   {
     game_id: "150053",
     game_name: "10 - 10 cricket ",
@@ -3810,13 +3810,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/queen.webp",
     game_code: "MAC88-YQR102",
   }, //
-  {
-    game_id: 4,
-    url: "/queen",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
-    game_name: "Casino Queen",
-  }, //
+  // {
+  //   game_id: 4,
+  //   url: "/queen",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
+  //   game_name: "Casino Queen",
+  // }, //
   {
     game_id: "150017",
     game_name: "Race 20",
@@ -3827,20 +3827,20 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/race_20.webp",
     game_code: "MAC88-YRTT102",
   }, //
-  {
-    game_id: 3,
-    url: "/race20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
-    game_name: "Race 20-20",
-  }, //
-  {
-    game_id: 5,
-    url: "/cricketv3",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
-    game_name: "5Five Cricket",
-  }, //
+  // {
+  //   game_id: 3,
+  //   url: "/race20",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
+  //   game_name: "Race 20-20",
+  // }, //
+  // {
+  //   game_id: 5,
+  //   url: "/cricketv3",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
+  //   game_name: "5Five Cricket",
+  // }, //
   {
     game_id: "150035",
     game_name: "5 Five Cricket",
@@ -3861,13 +3861,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/amar_akbar_anthony.webp",
     game_code: "MAC88-YA3101",
   }, //
-  {
-    game_id: "28",
-    url: "/aaa",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
-    game_name: "Amar Akbar Anthony",
-  }, //
+  // {
+  //   game_id: "28",
+  //   url: "/aaa",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
+  //   game_name: "Amar Akbar Anthony",
+  // }, //
 
   {
     game_id: "150009",
@@ -3939,13 +3939,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/teenpatti_test.webp",
     game_code: "MAC88-YTTP102",
   }, //
-  {
-    game_id: 10,
-    url: "/lucky7eu",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
-    game_name: "Lucky 7 - B",
-  }, //
+  // {
+  //   game_id: 10,
+  //   url: "/lucky7eu",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
+  //   game_name: "Lucky 7 - B",
+  // }, //
   {
     game_id: "150001",
     game_name: "Dragon Tiger",
@@ -3966,13 +3966,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/dt2.webp",
     game_code: "MAC88-DT2101",
   }, //
-  {
-    game_id: 31,
-    url: "/dt6",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
-    game_name: "1 Day Dragon Tiger",
-  }, //
+  // {
+  //   game_id: 31,
+  //   url: "/dt6",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
+  //   game_name: "1 Day Dragon Tiger",
+  // }, //
   {
     game_id: "150013",
     game_name: "DTL",
@@ -3993,20 +3993,20 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/andar_bahar.webp",
     game_code: "MAC88-XAB101",
   }, //
-  {
-    game_id: 6,
-    url: "/abj2",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
-    game_name: "Andar Bahar 2",
-  }, //
-  {
-    game_id: 22,
-    url: "/ab20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
-    game_name: "Andar Bahar",
-  }, //
+  // {
+  //   game_id: 6,
+  //   url: "/abj2",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
+  //   game_name: "Andar Bahar 2",
+  // }, //
+  // {
+  //   game_id: 22,
+  //   url: "/ab20",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
+  //   game_name: "Andar Bahar",
+  // }, //
   {
     game_id: "150024",
     game_name: "The Trap",
@@ -4027,13 +4027,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/bollywood_casino.webp",
     game_code: "MAC88-YBOC102",
   }, //
-  {
-    game_id: 29,
-    url: "/btable",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
-    game_name: "Bollywood Casino",
-  }, //
+  // {
+  //   game_id: 29,
+  //   url: "/btable",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
+  //   game_name: "Bollywood Casino",
+  // }, //
   {
     game_id: "150048",
     game_name: "Race to 2nd",
@@ -4064,13 +4064,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/casino_war.webp",
     game_code: "MAC88-XCAW101",
   }, //
-  {
-    game_id: 13,
-    url: "/war",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
-    game_name: "Casino War",
-  }, //
+  // {
+  //   game_id: 13,
+  //   url: "/war",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
+  //   game_name: "Casino War",
+  // }, //
   {
     game_id: "150019",
     game_name: "Worli Matka",
@@ -4111,13 +4111,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/29b.webp",
     game_code: "MAC88-X29BC101",
   }, //
-  {
-    game_id: 8,
-    url: "/baccarat2",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
-    game_name: "Baccarat 2",
-  }, //
+  // {
+  //   game_id: 8,
+  //   url: "/baccarat2",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
+  //   game_name: "Baccarat 2",
+  // }, //
   {
     game_id: "150052",
     game_name: "Baccarat One Day",
@@ -4138,13 +4138,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/32_cards.webp",
     game_code: "MAC88-Y32CA102",
   }, //
-  {
-    game_id: 27,
-    url: "/32cards-B",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
-    game_name: "32 Cards B",
-  }, //
+  // {
+  //   game_id: 27,
+  //   url: "/32cards-B",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
+  //   game_name: "32 Cards B",
+  // }, //
   {
     game_id: "150025",
     game_name: "Trio",
@@ -4195,13 +4195,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/20_20_poker.webp",
     game_code: "MAC88-XPOK101",
   }, //
-  {
-    game_id: 21,
-    url: "/poker20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
-    game_name: "20-20 Poker",
-  }, //
+  // {
+  //   game_id: 21,
+  //   url: "/poker20",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+  //   game_name: "20-20 Poker",
+  // }, //
   {
     game_id: "150015",
     game_name: "3 Cards Judgement",
@@ -4212,13 +4212,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/3cj.webp",
     game_code: "MAC88-X3CJ101",
   }, //
-  {
-    game_id: 25,
-    url: "/3cardj",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
-    game_name: "3 Cards Judgement",
-  }, //
+  // {
+  //   game_id: 25,
+  //   url: "/3cardj",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
+  //   game_name: "3 Cards Judgement",
+  // }, //
   {
     game_id: "150040",
     game_name: "One Card One Day",
@@ -4249,20 +4249,20 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/dt_1day.webp",
     game_code: "MAC88-X1DT101",
   }, //
-  {
-    game_id: 14,
-    url: "/dtl20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
-    game_name: "20-20 DTL",
-  }, //
-  {
-    game_id: 26,
-    url: "/32cards-A",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
-    game_name: "32 Cards A",
-  }, //
+  // {
+  //   game_id: 14,
+  //   url: "/dtl20",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
+  //   game_name: "20-20 DTL",
+  // }, //
+  // {
+  //   game_id: 26,
+  //   url: "/32cards-A",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
+  //   game_name: "32 Cards A",
+  // }, //
   {
     game_id: "150045",
     game_name: "Note Number",
@@ -4323,20 +4323,20 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/cricket2020.webp",
     game_code: "MAC88-XCM101",
   }, //
-  {
-    game_id: 9,
-    url: "/baccarat",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
-    game_name: "Baccarat",
-  }, //
-  {
-    game_id: 7,
-    url: "/dt202",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
-    game_name: "20-20 Dragon Tiger 2",
-  }, //
+  // {
+  //   game_id: 9,
+  //   url: "/baccarat",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
+  //   game_name: "Baccarat",
+  // }, //
+  // {
+  //   game_id: 7,
+  //   url: "/dt202",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
+  //   game_name: "20-20 Dragon Tiger 2",
+  // }, //
   {
     game_id: "150037",
     game_name: "Dus Ka Dum",
@@ -4347,76 +4347,76 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/10kadum.webp",
     game_code: "MAC88-X1DKD101",
   }, //
-  {
-    game_id: 32,
-    url: "/lucky7-A",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
-    game_name: "Lucky 7 - A",
-  }, //
-  {
-    game_id: "11",
-    url: "/cmatch20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
-    name: "20-20 Cricket Match",
-  }, //
-  {
-    game_id: 15,
-    url: "/teen9",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
-    game_name: "Test Teenpatti",
-  }, //
-  {
-    game_id: 19,
-    url: "/poker6",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
-    game_name: "6 Player Poker",
-  }, //
-  {
-    game_id: "12",
-    url: "/cmeter",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
-    name: "Casino Meter",
-  }, //
-  {
-    game_id: 16,
-    url: "/teen8",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
-    game_name: "Open Teenpatti",
-  }, //
-  {
-    game_id: "17",
-    url: "/teen",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
-    name: "1 Day Teenpatti",
-  }, //
-  {
-    game_id: 18,
-    url: "/teen20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
-    game_name: "20-20 Teenpatti",
-  }, //
-  {
-    game_id: 24,
-    url: "/worli2",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
-    game_name: "Instant Worli",
-  }, //
-  {
-    game_id: 30,
-    url: "/dt20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
-    game_name: "20-20 Dragon Tiger",
-  }, //
+  // {
+  //   game_id: 32,
+  //   url: "/lucky7-A",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
+  //   game_name: "Lucky 7 - A",
+  // }, //
+  // {
+  //   game_id: "11",
+  //   url: "/cmatch20",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
+  //   name: "20-20 Cricket Match",
+  // }, //
+  // {
+  //   game_id: 15,
+  //   url: "/teen9",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+  //   game_name: "Test Teenpatti",
+  // }, //
+  // {
+  //   game_id: 19,
+  //   url: "/poker6",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+  //   game_name: "6 Player Poker",
+  // }, //
+  // {
+  //   game_id: "12",
+  //   url: "/cmeter",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
+  //   name: "Casino Meter",
+  // }, //
+  // {
+  //   game_id: 16,
+  //   url: "/teen8",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+  //   game_name: "Open Teenpatti",
+  // }, //
+  // {
+  //   game_id: "17",
+  //   url: "/teen",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+  //   name: "1 Day Teenpatti",
+  // }, //
+  // {
+  //   game_id: 18,
+  //   url: "/teen20",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+  //   game_name: "20-20 Teenpatti",
+  // }, //
+  // {
+  //   game_id: 24,
+  //   url: "/worli2",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
+  //   game_name: "Instant Worli",
+  // }, //
+  // {
+  //   game_id: 30,
+  //   url: "/dt20",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
+  //   game_name: "20-20 Dragon Tiger",
+  // }, //
   {
     game_id: "151015",
     game_name: "VR 2 Card TP",
@@ -4567,13 +4567,13 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/mac88/vr_2020_dtl.webp",
     game_code: "MAC88-VTGDTL101",
   }, //
-  {
-    game_id: 20,
-    url: "/poker",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
-    game_name: "1 Day Poker",
-  }, //
+  // {
+  //   game_id: 20,
+  //   url: "/poker",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+  //   game_name: "1 Day Poker",
+  // }, //
   {
     game_id: "151017",
     game_name: "VR Poker",

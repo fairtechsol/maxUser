@@ -190,12 +190,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                     <>
                       {mTypeid === "cricket" && (
                         <div className="px-1 lh-1 m-game-one-v-one">
-                          <Link
+                          {/* <Link
                             className="text-decoration-none text-black f600 title-12 lh-1"
                             to={"/ballbyball"}
                           >
                             Ball By Ball
-                          </Link>
+                          </Link> */}
                           <div className="d-flex w-100">
                             <React.Fragment>
                               <BackLayComponent

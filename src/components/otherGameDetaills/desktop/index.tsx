@@ -4,8 +4,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 // import "./style.scss";
-import { IoInformationCircle } from "react-icons/io5";
-import { Link } from "react-router-dom";
 import { customSortOnName } from "../../../helpers";
 import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
@@ -330,7 +328,7 @@ const FootballDesktopGameDetail = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              {/* <Col md={12}>
                 <div
                   //onClick={() => setShowContactAdmin(true)}
                   style={{
@@ -352,7 +350,7 @@ const FootballDesktopGameDetail = () => {
                     </Link>
                   </h6>
                 </div>
-              </Col>
+              </Col> */}
               {otherMatchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent

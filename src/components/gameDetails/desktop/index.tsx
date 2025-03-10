@@ -1,9 +1,7 @@
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { IoInformationCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { RootState } from "../../../store/store";
 import { liveStreamPageUrl } from "../../../utils/constants";
 import { getTvData } from "../../../utils/tvUrlGet";
@@ -500,7 +498,7 @@ const DesktopGameDetail = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              {/* <Col md={12}>
                 <div
                   // onClick={() => setShowContactAdmin(true)}
                   style={{
@@ -522,7 +520,7 @@ const DesktopGameDetail = () => {
                     </Link>
                   </h6>
                 </div>
-              </Col>
+              </Col> */}
               {matchDetails?.eventId  &&
                 matchDetails?.matchType !== "politics" && (
                   <Col md={12} className="px-1 pt-1">

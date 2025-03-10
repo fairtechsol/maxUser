@@ -1,15 +1,15 @@
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Accordion } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { liveCasinoList } from "../../../store/actions/cards/cardDetail";
 import {
   getCompetitionDates,
   getCompetitionList,
   getCompetitionMatches,
 } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
-import moment from "moment";
-import { liveCasinoList } from "../../../store/actions/cards/cardDetail";
 
 interface Props {
   item: any;
@@ -300,3 +300,83 @@ export const MenuItem: React.FC<Props> = ({
     </>
   );
 };
+
+
+// {
+//   "id": "slotgame",
+//   "name": "Slot Game",
+//   "type": "liveItem",
+//   "path": "/contact-admin/91"
+// },
+// {
+//   "id": "race2020",
+//   "name": "Race 20-20",
+//   "type": "liveItem",
+//   "path": "/race20"
+// },
+// {
+//   "id": "dragontiger",
+//   "name": "Dragon Tiger",
+//   "type": "liveItem",
+//   "path": "/card3-list/dragonTiger"
+// },
+// {
+//   "id": "sportscasino",
+//   "name": "Sports Casino",
+//   "type": "liveItem",
+//   "path": "/card3-list/sportCasino"
+// },
+// {
+//   "id": "andarbahar",
+//   "name": "Andar Bahar",
+//   "type": "liveItem",
+//   "path": "/card3-list/abj"
+// },
+// {
+//   "id": "bollywoodcasino",
+//   "name": "Bollywood Casino",
+//   "type": "liveItem",
+//   "path": "/card3-list/bollywoodCasino"
+// },
+// {
+//   "id": "casinowar",
+//   "name": "Casino War",
+//   "type": "liveItem",
+//   "path": "/war"
+// },
+// {
+//   "id": "worli",
+//   "name": "Worli",
+//   "type": "liveItem",
+//   "path": "/card3-list/worli"
+// },
+// {
+//   "id": "lottery",
+//   "name": "Lottery",
+//   "type": "liveItem",
+//   "path": "/contact-admin/11"
+// },
+// {
+//   "id": "3cardsjudgement",
+//   "name": "3 Cards Judgement",
+//   "type": "liveItem",
+//   "path": "/card3-list/3cardj"
+// },
+// {
+//   "id": "queen",
+//   "name": "Queen",
+//   "type": "liveItem",
+//   "path": "/queen"
+// },
+// {
+//   "id": "virtual_sport",
+//   "name": "Virtual Sport",
+//   "type": "liveItem",
+//   "path": "/contact-admin/56"
+// },
+// {
+//   "id": "cricketcasino",
+//   "name": "Cricket Casino",
+//   "type": "liveItem",
+//   "path": "/contact-admin/55"
+// }

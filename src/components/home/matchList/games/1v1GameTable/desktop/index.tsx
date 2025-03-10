@@ -166,7 +166,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                   </div>
                 ) : (
                   <>
-                    {availableGameType[mTypeid] === "cricket" && (
+                    {/* {availableGameType[mTypeid] === "cricket" && (
                       <tr className="one-v-one-row overflow-hidden ">
                         <td className="px-2 w-50 align-middle">
                           <div className="d-flex justify-content-between align-items-center ">
@@ -221,7 +221,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                           />
                         </td>
                       </tr>
-                    )}
+                    )} */}
                     {matchList?.map((item: any, index: number) => {
                       return (
                         <MatchListRow

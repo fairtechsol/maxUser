@@ -10,11 +10,11 @@ const SportsFilterJson = () => {
       name: "SPORTS",
       link: "/inPlay",
     },
-    {
-      id: "casino-slot",
-      name: "OUR CASINO",
-      link: "/casino-slot",
-    },
+    // {
+    //   id: "casino-slot",
+    //   name: "OUR CASINO",
+    //   link: "/casino-slot",
+    // },
     {
       id: "live-casinom",
       name: "LIVE CASINO",

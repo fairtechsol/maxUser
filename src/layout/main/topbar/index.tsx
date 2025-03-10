@@ -28,3 +28,35 @@ const TopBar = () => {
 };
 
 export default TopBar;
+
+
+// {
+//   "id": "baccarat",
+//   "name": "Baccarat",
+//   "link": "/card3-list/baccarat",
+//   "type": "desktop"
+// },
+// {
+//   "id": "32cards",
+//   "name": "32 Cards",
+//   "link": "/card3-list/cards32",
+//   "type": "desktop"
+// },
+// {
+//   "id": "teenPatti",
+//   "name": "Teen Patti",
+//   "link": "/card3-list/teenPatti",
+//   "type": "desktop"
+// },
+// {
+//   "id": "poker",
+//   "name": "Poker",
+//   "link": "/card3-list/poker",
+//   "type": "desktop"
+// },
+// {
+//   "id": "lucky7",
+//   "name": "Lucky 7",
+//   "link": "/card3-list/lucky7",
+//   "type": "desktop"
+// }
