@@ -6,11 +6,12 @@ import { liveCasinoList } from "../../store/actions/cards/cardDetail";
 import { isMobile } from "../../utils/screenDimension";
 import LiveCasinoMobile from "../../components/liveCasino/mobile";
 import LiveCasinoDesktop from "../../components/liveCasino/desktop";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LiveCasino = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   useEffect(() => {
     dispatch(liveCasinoList(""));
@@ -18,7 +19,13 @@ const LiveCasino = () => {
 
   useEffect(() => {
     if (isMobile) {
-      navigate("/live-casinom");
+      if (state?.key) {
+        navigate("/live-casinom", {
+          state: {
+            key: state.key,
+          },
+        });
+      } else navigate("/live-casinom");
     }
   }, []);
 

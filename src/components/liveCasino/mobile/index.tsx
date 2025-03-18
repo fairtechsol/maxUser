@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
-import {
-  liveCasinoLogin,
-} from "../../../store/actions/cards/cardDetail";
-import { dt2020, maxbetLogo } from "../../../assets/images";
-import NewLoader from "../../commonComponent/newLoader";
 import { Modal } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { dt2020, maxbetLogo } from "../../../assets/images";
+import { liveCasinoLogin } from "../../../store/actions/cards/cardDetail";
+import { AppDispatch, RootState } from "../../../store/store";
+import { liveCasinoPics } from "../../../utils/constants";
+import NewLoader from "../../commonComponent/newLoader";
 
 const LiveCasinoMobile = () => {
+  const { state } = useLocation();
   const dispatch: AppDispatch = useDispatch();
-  const { liveCasinoData,liveCasinoGame } = useSelector((state: RootState) => state.card);
+  const { liveCasinoData, liveCasinoGame } = useSelector(
+    (state: RootState) => state.card
+  );
 
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const initialType =
@@ -27,6 +29,14 @@ const LiveCasinoMobile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isShow, setIsShow] = useState(false);
 
+  const handleParent = (key: any, secKey: string) => {
+    setType(key);
+    const firstKey =
+      key === "All" ? Object.keys(liveCasinoData[key])[0] : "All";
+    setType2(secKey !== "" ? secKey : firstKey);
+    setGame(liveCasinoData[key][secKey !== "" ? secKey : firstKey]);
+  };
+
   useEffect(() => {
     if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
       setList(liveCasinoData);
@@ -38,6 +48,16 @@ const LiveCasinoMobile = () => {
       setIsLoading(false);
     }
   }, [liveCasinoData]);
+
+  useEffect(() => {
+    if (
+      state?.key &&
+      liveCasinoData &&
+      Object.keys(liveCasinoData).length > 0
+    ) {
+      handleParent("All", state.key);
+    }
+  }, [state, liveCasinoData]);
 
   if (isLoading) {
     return (
@@ -59,25 +79,44 @@ const LiveCasinoMobile = () => {
   const LiveCasinoTab = ({ data2 }: { data2: any }) => {
     return (
       <div className="w-100 d-flex flex-row">
-        {Object.keys(data2)?.map((item: any, index: number) => {
-          const isActive = item === type2 ? true : false;
-          return (
-            <div
-              key={index}
-              onClick={() => {
-                setGame(data2[item]);
-                setType2(item);
-              }}
-              className="w-100 d-flex justify-content-center align-items-center py-2 px-3 title-14 fbold text-white"
-              style={{
-                cursor: "pointer",
-                backgroundColor: isActive ? "#004A25" : ""
-              }}
-            >
-              {item}
-            </div>
-          );
-        })}
+        {Object.keys(data2)
+          ?.sort((a, b) => {
+            if (a === "All") return -1;
+            if (b === "All") return 1;
+            return 0;
+          })
+          ?.map((item: any, index: number) => {
+            const isActive = item === type2 ? true : false;
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  setGame(data2[item]);
+                  setType2(item);
+                }}
+                className="w-100 flex-column d-flex justify-content-center align-items-center py-1 px-3 title-14 fbold"
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: isActive ? "#ffc742" : "#004A25",
+                  border: "1px solid #000",
+                  color: isActive ? "#000" : "#fff",
+                }}
+              >
+                <img
+                  src={liveCasinoPics[item]}
+                  alt="abc"
+                  style={{
+                    height: 30,
+                    width: 30,
+                    filter: !isActive
+                      ? "invert(98%) sepia(0%) saturate(0%) hue-rotate(290deg) brightness(104%) contrast(101%)"
+                      : "",
+                  }}
+                />
+                {item}
+              </div>
+            );
+          })}
       </div>
     );
   };
@@ -90,10 +129,10 @@ const LiveCasinoMobile = () => {
         {data3?.map((item: any, index: number) => {
           return (
             <img
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = dt2020;
-            }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = dt2020;
+              }}
               key={index}
               src={item?.url_thumb}
               className="img-fluid"
@@ -128,27 +167,22 @@ const LiveCasinoMobile = () => {
   //     </div>
   //   );
   // };
-  const handleParent = (key: any) => {
-    setType(key);
-    const firstKey = Object.keys(liveCasinoData[key])[0];
-    setType2(firstKey);
-    setGame(liveCasinoData[key][firstKey]);
-  };
-  return  (
+  return (
     <>
       <div className="w-100 d-flex flex-column gap-2 ">
-        <div className="w-100 d-flex man-tab px-6 bg-secondary">
+        <div className="d-flex man-tab px-6">
           {Object.keys(list)?.map((key, index) => {
             const isActive = type === key;
             return (
               <div
                 key={index}
-                onClick={() => handleParent(key)}
-                className={`w-100 d-flex justify-content-center px-3 align-items-center fbold title-14 text-white py-2 ${
-                  isActive ? "bg-tabmob" : ""
-                }`}
+                onClick={() => handleParent(key, "")}
+                className={`w-100 d-flex justify-content-center px-3 align-items-center fbold title-14 py-2 no-wrap`}
                 style={{
                   cursor: "pointer",
+                  backgroundColor: isActive ? "#ffc742" : "#004A25",
+                  borderRight: "1px solid #000",
+                  color: isActive ? "#000" : "#fff",
                 }}
               >
                 {key}
@@ -169,28 +203,30 @@ const LiveCasinoMobile = () => {
         >
           <Modal.Title className="w-100">
             <div className="w-100 d-flex justify-content-between align-items-center lh-1">
-              <div className="d-flex flex-row align-items-center" 
-              onClick={() => {
-                // navigate("/home");
-                setIsShow(false);
-              }}>
-              <FaHome color="#fff" size={20}/>
-              <img
-              src={maxbetLogo}
-              width={"auto"}
-              height="27px"
-              alt="fairGame"
-              style={{
-                margin: "5px 5px 0",
-                maxWidth: "250px",
-                display: "inline-block",
-                cursor:"pointer"
-              }}
-            />
+              <div
+                className="d-flex flex-row align-items-center"
+                onClick={() => {
+                  // navigate("/home");
+                  setIsShow(false);
+                }}
+              >
+                <FaHome color="#fff" size={20} />
+                <img
+                  src={maxbetLogo}
+                  width={"auto"}
+                  height="27px"
+                  alt="fairGame"
+                  style={{
+                    margin: "5px 5px 0",
+                    maxWidth: "250px",
+                    display: "inline-block",
+                    cursor: "pointer",
+                  }}
+                />
               </div>
-            
-            <div className="title-14">
-            <div>
+
+              <div className="title-14">
+                <div>
                   Balance:
                   <b>
                     {parseFloat(
@@ -199,9 +235,7 @@ const LiveCasinoMobile = () => {
                   </b>
                 </div>
                 <div>
-                  <span
-                    className="white-text  cursor-pointer"
-                  >
+                  <span className="white-text  cursor-pointer">
                     Exposure:
                     <b>
                       {parseInt(getProfile?.userBal?.exposure) === 0
@@ -212,9 +246,8 @@ const LiveCasinoMobile = () => {
                     </b>
                   </span>
                 </div>
+              </div>
             </div>
-            </div>
-            
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">

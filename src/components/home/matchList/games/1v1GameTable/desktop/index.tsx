@@ -18,6 +18,7 @@ import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
   casinoIcons,
+  homeCasinoListIcons,
   liveCasinoGameList,
 } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
@@ -49,6 +50,7 @@ const tableHeading = [
   },
 ];
 const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
+  const navigate = useNavigate();
   const [dataList, setDataList] = useState(casinoIcons);
   const [show, setShow] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -245,6 +247,35 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         </tbody>
       </Table>
       <div className=" mt-2 casino-list">
+        <div className="w-100 d-flex flex-row casino-list-item">
+          {["mines", "aviator", "fun games", "color prediction"].map(
+            (item: any) => (
+              <div
+                key={item}
+                style={{
+                  maxWidth: "25%",
+                  padding: 1,
+                }}
+                onClick={() =>
+                  navigate("/live-casino", {
+                    state: {
+                      key: item,
+                    },
+                  })
+                }
+              >
+                <img
+                  src={homeCasinoListIcons[item]}
+                  alt={item}
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                  }}
+                />
+              </div>
+            )
+          )}
+        </div>
         {["/home"].includes(location.pathname) &&
           liveCasinoGameList.map((item: any) => (
             <Link
