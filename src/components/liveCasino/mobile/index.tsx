@@ -98,7 +98,7 @@ const LiveCasinoMobile = () => {
                 style={{
                   cursor: "pointer",
                   backgroundColor: isActive ? "#ffc742" : "#004A25",
-                  border: "1px solid #000",
+                  border: "1px solid #fff",
                   color: isActive ? "#000" : "#fff",
                 }}
               >
@@ -181,7 +181,7 @@ const LiveCasinoMobile = () => {
                 style={{
                   cursor: "pointer",
                   backgroundColor: isActive ? "#ffc742" : "#004A25",
-                  borderRight: "1px solid #000",
+                  borderRight: "1px solid #fff",
                   color: isActive ? "#000" : "#fff",
                 }}
               >
