@@ -6,7 +6,7 @@ import { LiaFacebookF } from "react-icons/lia";
 import { TbDeviceTvOld } from "react-icons/tb";
 import { Img } from "react-image";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { maxbetLogo } from "../../../../../../assets/images";
 import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
 import LiveCasino from "../../../../../../pages/casinoSubTab";
@@ -19,6 +19,7 @@ import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
   casinoIcons,
+  homeCasinoListIcons,
   liveCasinoGameList,
 } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
@@ -28,6 +29,7 @@ import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
+  const navigate = useNavigate();
   const [dataList, setDataList] = useState(casinoIcons);
   const [show, setShow] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -286,7 +288,9 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   )}
 
                                   {/* Bookmaker */}
-                                  {item?.bm === "True" || item?.bm === true||item?.isBookmaker.length > 0 ? (
+                                  {item?.bm === "True" ||
+                                  item?.bm === true ||
+                                  item?.isBookmaker.length > 0 ? (
                                     <span className="bookmaker">
                                       <img src={bm} alt="fancy" />
                                     </span>
@@ -389,7 +393,36 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   : {}
               }
             >
-               {(["/casino-slot"].includes(location.pathname)
+              <div className="w-100 d-flex flex-row flex-wrap casinoiconsm">
+                {["aviator", "mines", "fun games", "color prediction"].map(
+                  (item: any) => (
+                    <div
+                      key={item}
+                      style={{
+                        maxWidth: "49.7%",
+                        padding: 1,
+                      }}
+                      onClick={() =>
+                        navigate("/live-casinom", {
+                          state: {
+                            key: item,
+                          },
+                        })
+                      }
+                    >
+                      <img
+                        src={homeCasinoListIcons[item]}
+                        alt={item}
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto",
+                        }}
+                      />
+                    </div>
+                  )
+                )}
+              </div>
+              {(["/casino-slot"].includes(location.pathname)
                 ? casinoIcons
                 : liveCasinoGameList
               ).map((item: any, index: number) => (

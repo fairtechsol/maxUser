@@ -1,8 +1,8 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
+import moment from "moment";
 import service from "../../../service";
 import { ApiConstants, Constants } from "../../../utils/constants";
-import moment from "moment";
 
 export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
   "horseRacing/matchDetail",
@@ -82,13 +82,57 @@ export const resultDragonTiger = createAsyncThunk<any, any>(
   }
 );
 
+const combineAllGames = (gameData: any) => {
+  const result = { All: {} };
+
+  const AllCategories = new Set();
+  Object.keys(gameData).forEach((provider) => {
+    if (provider === "All") return;
+
+    Object.keys(gameData[provider]).forEach((category) => {
+      if (category === "All") return;
+      AllCategories.add(category);
+    });
+  });
+
+  AllCategories.forEach((category: any) => {
+    result.All[category] = [];
+  });
+
+  Object.keys(gameData).forEach((provider) => {
+    if (provider === "All") return;
+
+    result[provider] = { ...gameData[provider] };
+
+    result[provider].All = [];
+
+    Object.keys(gameData[provider]).forEach((category) => {
+      if (category === "All") return;
+
+      if (Array.isArray(gameData[provider][category])) {
+        result[provider].All = result[provider].All.concat(
+          gameData[provider][category]
+        );
+
+        result.All[category] = result.All[category].concat(
+          gameData[provider][category]
+        );
+      }
+    });
+  });
+
+  return result;
+};
+
 export const liveCasinoList = createAsyncThunk<any, any>(
   "result/liveCasinoList",
   async (_, thunkApi) => {
     try {
       const resp = await service.post(`${ApiConstants.LiveCasinoGame}`);
       if (resp?.data) {
-        return resp?.data;
+        const updateData = combineAllGames(resp?.data);
+        console.log(updateData)
+        return updateData;
       }
     } catch (error) {
       const err = error as AxiosError;
@@ -417,4 +461,6 @@ export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
 );
 export const dragonTigerReset = createAction("dragonTiger/reset");
 export const scoreBoardReset = createAction("scoreBoard/reset");
-export const transactionProviderBetsReset = createAction("transactionProviderBetsReset/reset");
+export const transactionProviderBetsReset = createAction(
+  "transactionProviderBetsReset/reset"
+);
