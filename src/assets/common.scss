@@ -60,16 +60,16 @@ body table.table {
   margin-top: 1%;
 }
 .custom-checkbox .form-check-input:checked {
-  background-color: #FFC742; 
-  border-color: #FFC742;    
+  background-color: #ffc742;
+  border-color: #ffc742;
 }
 
 .custom-checkbox .form-check-input:focus {
-  border-color: #28a745;   
+  border-color: #28a745;
 }
 
 .custom-checkbox .form-check-input {
-  border-radius: 50%;      
+  border-radius: 50%;
 }
 .loader1 {
   // position: absolute;
@@ -85,7 +85,7 @@ body table.table {
   margin-top: 2rem;
 }
 
-.teenPatti-table-item{
+.teenPatti-table-item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,7 +94,7 @@ body table.table {
   cursor: pointer;
 }
 
-.teenPatti-table-row{
+.teenPatti-table-row {
   background-color: #f7f7f7;
   width: 100%;
   display: flex;
@@ -107,7 +107,8 @@ body table.table {
   background-image: linear-gradient(to right, #004a25, #ffc742) !important;
   width: 100% !important;
   border-radius: 4px !important;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
   border: 0 !important;
   padding: 5px 0px !important;
   cursor: pointer !important;
@@ -125,7 +126,7 @@ body table.table {
   border-radius: 4px;
 }
 
-.suspended{
+.suspended {
   position: relative;
   pointer-events: none;
   cursor: none;
@@ -163,7 +164,7 @@ body table.table {
   pointer-events: none;
 }
 
-.lock{
+.lock {
   position: relative;
   pointer-events: none;
   cursor: none;
@@ -220,7 +221,7 @@ body table.table {
 // //  bottom: 10px;
 // }
 
-.suspended-poker20{
+.suspended-poker20 {
   position: relative;
   pointer-events: none;
   cursor: none;
@@ -243,8 +244,7 @@ body table.table {
   pointer-events: none;
 }
 
-.suspended-poker20::after{
-
+.suspended-poker20::after {
   content: "";
   background-color: #373636d6;
   position: absolute;
@@ -259,9 +259,7 @@ body table.table {
   pointer-events: none;
 }
 
-
-
-.suspended-1day{
+.suspended-1day {
   position: relative;
   pointer-events: none;
   cursor: none;
@@ -284,8 +282,7 @@ body table.table {
   pointer-events: none;
 }
 
-.suspended-1day::after{
-
+.suspended-1day::after {
   content: "";
   background-color: #373636d6;
   position: absolute;
@@ -299,21 +296,18 @@ body table.table {
   align-items: center;
   pointer-events: none;
 }
-.card32-table-container{
+.card32-table-container {
   width: 100%;
   background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
 }
-.card32-table-row{
+.card32-table-row {
   width: 100%;
   display: flex;
   flex-direction: row;
   // border: 1px solid #c7c8ca;
 }
-
-
-
 
 /* Marquee.css */
 
@@ -419,7 +413,6 @@ body table.table {
   }
 }
 
-
 // ===== blink text ====
 @keyframes blink {
   0%,
@@ -445,7 +438,6 @@ body table.table {
 .font {
   font-size: 12px;
 }
-
 
 // mobile tabs
 .m-tab {
@@ -480,21 +472,21 @@ body table.table {
 
 @media only screen and (max-width: 1199px) {
   .m-tab .active::after {
-      top: -7px;
+    top: -7px;
   }
 }
-.flex-1{
+.flex-1 {
   flex: 1 !important;
 }
 .no-wrap {
   flex-wrap: nowrap !important;
   text-wrap: nowrap;
 }
-.btnbg-blue{
- background-color: #004a25 !important;
+.btnbg-blue {
+  background-color: #004a25 !important;
 }
-.btnbg-red{
- background-color: #0d6efd !important;
+.btnbg-red {
+  background-color: #0d6efd !important;
 }
 /* ====== bg Colors start ====  */
 .bg-secondaryLight {
@@ -503,8 +495,8 @@ body table.table {
 .bg-secondary {
   background-color: $secondary;
 }
-.placeBet-bg-blue{
- background-color: #72bbef !important;
+.placeBet-bg-blue {
+  background-color: #72bbef !important;
 }
 .bg-blue1 {
   background-color: $blue1 !important;
@@ -578,14 +570,14 @@ body select {
 
 @media only screen and (max-width: 1199px) {
   .latest-event {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      overflow-y: hidden;
-      justify-content: flex-start;
-      margin-bottom: 0;
-      white-space: nowrap;
-      background-color: transparent;
-      padding: 0 5px 5px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
+    margin-bottom: 0;
+    white-space: nowrap;
+    background-color: transparent;
+    padding: 0 5px 5px;
   }
 }
 
@@ -603,10 +595,10 @@ body select {
 
 @media only screen and (max-width: 1199px) {
   .latest-event-item {
-      min-width: 50%;
-      width: auto;
-      max-width: 100%;
-      height: 100%;
+    min-width: 50%;
+    width: auto;
+    max-width: 100%;
+    height: 100%;
   }
 }
 .latest-event-item {
@@ -634,7 +626,7 @@ body select {
   // padding: 1px;
   // padding-left: 0px;
   // padding-right: 0px;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   flex-wrap: nowrap;
   // overflow-x: auto;
   // overflow-y: hidden;
@@ -751,10 +743,10 @@ body select {
 .m-b-30 {
   margin-bottom: 30px;
 }
-.provider-modal{
+.provider-modal {
   --bs-modal-width: 90vw;
 }
-.provider-modal-m{
+.provider-modal-m {
   --bs-modal-width: 100vw;
 }
 .div-figure img {
@@ -964,7 +956,7 @@ img {
   display: flex;
   justify-content: space-between;
   padding: 6px 8px;
-  color : #ffffff
+  color: #ffffff;
 }
 .horseRacingTabHeader-m {
   width: 100%;
@@ -973,7 +965,7 @@ img {
   display: flex;
   justify-content: space-between;
   // padding: 5px 10px;
-  color : #ffffff;
+  color: #ffffff;
   flex-direction: column;
 }
 .teenpatti-20 .suspended:after {
@@ -1077,12 +1069,12 @@ img {
   width: 100%;
   margin-top: 2rem;
 }
-.dt20subheader1{
+.dt20subheader1 {
   color: #fff;
   display: flex;
   // padding: 0 5px;
 }
-.dt20subheader2{
+.dt20subheader2 {
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -1092,17 +1084,17 @@ img {
   padding-right: 5px;
 }
 
-.dt20header{
+.dt20header {
   width: 100%;
   background-color: #004a25;
   box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: row;
   // padding: 2px 0px;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
-.headfirst{
+.headfirst {
   font-size: 12px;
   font-weight: bold;
   padding: 0px 5px;
@@ -1209,9 +1201,9 @@ img {
   border-radius: 50% !important;
 }
 .latest-eventt {
-  display: flex;            /* Use flex to make items align in a row */
-  overflow-x: auto;         /* Enable horizontal scrolling */
-  scrollbar-width: none;    /* Hide scrollbar in Firefox */
+  display: flex; /* Use flex to make items align in a row */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
   -ms-overflow-style: none; /* Hide scrollbar in IE 10+ */
 }
 
@@ -1236,49 +1228,48 @@ img {
   .rateBoxWidth3 {
     width: 20% !important;
   }
-  .rateFont{
+  .rateFont {
     font-size: 15px !important;
     font-weight: bold !important;
     color: #333 !important;
   }
-  .sizeFont{
+  .sizeFont {
     font-size: 11px !important;
     font-weight: 200 !important;
   }
-  .teamFont{
+  .teamFont {
     font-size: 13px !important;
   }
-  .side-W{
+  .side-W {
     display: none !important;
   }
-  .sideBet-W{
+  .sideBet-W {
     display: none !important;
     width: 0 !important;
   }
-  .betMain-W{
+  .betMain-W {
     width: 100% !important;
   }
-  .suspendTextCmmn{
+  .suspendTextCmmn {
     font-size: 12px !important;
     font-weight: bold;
     color: #ff0000;
   }
-  .deatilShow-m{
+  .deatilShow-m {
     display: block !important;
   }
-  .deatilShow-d{
+  .deatilShow-d {
     display: none !important;
   }
   .rateBoxWidthKhado {
     width: 20% !important;
   }
-  .setbtn-modal .modal-dialog{
+  .setbtn-modal .modal-dialog {
     margin: 0 !important;
   }
 }
 
 /* Styles for width 760px to 1200px */
-
 
 @media (min-width: 761px) and (max-width: 1200px) {
   .backLayBoxWidth {
@@ -1302,49 +1293,48 @@ img {
   .rateBoxWidthKhado {
     width: 120px !important;
   }
-  .rateFont{
+  .rateFont {
     font-size: 16px !important;
     font-weight: bold !important;
     color: #333 !important;
   }
-  .sizeFont{
+  .sizeFont {
     font-size: 12px !important;
     font-weight: 200 !important;
   }
-  .teamFont{
+  .teamFont {
     font-size: 14px !important;
   }
-  .side-W{
+  .side-W {
     display: none !important;
   }
-  .sideBet-W{
+  .sideBet-W {
     display: none !important;
     width: 0 !important;
   }
-  .betMain-W{
+  .betMain-W {
     width: 100% !important;
   }
-  .suspendTextCmmn{
+  .suspendTextCmmn {
     font-size: 13px !important;
     font-weight: bold;
     color: #ff0000;
   }
-  .bookTeamWidth{
+  .bookTeamWidth {
     width: 27% !important;
   }
-  .deatilShow-m{
+  .deatilShow-m {
     display: block;
   }
-  .deatilShow-d{
+  .deatilShow-d {
     display: none;
   }
-  .sessionMinMaxFont{
+  .sessionMinMaxFont {
     font-size: 9px !important;
   }
 }
 
 /* Styles for width 1200px to 1399px */
-
 
 @media (min-width: 1201px) and (max-width: 1399px) {
   .backLayBoxWidth {
@@ -1353,7 +1343,7 @@ img {
   .backLayBoxWidth2 {
     width: 110px !important;
   }
-  .rateBoxWidth{
+  .rateBoxWidth {
     width: 330px !important;
   }
   .rateBoxWidth2 {
@@ -1377,48 +1367,45 @@ img {
     font-weight: bold !important;
     color: #333 !important;
   }
-  .sizeFont{
+  .sizeFont {
     font-size: 12px !important;
     font-weight: 200 !important;
   }
-  .teamFont{
+  .teamFont {
     font-size: 13px !important;
   }
-  .side-W{
+  .side-W {
     width: 210px !important;
   }
-  .betMain-W{
+  .betMain-W {
     width: calc(100% - 352px) !important;
   }
-  .suspendTextCmmn{
+  .suspendTextCmmn {
     font-size: 14px !important;
     font-weight: bold;
     color: #ff0000;
   }
-  .bookTeamWidth{
+  .bookTeamWidth {
     width: 26% !important;
   }
-  .deatilShow-m{
+  .deatilShow-m {
     display: none;
   }
-  .deatilShow-d{
+  .deatilShow-d {
     display: block;
   }
-  .placeBet-w{
+  .placeBet-w {
     width: 350px !important;
   }
-  .sessionMinMaxFont{
+  .sessionMinMaxFont {
     font-size: 9px !important;
   }
 }
 
-
 /* Styles for width 1400px to 1599px */
 
-
 @media (min-width: 1400px) and (max-width: 1599px) {
-
-  .backLayBoxWidth{
+  .backLayBoxWidth {
     width: 240px !important;
   }
   .backLayBoxWidth2 {
@@ -1443,51 +1430,50 @@ img {
     flex-grow: 1;
     width: 48% !important;
   }
-  .rateFont{
+  .rateFont {
     font-size: 16px !important;
     font-weight: bold !important;
     color: #333 !important;
   }
-  .sizeFont{
+  .sizeFont {
     font-size: 12px !important;
     font-weight: 200 !important;
   }
-  .teamFont{
+  .teamFont {
     font-size: 14px !important;
   }
-  .side-W{
+  .side-W {
     width: 240px !important;
   }
-  .betMain-W{
+  .betMain-W {
     width: calc(100% - 402px) !important;
   }
-  .suspendTextCmmn{
+  .suspendTextCmmn {
     font-size: 15px !important;
     font-weight: bold;
     color: #ff0000;
   }
-  .bookTeamWidth{
+  .bookTeamWidth {
     width: 27% !important;
   }
-  .deatilShow-m{
+  .deatilShow-m {
     display: none;
   }
-  .deatilShow-d{
+  .deatilShow-d {
     display: block;
   }
-  .placeBet-w{
+  .placeBet-w {
     width: 400px !important;
   }
-  .sessionMinMaxFont{
+  .sessionMinMaxFont {
     font-size: 10px !important;
   }
 }
 
 /* Styles for width 1600px and above */
 
-
 @media (min-width: 1600px) {
- .backLayBoxWidth {
+  .backLayBoxWidth {
     width: 320px !important;
   }
   .backLayBoxWidth2 {
@@ -1512,42 +1498,42 @@ img {
     flex-grow: 1;
     width: 45% !important;
   }
-  .rateFont{
+  .rateFont {
     font-size: 18px !important;
     font-weight: bold !important;
     color: #333 !important;
   }
-  .sizeFont{
+  .sizeFont {
     font-size: 12px !important;
     font-weight: 200 !important;
   }
-  .teamFont{
+  .teamFont {
     font-size: 14px !important;
   }
-  .side-W{
+  .side-W {
     width: 280px !important;
   }
-  .betMain-W{
+  .betMain-W {
     width: calc(100% - 452px) !important;
   }
-  .suspendTextCmmn{
+  .suspendTextCmmn {
     font-size: 16px !important;
     font-weight: bold;
     color: #ff0000;
   }
-  .bookTeamWidth{
+  .bookTeamWidth {
     width: 28% !important;
   }
-  .deatilShow-m{
+  .deatilShow-m {
     display: none;
   }
-  .deatilShow-d{
+  .deatilShow-d {
     display: block;
   }
-  .placeBet-w{
+  .placeBet-w {
     width: 450px !important;
   }
-  .sessionMinMaxFont{
+  .sessionMinMaxFont {
     font-size: 12px !important;
   }
 }
@@ -1576,48 +1562,46 @@ img {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
 }
 
-
 .form-check-input-custom:checked {
-    background-color: #FFC742;
-    border-color: #FFC742;
+  background-color: #ffc742;
+  border-color: #ffc742;
 }
 
-
-.form-check-input-custom[type=radio] {
-    border-radius: 50% !important;
+.form-check-input-custom[type="radio"] {
+  border-radius: 50% !important;
 }
 .form-check-custom .form-check-input-custom {
-    float: left;
-    margin-left: -1.5em;
+  float: left;
+  margin-left: -1.5em;
 }
 .form-check-input-custom {
-    width: 1em;
-    height: 1em;
-    margin-top: .25em;
-    vertical-align: top;
-    background-color: #fff;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    border: 1px solid rgba(0, 0, 0, .25);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.25em;
+  vertical-align: top;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
 }
 
 .bg-tab {
   background-color: #bbbbbb !important;
   white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: "0px 10px";
-    overflow-x: auto;
-    flex-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: "0px 10px";
+  overflow-x: auto;
+  flex-wrap: nowrap;
 }
 
-.man-tab{
+.man-tab {
   overflow-x: auto;
   flex-wrap: nowrap;
 }
@@ -1626,10 +1610,10 @@ img {
   background-color: #0088cca5 !important;
 }
 
-.verify-form{
+.verify-form {
   width: 350px;
   max-width: 100%;
   position: fixed;
-  top: 20%; 
-  margin-bottom: 0 !important; 
+  top: 20%;
+  margin-bottom: 0 !important;
 }
