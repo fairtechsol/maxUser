@@ -280,6 +280,10 @@ const MainRoutes = {
       path: "live-casino",
       element: <LiveCasino />,
     },
+    {
+      path: "casino",
+      element: <LiveCasino />,
+    },
     { path: "queen", element: <Queen /> },
     { path: "worli", element: <WorliMatka /> },
     {

@@ -11,16 +11,14 @@ import NewLoader from "../../commonComponent/newLoader";
 
 const LiveCasinoDesktop = () => {
   const { state } = useLocation();
+  const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
   const { liveCasinoData, liveCasinoGame } = useSelector(
     (state: RootState) => state.card
   );
 
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
-  const initialType =
-    liveCasinoData && Object.keys(liveCasinoData).length > 0
-      ? Object.keys(liveCasinoData)[0]
-      : null;
+
   const [list, setList] = useState<Record<string, any>>({});
   const [type, setType] = useState<string>("");
   const [type2, setType2] = useState<string>("");
@@ -28,25 +26,45 @@ const LiveCasinoDesktop = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isShow, setIsShow] = useState(false);
 
-  const handleParent = (key: any, secKey: string) => {
-    setType(key);
+  const handleParent = (key: string, secKey: string) => {
+    const isCasino = location.pathname.includes("/casino");
+    const casinoData = isCasino
+      ? liveCasinoData?.casino
+      : liveCasinoData?.intCasino;
+
+    if (!casinoData?.[key]) return;
+
     const firstKey =
-      key === "All" ? Object.keys(liveCasinoData[key])[0] : "All";
-    setType2(secKey !== "" ? secKey : firstKey);
-    setGame(liveCasinoData[key][secKey !== "" ? secKey : firstKey]);
+      key === "All" ? Object.keys(casinoData[key] || {})[0] : "All";
+    const selectedKey = secKey || firstKey;
+
+    setType(key);
+    setType2(selectedKey);
+    setGame(casinoData[key]?.[selectedKey]);
   };
 
   useEffect(() => {
-    if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
-      setList(liveCasinoData);
-      setType(Object.keys(liveCasinoData)[0]);
-      const firstKey = Object.keys(liveCasinoData[initialType])[0];
-      setType2(Object.keys(liveCasinoData[initialType])[0]);
-      const firstObject = liveCasinoData[initialType][firstKey];
-      setGame(firstObject);
-      setIsLoading(false);
-    }
-  }, [liveCasinoData]);
+    if (!liveCasinoData) return;
+
+    const isCasino = location.pathname.includes("/casino");
+    const casinoData = isCasino
+      ? liveCasinoData?.casino
+      : liveCasinoData?.intCasino;
+
+    if (!casinoData || Object.keys(casinoData).length === 0) return;
+
+    const initialType = Object.keys(casinoData)[0];
+    const firstKey = isCasino
+      ? "All"
+      : Object.keys(casinoData[initialType] || {})[0];
+    const firstObject = casinoData[initialType]?.[firstKey];
+
+    setList(casinoData);
+    setType(initialType);
+    setType2(firstKey);
+    setGame(firstObject);
+    setIsLoading(false);
+  }, [liveCasinoData, location]);
 
   useEffect(() => {
     if (
