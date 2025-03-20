@@ -16,11 +16,9 @@ const LiveCasinoMobile = () => {
     (state: RootState) => state.card
   );
 
+  const location = useLocation();
+
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
-  const initialType =
-    liveCasinoData && Object.keys(liveCasinoData).length > 0
-      ? Object.keys(liveCasinoData)[0]
-      : null;
 
   const [list, setList] = useState<Record<string, any>>({});
   const [type, setType] = useState<string>("");
@@ -28,26 +26,62 @@ const LiveCasinoMobile = () => {
   const [game, setGame] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
   const [isShow, setIsShow] = useState(false);
+  const [casinoType, setCasinoType] = useState("casino");
 
-  const handleParent = (key: any, secKey: string) => {
+  const handleParent = (key: any, secKey: string, casinoType: string) => {
+    const inititalData =
+      casinoType === "casino"
+        ? liveCasinoData?.casino
+        : liveCasinoData?.intCasino;
+    setList(inititalData);
     setType(key);
-    const firstKey =
-      key === "All" ? Object.keys(liveCasinoData[key])[0] : "All";
+    const firstKey = key === "All" ? Object.keys(inititalData[key])[0] : "All";
     setType2(secKey !== "" ? secKey : firstKey);
-    setGame(liveCasinoData[key][secKey !== "" ? secKey : firstKey]);
+    setGame(inititalData[key][secKey !== "" ? secKey : firstKey]);
+  };
+
+  const handleCasinoType = (key: string) => {
+    setCasinoType(key);
+    handleParent(
+      Object.keys(
+        key === "casino" ? liveCasinoData?.casino : liveCasinoData?.intCasino
+      )[0],
+      "",
+      key
+    );
   };
 
   useEffect(() => {
     if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
-      setList(liveCasinoData);
-      setType(Object.keys(liveCasinoData)[0]);
-      const firstKey = Object.keys(liveCasinoData[initialType])[0];
-      setType2(Object.keys(liveCasinoData[initialType])[0]);
-      const firstObject = liveCasinoData[initialType][firstKey];
+      const initialType =
+        liveCasinoData &&
+        Object.keys(
+          casinoType === "casino"
+            ? liveCasinoData.casino
+            : liveCasinoData.intCasino
+        ).length > 0
+          ? Object.keys(
+              casinoType === "casino"
+                ? liveCasinoData.casino
+                : liveCasinoData.intCasino
+            )[0]
+          : null;
+      const inititalData =
+        casinoType === "casino"
+          ? liveCasinoData?.casino
+          : liveCasinoData?.intCasino;
+      setList(inititalData);
+      setType(Object.keys(inititalData)[0]);
+      const firstKey =
+        casinoType === "casino"
+          ? "All"
+          : Object.keys(inititalData?.[initialType])[0];
+      setType2(firstKey);
+      const firstObject = inititalData[initialType][firstKey];
       setGame(firstObject);
       setIsLoading(false);
     }
-  }, [liveCasinoData]);
+  }, [liveCasinoData, location]);
 
   useEffect(() => {
     if (
@@ -55,7 +89,7 @@ const LiveCasinoMobile = () => {
       liveCasinoData &&
       Object.keys(liveCasinoData).length > 0
     ) {
-      handleParent("All", state.key);
+      handleParent("All", state.key, "intCasino");
     }
   }, [state, liveCasinoData]);
 
@@ -171,12 +205,39 @@ const LiveCasinoMobile = () => {
     <>
       <div className="w-100 d-flex flex-column gap-2 ">
         <div className="d-flex man-tab px-6">
+          {[
+            { id: "casino", val: "Casino" },
+            { id: "intCasino", val: "Live Casino" },
+          ]?.map((key, index) => {
+            const isActive = casinoType === key.id;
+            return (
+              <div
+                key={index}
+                onClick={() => handleCasinoType(key.id)}
+                className={`w-100 d-flex justify-content-center px-3 align-items-center fbold title-14 py-2 no-wrap`}
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: isActive ? "#ffc742" : "#004A25",
+                  borderRight: "1px solid #fff",
+                  borderBottom: "1px solid #fff",
+                  color: isActive ? "#000" : "#fff",
+                  height: "3rem"
+                }}
+              >
+                {key.val}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="w-100 d-flex flex-column gap-2 ">
+        <div className="d-flex man-tab px-6">
           {Object.keys(list)?.map((key, index) => {
             const isActive = type === key;
             return (
               <div
                 key={index}
-                onClick={() => handleParent(key, "")}
+                onClick={() => handleParent(key, "", casinoType)}
                 className={`w-100 d-flex justify-content-center px-3 align-items-center fbold title-14 py-2 no-wrap`}
                 style={{
                   cursor: "pointer",
