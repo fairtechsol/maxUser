@@ -16,8 +16,6 @@ const LiveCasinoMobile = () => {
     (state: RootState) => state.card
   );
 
-  const location = useLocation();
-
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
 
   const [list, setList] = useState<Record<string, any>>({});
