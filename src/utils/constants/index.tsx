@@ -3344,6 +3344,16 @@ export const casinoIcons = [
 
 export const liveCasinoGameList: any = [
   {
+    game_id: "150063",
+    game_name: "Dream Wheel",
+    category: "live game show",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/dw.webp",
+    game_code: "MAC88-YLGS101",
+  },
+  {
     game_id: "150041",
     game_name: "6 Player Poker",
     category: "Poker",
