@@ -246,38 +246,38 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
           )}
         </tbody>
       </Table>
-      <div className=" mt-2 casino-list">
-        <div className="w-100 d-flex flex-row casino-list-item">
-          {["mines", "aviator", "fun games", "color prediction"].map(
-            (item: any) => (
-              <div
-                key={item}
-                style={{
-                  maxWidth: "25%",
-                  padding: 1,
-                }}
-                onClick={() =>
-                  navigate("/live-casino", {
-                    state: {
-                      key: item,
-                    },
-                  })
-                }
-              >
-                <img
-                  src={homeCasinoListIcons[item]}
-                  alt={item}
+      {["/home"].includes(location.pathname) && (
+        <div className=" mt-2 casino-list">
+          <div className="w-100 d-flex flex-row casino-list-item">
+            {["mines", "aviator", "fun games", "color prediction"].map(
+              (item: any) => (
+                <div
+                  key={item}
                   style={{
-                    maxWidth: "100%",
-                    height: "auto",
+                    maxWidth: "25%",
+                    padding: 1,
                   }}
-                />
-              </div>
-            )
-          )}
-        </div>
-        {["/home"].includes(location.pathname) &&
-          liveCasinoGameList.map((item: any) => (
+                  onClick={() =>
+                    navigate("/live-casino", {
+                      state: {
+                        key: item,
+                      },
+                    })
+                  }
+                >
+                  <img
+                    src={homeCasinoListIcons[item]}
+                    alt={item}
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto",
+                    }}
+                  />
+                </div>
+              )
+            )}
+          </div>
+          {liveCasinoGameList.map((item: any) => (
             <Link
               to={item.url}
               key={item?.name || item?.game_id}
@@ -302,7 +302,8 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
               </div>
             </Link>
           ))}
-      </div>
+        </div>
+      )}
       <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
         <Modal.Header
           // closeButton
