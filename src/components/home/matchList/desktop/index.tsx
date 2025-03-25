@@ -18,7 +18,7 @@ const DesktopMatchList = ({
   const { type } = useParams();
   const location = useLocation();
 
-  const isGameRoute = location.pathname.includes('game-list');
+  const isGameRoute = location.pathname.includes("game-list");
   // const dispatch: AppDispatch = useDispatch();
   const { tabList } = useSelector((state: RootState) => state.match.matchList);
   // const setMatchOddRatesInRedux = (event: any) => {
@@ -63,27 +63,32 @@ const DesktopMatchList = ({
 
   return (
     <div className="m-1 p-0 w-100">
-      {!isGameRoute && (<><TrendsFilters events={tabList} />
-      <CommonTabs
-        callback={setMatchType}
-        defaultActive={type ?? matchTypeGameList}
-        id={type}
-      >
-        {MatchListJson()
-          ?.filter(
-            (item) => item?.id == matchTypeGameList || !matchTypeGameList
-          )
-          ?.map((item) => {
-            return (
-              <Tab
-                key={item?.id}
-                eventKey={type ?? item?.id}
-                tabClassName="match-list-tabs text-nowrap"
-                title={item?.name}
-              ></Tab>
-            );
-          })}
-      </CommonTabs></>)}
+      {!isGameRoute && (
+        <>
+          <TrendsFilters events={tabList} />
+          <CommonTabs
+            callback={setMatchType}
+            defaultActive={type ?? matchTypeGameList}
+            id={type}
+            customClass="overflow-x-auto overflow-y-hidden no-wrap"
+          >
+            {MatchListJson()
+              ?.filter(
+                (item) => item?.id == matchTypeGameList || !matchTypeGameList
+              )
+              ?.map((item) => {
+                return (
+                  <Tab
+                    key={item?.id}
+                    eventKey={type ?? item?.id}
+                    tabClassName="match-list-tabs text-nowrap"
+                    title={item?.name}
+                  />
+                );
+              })}
+          </CommonTabs>
+        </>
+      )}
       <OneVOneGameTable id={type ?? matchType} />
     </div>
   );
