@@ -100,7 +100,7 @@ const Tournament = ({ title, box, data, detail }) => {
 
     if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
       odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1 : teamA.lay1
-      const perc = Math.round(profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price);
+      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price;
 
       stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
       runner = teamA;
@@ -109,10 +109,10 @@ const Tournament = ({ title, box, data, detail }) => {
 
     } else {
       odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1 : teamB.back1
-      const perc = Math.round(profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price);
+      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price;
 
       stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
-      console.log("result b:", stake);
+
       runner = teamB;
       const key = getKeyByValue(teamB, odds);
       type = key === "lay1" ? "lay" : "back";
