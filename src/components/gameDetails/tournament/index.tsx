@@ -15,8 +15,6 @@ const Tournament = ({ title, box, data, detail }) => {
   // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000);
   // const shouldShowInfoIcon = new Date() < hideTime;
   // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
-  console.log("data :", data)
-  console.log("detail :", detail)
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -49,7 +47,9 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
-    console.log("team :", team)
+
+    console.log(" team :", team)
+    console.log(" data :", data)
     dispatch(
       selectedBetAction({
         team,
@@ -81,8 +81,8 @@ const Tournament = ({ title, box, data, detail }) => {
     const teamB = getBackAndLayRates(data?.runners[1]);
 
     // console.log("data?.runners[0] :", data?.runners[0]);
-    // console.log("Team A Rates:", teamA);
-    // console.log("Team B Rates:", teamB);
+    console.log("Team A Rates:", teamA);
+    console.log("Team B Rates:", teamB);
 
     let runner = {};
     let odds = 0;
@@ -91,22 +91,38 @@ const Tournament = ({ title, box, data, detail }) => {
     if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
       odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1 : teamA.lay1
       const perc = Math.round(profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price);
-      // console.log("stake A:", stake)
-      // console.log("calculateRequiredStack 1:", profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc)
+      console.log("odds A:", odds)
+      console.log("stake A:", perc)
+      console.log("calculateRequiredStack 1:", profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc)
       stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
-      // console.log("result :", Math.abs(Math.round(stake)));
+      console.log("result :", Math.abs(Math.round(stake)));
       runner = teamA;
-      type = "lay";
+      const getKeyByValue = (obj, value) => {
+        return Object.keys(obj).find(key => obj[key] === value);
+      };
+
+      const key = getKeyByValue(teamA, odds);
+      type = key == "lay1" ? "lay" : "back";
+
+      console.log("type A:", type);
 
     } else {
       odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1 : teamB.back1
       const perc = Math.round(profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price);
-      // console.log("stake B:", stake)
-      // console.log("calculateRequiredStack:", profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc)
+      console.log("odds B:", odds)
+      console.log("stake B:", perc)
+      console.log("calculateRequiredStack:", profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc)
       stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
-      // console.log("result b:", stake);
-      runner = teamA;
-      type = "back";
+      console.log("result b:", stake);
+      runner = teamB;
+      const getKeyByValue = (obj, value) => {
+        return Object.keys(obj).find(key => obj[key] === value);
+      };
+
+      const key = getKeyByValue(teamB, odds);
+      type = key == "lay1" ? "lay" : "back";
+      console.log("type b:", type);
+      // type = "lay";
     }
 
     let team = {
@@ -126,6 +142,8 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
+    console.log("new team :", team)
+    console.log("new data :", data)
     dispatch(
       selectedBetAction({
         team,
@@ -137,7 +155,6 @@ const Tournament = ({ title, box, data, detail }) => {
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
   const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
-  console.log("profitLossObj :", profitLossObj)
 
   return (
     <>
