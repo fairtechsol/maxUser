@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { calculateRequiredStack, dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -61,6 +62,16 @@ const Tournament = ({ title, box, data, detail }) => {
 
   const handleCashoutBet = () => {
     const [teamAId, teamBId] = data?.runners?.map(team => team.id);
+    const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
+    const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
+
+    if (profitA === profitB) {
+      toast.error("You are not eligible for cashout!", {
+        style: { backgroundColor: "#ffffff", color: "#000000" },
+      });
+      return;
+    }
+    // profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
     const getBackAndLayRates = (team) => {
       const back1 = team?.ex?.availableToBack?.find(item => item.oname === "back1")?.price || 0;
       const lay1 = team?.ex?.availableToLay?.find(item => item.oname === "lay1")?.price || 0;
@@ -80,10 +91,6 @@ const Tournament = ({ title, box, data, detail }) => {
     const teamA = getBackAndLayRates(data?.runners[0]);
     const teamB = getBackAndLayRates(data?.runners[1]);
 
-    // console.log("data?.runners[0] :", data?.runners[0]);
-    console.log("Team A Rates:", teamA);
-    console.log("Team B Rates:", teamB);
-
     let runner = {};
     let odds = 0;
     let type = "";
@@ -94,31 +101,21 @@ const Tournament = ({ title, box, data, detail }) => {
     if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
       odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1 : teamA.lay1
       const perc = Math.round(profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price);
-      console.log("odds A:", odds)
-      console.log("stake A:", perc)
-      console.log("calculateRequiredStack 1:", profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc)
+
       stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
-      console.log("result :", Math.abs(Math.round(stake)));
       runner = teamA;
       const key = getKeyByValue(teamA, odds);
       type = key === "lay1" ? "lay" : "back";
 
-      console.log("type A:", type);
-
     } else {
       odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1 : teamB.back1
       const perc = Math.round(profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price);
-      console.log("odds B:", odds)
-      console.log("stake B:", perc)
-      console.log("calculateRequiredStack:", profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc)
+
       stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
       console.log("result b:", stake);
       runner = teamB;
       const key = getKeyByValue(teamB, odds);
       type = key === "lay1" ? "lay" : "back";
-
-      console.log("type b:", type);
-      // type = "lay";
     }
 
     let team = {
@@ -138,8 +135,6 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
-    console.log("new team :", team)
-    console.log("new data :", data)
     dispatch(
       selectedBetAction({
         team,
