@@ -88,6 +88,9 @@ const Tournament = ({ title, box, data, detail }) => {
     let odds = 0;
     let type = "";
     let stake = 0;
+
+    const getKeyByValue = (obj, value) => Object.keys(obj).find(key => obj[key] === value);
+
     if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
       odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1 : teamA.lay1
       const perc = Math.round(profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price);
@@ -97,12 +100,8 @@ const Tournament = ({ title, box, data, detail }) => {
       stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
       console.log("result :", Math.abs(Math.round(stake)));
       runner = teamA;
-      const getKeyByValue = (obj, value) => {
-        return Object.keys(obj).find(key => obj[key] === value);
-      };
-
       const key = getKeyByValue(teamA, odds);
-      type = key == "lay1" ? "lay" : "back";
+      type = key === "lay1" ? "lay" : "back";
 
       console.log("type A:", type);
 
@@ -115,12 +114,9 @@ const Tournament = ({ title, box, data, detail }) => {
       stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
       console.log("result b:", stake);
       runner = teamB;
-      const getKeyByValue = (obj, value) => {
-        return Object.keys(obj).find(key => obj[key] === value);
-      };
-
       const key = getKeyByValue(teamB, odds);
-      type = key == "lay1" ? "lay" : "back";
+      type = key === "lay1" ? "lay" : "back";
+
       console.log("type b:", type);
       // type = "lay";
     }
