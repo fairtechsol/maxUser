@@ -128,7 +128,18 @@ export const manualProfitLoss = (
         }
       }
     }
-  }else{
+  } else {
     return 0;
   }
+};
+
+export const calculateRequiredStack = (
+  initialTeamA: number,
+  initialTeamB: number,
+  perc: number
+): number => {
+  if (!initialTeamA || !initialTeamB || !perc) return 0;
+
+  let result = (initialTeamB - initialTeamA) / (1 + perc / 100);
+  return parseFloat(result.toFixed(2)) ?? 0;
 };
