@@ -3,17 +3,15 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import { liveStreamPageUrl } from "../../../utils/constants";
+import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
+import { formatDate } from "../../../utils/dateUtils";
 import { getTvData } from "../../../utils/tvUrlGet";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import CustomModal from "../../commonComponent/modal";
 import NewLoader from "../../commonComponent/newLoader";
 import Iframe from "../../iframe/iframe";
-import Bookmaker from "../bookmaker";
-import ManualMarket from "../manulMarkets";
-import MatchOdd from "../matchOdd";
-import OtherMarket from "../otherMarket";
+import HtFt from "../htft";
 import SessionCricketCasino from "../sessionCricketCasino";
 import SessionFancy from "../sessionFancy";
 import SessionKhado from "../sessionKhado";
@@ -28,14 +26,8 @@ const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
-  // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
-  // const [errorCount, setErrorCount] = useState<number>(0);
-  // const [channelId, setChannelId] = useState<string>("");
-  // const [currInterval, setCurrInterval] = useState<any>(null);
-
+  const [showScoreboard, setShowScoreboard] = useState<boolean>(false);
   const [tvData, setTvData] = useState<any>(null);
-  // const [loading, setLoading] = useState<boolean>(true);
-  // const [error, setError] = useState<string | null>(null);
 
   const { matchDetails, liveScoreBoardData, loading } = useSelector(
     (state: RootState) => state.match.matchList
@@ -76,21 +68,6 @@ const DesktopGameDetail = () => {
     ? normalizedData?.filter((item: any) => item?.isManual)
     : [];
 
-  // useEffect(() => {
-  //   try {
-  //     if (matchDetails?.id && matchSocket) {
-  //       let currRateInt = setInterval(() => {
-  //         expertSocketService.match.joinMatchRoom(matchDetails?.id);
-  //       }, 60000);
-  //       return () => {
-  //         clearInterval(currRateInt);
-  //       };
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [matchDetails?.id]);
-
   return (
     <Container fluid className="pe-0 ps-1">
       <Row className="p-0">
@@ -99,80 +76,85 @@ const DesktopGameDetail = () => {
             <Container className="p-0">
               <>
                 <Col md={12} className="p-0">
-                  <BetTableHeader
-                    customClass="mt-1 py-1 "
-                    title={matchDetails?.title}
-                    rightComponent={
-                      <span className="title-16 fbold text-white">
-                        {matchDetails?.startAt &&
-                          moment(matchDetails?.startAt).format(
-                            "DD/MM/YYYY hh:mm:ss"
-                          )}
-                      </span>
-                    }
-                  />
-                  {/* <div
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    backgroundColor: "#000",
-                  }}
-                  dangerouslySetInnerHTML={{
-                    __html: liveScoreBoardData ? liveScoreBoardData : "",
-                  }}
-                ></div> */}
-                </Col>
-                {liveScoreBoardData && (
-                  <Iframe data={liveScoreBoardData} width="100%" />
-                )}
-                {matchDetails?.matchOdd?.activeStatus === "live" &&
-                  matchDetails?.matchOdd?.isActive && (
-                    <Col md={12} style={{ marginTop: "8px" }}>
-                      <MatchOdd
-                        title={matchDetails?.matchOdd?.name}
-                        data={matchDetails?.matchOdd}
-                        detail={matchDetails}
-                      />
-                    </Col>
-                  )}
-                {matchDetails?.bookmaker?.activeStatus === "live" &&
-                  matchDetails?.bookmaker?.isActive && (
-                    <Col md={12} style={{ marginTop: "8px" }}>
-                      <Bookmaker
-                        title={matchDetails?.bookmaker?.name}
-                        box={
-                          matchDetails?.bookmaker?.runners?.[0]?.ex
-                            ?.availableToBack?.length > 2
-                            ? 6
-                            : 2
+                  {["cricket", "politics"].includes(matchDetails?.matchType) ? (
+                    <BetTableHeader
+                      customClass="mt-1 py-1 "
+                      title={matchDetails?.title}
+                      rightComponent={
+                        <span className="title-16 fbold text-white">
+                          {matchDetails?.startAt &&
+                            moment(matchDetails?.startAt).format(
+                              "DD/MM/YYYY hh:mm:ss"
+                            )}
+                        </span>
+                      }
+                    />
+                  ) : (
+                    <BetTableHeader
+                      customClass="py-1"
+                      title={matchDetails?.title}
+                      setShowScoreboard={(e) => {
+                        if (!showScoreboard) {
+                          getTvData(
+                            matchDetails?.eventId,
+                            setTvData,
+                            matchDetails?.matchType,
+                            false,
+                            true
+                          );
+                        } else {
+                          setTvData((prev: any) => {
+                            return {
+                              ...prev,
+                              scoreData: null,
+                            };
+                          });
                         }
-                        data={matchDetails?.bookmaker}
-                        detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
-                      />
-                    </Col>
+                        setShowScoreboard(e);
+                      }}
+                      rightComponent={
+                        <span className="title-16 fbold text-white">
+                          {matchDetails?.startAt &&
+                            formatDate(matchDetails?.startAt)}
+                        </span>
+                      }
+                    />
                   )}
-                {matchDetails?.other?.length > 0 &&
-                  matchDetails?.other?.map((item: any, index: number) => (
-                    <div key={index}>
-                      {item?.activeStatus === "live" && item?.isActive && (
-                        <Col md={12} style={{ marginTop: "8px" }}>
-                          <OtherMarket
-                            title={item?.name}
-                            box={
-                              item?.runners?.[0]?.ex?.availableToBack?.length >
-                              2
-                                ? 6
-                                : 2
-                            }
-                            data={item}
-                            detail={matchDetails}
-                            // data={matchDetails?.matchOdd}
-                          />
-                        </Col>
-                      )}
-                    </div>
-                  ))}
+                </Col>
+                {["cricket", "politics"].includes(matchDetails?.matchType)
+                  ? liveScoreBoardData && (
+                      <Iframe data={liveScoreBoardData} width="100%" />
+                    )
+                  : showScoreboard && (
+                      <div
+                        style={{
+                          height: "250px",
+                          backgroundPosition: "center",
+                          backgroundSize: "cover",
+                          position: "relative",
+                          marginLeft: "4px",
+                          marginRight: "4px",
+                          width: "calc(100%-8px)",
+                        }}
+                      >
+                        <iframe
+                          style={{
+                            height: "100%",
+                            position: "absolute",
+                            width: "100%",
+                            left: 0,
+                            top: 0,
+                          }}
+                          src={
+                            import.meta.env.VITE_NODE_ENV == "production"
+                              ? tvData?.scoreData?.iframeUrl
+                              : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`
+                          }
+                          title="Live Stream"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                        ></iframe>
+                      </div>
+                    )}
                 {matchDetails?.tournament?.length > 0 &&
                   matchDetails?.tournament
                     ?.filter(
@@ -184,123 +166,38 @@ const DesktopGameDetail = () => {
                     ?.sort((a: any, b: any) => a.sNo - b.sNo)
                     ?.map((item: any, index: number) => (
                       <div key={index}>
-                        {item?.activeStatus === "live" && (
-                          <Col md={12} style={{ marginTop: "8px" }}>
-                            <Tournament
-                              title={item?.name}
-                              box={
-                                item?.runners?.[0]?.ex?.availableToBack
-                                  ?.length > 2
-                                  ? 6
-                                  : 2
-                              }
-                              data={item}
-                              detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
-                            />
-                          </Col>
-                        )}
+                        {item?.activeStatus === "live" &&
+                          (item?.name === "HT/FT" ? (
+                            <Col md={12} style={{ marginTop: "8px" }}>
+                              <HtFt
+                                title={item?.name}
+                                box={
+                                  item?.runners?.[0]?.ex?.availableToBack
+                                    ?.length > 2
+                                    ? 6
+                                    : 2
+                                }
+                                data={item}
+                                detail={matchDetails}
+                              />
+                            </Col>
+                          ) : (
+                            <Col md={12} style={{ marginTop: "8px" }}>
+                              <Tournament
+                                title={item?.name}
+                                box={
+                                  item?.runners?.[0]?.ex?.availableToBack
+                                    ?.length > 2
+                                    ? 6
+                                    : 2
+                                }
+                                data={item}
+                                detail={matchDetails}
+                              />
+                            </Col>
+                          ))}
                       </div>
                     ))}
-                {matchDetails?.bookmaker2?.activeStatus === "live" &&
-                  matchDetails?.bookmaker2?.isActive && (
-                    <Col md={12} style={{ marginTop: "8px" }}>
-                      <Bookmaker
-                        title={matchDetails?.bookmaker2?.name}
-                        box={
-                          matchDetails?.bookmaker2?.runners?.[0]?.ex
-                            ?.availableToBack?.length > 2
-                            ? 6
-                            : 2
-                        }
-                        data={matchDetails?.bookmaker2}
-                        detail={matchDetails}
-                        // type={MatchType.MATCH_ODDS}
-                        // data={matchDetails?.matchOdd}
-                      />
-                    </Col>
-                  )}
-                {matchDetails?.quickBookmaker?.length > 0 &&
-                  matchDetails?.quickBookmaker?.map(
-                    (item: any, index: number) => (
-                      <div key={index}>
-                        {item?.activeStatus === "live" && item?.isActive && (
-                          <Col md={12}>
-                            <ManualMarket
-                              title={item?.name}
-                              data={item}
-                              detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
-                            />
-                          </Col>
-                        )}
-                      </div>
-                    )
-                  )}
-                {matchDetails?.apiTideMatch2?.activeStatus === "live" &&
-                  matchDetails?.apiTideMatch2?.isActive && (
-                    <Col md={12} style={{ marginTop: "8px" }}>
-                      <OtherMarket
-                        title={matchDetails?.apiTideMatch2?.name}
-                        box={
-                          matchDetails?.apiTideMatch2?.runners?.[0]?.ex
-                            ?.availableToBack?.length > 2
-                            ? 6
-                            : 2
-                        }
-                        data={matchDetails?.apiTideMatch2}
-                        detail={matchDetails}
-                        // type={MatchType.MATCH_ODDS}
-                        // data={matchDetails?.matchOdd}
-                      />
-                    </Col>
-                  )}
-                {((matchDetails?.manualTiedMatch?.activeStatus === "live" &&
-                  matchDetails?.manualTiedMatch?.isActive) ||
-                  (matchDetails?.manualTideMatch?.activeStatus === "live" &&
-                    matchDetails?.manualTideMatch?.isActive)) && (
-                  <Col md={12}>
-                    <ManualMarket
-                      title={
-                        matchDetails?.manualTiedMatch?.name ||
-                        matchDetails?.manualTideMatch?.name
-                      }
-                      data={
-                        matchDetails?.manualTiedMatch ||
-                        matchDetails?.manualTideMatch
-                      }
-                      detail={matchDetails}
-                      // data={matchDetails?.matchOdd}
-                    />
-                  </Col>
-                )}
-                {matchDetails?.marketCompleteMatch1?.activeStatus === "live" &&
-                  matchDetails?.marketCompleteMatch1?.isActive && (
-                    <Col md={12}>
-                      <OtherMarket
-                        title={matchDetails?.marketCompleteMatch1?.name}
-                        box={
-                          matchDetails?.marketCompleteMatch1?.runners?.[0]?.ex
-                            ?.availableToBack?.length > 2
-                            ? 6
-                            : 2
-                        }
-                        data={matchDetails?.marketCompleteMatch1}
-                        detail={matchDetails}
-                      />
-                    </Col>
-                  )}
-                {matchDetails?.manualCompleteMatch?.activeStatus === "live" &&
-                  matchDetails?.manualCompleteMatch?.isActive && (
-                    <Col md={12}>
-                      <ManualMarket
-                        title={matchDetails?.manualCompleteMatch?.name}
-                        data={matchDetails?.manualCompleteMatch}
-                        detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
-                      />
-                    </Col>
-                  )}
                 {(matchDetails?.apiSession?.session?.section?.length > 0 ||
                   manualEntries?.length > 0) && (
                   <Col md={12}>
@@ -339,7 +236,6 @@ const DesktopGameDetail = () => {
                       title={"fancy1"}
                       data={matchDetails?.apiSession?.fancy1}
                       detail={matchDetails}
-                      // data={matchDetails?.matchOdd}
                     />
                   </Col>
                 )}{" "}
@@ -366,10 +262,8 @@ const DesktopGameDetail = () => {
                   <Col md={12}>
                     <SessionOddEven
                       title={"oddeven"}
-                      // type={"fancy"}
                       data={matchDetails?.apiSession?.oddEven}
                       detail={matchDetails}
-                      // data={matchDetails?.matchOdd}
                     />
                   </Col>
                 )}
@@ -437,46 +331,11 @@ const DesktopGameDetail = () => {
                               }
                               data={item}
                               detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
                       </div>
                     ))}
-                {matchDetails?.apiTideMatch?.activeStatus === "live" &&
-                  matchDetails?.apiTideMatch?.isActive && (
-                    <Col md={12}>
-                      <OtherMarket
-                        title={matchDetails?.apiTideMatch?.name}
-                        box={
-                          matchDetails?.apiTideMatch?.runners?.[0]?.ex
-                            ?.availableToBack?.length > 2
-                            ? 6
-                            : 2
-                        }
-                        data={matchDetails?.apiTideMatch}
-                        detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
-                      />
-                    </Col>
-                  )}
-                {matchDetails?.marketCompleteMatch?.activeStatus === "live" &&
-                  matchDetails?.marketCompleteMatch?.isActive && (
-                    <Col md={12}>
-                      <OtherMarket
-                        title={matchDetails?.marketCompleteMatch?.name}
-                        box={
-                          matchDetails?.marketCompleteMatch?.runners?.[0]?.ex
-                            ?.availableToBack?.length > 2
-                            ? 6
-                            : 2
-                        }
-                        data={matchDetails?.marketCompleteMatch}
-                        detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
-                      />
-                    </Col>
-                  )}
               </>
             </Container>
           ) : (
@@ -498,30 +357,7 @@ const DesktopGameDetail = () => {
                   : "100%",
               }}
             >
-              {/* <Col md={12}>
-                <div
-                  // onClick={() => setShowContactAdmin(true)}
-                  style={{
-                    display: "flex",
-                    margin: "10px 0",
-                    marginBottom: "0",
-                    alignItems: "center",
-                  }}
-                  className="fs-4"
-                >
-                  <IoInformationCircle />
-                  <h6
-                    style={{ margin: "0 0 0 5px", color: "#ff0000" }}
-                    className="fs-5 text-decoration-underline cursor-pointer blinking-text"
-                  >
-                    <Link className="text-danger" to={"/ballbyball"}>
-                      {" "}
-                      Ball By Ball
-                    </Link>
-                  </h6>
-                </div>
-              </Col> */}
-              {matchDetails?.eventId  &&
+              {matchDetails?.eventId &&
                 matchDetails?.matchType !== "politics" && (
                   <Col md={12} className="px-1 pt-1">
                     <LiveStreamComponent

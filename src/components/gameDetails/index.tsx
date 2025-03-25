@@ -60,7 +60,7 @@ const GameDetails = () => {
       matchService.connect([id]);
     }
     return () => {
-      matchService.disconnect(); 
+      matchService.disconnect();
     };
   }, [id]);
 
@@ -224,7 +224,6 @@ const GameDetails = () => {
   };
 
   const handleMatchResult = () => {
-    // dispatch(getMatchList({}));
     dispatch(getProfileInMatchDetail());
   };
   const getUserProfile = () => {
@@ -332,12 +331,8 @@ const GameDetails = () => {
     try {
       const handleVisibilityChange = () => {
         if (document.visibilityState === "visible") {
-          // if (!socket.connected) {
-          //   socketService.connect();
-          // }
           if (id) {
             dispatch(selectedBetAction(null));
-            // dispatch(matchDetailAction(id));
             dispatch(getPlacedBets(id));
             setTimeout(() => {
               expertSocketService.match.joinMatchRoom(id);
@@ -345,7 +340,6 @@ const GameDetails = () => {
             }, 500);
           }
         } else if (document.visibilityState === "hidden") {
-          // expertSocketService.match.leaveMatchRoom(id);
           expertSocketService.match.getMatchRatesOff(id);
         }
       };
@@ -360,7 +354,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, id,matchSocket]);
+  }, [socket, id, matchSocket]);
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };

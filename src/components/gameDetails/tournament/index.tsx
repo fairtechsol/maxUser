@@ -1,5 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { calculateRequiredStack, dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
+import {
+  calculateRequiredStack,
+  dummyArray,
+  formatNumber,
+  manualProfitLoss,
+} from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
@@ -48,8 +53,8 @@ const Tournament = ({ title, box, data, detail }) => {
       max: data?.maxBet,
     };
 
-    console.log(" team :", team)
-    console.log(" data :", data)
+    console.log(" team :", team);
+    console.log(" data :", data);
     dispatch(
       selectedBetAction({
         team,
@@ -58,12 +63,15 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
-
   const handleCashoutBet = () => {
-    const [teamAId, teamBId] = data?.runners?.map(team => team.id);
+    const [teamAId, teamBId] = data?.runners?.map((team) => team.id);
     const getBackAndLayRates = (team) => {
-      const back1 = team?.ex?.availableToBack?.find(item => item.oname === "back1")?.price || 0;
-      const lay1 = team?.ex?.availableToLay?.find(item => item.oname === "lay1")?.price || 0;
+      const back1 =
+        team?.ex?.availableToBack?.find((item) => item.oname === "back1")
+          ?.price || 0;
+      const lay1 =
+        team?.ex?.availableToLay?.find((item) => item.oname === "lay1")
+          ?.price || 0;
 
       return {
         id: team?.id,
@@ -84,34 +92,70 @@ const Tournament = ({ title, box, data, detail }) => {
     console.log("Team A Rates:", teamA);
     console.log("Team B Rates:", teamB);
 
-    let runner = {};
+    let runner: any = {};
     let odds = 0;
     let type = "";
     let stake = 0;
 
-    const getKeyByValue = (obj, value) => Object.keys(obj).find(key => obj[key] === value);
+    const getKeyByValue = (obj, value) =>
+      Object.keys(obj).find((key) => obj[key] === value);
 
     if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
-      odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1 : teamA.lay1
-      const perc = Math.round(profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price);
-      console.log("odds A:", odds)
-      console.log("stake A:", perc)
-      console.log("calculateRequiredStack 1:", profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc)
-      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
+      odds =
+        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+          ? teamA.back1
+          : teamA.lay1;
+      const perc = Math.round(
+        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+          ? teamA.back1Price
+          : teamA.lay1Price
+      );
+      console.log("odds A:", odds);
+      console.log("stake A:", perc);
+      console.log(
+        "calculateRequiredStack 1:",
+        profitLossObj?.[teamAId],
+        profitLossObj?.[teamBId],
+        perc
+      );
+      stake = Math.abs(
+        calculateRequiredStack(
+          profitLossObj?.[teamAId],
+          profitLossObj?.[teamBId],
+          perc
+        )
+      );
       console.log("result :", Math.abs(Math.round(stake)));
       runner = teamA;
       const key = getKeyByValue(teamA, odds);
       type = key === "lay1" ? "lay" : "back";
 
       console.log("type A:", type);
-
     } else {
-      odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1 : teamB.back1
-      const perc = Math.round(profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price);
-      console.log("odds B:", odds)
-      console.log("stake B:", perc)
-      console.log("calculateRequiredStack:", profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc)
-      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
+      odds =
+        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+          ? teamB.lay1
+          : teamB.back1;
+      const perc = Math.round(
+        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+          ? teamB.lay1Price
+          : teamB.back1Price
+      );
+      console.log("odds B:", odds);
+      console.log("stake B:", perc);
+      console.log(
+        "calculateRequiredStack:",
+        profitLossObj?.[teamAId],
+        profitLossObj?.[teamBId],
+        perc
+      );
+      stake = Math.abs(
+        calculateRequiredStack(
+          profitLossObj?.[teamAId],
+          profitLossObj?.[teamBId],
+          perc
+        )
+      );
       console.log("result b:", stake);
       runner = teamB;
       const key = getKeyByValue(teamB, odds);
@@ -138,8 +182,8 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
-    console.log("new team :", team)
-    console.log("new data :", data)
+    console.log("new team :", team);
+    console.log("new data :", data);
     dispatch(
       selectedBetAction({
         team,
@@ -157,8 +201,9 @@ const Tournament = ({ title, box, data, detail }) => {
       <div className="tournamentContainer">
         <div className="tournamentTitle">
           <span
-            className={`tournamentTitleTxt ${isMobile ? "f-size13" : "f-size15"
-              }`}
+            className={`tournamentTitleTxt ${
+              isMobile ? "f-size13" : "f-size15"
+            }`}
           >
             {title}
           </span>
@@ -167,21 +212,17 @@ const Tournament = ({ title, box, data, detail }) => {
               // disabled={
               //   selectedBet?.team?.stake == 0 ? true : false
               // }
-              disabled={
-                Object.keys(profitLossObj).length > 0 ? false : true
-              }
+              disabled={Object.keys(profitLossObj).length > 0 ? false : true}
               className="submit-buttonn"
               onClick={handleCashoutBet}
               style={{
                 backgroundColor:
-                  selectedBet?.team?.stake == 0
-                    ? "#198754"
-                    : "#086f3f",
+                  selectedBet?.team?.stake == 0 ? "#198754" : "#086f3f",
                 fontSize: isMobile ? "13px" : "14px",
                 padding: "0.25rem 0.5rem",
                 borderRadius: 0,
                 height: "auto",
-                opacity: Object.keys(profitLossObj).length > 0 ? 1 : 0.65
+                opacity: Object.keys(profitLossObj).length > 0 ? 1 : 0.65,
               }}
             >
               Cashout
@@ -197,8 +238,8 @@ const Tournament = ({ title, box, data, detail }) => {
               {data?.minBet === data?.maxBet
                 ? `Max:${formatNumber(data?.maxBet)}`
                 : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
-                  data?.maxBet
-                )}`}
+                    data?.maxBet
+                  )}`}
             </span>
           </div>
           <div
@@ -228,25 +269,26 @@ const Tournament = ({ title, box, data, detail }) => {
         {(!data?.isActive ||
           (!["ACTIVE", "OPEN", ""].includes(data?.status) &&
             data?.gtype == "match")) && (
-            <div
-              className={`outer-suspended-overlayRatestournament ${box === 6 ? "rateBoxWidth" : "rateBoxWidth2"
-                }`}
-              style={{
-                height: `${data?.runners?.length * 45}px`,
-                bottom: data?.rem ? "20px" : "0px",
-              }}
+          <div
+            className={`outer-suspended-overlayRatestournament ${
+              box === 6 ? "rateBoxWidth" : "rateBoxWidth2"
+            }`}
+            style={{
+              height: `${data?.runners?.length * 45}px`,
+              bottom: data?.rem ? "20px" : "0px",
+            }}
+          >
+            <span
+              className={`suspendTextCmmn`}
+              style={{ textTransform: "uppercase" }}
             >
-              <span
-                className={`suspendTextCmmn`}
-                style={{ textTransform: "uppercase" }}
-              >
-                {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
-                  data?.gtype == "match"
-                  ? data?.status
-                  : ""}
-              </span>
-            </div>
-          )}
+              {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
+              data?.gtype == "match"
+                ? data?.status
+                : ""}
+            </span>
+          </div>
+        )}
         {data?.runners?.length > 0 &&
           data?.runners?.map((item: any, index: any) => {
             return (
@@ -254,7 +296,7 @@ const Tournament = ({ title, box, data, detail }) => {
                 <div
                   className="tournamentTeam"
                   style={isMobile && box === 6 ? { width: "28%" } : {}}
-                // style={box === 6 ? { width: "28%" } : {}}
+                  // style={box === 6 ? { width: "28%" } : {}}
                 >
                   <span className={`teamFont tournamentTeamTxt`}>
                     {item?.nat || item?.runnerName}
@@ -291,37 +333,39 @@ const Tournament = ({ title, box, data, detail }) => {
                         : ""}
                     </span> */}
                     <span
-                      className={`${parseFloat(
-                        profitLossObj?.[item.parentRunnerId || item.id]
-                      ) >
-                        0
-                        ? "color-green"
-                        : "color-red"
-                        } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                      className={`${
+                        parseFloat(
+                          profitLossObj?.[item.parentRunnerId || item.id]
+                        ) > 0
+                          ? "color-green"
+                          : "color-red"
+                      } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
                       {profitLossObj?.[item.parentRunnerId || item.id]
                         ? selectedBet?.team?.betId ===
                           (data.parentBetId || data?.id)
                           ? parseFloat(
-                            (profitLossObj?.[item.parentRunnerId || item.id])
-                          )
+                              profitLossObj?.[item.parentRunnerId || item.id]
+                            )
                           : profitLossObj?.[item.parentRunnerId || item.id]
                         : ""}
                     </span>
                     {selectedBet?.team?.betId ===
-                      (data.parentBetId || data?.id) ? (
+                    (data.parentBetId || data?.id) ? (
                       <span
                         className="title-12 f-400"
                         style={{
                           color:
-                            (parseFloat(
-                              (profitLossObj?.[item.parentRunnerId || item.id])
-                            ) + manualProfitLoss(
-                              selectedBet,
-                              item?.nat || item?.runnerName,
-                              data?.type,
-                              data?.gtype
-                            )) > 0
+                            parseFloat(
+                              profitLossObj?.[item.parentRunnerId || item.id]
+                            ) +
+                              manualProfitLoss(
+                                selectedBet,
+                                item?.nat || item?.runnerName,
+                                data?.type,
+                                data?.gtype
+                              ) >
+                            0
                               ? "#086f3f"
                               : "#bd1828",
                         }}
@@ -342,15 +386,19 @@ const Tournament = ({ title, box, data, detail }) => {
                         {profitLossObj?.[item.parentRunnerId || item.id]
                           ? selectedBet?.team?.betId ===
                             (data.parentBetId || data?.id)
-                            ? (parseFloat(
-                              (profitLossObj?.[item.parentRunnerId || item.id])
-                            ) +
-                              manualProfitLoss(
-                                selectedBet,
-                                item?.nat || item?.runnerName,
-                                data?.type,
-                                data?.gtype
-                              )).toFixed(2)
+                            ? (
+                                parseFloat(
+                                  profitLossObj?.[
+                                    item.parentRunnerId || item.id
+                                  ]
+                                ) +
+                                manualProfitLoss(
+                                  selectedBet,
+                                  item?.nat || item?.runnerName,
+                                  data?.type,
+                                  data?.gtype
+                                )
+                              ).toFixed(2)
                             : profitLossObj?.[item.parentRunnerId || item.id]
                           : ""}
                       </span>
@@ -367,20 +415,20 @@ const Tournament = ({ title, box, data, detail }) => {
                   }
                 >
                   {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
-                    data?.gtype == "match"
+                  data?.gtype == "match"
                     ? ""
                     : item?.status !== "ACTIVE" &&
-                    item?.status !== "OPEN" &&
-                    item?.status !== "" && (
-                      <div className="suspended-overlayRatestournament">
-                        <span
-                          className={`suspendTextCmmn`}
-                          style={{ textTransform: "uppercase" }}
-                        >
-                          {item?.status}
-                        </span>
-                      </div>
-                    )}
+                      item?.status !== "OPEN" &&
+                      item?.status !== "" && (
+                        <div className="suspended-overlayRatestournament">
+                          <span
+                            className={`suspendTextCmmn`}
+                            style={{ textTransform: "uppercase" }}
+                          >
+                            {item?.status}
+                          </span>
+                        </div>
+                      )}
                   {box === 6 ? (
                     <>
                       {(item?.ex?.availableToBack?.length > 0

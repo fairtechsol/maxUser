@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
-import "../style.scss";
-import { isMobile } from "../../../utils/screenDimension";
+import { IoFootball } from "react-icons/io5";
 import { MdSportsCricket } from "react-icons/md";
 import { PiTennisBallFill } from "react-icons/pi";
-import { IoFootball } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import { isMobile } from "../../../utils/screenDimension";
+import "../style.scss";
 
 const LatestEvent = ({ events }: any) => {
   const iconMapping = {
@@ -25,11 +25,7 @@ const LatestEvent = ({ events }: any) => {
         <div key={event.id} className="latest-event-item">
           <NavLink
             className="blink_me d-icon"
-            to={`/${
-              event.matchType === "cricket" || event.matchType === "politics"
-                ? "game-detail/cricket"
-                : `other-game-detail/${event.matchType}`
-            }/${event?.matchId}`}
+            to={`/game-detail/${event.matchType}/${event?.matchId}`}
           >
             <div className="px-1">{iconMapping[event.matchType]}</div>
             <span className="">{event.matchName}</span>

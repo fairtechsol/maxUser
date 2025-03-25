@@ -233,12 +233,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                 <div className="d-flex flex-column">
                                   <Link
                                     className="text-decoration-none text-black lh-1"
-                                    to={`/${
-                                      mTypeid === "cricket" ||
-                                      mTypeid === "politics"
-                                        ? "game-detail/cricket"
-                                        : `other-game-detail/${mTypeid}`
-                                    }/${item?.id}`}
+                                    to={`/game-detail/${mTypeid}/${item?.id}`}
                                   >
                                     <b
                                       className="title-14 f600"

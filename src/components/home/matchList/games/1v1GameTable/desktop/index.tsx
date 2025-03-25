@@ -387,21 +387,10 @@ const MatchListRow = ({ item, matchType }: any) => {
           > */}
           <span
             className="text-decoration-none"
-            // to={`/${
-            //   matchType === "cricket" || matchType === "politics"
-            //     ? "game-detail/cricket"
-            //     : `other-game-detail/${matchType}`
-            // }/${item?.id}`}
+            // to={`/game-detail/${matchType}/${item?.id}`}
             onClick={() => {
               expertSocketService.match.joinMatchRoom(item?.id);
-
-              navigate(
-                `/${
-                  matchType === "cricket" || matchType === "politics"
-                    ? "game-detail/cricket"
-                    : `other-game-detail/${matchType}`
-                }/${item?.id}`
-              );
+              navigate(`/game-detail/${matchType}/${item?.id}`);
             }}
           >
             <div

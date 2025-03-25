@@ -22,16 +22,12 @@ interface InitialState {
   success: boolean;
   loading: boolean;
   error: any;
-  matchList: any;
-  getMatchListBySearch: any;
   otherMatchDetails: any;
   selectedBet: any;
   searchedMatchList: any;
 }
 
 const initialState: InitialState = {
-  matchList: [],
-  getMatchListBySearch: [],
   loading: false,
   success: false,
   error: null,
@@ -174,9 +170,8 @@ const otherMatchDetail = createSlice({
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              [betId + "_profitLoss_" + matchId]: JSON.stringify(
-                newTeamRateData
-              ),
+              [betId + "_profitLoss_" + matchId]:
+                JSON.stringify(newTeamRateData),
             },
           };
         } else {
