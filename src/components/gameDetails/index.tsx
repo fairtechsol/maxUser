@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   expertSocketService,
+  matchService,
   matchSocket,
   socket,
   socketService,
-  matchService,
 } from "../../socketManager";
 import {
   // getMatchList,
@@ -69,10 +69,8 @@ const GameDetails = () => {
       setIsMobile(window.innerWidth <= 1199);
     };
 
-    // Add event listener to update isMobile on window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -119,7 +117,7 @@ const GameDetails = () => {
     try {
       if (event?.matchId === id) {
         dispatch(getProfileInMatchDetail());
-        if (event?.betType === "quickbookmaker1" || event.isMatchDeclare) {
+        if (event.isMatchDeclare) {
           navigate(`/home`);
         } else {
           dispatch(getPlacedBets(id));
@@ -295,7 +293,6 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       return () => {
-        // expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();

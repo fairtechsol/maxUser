@@ -24,11 +24,7 @@ import "./style.scss";
 
 const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
-  // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
-  // const [errorCount, setErrorCount] = useState<number>(0);
-  // const [channelId, setChannelId] = useState<string>("");
   const [showVideo, setShowVideo] = useState(false);
-  // const [currInterval, setCurrInterval] = useState<any>(null);
   const { matchDetails, liveScoreBoardData, loading } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -69,7 +65,6 @@ const MobileGameDetail = () => {
         }
         style={{ padding: "5px" }}
       />
-      {/* {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}  */}
       <CommonTabs defaultActive="odds" className="color">
         {[
           {
@@ -96,6 +91,7 @@ const MobileGameDetail = () => {
                         matchDetails?.matchType,
                         true
                       );
+                      setShowVideo(!showVideo);
                     } else {
                       setTvData((prev: any) => {
                         return {
@@ -113,7 +109,7 @@ const MobileGameDetail = () => {
               ),
             },
         ]
-          ?.filter(Boolean) // Remove null values from the array
+          ?.filter(Boolean)
           .map((item, index) => (
             <Tab
               key={item?.id}
