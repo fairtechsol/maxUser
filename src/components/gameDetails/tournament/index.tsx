@@ -99,24 +99,33 @@ const Tournament = ({ title, box, data, detail }) => {
     const getKeyByValue = (obj, value) => Object.keys(obj).find(key => obj[key] === value);
 
     if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
-      odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1 : teamA.lay1
-      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price;
-
-      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
+      odds = profitA < profitB ? teamA.back1 : teamA.lay1
       runner = teamA;
-      const key = getKeyByValue(teamA, odds);
-      type = key === "lay1" ? "lay" : "back";
 
     } else {
-      odds = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1 : teamB.back1
-      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price;
-
-      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
-
+      odds = profitA < profitB ? teamB.lay1 : teamB.back1
       runner = teamB;
-      const key = getKeyByValue(teamB, odds);
-      type = key === "lay1" ? "lay" : "back";
     }
+    if (odds < 1) {
+      toast.error("You are not eligible for cashout!", {
+        style: { backgroundColor: "#ffffff", color: "#000000" },
+      });
+      return;
+    }
+
+    const perc = profitA < profitB ? runner?.lay1Price : runner?.back1Price;
+    stake = Math.abs(calculateRequiredStack(profitA, profitB, perc));
+
+    if (!isFinite(stake) || stake <= 0) {
+      toast.error("Invalid stake calculation. Cashout not possible!", {
+        style: { backgroundColor: "#ffffff", color: "#000000" },
+      });
+      return;
+    }
+
+    // setSelectedCashout(data?.id);
+    const key = getKeyByValue(runner, odds);
+    type = key === "lay1" ? "lay" : "back";
 
     let team = {
       betOnTeam: runner?.teamName,
@@ -163,7 +172,7 @@ const Tournament = ({ title, box, data, detail }) => {
               //   selectedBet?.team?.stake == 0 ? true : false
               // }
               disabled={
-                Object.keys(profitLossObj).length > 0 ? false : true
+                Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? true : false
               }
               className="submit-buttonn"
               onClick={handleCashoutBet}
@@ -176,7 +185,7 @@ const Tournament = ({ title, box, data, detail }) => {
                 padding: "0.25rem 0.5rem",
                 borderRadius: 0,
                 height: "auto",
-                opacity: Object.keys(profitLossObj).length > 0 ? 1 : 0.65
+                opacity: Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? 0.65 : 1
               }}
             >
               Cashout
