@@ -40,7 +40,7 @@ const Tournament = ({ title, box, data, detail }) => {
       eventType: data?.gtype,
       matchId: detail?.id,
       matchBetType: "tournament",
-      placeIndex: 0,
+      placeIndex: index,
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       runnerId: runner?.id?.toString(),
@@ -151,6 +151,7 @@ const Tournament = ({ title, box, data, detail }) => {
       })
     );
   };
+
   const key = `${data.parentBetId || data.id}_profitLoss_${detail.id}`;
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
