@@ -186,7 +186,9 @@ const Tournament = ({ title, box, data, detail }) => {
                 padding: "0.25rem 0.5rem",
                 borderRadius: 0,
                 height: "auto",
-                opacity: Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? 0.65 : 1
+                // opacity: Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? 0.65 : 1
+                opacity: Object.keys(profitLossObj).length <= 0 ? 0.65 : data?.id == selectedBet?.data.id ? 0.85 : 1,
+                boxShadow: data?.id == selectedBet?.data.id ? "0 0 0 0.25rem rgba(60,153,110,0.5)" : "none",
               }}
             >
               Cashout
