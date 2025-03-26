@@ -122,7 +122,7 @@ const Tournament = ({ title, box, data, detail }) => {
       return;
     }
     if (!isFinite(stake) || stake <= 0) {
-      toast.error("Invalid stake calculation. Cashout not possible!", {
+      toast.error("You are not eligible for cashout!", {
         style: { backgroundColor: "#ffffff", color: "#000000" },
       });
       return;
