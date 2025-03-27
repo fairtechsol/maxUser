@@ -1,4 +1,3 @@
-
 import FootballGameDetails from "../../components/otherGameDetaills";
 
 const FootballGameDetail = () => {

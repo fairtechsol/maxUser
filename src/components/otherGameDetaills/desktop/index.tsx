@@ -33,8 +33,8 @@ const FootballDesktopGameDetail = () => {
   // const [errorCount, setErrorCount] = useState<number>(0);
   const [tvData, setTvData] = useState<any>(null);
 
-  const { otherMatchDetails, loading } = useSelector(
-    (state: RootState) => state.otherGames.matchDetail
+  const { matchDetails, loading } = useSelector(
+    (state: RootState) => state.match.matchList
   );
 
   useEffect(() => {
@@ -53,16 +53,16 @@ const FootballDesktopGameDetail = () => {
   }, []);
 
   useEffect(() => {
-    if (otherMatchDetails?.eventId) {
+    if (matchDetails?.eventId) {
       getTvData(
-        otherMatchDetails?.eventId,
+        matchDetails?.eventId,
         setTvData,
-        otherMatchDetails?.matchType,
+        matchDetails?.matchType,
         true,
         true
       );
     }
-  }, [otherMatchDetails?.id]);
+  }, [matchDetails?.id]);
 
   return (
     <Container fluid className="mt-1 pe-0 ps-1">
@@ -74,18 +74,17 @@ const FootballDesktopGameDetail = () => {
                 <Col md={12}>
                   <BetTableHeader
                     customClass="py-1"
-                    title={otherMatchDetails?.title}
+                    title={matchDetails?.title}
                     setShowScoreboard={(e) => {
                       if (!showScoreboard) {
                         getTvData(
-                          otherMatchDetails?.eventId,
+                          matchDetails?.eventId,
                           setTvData,
-                          otherMatchDetails?.matchType,
+                          matchDetails?.matchType,
                           false,
                           true
                         );
-                      }
-                      else {
+                      } else {
                         setTvData((prev: any) => {
                           return {
                             ...prev,
@@ -97,9 +96,9 @@ const FootballDesktopGameDetail = () => {
                     }}
                     rightComponent={
                       <span className="title-16 fbold text-white">
-                        {/* {formatDate(otherMatchDetails?.startAt)} */}
-                        {otherMatchDetails?.startAt &&
-                          formatDate(otherMatchDetails?.startAt)}
+                        {/* {formatDate(matchDetails?.startAt)} */}
+                        {matchDetails?.startAt &&
+                          formatDate(matchDetails?.startAt)}
                       </span>
                     }
                   />
@@ -130,70 +129,70 @@ const FootballDesktopGameDetail = () => {
                       src={
                         import.meta.env.VITE_NODE_ENV == "production"
                           ? tvData?.scoreData?.iframeUrl
-                          : `${scoreBoardUrlMain}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
+                          : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`
                       }
                       title="Live Stream"
                       referrerPolicy="strict-origin-when-cross-origin"
                     ></iframe>
                   </div>
                 )}
-                {otherMatchDetails?.matchOdd?.activeStatus === "live" &&
-                  otherMatchDetails?.matchOdd?.isActive && (
+                {matchDetails?.matchOdd?.activeStatus === "live" &&
+                  matchDetails?.matchOdd?.isActive && (
                     <Col md={12} style={{ marginTop: "8px" }}>
-                      {otherMatchDetails?.matchOdd?.runners?.[0]?.ex
-                        ?.availableToBack?.length > 2 ? (
+                      {matchDetails?.matchOdd?.runners?.[0]?.ex?.availableToBack
+                        ?.length > 2 ? (
                         <MatchOdd
-                          title={otherMatchDetails?.matchOdd?.name}
-                          data={otherMatchDetails?.matchOdd}
-                          detail={otherMatchDetails}
+                          title={matchDetails?.matchOdd?.name}
+                          data={matchDetails?.matchOdd}
+                          detail={matchDetails}
                         />
                       ) : (
                         <Bookmaker
-                          title={otherMatchDetails?.matchOdd?.name}
+                          title={matchDetails?.matchOdd?.name}
                           box={2}
-                          data={otherMatchDetails?.matchOdd}
-                          detail={otherMatchDetails}
+                          data={matchDetails?.matchOdd}
+                          detail={matchDetails}
                         />
                       )}
                     </Col>
                   )}
 
-                {otherMatchDetails?.bookmaker?.activeStatus === "live" &&
-                  otherMatchDetails?.bookmaker?.isActive && (
+                {matchDetails?.bookmaker?.activeStatus === "live" &&
+                  matchDetails?.bookmaker?.isActive && (
                     <Col md={12} style={{ marginTop: "8px" }}>
                       <Bookmaker
-                        title={otherMatchDetails?.bookmaker?.name}
+                        title={matchDetails?.bookmaker?.name}
                         box={
-                          otherMatchDetails?.bookmaker?.runners?.[0]?.ex
+                          matchDetails?.bookmaker?.runners?.[0]?.ex
                             ?.availableToBack?.length > 2
                             ? 6
                             : 2
                         }
-                        data={otherMatchDetails?.bookmaker}
-                        detail={otherMatchDetails}
+                        data={matchDetails?.bookmaker}
+                        detail={matchDetails}
                         // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
-                {otherMatchDetails?.bookmaker2?.activeStatus === "live" &&
-                  otherMatchDetails?.bookmaker2?.isActive && (
+                {matchDetails?.bookmaker2?.activeStatus === "live" &&
+                  matchDetails?.bookmaker2?.isActive && (
                     <Col md={12} style={{ marginTop: "8px" }}>
                       <Bookmaker
-                        title={otherMatchDetails?.bookmaker2?.name}
+                        title={matchDetails?.bookmaker2?.name}
                         box={
-                          otherMatchDetails?.bookmaker2?.runners?.[0]?.ex
+                          matchDetails?.bookmaker2?.runners?.[0]?.ex
                             ?.availableToBack?.length > 2
                             ? 6
                             : 2
                         }
-                        data={otherMatchDetails?.bookmaker2}
-                        detail={otherMatchDetails}
+                        data={matchDetails?.bookmaker2}
+                        detail={matchDetails}
                         // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
-                {otherMatchDetails?.quickBookmaker?.length > 0 &&
-                  otherMatchDetails?.quickBookmaker
+                {matchDetails?.quickBookmaker?.length > 0 &&
+                  matchDetails?.quickBookmaker
                     ?.filter(
                       (item: any) =>
                         item?.activeStatus === "live" && item?.isActive
@@ -204,52 +203,50 @@ const FootballDesktopGameDetail = () => {
                           <ManualMarket
                             title={item?.name}
                             data={item}
-                            detail={otherMatchDetails}
+                            detail={matchDetails}
                           />
                         </Col>
                       </div>
                     ))}
-                {otherMatchDetails?.tournament?.length > 0 &&
-                  otherMatchDetails?.tournament?.map(
-                    (item: any, index: number) => (
-                      <div key={index}>
-                        {item?.activeStatus === "live" &&
-                          (item?.name === "HT/FT" ? (
-                            <Col md={12} style={{ marginTop: "8px" }}>
-                              <HtFt
-                                title={item?.name}
-                                box={
-                                  item?.runners?.[0]?.ex?.availableToBack
-                                    ?.length > 2
-                                    ? 6
-                                    : 2
-                                }
-                                data={item}
-                                detail={otherMatchDetails}
-                                // data={otherMatchDetails?.matchOdd}
-                              />
-                            </Col>
-                          ) : (
-                            <Col md={12} style={{ marginTop: "8px" }}>
-                              <Tournament
-                                title={item?.name}
-                                box={
-                                  item?.runners?.[0]?.ex?.availableToBack
-                                    ?.length > 2
-                                    ? 6
-                                    : 2
-                                }
-                                data={item}
-                                detail={otherMatchDetails}
-                                // data={otherMatchDetails?.matchOdd}
-                              />
-                            </Col>
-                          ))}
-                      </div>
-                    )
-                  )}
-                {otherMatchDetails?.setWinner?.length > 0 &&
-                  otherMatchDetails?.setWinner
+                {matchDetails?.tournament?.length > 0 &&
+                  matchDetails?.tournament?.map((item: any, index: number) => (
+                    <div key={index}>
+                      {item?.activeStatus === "live" &&
+                        (item?.name === "HT/FT" ? (
+                          <Col md={12} style={{ marginTop: "8px" }}>
+                            <HtFt
+                              title={item?.name}
+                              box={
+                                item?.runners?.[0]?.ex?.availableToBack
+                                  ?.length > 2
+                                  ? 6
+                                  : 2
+                              }
+                              data={item}
+                              detail={matchDetails}
+                              // data={matchDetails?.matchOdd}
+                            />
+                          </Col>
+                        ) : (
+                          <Col md={12} style={{ marginTop: "8px" }}>
+                            <Tournament
+                              title={item?.name}
+                              box={
+                                item?.runners?.[0]?.ex?.availableToBack
+                                  ?.length > 2
+                                  ? 6
+                                  : 2
+                              }
+                              data={item}
+                              detail={matchDetails}
+                              // data={matchDetails?.matchOdd}
+                            />
+                          </Col>
+                        ))}
+                    </div>
+                  ))}
+                {matchDetails?.setWinner?.length > 0 &&
+                  matchDetails?.setWinner
                     ?.filter((item: any) => item?.isActive)
                     ?.slice()
                     ?.sort(customSortOnName)
@@ -264,8 +261,8 @@ const FootballDesktopGameDetail = () => {
                         </Col>
                       </div>
                     ))}
-                {otherMatchDetails?.firstHalfGoal?.length > 0 &&
-                  otherMatchDetails?.firstHalfGoal
+                {matchDetails?.firstHalfGoal?.length > 0 &&
+                  matchDetails?.firstHalfGoal
                     ?.filter((item: any) => item?.isActive)
                     ?.slice()
                     ?.sort(customSortOnName)
@@ -281,18 +278,18 @@ const FootballDesktopGameDetail = () => {
                       </div>
                     ))}
 
-                {otherMatchDetails?.halfTime?.isActive && (
+                {matchDetails?.halfTime?.isActive && (
                   <Col md={12}>
                     <BetTable
-                      title={otherMatchDetails?.halfTime?.name}
+                      title={matchDetails?.halfTime?.name}
                       type={MatchType.HALF_TIME}
-                      data={otherMatchDetails?.halfTime}
+                      data={matchDetails?.halfTime}
                     />
                   </Col>
                 )}
 
-                {otherMatchDetails?.overUnder?.length > 0 &&
-                  otherMatchDetails?.overUnder
+                {matchDetails?.overUnder?.length > 0 &&
+                  matchDetails?.overUnder
                     ?.filter((item: any) => item?.isActive)
                     ?.slice()
                     ?.sort(customSortOnName)
@@ -351,16 +348,16 @@ const FootballDesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col> */}
-              {otherMatchDetails?.eventId && (
+              {matchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent
                     url={
                       import.meta.env.VITE_NODE_ENV == "production"
                         ? tvData?.tvData?.iframeUrl
-                        : `${liveStreamPageUrl}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
+                        : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
                     }
-                    eventId={otherMatchDetails?.eventId}
-                    marketType={otherMatchDetails?.matchType}
+                    eventId={matchDetails?.eventId}
+                    marketType={matchDetails?.matchType}
                     setTvData={setTvData}
                   />
                 </Col>
