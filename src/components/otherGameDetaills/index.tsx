@@ -17,15 +17,13 @@ import {
   matchDetailReset,
   // getMatchList,
   selectedBetAction,
-} from "../../store/actions/match/matchListAction";
-import {
   updateMatchRates,
-  updateTeamRatesOnPlaceBet,
-  updateUserBalanceOnPlaceBet,
-} from "../../store/actions/otherMatchActions";
+} from "../../store/actions/match/matchListAction";
+import { updateTeamRatesOnPlaceBet } from "../../store/actions/otherMatchActions";
 import {
   getButtonValue,
   getProfileInMatchDetail,
+  updateBalance,
   updateBalanceOnBetDelete,
   updateBalanceOnSessionResult,
   updateDeleteReasonBet,
@@ -68,7 +66,7 @@ const FootballGameDetails = () => {
   };
   const setMatchBetsPlaced = (event: any) => {
     try {
-      dispatch(updateUserBalanceOnPlaceBet(event?.jobData));
+      dispatch(updateBalance(event?.jobData));
       if (event?.jobData?.matchId === id) {
         dispatch(updateBetsPlaced(event?.jobData?.newBet));
         dispatch(updateTeamRatesOnPlaceBet(event?.jobData));
