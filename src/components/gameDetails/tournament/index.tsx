@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { calculateRequiredStack, dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
+import {
+  calculateRequiredStack,
+  dummyArray,
+  formatNumber,
+  manualProfitLoss,
+} from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
@@ -37,6 +42,7 @@ const Tournament = ({ title, box, data, detail }) => {
       type: type,
       stake: 0,
       betId: data?.id,
+      parentBetId: data?.parentBetId,
       eventType: data?.gtype,
       matchId: detail?.id,
       matchBetType: "tournament",
@@ -57,7 +63,9 @@ const Tournament = ({ title, box, data, detail }) => {
   };
 
   const handleCashoutBet = () => {
-    const [teamAId, teamBId] = data?.runners?.map(team => team.parentRunnerId || team.id);
+    const [teamAId, teamBId] = data?.runners?.map(
+      (team) => team.parentRunnerId || team.id
+    );
     const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
     const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
     if (profitA === profitB) {
@@ -103,23 +111,40 @@ const Tournament = ({ title, box, data, detail }) => {
       Object.keys(obj).find((key) => obj[key] === value);
 
     if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
-      odds = profitA < profitB ? teamA.back1 : teamA.lay1
-      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price;
+      odds = profitA < profitB ? teamA.back1 : teamA.lay1;
+      const perc =
+        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+          ? teamA.back1Price
+          : teamA.lay1Price;
 
-      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
+      stake = Math.abs(
+        calculateRequiredStack(
+          profitLossObj?.[teamAId],
+          profitLossObj?.[teamBId],
+          perc
+        )
+      );
       runner = teamA;
       const key = getKeyByValue(teamA, odds);
       type = key === "lay1" ? "lay" : "back";
-
     } else {
-      odds = profitA < profitB ? teamB.lay1 : teamB.back1
-      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price;
-      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
+      odds = profitA < profitB ? teamB.lay1 : teamB.back1;
+      const perc =
+        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+          ? teamB.lay1Price
+          : teamB.back1Price;
+      stake = Math.abs(
+        calculateRequiredStack(
+          profitLossObj?.[teamAId],
+          profitLossObj?.[teamBId],
+          perc
+        )
+      );
       runner = teamB;
       const key = getKeyByValue(teamB, odds);
       type = key === "lay1" ? "lay" : "back";
     }
-    console.log("odds :", odds)
+    console.log("odds :", odds);
     if (odds < 1) {
       toast.error("You are not eligible for cashout!", {
         style: { backgroundColor: "#ffffff", color: "#000000" },
@@ -137,7 +162,8 @@ const Tournament = ({ title, box, data, detail }) => {
       rate: odds,
       type: type,
       stake: stake,
-      betId: data?.parentBetId || data?.id,
+      betId: data?.id,
+      parentBetId: data?.parentBetId,
       eventType: data?.gtype,
       matchId: detail?.id,
       matchBetType: "tournament",
@@ -149,7 +175,7 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
-    console.log("team 11:", team)
+    console.log("team 11:", team);
     dispatch(
       selectedBetAction({
         team,
@@ -180,7 +206,10 @@ const Tournament = ({ title, box, data, detail }) => {
               //   selectedBet?.team?.stake == 0 ? true : false
               // }
               disabled={
-                Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? true : false
+                Object.keys(profitLossObj).length <= 0 ||
+                data?.id == selectedBet?.data.id
+                  ? true
+                  : false
               }
               className="submit-buttonn"
               onClick={handleCashoutBet}
@@ -192,8 +221,16 @@ const Tournament = ({ title, box, data, detail }) => {
                 borderRadius: 0,
                 height: "auto",
                 // opacity: Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? 0.65 : 1
-                opacity: Object.keys(profitLossObj).length <= 0 ? 0.65 : data?.id == selectedBet?.data.id ? 0.85 : 1,
-                boxShadow: data?.id == selectedBet?.data.id ? "0 0 0 0.25rem rgba(60,153,110,0.5)" : "none",
+                opacity:
+                  Object.keys(profitLossObj).length <= 0
+                    ? 0.65
+                    : data?.id == selectedBet?.data.id
+                    ? 0.85
+                    : 1,
+                boxShadow:
+                  data?.id == selectedBet?.data.id
+                    ? "0 0 0 0.25rem rgba(60,153,110,0.5)"
+                    : "none",
               }}
             >
               Cashout
@@ -313,16 +350,18 @@ const Tournament = ({ title, box, data, detail }) => {
                       } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
                       {profitLossObj?.[item.parentRunnerId || item.id]
-                        ? selectedBet?.team?.betId ===
-                          (data.parentBetId || data?.id)
+                        ? selectedBet?.team?.parentBetId ||
+                          selectedBet?.team?.betId ===
+                            (data.parentBetId || data?.id)
                           ? parseFloat(
                               profitLossObj?.[item.parentRunnerId || item.id]
                             )
                           : profitLossObj?.[item.parentRunnerId || item.id]
                         : ""}
                     </span>
-                    {selectedBet?.team?.betId ===
-                    (data.parentBetId || data?.id) ? (
+                    {selectedBet?.team?.parentBetId ||
+                    selectedBet?.team?.betId ===
+                      (data.parentBetId || data?.id) ? (
                       <span
                         className="title-12 f-400"
                         style={{
@@ -355,8 +394,9 @@ const Tournament = ({ title, box, data, detail }) => {
                             data?.gtype
                           )} */}
                         {profitLossObj?.[item.parentRunnerId || item.id]
-                          ? selectedBet?.team?.betId ===
-                            (data.parentBetId || data?.id)
+                          ? selectedBet?.team?.parentBetId ||
+                            selectedBet?.team?.betId ===
+                              (data.parentBetId || data?.id)
                             ? (
                                 parseFloat(
                                   profitLossObj?.[
