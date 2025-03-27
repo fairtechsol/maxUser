@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   expertSocketService,
+  matchService,
   socket,
   socketService,
-  matchSocket,
-  matchService,
 } from "../../socketManager";
 import {
   betPlacedReset,
@@ -14,12 +13,12 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  matchDetailAction,
+  matchDetailReset,
   // getMatchList,
   selectedBetAction,
 } from "../../store/actions/match/matchListAction";
 import {
-  otherMatchDetailAction,
-  resetOtherMatchDetail,
   updateMatchRates,
   updateTeamRatesOnPlaceBet,
   updateUserBalanceOnPlaceBet,
@@ -41,9 +40,7 @@ import FootballMobileGameDetail from "./mobile";
 
 const FootballGameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { success } = useSelector(
-    (state: RootState) => state.otherGames.matchDetail
-  );
+  const { success } = useSelector((state: RootState) => state.match.matchList);
   const navigate = useNavigate();
   const { id, type } = useParams();
 
@@ -52,7 +49,7 @@ const FootballGameDetails = () => {
       matchService.connect([id]);
     }
     return () => {
-      matchService.disconnect(); 
+      matchService.disconnect();
     };
   }, [id]);
 
@@ -186,7 +183,7 @@ const FootballGameDetails = () => {
     try {
       if (id) {
         dispatch(selectedBetAction(null));
-        dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
+        dispatch(matchDetailAction(id));
         dispatch(getPlacedBets(id));
       }
     } catch (e) {
@@ -237,7 +234,7 @@ const FootballGameDetails = () => {
         socketService.userBalance.matchResultUnDeclared(handleMatchResult);
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
-        dispatch(resetOtherMatchDetail());
+        dispatch(matchDetailReset());
         dispatch(betPlacedReset());
       };
     } catch (e) {
