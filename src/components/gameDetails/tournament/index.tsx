@@ -1,10 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  calculateRequiredStack,
-  dummyArray,
-  formatNumber,
-  manualProfitLoss,
-} from "../../../helpers";
+import { toast } from "react-toastify";
+import { calculateRequiredStack, dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
@@ -44,7 +40,7 @@ const Tournament = ({ title, box, data, detail }) => {
       eventType: data?.gtype,
       matchId: detail?.id,
       matchBetType: "tournament",
-      placeIndex: 0,
+      placeIndex: index,
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       runnerId: runner?.id?.toString(),
@@ -52,9 +48,6 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
-
-    console.log(" team :", team);
-    console.log(" data :", data);
     dispatch(
       selectedBetAction({
         team,
@@ -64,7 +57,17 @@ const Tournament = ({ title, box, data, detail }) => {
   };
 
   const handleCashoutBet = () => {
-    const [teamAId, teamBId] = data?.runners?.map((team) => team.id);
+    const [teamAId, teamBId] = data?.runners?.map(team => team.id);
+    const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
+    const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
+
+    if (profitA === profitB) {
+      toast.error("You are not eligible for cashout!", {
+        style: { backgroundColor: "#ffffff", color: "#000000" },
+      });
+      return;
+    }
+    // profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
     const getBackAndLayRates = (team) => {
       const back1 =
         team?.ex?.availableToBack?.find((item) => item.oname === "back1")
@@ -101,70 +104,35 @@ const Tournament = ({ title, box, data, detail }) => {
       Object.keys(obj).find((key) => obj[key] === value);
 
     if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
-      odds =
-        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
-          ? teamA.back1
-          : teamA.lay1;
-      const perc = Math.round(
-        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
-          ? teamA.back1Price
-          : teamA.lay1Price
-      );
-      console.log("odds A:", odds);
-      console.log("stake A:", perc);
-      console.log(
-        "calculateRequiredStack 1:",
-        profitLossObj?.[teamAId],
-        profitLossObj?.[teamBId],
-        perc
-      );
-      stake = Math.abs(
-        calculateRequiredStack(
-          profitLossObj?.[teamAId],
-          profitLossObj?.[teamBId],
-          perc
-        )
-      );
-      console.log("result :", Math.abs(Math.round(stake)));
+      odds = profitA < profitB ? teamA.back1 : teamA.lay1
+      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price;
+
+      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
       runner = teamA;
       const key = getKeyByValue(teamA, odds);
       type = key === "lay1" ? "lay" : "back";
 
-      console.log("type A:", type);
     } else {
-      odds =
-        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
-          ? teamB.lay1
-          : teamB.back1;
-      const perc = Math.round(
-        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
-          ? teamB.lay1Price
-          : teamB.back1Price
-      );
-      console.log("odds B:", odds);
-      console.log("stake B:", perc);
-      console.log(
-        "calculateRequiredStack:",
-        profitLossObj?.[teamAId],
-        profitLossObj?.[teamBId],
-        perc
-      );
-      stake = Math.abs(
-        calculateRequiredStack(
-          profitLossObj?.[teamAId],
-          profitLossObj?.[teamBId],
-          perc
-        )
-      );
-      console.log("result b:", stake);
+      odds = profitA < profitB ? teamB.lay1 : teamB.back1
+      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price;
+      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
       runner = teamB;
       const key = getKeyByValue(teamB, odds);
       type = key === "lay1" ? "lay" : "back";
-
-      console.log("type b:", type);
-      // type = "lay";
     }
 
+    if (odds < 1) {
+      toast.error("You are not eligible for cashout!", {
+        style: { backgroundColor: "#ffffff", color: "#000000" },
+      });
+      return;
+    }
+    if (!isFinite(stake) || stake <= 0) {
+      toast.error("You are not eligible for cashout!", {
+        style: { backgroundColor: "#ffffff", color: "#000000" },
+      });
+      return;
+    }
     let team = {
       betOnTeam: runner?.teamName,
       rate: odds,
@@ -182,8 +150,6 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
-    console.log("new team :", team);
-    console.log("new data :", data);
     dispatch(
       selectedBetAction({
         team,
@@ -191,6 +157,7 @@ const Tournament = ({ title, box, data, detail }) => {
       })
     );
   };
+
   const key = `${data.parentBetId || data.id}_profitLoss_${detail.id}`;
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
@@ -212,7 +179,9 @@ const Tournament = ({ title, box, data, detail }) => {
               // disabled={
               //   selectedBet?.team?.stake == 0 ? true : false
               // }
-              disabled={Object.keys(profitLossObj).length > 0 ? false : true}
+              disabled={
+                Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? true : false
+              }
               className="submit-buttonn"
               onClick={handleCashoutBet}
               style={{
@@ -222,7 +191,9 @@ const Tournament = ({ title, box, data, detail }) => {
                 padding: "0.25rem 0.5rem",
                 borderRadius: 0,
                 height: "auto",
-                opacity: Object.keys(profitLossObj).length > 0 ? 1 : 0.65,
+                // opacity: Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? 0.65 : 1
+                opacity: Object.keys(profitLossObj).length <= 0 ? 0.65 : data?.id == selectedBet?.data.id ? 0.85 : 1,
+                boxShadow: data?.id == selectedBet?.data.id ? "0 0 0 0.25rem rgba(60,153,110,0.5)" : "none",
               }}
             >
               Cashout
