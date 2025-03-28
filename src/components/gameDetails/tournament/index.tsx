@@ -17,10 +17,6 @@ const Tournament = ({ title, box, data, detail }) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  // const startAtTime = new Date(detail.startAt);
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000);
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -74,7 +70,6 @@ const Tournament = ({ title, box, data, detail }) => {
       });
       return;
     }
-    // profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
     const getBackAndLayRates = (team) => {
       const back1 =
         team?.ex?.availableToBack?.find((item) => item.oname === "back1")
@@ -94,13 +89,8 @@ const Tournament = ({ title, box, data, detail }) => {
       };
     };
 
-    // Get back1 & lay1 values for Team A & Team B
     const teamA = getBackAndLayRates(data?.runners[0]);
     const teamB = getBackAndLayRates(data?.runners[1]);
-
-    // console.log("data?.runners[0] :", data?.runners[0]);
-    console.log("Team A Rates:", teamA);
-    console.log("Team B Rates:", teamB);
 
     let runner: any = {};
     let odds = 0;
@@ -202,9 +192,6 @@ const Tournament = ({ title, box, data, detail }) => {
           </span>
           {data?.runners?.length === 2 && (
             <button
-              // disabled={
-              //   selectedBet?.team?.stake == 0 ? true : false
-              // }
               disabled={
                 Object.keys(profitLossObj).length <= 0 ||
                 data?.id == selectedBet?.data.id
@@ -220,7 +207,6 @@ const Tournament = ({ title, box, data, detail }) => {
                 padding: "0.25rem 0.5rem",
                 borderRadius: 0,
                 height: "auto",
-                // opacity: Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? 0.65 : 1
                 opacity:
                   Object.keys(profitLossObj).length <= 0
                     ? 0.65
@@ -236,8 +222,6 @@ const Tournament = ({ title, box, data, detail }) => {
               Cashout
             </button>
           )}
-
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
 
         <div className="tournamentBackLayTab">
@@ -304,42 +288,11 @@ const Tournament = ({ title, box, data, detail }) => {
                 <div
                   className="tournamentTeam"
                   style={isMobile && box === 6 ? { width: "28%" } : {}}
-                  // style={box === 6 ? { width: "28%" } : {}}
                 >
                   <span className={`teamFont tournamentTeamTxt`}>
                     {item?.nat || item?.runnerName}
                   </span>
                   <div className="d-flex flex-row justify-content-between w-100">
-                    {/* <span
-                      className={`${parseFloat(
-                        profitLossObj?.[item.parentRunnerId || item.id]
-                      ) +
-                        manualProfitLoss(
-                          selectedBet,
-                          item?.nat || item?.runnerName,
-                          data?.type,
-                          data?.gtype
-                        ) >
-                        0
-                        ? "color-green"
-                        : "color-red"
-                        } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-                    >
-                      {profitLossObj?.[item.parentRunnerId || item.id]
-                        ? selectedBet?.team?.betId ===
-                          (data.parentBetId || data?.id)
-                          ? (parseFloat(
-                            (profitLossObj?.[item.parentRunnerId || item.id])
-                          ) +
-                            manualProfitLoss(
-                              selectedBet,
-                              item?.nat || item?.runnerName,
-                              data?.type,
-                              data?.gtype
-                            )).toFixed(2)
-                          : profitLossObj?.[item.parentRunnerId || item.id]
-                        : ""}
-                    </span> */}
                     <span
                       className={`${
                         parseFloat(
@@ -359,7 +312,7 @@ const Tournament = ({ title, box, data, detail }) => {
                         : ""}
                     </span>
                     {selectedBet?.team?.parentBetId ===
-                      (data.parentBetId || data?.id) ? (
+                    (data.parentBetId || data?.id) ? (
                       <span
                         className="title-12 f-400"
                         style={{
@@ -378,31 +331,22 @@ const Tournament = ({ title, box, data, detail }) => {
                               : "#bd1828",
                         }}
                       >
-                        {/* {manualProfitLoss(
-                          selectedBet,
-                          item?.nat || item?.runnerName,
-                          data?.type,
-                          data?.gtype
-                        ) === 0
-                          ? ""
-                          : manualProfitLoss(
-                            selectedBet,
-                            item?.nat || item?.runnerName,
-                            data?.type,
-                            data?.gtype
-                          )} */}
                         {profitLossObj?.[item.parentRunnerId || item.id]
                           ? selectedBet?.team?.parentBetId ===
                             (data.parentBetId || data?.id)
-                            ? (parseFloat(
-                              (profitLossObj?.[item.parentRunnerId || item.id])
-                            ) +
-                              manualProfitLoss(
-                                selectedBet,
-                                item?.nat || item?.runnerName,
-                                data?.type,
-                                data?.gtype
-                              )).toFixed(2)
+                            ? (
+                                parseFloat(
+                                  profitLossObj?.[
+                                    item.parentRunnerId || item.id
+                                  ]
+                                ) +
+                                manualProfitLoss(
+                                  selectedBet,
+                                  item?.nat || item?.runnerName,
+                                  data?.type,
+                                  data?.gtype
+                                )
+                              ).toFixed(2)
                             : profitLossObj?.[item.parentRunnerId || item.id]
                           : ""}
                       </span>

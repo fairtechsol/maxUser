@@ -7,7 +7,6 @@ export const onTabSwitch = (matchList: any) => {
       // expertSocketService.match.leaveMatchRoom(element?.id);
     });
   } else {
-    // Tab is active, join the room
     if (matchList) {
       matchList?.forEach((element: any) => {
         expertSocketService.match.joinMatchRoom(element?.id);

@@ -9,7 +9,13 @@ import {
   socketService,
 } from "../../socketManager";
 import {
-  // getMatchList,
+  betPlacedReset,
+  getPlacedBets,
+  resetRunAmount,
+  resetRunAmountModal,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
+import {
   matchDetailAction,
   matchDetailReset,
   resetMarketId,
@@ -35,14 +41,6 @@ import {
   updateTeamRatesOnDeleteMatch,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
-// import { isMobile } from "../../utils/screenDimension";
-import {
-  betPlacedReset,
-  getPlacedBets,
-  resetRunAmount,
-  resetRunAmountModal,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 

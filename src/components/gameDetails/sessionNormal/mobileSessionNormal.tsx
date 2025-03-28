@@ -19,10 +19,6 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   const { runAmount, runAmountModal } = useSelector(
     (state: RootState) => state.bets
   );
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -54,8 +50,8 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       matchBetType: "session",
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
-      min:item?.min || item?.minBet,
-      max:item?.max || item?.maxBet,
+      min: item?.min || item?.minBet,
+      max: item?.max || item?.maxBet,
     };
     dispatch(
       selectedBetAction({
@@ -66,7 +62,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   };
 
   useEffect(() => {
-    const newMarketArr = [ ...(manual || []),...(data?.section || [])];
+    const newMarketArr = [...(manual || []), ...(data?.section || [])];
     setMarketArr(newMarketArr);
   }, [data, manual]);
 
@@ -95,14 +91,13 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   };
 
   useEffect(() => {
-    handleModal(false)
-  }, [])
+    handleModal(false);
+  }, []);
   return (
     <>
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size13">{title}</span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{
@@ -134,264 +129,284 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
             {marketArr?.map((item: any, index: any) => {
               return (
                 <div className="w-100 d-flex flex-column">
-                <div className="sessionRateContainer" key={index}>
-                  <div
-                    className="sessionRateName"
-                    style={{ width: "60%", overflow: "hidden" }}
-                  >
-                    <span
-                      className="f-size13"
-                      onClick={() => {
-                        if (item.activeStatus === "save") {
-                          return true;
-                        } else if (
+                  <div className="sessionRateContainer" key={index}>
+                    <div
+                      className="sessionRateName"
+                      style={{ width: "60%", overflow: "hidden" }}
+                    >
+                      <span
+                        className="f-size13"
+                        onClick={() => {
+                          if (item.activeStatus === "save") {
+                            return true;
+                          } else if (
+                            calculateMaxLoss(
+                              detail?.profitLossDataSession,
+                              item?.id
+                            ) === 0
+                          ) {
+                            return;
+                          } else
+                            dispatch(
+                              resetRunAmountModal({
+                                showModal: true,
+                                id: item?.id,
+                              })
+                            );
+                          if (title === "meter") {
+                            dispatch(getRunAmountMeter(item?.id));
+                          } else {
+                            dispatch(getRunAmount(item?.id));
+                          }
+                        }}
+                      >
+                        {item?.RunnerName || item?.name}
+                      </span>
+                      <span
+                        className={`${
                           calculateMaxLoss(
                             detail?.profitLossDataSession,
                             item?.id
-                          ) === 0
-                        ) {
-                          return;
-                        } else
-                          dispatch(
-                            resetRunAmountModal({
-                              showModal: true,
-                              id: item?.id,
-                            })
-                          );
-                          if(title==="meter"){
-                            dispatch(getRunAmountMeter(item?.id));
-                          }else{
-                            dispatch(getRunAmount(item?.id));
-                          }
-                      }}
-                    >
-                      {item?.RunnerName || item?.name}
-                    </span>
-                    <span
-                      className={`${
-                        calculateMaxLoss(
+                          ) < 0
+                            ? "color-red"
+                            : "color-red"
+                        } title-13 fbold`}
+                      >
+                        {calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
-                        ) < 0
-                          ? "color-red"
-                          : "color-red"
-                      } title-13 fbold`}
-                    >
-                      {calculateMaxLoss(
-                        detail?.profitLossDataSession,
-                        item?.id
-                      ) !== 0
-                        ? `-${calculateMaxLoss(
-                            detail?.profitLossDataSession,
-                            item?.id
-                          )}`
-                        : ""}
-                    </span>
-                  </div>
-                  <div
-                    className="sessionRateBoxContainer"
-                    style={{ width: "40%" }}
-                  >
-                    {handleStatus(
-                      item?.activeStatus,
-                      item?.GameStatus,
-                      item?.status
-                    ) && (
-                      <div className="suspended-overlayRates">
-                        <span
-                          className={`suspendTextCmmn`}
-                        >
-                          {(item?.GameStatus || item?.status)?.toUpperCase() ?? "SUSPENDED"}
-                        </span>
-                      </div>
-                    )}
+                        ) !== 0
+                          ? `-${calculateMaxLoss(
+                              detail?.profitLossDataSession,
+                              item?.id
+                            )}`
+                          : ""}
+                      </span>
+                    </div>
                     <div
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        // borderRight: "1px solid #c7c8ca",
-                      }}
+                      className="sessionRateBoxContainer"
+                      style={{ width: "40%" }}
                     >
+                      {handleStatus(
+                        item?.activeStatus,
+                        item?.GameStatus,
+                        item?.status
+                      ) && (
+                        <div className="suspended-overlayRates">
+                          <span className={`suspendTextCmmn`}>
+                            {(
+                              item?.GameStatus || item?.status
+                            )?.toUpperCase() ?? "SUSPENDED"}
+                          </span>
+                        </div>
+                      )}
                       <div
-                        className={`sessionRateBox lay1Background`}
-                        style={{ cursor: "pointer" }}
-                        onClick={() =>
-                          handlePlaceBet(
-                            item?.ex?.availableToLay?.[0]?.price ||
-                              item?.noRate,
-                            "no",
-                            item?.RunnerName || item?.name,
-                            item?.activeStatus,
-                            item?.ex?.availableToLay?.[0]?.size ||
-                              item?.noPercent,
-                            item,
-                            item?.ex?.availableToLay?.[0]?.tno || 0
-                          )
-                        }
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
                       >
-                        <span className={`rateFont`}>
-                          {handlePrice(
-                            item?.ex?.availableToLay?.[0]?.price || item?.noRate
-                          ) ?? "-"}
-                        </span>
-                        <span className={`f-size11 sessionRate2Box`}>
-                          {handleSize(item?.ex?.availableToLay?.[0]?.size ||
-                            item?.noPercent)}
-                        </span>
-                      </div>
-                      {item?.ex?.availableToLay?.length > 1 && (
                         <div
                           className={`sessionRateBox lay1Background`}
                           style={{ cursor: "pointer" }}
                           onClick={() =>
                             handlePlaceBet(
-                              item?.ex?.availableToLay?.[1]?.price,
+                              item?.ex?.availableToLay?.[0]?.price ||
+                                item?.noRate,
                               "no",
                               item?.RunnerName || item?.name,
                               item?.activeStatus,
-                              item?.ex?.availableToLay?.[1]?.size,
+                              item?.ex?.availableToLay?.[0]?.size ||
+                                item?.noPercent,
                               item,
-                              item?.ex?.availableToLay?.[1]?.tno
+                              item?.ex?.availableToLay?.[0]?.tno || 0
                             )
                           }
                         >
                           <span className={`rateFont`}>
                             {handlePrice(
-                              item?.ex?.availableToLay?.[1]?.price
+                              item?.ex?.availableToLay?.[0]?.price ||
+                                item?.noRate
                             ) ?? "-"}
                           </span>
                           <span className={`f-size11 sessionRate2Box`}>
-                            {handleSize(item?.ex?.availableToLay?.[1]?.size)}
+                            {handleSize(
+                              item?.ex?.availableToLay?.[0]?.size ||
+                                item?.noPercent
+                            )}
                           </span>
                         </div>
-                      )}
-                      {item?.ex?.availableToLay?.length > 2 && (
-                        <div
-                          className={`sessionRateBox lay1Background`}
-                          style={{ cursor: "pointer" }}
-                          onClick={() =>
-                            handlePlaceBet(
-                              item?.ex?.availableToLay?.[2]?.price,
-                              "no",
-                              item?.RunnerName || item?.name,
-                              item?.activeStatus,
-                              item?.ex?.availableToLay?.[2]?.size,
-                              item,
-                              item?.ex?.availableToLay?.[2]?.tno
-                            )
-                          }
-                        >
-                          <span className={`rateFont`}>
-                            {handlePrice(
-                              item?.ex?.availableToLay?.[2]?.price
-                            ) ?? "-"}
-                          </span>
-                          <span className={`f-size11 sessionRate2Box`}>
-                            {handleSize(item?.ex?.availableToLay?.[2]?.size)}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    <div
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <div
-                        className="sessionRateBox back1Background"
-                        style={{ cursor: "pointer" }}
-                        onClick={() =>
-                          handlePlaceBet(
-                            item?.ex?.availableToBack?.[0]?.price ||
-                              item?.yesRate,
-                            "Yes",
-                            item?.RunnerName || item?.name,
-                            item?.activeStatus,
-                            item?.ex?.availableToBack?.[0]?.size ||
-                              item?.yesPercent,
-                            item,
-                            item?.ex?.availableToBack?.[0]?.tno || 0
-                          )
-                        }
-                      >
-                        <span className={`rateFont`}>
-                          {handlePrice(
-                            item?.ex?.availableToBack?.[0]?.price ||
-                              item?.yesRate
-                          ) ?? "-"}
-                        </span>
-                        <span className={`f-size11 sessionRate2Box`}>
-                          {handleSize(item?.ex?.availableToBack?.[0]?.size ||
-                            item?.yesPercent)}
-                        </span>
+                        {item?.ex?.availableToLay?.length > 1 && (
+                          <div
+                            className={`sessionRateBox lay1Background`}
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                              handlePlaceBet(
+                                item?.ex?.availableToLay?.[1]?.price,
+                                "no",
+                                item?.RunnerName || item?.name,
+                                item?.activeStatus,
+                                item?.ex?.availableToLay?.[1]?.size,
+                                item,
+                                item?.ex?.availableToLay?.[1]?.tno
+                              )
+                            }
+                          >
+                            <span className={`rateFont`}>
+                              {handlePrice(
+                                item?.ex?.availableToLay?.[1]?.price
+                              ) ?? "-"}
+                            </span>
+                            <span className={`f-size11 sessionRate2Box`}>
+                              {handleSize(item?.ex?.availableToLay?.[1]?.size)}
+                            </span>
+                          </div>
+                        )}
+                        {item?.ex?.availableToLay?.length > 2 && (
+                          <div
+                            className={`sessionRateBox lay1Background`}
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                              handlePlaceBet(
+                                item?.ex?.availableToLay?.[2]?.price,
+                                "no",
+                                item?.RunnerName || item?.name,
+                                item?.activeStatus,
+                                item?.ex?.availableToLay?.[2]?.size,
+                                item,
+                                item?.ex?.availableToLay?.[2]?.tno
+                              )
+                            }
+                          >
+                            <span className={`rateFont`}>
+                              {handlePrice(
+                                item?.ex?.availableToLay?.[2]?.price
+                              ) ?? "-"}
+                            </span>
+                            <span className={`f-size11 sessionRate2Box`}>
+                              {handleSize(item?.ex?.availableToLay?.[2]?.size)}
+                            </span>
+                          </div>
+                        )}
                       </div>
-                      {item?.ex?.availableToBack?.length > 1 && (
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
                         <div
                           className="sessionRateBox back1Background"
                           style={{ cursor: "pointer" }}
                           onClick={() =>
                             handlePlaceBet(
-                              item?.ex?.availableToBack?.[1]?.price,
+                              item?.ex?.availableToBack?.[0]?.price ||
+                                item?.yesRate,
                               "Yes",
                               item?.RunnerName || item?.name,
                               item?.activeStatus,
-                              item?.ex?.availableToBack?.[1]?.size,
+                              item?.ex?.availableToBack?.[0]?.size ||
+                                item?.yesPercent,
                               item,
-                              item?.ex?.availableToBack?.[1]?.tno
+                              item?.ex?.availableToBack?.[0]?.tno || 0
                             )
                           }
                         >
                           <span className={`rateFont`}>
                             {handlePrice(
-                              item?.ex?.availableToBack?.[1]?.price
+                              item?.ex?.availableToBack?.[0]?.price ||
+                                item?.yesRate
                             ) ?? "-"}
                           </span>
                           <span className={`f-size11 sessionRate2Box`}>
-                            {handleSize(item?.ex?.availableToBack?.[1]?.size)}
+                            {handleSize(
+                              item?.ex?.availableToBack?.[0]?.size ||
+                                item?.yesPercent
+                            )}
                           </span>
                         </div>
-                      )}
-                      {item?.ex?.availableToBack?.length > 2 && (
-                        <div
-                          className="sessionRateBox back1Background"
-                          style={{ cursor: "pointer" }}
-                          onClick={() =>
-                            handlePlaceBet(
-                              item?.ex?.availableToBack?.[2]?.price,
-                              "Yes",
-                              item?.RunnerName || item?.name,
-                              item?.activeStatus,
-                              item?.ex?.availableToBack?.[2]?.size,
-                              item,
-                              item?.ex?.availableToBack?.[2]?.tno
-                            )
-                          }
-                        >
-                          <span className={`rateFont`}>
-                            {handlePrice(
-                              item?.ex?.availableToBack?.[2]?.price
-                            ) ?? "-"}
-                          </span>
-                          <span className={`f-size11 sessionRate2Box`}>
-                            {handleSize(item?.ex?.availableToBack?.[2]?.size)}
-                          </span>
-                        </div>
-                      )}
+                        {item?.ex?.availableToBack?.length > 1 && (
+                          <div
+                            className="sessionRateBox back1Background"
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                              handlePlaceBet(
+                                item?.ex?.availableToBack?.[1]?.price,
+                                "Yes",
+                                item?.RunnerName || item?.name,
+                                item?.activeStatus,
+                                item?.ex?.availableToBack?.[1]?.size,
+                                item,
+                                item?.ex?.availableToBack?.[1]?.tno
+                              )
+                            }
+                          >
+                            <span className={`rateFont`}>
+                              {handlePrice(
+                                item?.ex?.availableToBack?.[1]?.price
+                              ) ?? "-"}
+                            </span>
+                            <span className={`f-size11 sessionRate2Box`}>
+                              {handleSize(item?.ex?.availableToBack?.[1]?.size)}
+                            </span>
+                          </div>
+                        )}
+                        {item?.ex?.availableToBack?.length > 2 && (
+                          <div
+                            className="sessionRateBox back1Background"
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                              handlePlaceBet(
+                                item?.ex?.availableToBack?.[2]?.price,
+                                "Yes",
+                                item?.RunnerName || item?.name,
+                                item?.activeStatus,
+                                item?.ex?.availableToBack?.[2]?.size,
+                                item,
+                                item?.ex?.availableToBack?.[2]?.tno
+                              )
+                            }
+                          >
+                            <span className={`rateFont`}>
+                              {handlePrice(
+                                item?.ex?.availableToBack?.[2]?.price
+                              ) ?? "-"}
+                            </span>
+                            <span className={`f-size11 sessionRate2Box`}>
+                              {handleSize(item?.ex?.availableToBack?.[2]?.size)}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
+                  {item?.rem && (
+                    <div
+                      className="w-100 text-start"
+                      style={{
+                        fontSize: "11px",
+                        color: "#097c93",
+                        backgroundColor: "#f2f2f2",
+                        borderBottom: "1px solid #c7c8ca",
+                      }}
+                    >
+                      {item?.rem}
+                    </div>
+                  )}
                 </div>
-                {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
-                    </div>)}
-                  </div>
               );
             })}
           </div>
         </div>
       </div>
-      <Modal className="runbetMobileModal" show={runAmountModal} onHide={()=>handleModal(false)} style={{margin:0}}>
+      <Modal
+        className="runbetMobileModal"
+        show={runAmountModal}
+        onHide={() => handleModal(false)}
+        style={{ margin: 0 }}
+      >
         <Modal.Header
           className="bg-primary rounded-0"
           style={{ zIndex: "999" }}
@@ -407,13 +422,13 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
             type="button"
             className="btn-close btn-close-white"
             aria-label="Close"
-            onClick={()=>handleModal(false)}
+            onClick={() => handleModal(false)}
           ></button>
         </Modal.Header>
         <Modal.Body className="p-0 rounded-0">
-        <div style={{ width: "100%", height: "auto", overflowY: "auto"}}>
-          <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
-        </div>
+          <div style={{ width: "100%", height: "auto", overflowY: "auto" }}>
+            <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+          </div>
         </Modal.Body>
       </Modal>
     </>

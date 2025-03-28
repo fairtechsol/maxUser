@@ -13,7 +13,7 @@ export const getTvData = async (
       `${tvApi}/getIframeUrl/${eventId}?sportType=${sportType}&isTv=${isTv}&isScore=${isScore}`
     );
     if (response) {
-      setTvData((prev:any) => {
+      setTvData((prev: any) => {
         if (isTv && isScore) {
           return {
             ...prev,

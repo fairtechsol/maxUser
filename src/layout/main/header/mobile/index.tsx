@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Dropdown, Modal, Navbar } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import LogoSection from "../../../../components/commonComponent/logoSection";
+import ButtonValues from "../../../../components/gameDetails/mobile/buttonValues";
 import { logout } from "../../../../store/actions/authAction";
 import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
 import { AppDispatch, RootState } from "../../../../store/store";
+import { sportsRules } from "../../../../utils/constants";
 import CustomDropDown from "../desktop/dropdown/customDropdown";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
 import SearchBox from "./searchBox";
 import "./style.scss";
-import ButtonValues from "../../../../components/gameDetails/mobile/buttonValues";
-import { sportsRules } from "../../../../utils/constants";
 
 const MobileHeader = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -92,8 +92,8 @@ const MobileHeader = () => {
           />
           <div>
             <Dropdown
-            show={showDropdown}
-            onToggle={() => setShowDropdown(!showDropdown)}
+              show={showDropdown}
+              onToggle={() => setShowDropdown(!showDropdown)}
             >
               <Dropdown.Toggle
                 id="dropdown-custom-components"
@@ -124,7 +124,7 @@ const MobileHeader = () => {
                       <Dropdown.Item
                         className="title-16px d-flex justify-content-between"
                         onClick={(e) => {
-                          setShowDropdown(!showDropdown)
+                          setShowDropdown(!showDropdown);
                           e.stopPropagation();
                           if (item?.link) {
                             navigate(item.link);
@@ -281,107 +281,117 @@ const MobileHeader = () => {
             onClick={() => setShowRules(false)}
           ></button>
         </Modal.Header>
-         <Modal.Body className="p-0 mt-1 rounded-0">
-      <div className="rules-left-sidebar">
-        <div className="navvv nav-pill" role="tablist">
-          {sportsRules.map((sport, index) => (
-            <div
-              className={`nav-itemmm pt-1 px-2 ${activeSport === sport.sportName ? "active" : ""}`}
-              key={index}
-            >
-              <a
-                role="tab"
-                id={`rules-tabs-tab-${index}`}
-                aria-controls={`rules-tabs-tabpane-${index}`}
-                aria-selected={activeSport === sport.sportName}
-                className="nav-linkss"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleSelect(sport.sportName);
-                }}
-                tabIndex={0}
-                href="#"
-              >
-                {sport.sportName}
-              </a>
+        <Modal.Body className="p-0 mt-1 rounded-0">
+          <div className="rules-left-sidebar">
+            <div className="navvv nav-pill" role="tablist">
+              {sportsRules.map((sport, index) => (
+                <div
+                  className={`nav-itemmm pt-1 px-2 ${
+                    activeSport === sport.sportName ? "active" : ""
+                  }`}
+                  key={index}
+                >
+                  <a
+                    role="tab"
+                    id={`rules-tabs-tab-${index}`}
+                    aria-controls={`rules-tabs-tabpane-${index}`}
+                    aria-selected={activeSport === sport.sportName}
+                    className="nav-linkss"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSelect(sport.sportName);
+                    }}
+                    tabIndex={0}
+                    href="#"
+                  >
+                    {sport.sportName}
+                  </a>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-      <div
-        className="tab-content-1 p-2"
-        style={{
-          minHeight: "500px",
-          maxHeight: "900px",
-          overflow: "hidden",
-        }}
-      >
-        {sportsRules.map((sport, index) => (
-          <div
-            key={index}
-            role="tabpanel"
-            id={`rules-tabs-tabpane-${index}`}
-            aria-labelledby={`rules-tabs-tab-${index}`}
-            className={`tab-pane ${activeSport === sport.sportName ? "show active" : ""}`}
-          >
-            {activeSport === sport.sportName && (
-              <div
-                style={{
-                  minHeight: "400px",
-                  maxHeight: "800px",
-                  overflowY: "auto",
-                  bottom: 0,
-                }}
-                className="p-1"
-              >
-                <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                  {sport.rules.map((rule, ruleIndex) => (
-                    <tbody key={ruleIndex}>
-                      <tr>
-                        <td
-                          colSpan={100}
-                          className="rule-popup-heading bg-secondary p-1 text-white title-18"
-                          style={{
-                            fontWeight: "bold",
-                            textAlign: "left",
-                            padding: "10px",
-                            borderBottom: "1px solid #ccc",
-                            marginBottom: "10px"
-                          }}
-                        >
-                          {rule.category}
-                        </td>
-                      </tr>
-                      <tr><td style={{ height: "8px" }}></td></tr>
-                      {rule.description.map((description, descIndex) => (
-                        <tr
-                          className="title-12 gap-2"
-                          style={{ backgroundColor: "#f2f2f2" }}
-                          key={descIndex}
-                        >
-                          <td
-                            style={{
-                              padding: "6px 10px",
-                              borderBottom: "1px solid #ddd",
-                              textAlign: "left",
-                              lineHeight: 1.5,
-                              color: description?.color || "black"
-                            }}
-                          >
-                            {description?.text}
-                          </td>
-                        </tr>
-                      ))}
-                      <tr><td style={{ height: "8px" }}></td></tr>
-                    </tbody>
-                  ))}
-                </table>
-              </div>
-            )}
           </div>
-        ))}
-      </div>
-    </Modal.Body>
+          <div
+            className="tab-content-1 p-2"
+            style={{
+              minHeight: "500px",
+              maxHeight: "900px",
+              overflow: "hidden",
+            }}
+          >
+            {sportsRules.map((sport, index) => (
+              <div
+                key={index}
+                role="tabpanel"
+                id={`rules-tabs-tabpane-${index}`}
+                aria-labelledby={`rules-tabs-tab-${index}`}
+                className={`tab-pane ${
+                  activeSport === sport.sportName ? "show active" : ""
+                }`}
+              >
+                {activeSport === sport.sportName && (
+                  <div
+                    style={{
+                      minHeight: "400px",
+                      maxHeight: "800px",
+                      overflowY: "auto",
+                      bottom: 0,
+                    }}
+                    className="p-1"
+                  >
+                    <table
+                      style={{ width: "100%", borderCollapse: "collapse" }}
+                    >
+                      {sport.rules.map((rule, ruleIndex) => (
+                        <tbody key={ruleIndex}>
+                          <tr>
+                            <td
+                              colSpan={100}
+                              className="rule-popup-heading bg-secondary p-1 text-white title-18"
+                              style={{
+                                fontWeight: "bold",
+                                textAlign: "left",
+                                padding: "10px",
+                                borderBottom: "1px solid #ccc",
+                                marginBottom: "10px",
+                              }}
+                            >
+                              {rule.category}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style={{ height: "8px" }}></td>
+                          </tr>
+                          {rule.description.map((description, descIndex) => (
+                            <tr
+                              className="title-12 gap-2"
+                              style={{ backgroundColor: "#f2f2f2" }}
+                              key={descIndex}
+                            >
+                              <td
+                                style={{
+                                  padding: "6px 10px",
+                                  borderBottom: "1px solid #ddd",
+                                  textAlign: "left",
+                                  lineHeight: 1.5,
+                                  color: description?.color || "black",
+                                }}
+                              >
+                                {description?.text}
+                              </td>
+                            </tr>
+                          ))}
+                          <tr>
+                            <td style={{ height: "8px" }}></td>
+                          </tr>
+                        </tbody>
+                      ))}
+                    </table>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </Modal.Body>
 
         <div className="modal-footer-1">
           <button className="btn btn-danger" onClick={closeModal}>

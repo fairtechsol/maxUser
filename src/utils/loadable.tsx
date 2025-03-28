@@ -8,7 +8,7 @@
 //     </Suspense>
 //   );
 // export default Loadable;
-import  { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 
 const Loadable = (importFunc: any) => {
   const LazyComponent = lazy(() =>
@@ -21,9 +21,9 @@ const Loadable = (importFunc: any) => {
   );
 
   return (props: any) => (
-    <Suspense >
-          <LazyComponent {...props} />
-         </Suspense>
+    <Suspense>
+      <LazyComponent {...props} />
+    </Suspense>
   );
 };
 

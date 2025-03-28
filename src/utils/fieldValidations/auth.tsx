@@ -5,7 +5,6 @@ export const loginValidationSchema = Yup.object({
   password: Yup.string().required("Password is required"),
 });
 
-/*** Change Passworsd */
 export const changePassValidationSchema = Yup.object({
   newPassword: Yup.string()
     .required("Password is required")
@@ -22,13 +21,9 @@ export const changePassValidationSchema = Yup.object({
       "Password must contain at least four numbers"
     ),
   oldPassword: Yup.string().required("Password is required"),
-  // confirmNewPassword: Yup.string().required("Password is required"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("newPassword"), ""], "Passwords must match")
     .required("Password is required"),
-  // transactionPassword: Yup.string().required(
-  //   "Transaction Password is required"
-  // ),
 });
 
 export const changePasswordValidation = (item: any) => {

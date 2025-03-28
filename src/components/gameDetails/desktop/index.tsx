@@ -152,7 +152,7 @@ const DesktopGameDetail = () => {
                           }
                           title="Live Stream"
                           referrerPolicy="strict-origin-when-cross-origin"
-                        ></iframe>
+                        />
                       </div>
                     )}
                 {matchDetails?.tournament?.length > 0 &&

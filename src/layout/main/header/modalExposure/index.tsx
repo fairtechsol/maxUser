@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CustomModal from "../../../../components/commonComponent/modal";
-import CustomTable from "../../../../components/commonComponent/table";
 import { RootState } from "../../../../store/store";
 import { navigateToGameDetail } from "../../../../utils/constants";
 import { isMobile } from "../../../../utils/screenDimension";

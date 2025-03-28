@@ -10,10 +10,6 @@ import "./style.scss";
 const SessionCricketCasino = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
   const [marketArr, setMarketArr] = useState<any>(data);
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -95,7 +91,6 @@ const SessionCricketCasino = ({ title, data, detail }) => {
           >
             {title}
           </span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{

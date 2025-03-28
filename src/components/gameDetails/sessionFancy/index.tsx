@@ -7,10 +7,6 @@ import "./style.scss";
 
 const SessionFancy = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -43,7 +39,6 @@ const SessionFancy = ({ title, data, detail }) => {
       betPlaceIndex: tno,
       matchBetType: "session",
     };
-    // console.log(item, "first", team);
     dispatch(
       selectedBetAction({
         team,
@@ -76,7 +71,6 @@ const SessionFancy = ({ title, data, detail }) => {
       >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{
@@ -89,11 +83,8 @@ const SessionFancy = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div className="sessionYesNoBoxContainer" >
-              <div
-                className="sessionYesNoBox  rateBoxWidthNormal"
-                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
-              >
+            <div className="sessionYesNoBoxContainer">
+              <div className="sessionYesNoBox rateBoxWidthNormal">
                 <div className="sessionYesBox back1Background">
                   <span className={`f-size16 sessionBackTxt`}>Back</span>
                 </div>
@@ -106,162 +97,17 @@ const SessionFancy = ({ title, data, detail }) => {
             {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="w-100 d-flex flex-column">
-                <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName runnerWidthNormal"
-                      style={{ overflow: "hidden" }}>
-                    <span
-                      className="teamFont"
-                      style={{ fontWeight:"400", lineHeight: 1 }}
-                    >
-                      {item?.RunnerName}
-                    </span>{" "}
-                    <span
-                      className={`${
-                        calculateMaxLoss(
-                          detail?.profitLossDataSession,
-                          item?.id
-                        ) < 0
-                          ? "color-red"
-                          : "color-red"
-                      } title-14 fbold`}
-                    >
-                      {calculateMaxLoss(
-                        detail?.profitLossDataSession,
-                        item?.id
-                      ) !== 0
-                        ? `-${calculateMaxLoss(
-                            detail?.profitLossDataSession,
-                            item?.id
-                          )}`
-                        : ""}
-                    </span>
-                  </div>
-                  <div
-                    className="sessionRateBoxContainer rateBoxWidthNormal"
-                    // style={{
-                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                    // }}
-                  >
-                    {(item?.activeStatus != "live" ||
-                      item?.GameStatus != "") && (
-                      <div className="suspended-overlayRates">
-                        <span
-                          className={`suspendTextCmmn`}
-                        >
-                          {item?.GameStatus ?? "SUSPENDED"}
-                        </span>
-                      </div>
-                    )}
-                    <div
-                      className={`sessionRateBox rateFont back1Background`}
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        handlePlaceBet(
-                          item?.ex?.availableToBack?.[0]?.price,
-                          "Back",
-                          item?.RunnerName,
-                          item?.activeStatus,
-                          item?.ex?.availableToBack?.[0]?.price,
-                          item,
-                          item?.ex?.availableToBack?.[0]?.tno
-                        )
-                      }
-                    >
-                      <span
-                        className={`rateFont`}
-                      >
-                        {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
-                          "-"}
-                      </span>
-                      <span
-                        className={`f-size12 sessionRate2Box`}
-                      >
-                        {handleSize(item?.ex?.availableToBack?.[0]?.size)}
-                      </span>
-                    </div>
-                    <div
-                      className="sessionRateBox rateFont lay1Background"
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        handlePlaceBet(
-                          item?.ex?.availableToLay?.[0]?.price,
-                          "lay",
-                          item?.RunnerName,
-                          item?.activeStatus,
-                          item?.ex?.availableToLay?.[0]?.price,
-                          item,
-                          item?.ex?.availableToLay?.[0]?.tno
-                        )
-                      }
-                    >
-                      <span
-                        className={`rateFont`}
-                      >
-                        {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
-                          "-"}
-                      </span>
-                      <span
-                        className={`${
-                          !isMobile ? "f-size12" : "f-size11"
-                        } sessionRate2Box`}
-                      >
-                        {handleSize(item?.ex?.availableToLay?.[0]?.size)}
-                      </span>
-                    </div>
-                    <div className="sessionMinBoxContainer">
-                      <span className={`sessionMinBox sessionMinMaxFont`}>
-                        Min:{formatNumber(item?.min)}
-                      </span>
-                      <span className={`sessionMinBox sessionMinMaxFont`}>
-                        Max:{formatNumber(item?.max)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
-                    </div>)}
-                  </div>
-              );
-            })}
-          </div>
-
-          {oddIndexArray?.length > 0 && (
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <div className="sessionYesNoBoxContainer">
-                <div
-                  className="sessionYesNoBox rateBoxWidthNormal"
-                  // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
-                >
-                  <div className="sessionYesBox back1Background">
-                    <span className={`f-size16 sessionBackTxt`}>Back</span>
-                  </div>
-                  <div className="sessionYesBox lay1Background">
-                    <span className={`f-size16 sessionBackTxt`}>Lay</span>
-                  </div>
-                  <div className="sessionEmptyBox"></div>
-                </div>
-              </div>
-              {oddIndexArray?.map((item: any, index: any) => {
-                return (
-                  <div className="w-100 d-flex flex-column">
                   <div className="sessionRateContainer" key={index}>
-                    <div className="sessionRateName runnerWidthNormal"  style={{ overflow: "hidden" }}>
+                    <div
+                      className="sessionRateName runnerWidthNormal"
+                      style={{ overflow: "hidden" }}
+                    >
                       <span
                         className="teamFont"
-                        style={{
-                          width: "60%",
-                          fontWeight: "400",
-                          lineHeight: 1,
-                        }}
+                        style={{ fontWeight: "400", lineHeight: 1 }}
                       >
                         {item?.RunnerName}
-                      </span>
+                      </span>{" "}
                       <span
                         className={`${
                           calculateMaxLoss(
@@ -283,18 +129,11 @@ const SessionFancy = ({ title, data, detail }) => {
                           : ""}
                       </span>
                     </div>
-                    <div
-                      className="sessionRateBoxContainer rateBoxWidthNormal"
-                      // style={{
-                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                      // }}
-                    >
+                    <div className="sessionRateBoxContainer rateBoxWidthNormal">
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                         <div className="suspended-overlayRates">
-                          <span
-                            className={`suspendTextCmmn`}
-                          >
+                          <span className={`suspendTextCmmn`}>
                             {item?.GameStatus ?? "SUSPENDED"}
                           </span>
                         </div>
@@ -314,17 +153,11 @@ const SessionFancy = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span
-                          className={`rateFont`}
-                        >
+                        <span className={`rateFont`}>
                           {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
                             "-"}
                         </span>
-                        <span
-                          className={`${
-                            !isMobile ? "f-size12" : "f-size11"
-                          } sessionRate2Box`}
-                        >
+                        <span className={`f-size12 sessionRate2Box`}>
                           {handleSize(item?.ex?.availableToBack?.[0]?.size)}
                         </span>
                       </div>
@@ -343,9 +176,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span
-                          className={`rateFont`}
-                        >
+                        <span className={`rateFont`}>
                           {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
                             "-"}
                         </span>
@@ -367,8 +198,170 @@ const SessionFancy = ({ title, data, detail }) => {
                       </div>
                     </div>
                   </div>
-                  {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
-                    </div>)}
+                  {item?.rem && (
+                    <div
+                      className="w-100 text-start"
+                      style={{
+                        fontSize: "11px",
+                        color: "#097c93",
+                        backgroundColor: "#f2f2f2",
+                        borderBottom: "1px solid #c7c8ca",
+                      }}
+                    >
+                      {item?.rem}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {oddIndexArray?.length > 0 && (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div className="sessionYesNoBoxContainer">
+                <div className="sessionYesNoBox rateBoxWidthNormal">
+                  <div className="sessionYesBox back1Background">
+                    <span className={`f-size16 sessionBackTxt`}>Back</span>
+                  </div>
+                  <div className="sessionYesBox lay1Background">
+                    <span className={`f-size16 sessionBackTxt`}>Lay</span>
+                  </div>
+                  <div className="sessionEmptyBox"></div>
+                </div>
+              </div>
+              {oddIndexArray?.map((item: any, index: any) => {
+                return (
+                  <div className="w-100 d-flex flex-column">
+                    <div className="sessionRateContainer" key={index}>
+                      <div
+                        className="sessionRateName runnerWidthNormal"
+                        style={{ overflow: "hidden" }}
+                      >
+                        <span
+                          className="teamFont"
+                          style={{
+                            width: "60%",
+                            fontWeight: "400",
+                            lineHeight: 1,
+                          }}
+                        >
+                          {item?.RunnerName}
+                        </span>
+                        <span
+                          className={`${
+                            calculateMaxLoss(
+                              detail?.profitLossDataSession,
+                              item?.id
+                            ) < 0
+                              ? "color-red"
+                              : "color-red"
+                          } title-14 fbold`}
+                        >
+                          {calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) !== 0
+                            ? `-${calculateMaxLoss(
+                                detail?.profitLossDataSession,
+                                item?.id
+                              )}`
+                            : ""}
+                        </span>
+                      </div>
+                      <div className="sessionRateBoxContainer rateBoxWidthNormal">
+                        {(item?.activeStatus != "live" ||
+                          item?.GameStatus != "") && (
+                          <div className="suspended-overlayRates">
+                            <span className={`suspendTextCmmn`}>
+                              {item?.GameStatus ?? "SUSPENDED"}
+                            </span>
+                          </div>
+                        )}
+                        <div
+                          className={`sessionRateBox rateFont back1Background`}
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            handlePlaceBet(
+                              item?.ex?.availableToBack?.[0]?.price,
+                              "Back",
+                              item?.RunnerName,
+                              item?.activeStatus,
+                              item?.ex?.availableToBack?.[0]?.price,
+                              item,
+                              item?.ex?.availableToBack?.[0]?.tno
+                            )
+                          }
+                        >
+                          <span className={`rateFont`}>
+                            {handlePrice(
+                              item?.ex?.availableToBack?.[0]?.price
+                            ) ?? "-"}
+                          </span>
+                          <span
+                            className={`${
+                              !isMobile ? "f-size12" : "f-size11"
+                            } sessionRate2Box`}
+                          >
+                            {handleSize(item?.ex?.availableToBack?.[0]?.size)}
+                          </span>
+                        </div>
+                        <div
+                          className="sessionRateBox rateFont lay1Background"
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            handlePlaceBet(
+                              item?.ex?.availableToLay?.[0]?.price,
+                              "lay",
+                              item?.RunnerName,
+                              item?.activeStatus,
+                              item?.ex?.availableToLay?.[0]?.price,
+                              item,
+                              item?.ex?.availableToLay?.[0]?.tno
+                            )
+                          }
+                        >
+                          <span className={`rateFont`}>
+                            {handlePrice(
+                              item?.ex?.availableToLay?.[0]?.price
+                            ) ?? "-"}
+                          </span>
+                          <span
+                            className={`${
+                              !isMobile ? "f-size12" : "f-size11"
+                            } sessionRate2Box`}
+                          >
+                            {handleSize(item?.ex?.availableToLay?.[0]?.size)}
+                          </span>
+                        </div>
+                        <div className="sessionMinBoxContainer">
+                          <span className={`sessionMinBox sessionMinMaxFont`}>
+                            Min:{formatNumber(item?.min)}
+                          </span>
+                          <span className={`sessionMinBox sessionMinMaxFont`}>
+                            Max:{formatNumber(item?.max)}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    {item?.rem && (
+                      <div
+                        className="w-100 text-start"
+                        style={{
+                          fontSize: "11px",
+                          color: "#097c93",
+                          backgroundColor: "#f2f2f2",
+                          borderBottom: "1px solid #c7c8ca",
+                        }}
+                      >
+                        {item?.rem}
+                      </div>
+                    )}
                   </div>
                 );
               })}

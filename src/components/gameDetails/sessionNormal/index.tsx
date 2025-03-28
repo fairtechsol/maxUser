@@ -16,23 +16,14 @@ import "./style.scss";
 const SessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [marketArr, setMarketArr] = useState(data?.section || []);
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
     betTeam: any,
-    status: any,
     value: any,
     item: any,
     tno: any
   ) => {
-    console.log("team", item);
-    // if ( status != "live" || ( data?.status != "OPEN" || item?.status != "active")) {
-    //   return false;
-    // }
     if (odds === 0) {
       return false;
     }
@@ -70,7 +61,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
   const oddIndexArray = [];
 
   useEffect(() => {
-    const newMarketArr = [...(manual || []),...(data?.section || [])];
+    const newMarketArr = [...(manual || []), ...(data?.section || [])];
     setMarketArr(newMarketArr);
   }, [data, manual]);
 
@@ -243,7 +234,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.noRate,
                               "no",
                               item?.RunnerName || item?.name,
-                              item?.activeStatus,
                               item?.ex?.availableToLay?.[0]?.size ||
                                 item?.noPercent,
                               item,
@@ -271,7 +261,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.ex?.availableToLay?.[1]?.price,
                                 "no",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToLay?.[1]?.size,
                                 item,
                                 item?.ex?.availableToLay?.[1]?.tno
@@ -297,7 +286,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.ex?.availableToLay?.[2]?.price,
                                 "no",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToLay?.[2]?.size,
                                 item,
                                 item?.ex?.availableToLay?.[2]?.tno
@@ -331,7 +319,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.yesRate,
                               "Yes",
                               item?.RunnerName || item?.name,
-                              item?.activeStatus,
                               item?.ex?.availableToBack?.[0]?.size ||
                                 item?.yesPercent,
                               item,
@@ -359,7 +346,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.ex?.availableToBack?.[1]?.price,
                                 "Yes",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToBack?.[1]?.size,
                                 item,
                                 item?.ex?.availableToBack?.[1]?.tno
@@ -385,7 +371,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.ex?.availableToBack?.[2]?.price,
                                 "Yes",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToBack?.[2]?.size,
                                 item,
                                 item?.ex?.availableToBack?.[2]?.tno
@@ -561,7 +546,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.noRate,
                                 "no",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToLay?.[0]?.size ||
                                   item?.noPercent,
                                 item,
@@ -590,7 +574,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.ex?.availableToLay?.[1]?.price,
                                   "no",
                                   item?.RunnerName || item?.name,
-                                  item?.activeStatus,
                                   item?.ex?.availableToLay?.[1]?.size,
                                   item,
                                   item?.ex?.availableToLay?.[1]?.tno
@@ -618,7 +601,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.ex?.availableToLay?.[2]?.price,
                                   "no",
                                   item?.RunnerName || item?.name,
-                                  item?.activeStatus,
                                   item?.ex?.availableToLay?.[2]?.size,
                                   item,
                                   item?.ex?.availableToLay?.[2]?.tno
@@ -654,7 +636,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.yesRate,
                                 "Yes",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToBack?.[0]?.size ||
                                   item?.yesPercent,
                                 item,
@@ -683,7 +664,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.ex?.availableToBack?.[1]?.price,
                                   "Yes",
                                   item?.RunnerName || item?.name,
-                                  item?.activeStatus,
                                   title === "oddeven"
                                     ? item?.ex?.availableToBack?.[1]?.price
                                     : item?.ex?.availableToBack?.[1]?.size,
@@ -713,7 +693,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.ex?.availableToBack?.[2]?.price,
                                   "Yes",
                                   item?.RunnerName || item?.name,
-                                  item?.activeStatus,
                                   item?.ex?.availableToBack?.[2]?.size,
                                   item,
                                   item?.ex?.availableToBack?.[2]?.tno
