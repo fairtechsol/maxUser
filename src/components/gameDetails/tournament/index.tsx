@@ -31,7 +31,6 @@ const Tournament = ({ title, box, data, detail }) => {
     if (odds === 0) {
       return false;
     }
-    // alert(odds)
     let team = {
       betOnTeam: runner?.nat,
       rate: odds,
