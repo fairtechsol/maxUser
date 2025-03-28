@@ -60,7 +60,7 @@ const Tournament = ({ title, box, data, detail }) => {
 
   const handleCashoutBet = () => {
     const [teamAId, teamBId] = data?.runners?.map(
-      (team) => team.parentRunnerId || team.id
+      (team: any) => team.parentRunnerId || team.id
     );
     const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
     const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
@@ -147,6 +147,17 @@ const Tournament = ({ title, box, data, detail }) => {
       });
       return;
     }
+
+    const [teamAStatus, teamBStatus] = data?.runners?.map(
+      (team) => team.status
+    );
+    if (teamAStatus == "SUSPENDED" || teamBStatus == "SUSPENDED") {
+      toast.error("You are not eligible for cashout!", {
+        style: { backgroundColor: "#ffffff", color: "#000000" },
+      });
+      return;
+    }
+
     let team = {
       betOnTeam: runner?.teamName,
       rate: odds,
