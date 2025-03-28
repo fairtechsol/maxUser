@@ -60,7 +60,7 @@ const Tournament = ({ title, box, data, detail }) => {
 
   const handleCashoutBet = () => {
     const [teamAId, teamBId] = data?.runners?.map(
-      (team: any) => team.parentRunnerId || team.id
+      (team: any) => team?.parentRunnerId || team?.id
     );
     const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
     const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
@@ -185,7 +185,7 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
-  const key = `${data.parentBetId || data.id}_profitLoss_${detail.id}`;
+  const key = `${data.parentBetId || data?.id}_profitLoss_${detail?.id}`;
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
   const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
@@ -205,7 +205,7 @@ const Tournament = ({ title, box, data, detail }) => {
             <button
               disabled={
                 Object.keys(profitLossObj).length <= 0 ||
-                data?.id == selectedBet?.data.id
+                data?.id == selectedBet?.data?.id
                   ? true
                   : false
               }
@@ -221,11 +221,11 @@ const Tournament = ({ title, box, data, detail }) => {
                 opacity:
                   Object.keys(profitLossObj).length <= 0
                     ? 0.65
-                    : data?.id == selectedBet?.data.id
+                    : data?.id == selectedBet?.data?.id
                     ? 0.85
                     : 1,
                 boxShadow:
-                  data?.id == selectedBet?.data.id
+                  data?.id == selectedBet?.data?.id
                     ? "0 0 0 0.25rem rgba(60,153,110,0.5)"
                     : "none",
               }}
@@ -307,19 +307,19 @@ const Tournament = ({ title, box, data, detail }) => {
                     <span
                       className={`${
                         parseFloat(
-                          profitLossObj?.[item.parentRunnerId || item.id]
+                          profitLossObj?.[item?.parentRunnerId || item?.id]
                         ) > 0
                           ? "color-green"
                           : "color-red"
                       } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
-                      {profitLossObj?.[item.parentRunnerId || item.id]
+                      {profitLossObj?.[item?.parentRunnerId || item?.id]
                         ? selectedBet?.team?.parentBetId ===
                           (data.parentBetId || data?.id)
                           ? parseFloat(
-                              profitLossObj?.[item.parentRunnerId || item.id]
+                              profitLossObj?.[item?.parentRunnerId || item?.id]
                             )
-                          : profitLossObj?.[item.parentRunnerId || item.id]
+                          : profitLossObj?.[item?.parentRunnerId || item?.id]
                         : ""}
                     </span>
                     {selectedBet?.team?.parentBetId ===
@@ -329,7 +329,7 @@ const Tournament = ({ title, box, data, detail }) => {
                         style={{
                           color:
                             parseFloat(
-                              profitLossObj?.[item.parentRunnerId || item.id]
+                              profitLossObj?.[item?.parentRunnerId || item?.id]
                             ) +
                               manualProfitLoss(
                                 selectedBet,
@@ -342,13 +342,13 @@ const Tournament = ({ title, box, data, detail }) => {
                               : "#bd1828",
                         }}
                       >
-                        {profitLossObj?.[item.parentRunnerId || item.id]
+                        {profitLossObj?.[item?.parentRunnerId || item?.id]
                           ? selectedBet?.team?.parentBetId ===
                             (data.parentBetId || data?.id)
                             ? (
                                 parseFloat(
                                   profitLossObj?.[
-                                    item.parentRunnerId || item.id
+                                    item?.parentRunnerId || item?.id
                                   ]
                                 ) +
                                 manualProfitLoss(
@@ -358,7 +358,7 @@ const Tournament = ({ title, box, data, detail }) => {
                                   data?.gtype
                                 )
                               ).toFixed(2)
-                            : profitLossObj?.[item.parentRunnerId || item.id]
+                            : profitLossObj?.[item?.parentRunnerId || item?.id]
                           : ""}
                       </span>
                     ) : (
