@@ -193,7 +193,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : 0;
     return profitLossObj?.[r_id];
   };
-  // console.log('selectedBet',selectedBet)
   const handleKeyDown = (e: any) => {
     if (e.key === "e" || e.key === "E") {
       e.preventDefault();
@@ -391,12 +390,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     if (data?.runnerId === id) {
       profit =
         parseFloat(stake) * (parseFloat(data?.rate) - 1) +
-        parseFloat(handleProfitLoss(data?.runners?.id, id));
+        parseFloat(handleProfitLoss(data?.runners?.parentBetId || data?.runners?.id, id));
     } else {
       profit =
-        parseFloat(handleProfitLoss(data?.runners?.id, id)) - parseFloat(stake);
+        parseFloat(handleProfitLoss(data?.runners?.parentBetId || data?.runners?.id, id)) - parseFloat(stake);
     }
-    // console.log(id,'first',data)
+
     return profit ? profit : "";
   };
   const handleName = (selected: any) => {
@@ -617,21 +616,18 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           <div className="row">
                             <div className="col-md-12 text-center">
                               <span
-                                className={`f400 title-12 ${
-                                  handleProfitLoss(
-                                    selectedBet?.team?.runners?.id,
-                                    item?.id
-                                  ) < 0
-                                    ? "color-red"
-                                    : "color-green"
-                                }`}
+                                className={`f400 title-12 ${handleProfitLoss(
+                                  selectedBet?.team?.runners?.parentBetId || selectedBet?.team?.runners?.id,
+                                  item?.parentRunnerId || item?.id
+                                ) < 0
+                                  ? "color-red"
+                                  : "color-green"
+                                  }`}
                               >
-                                {Number(
-                                  handleProfitLoss(
-                                    selectedBet?.team?.runners?.id,
-                                    item?.id
-                                  )
-                                ).toFixed(2)}
+                                {Number(handleProfitLoss(
+                                  selectedBet?.team?.runners?.parentBetId || selectedBet?.team?.runners?.id,
+                                  item?.parentRunnerId || item?.id
+                                )).toFixed(2)}
                               </span>
                             </div>
                           </div>
@@ -647,19 +643,17 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                                   Number(
                                     handleTounamentProLoss(
                                       selectedBet?.team,
-                                      item?.id
+                                      item?.parentRunnerId || item?.id
                                     )
                                   ) > 0
                                     ? "color-green"
                                     : "color-red"
                                 }
                               >
-                                {Number(
-                                  handleTounamentProLoss(
-                                    selectedBet?.team,
-                                    item?.id
-                                  )
-                                ).toFixed(2)}
+                                {Number(handleTounamentProLoss(
+                                  selectedBet?.team,
+                                  item?.parentRunnerId || item?.id
+                                )).toFixed(2)}
                               </span>
                             </div>
                           </div>
