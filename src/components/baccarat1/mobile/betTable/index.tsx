@@ -1,9 +1,9 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import { HandleGameCards } from "../../desktop/card";
 import PieChart from "../../desktop/chart";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 export const options = {
   is3D: true,
   backgroundColor: "none",
@@ -27,8 +27,8 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -39,10 +39,10 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
   };
 
   useEffect(() => {
-    if ( odds?.[0]?.gstatus === "0" || odds?.[0]?.b1 === "0.00") {
+    if (odds?.[0]?.gstatus === "0" || odds?.[0]?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
     }
-  }, [odds?.[0]?.gstatus,odds?.[0]?.b1]);
+  }, [odds?.[0]?.gstatus, odds?.[0]?.b1]);
 
   return (
     <div className="baccarateContainer-m">
@@ -50,8 +50,8 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
         <h4>Statistics</h4>
         <PieChart data={dataa} options={options} />
       </div>
-      <div className="baccarateRateContainer-m"  >
-        <div className="baccarateRateContainer1" >
+      <div className="baccarateRateContainer-m">
+        <div className="baccarateRateContainer1">
           <div
             className={`perfectpairBox ${
               odds?.[5]?.gstatus == "0" ? "suspended-box" : ""
@@ -411,11 +411,6 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               : ""}
           </div>
         </div>
-        {/* <div className="baccarateMinMax">
-          <span className="f600">Min:</span>
-          {odds?.[0]?.min} <span className="f600">Max:</span>
-          {odds?.[0]?.max}
-        </div> */}
       </div>
     </div>
   );

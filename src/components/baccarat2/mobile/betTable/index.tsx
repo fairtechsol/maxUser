@@ -1,9 +1,9 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import { HandleGameCards } from "../../desktop/card";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import PieChart from "../../../baccarat2/desktop/chart";
+import { HandleGameCards } from "../../desktop/card";
 export const options = {
   is3D: true,
   backgroundColor: "none",
@@ -27,8 +27,8 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -40,10 +40,10 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
   // console.log(odds, "odds");
 
   useEffect(() => {
-    if ( odds?.[0]?.gstatus === "0" || odds?.[0]?.b1 === "0.00") {
+    if (odds?.[0]?.gstatus === "0" || odds?.[0]?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
     }
-  }, [odds?.[0]?.gstatus,odds?.[0]?.b1]);
+  }, [odds?.[0]?.gstatus, odds?.[0]?.b1]);
 
   return (
     <div className="baccarateContainer-m">

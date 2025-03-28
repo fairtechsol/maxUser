@@ -7,16 +7,15 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Teen20Result from "../desktop/teenCard";
-import "./style.scss";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Teen20Result from "../desktop/teenCard";
+import "./style.scss";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -142,12 +141,7 @@ const TeenPattiMobile = () => {
                           border: "0.1px solid #dee2e6",
                           textAlign: "left",
                         }}
-                      >
-                        {/* <span className="f12-b">
-                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
-                          {dragonTigerDetail?.videoInfo?.max}
-                        </span> */}
-                      </div>
+                      ></div>
                       <div className="teen-back-m">BACK</div>
                     </div>
                     <div className="teenPatti-table-row">

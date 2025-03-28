@@ -9,14 +9,14 @@ import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import RulesComponent from "../../commonComponent/rulesComponent";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import TeenTestResult from "./teenCard";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import RulesComponent from "../../commonComponent/rulesComponent";
-import NewLoader from "../../commonComponent/newLoader";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -91,8 +91,8 @@ const TeenPattiDesktop = () => {
         item?.nation,
       bettingName: "Match odds",
       selectionId: sectionId,
-      min:dragonTigerDetail?.videoInfo?.min,
-      max:dragonTigerDetail?.videoInfo?.max
+      min: dragonTigerDetail?.videoInfo?.min,
+      max: dragonTigerDetail?.videoInfo?.max,
     };
 
     dispatch(
@@ -201,9 +201,7 @@ const TeenPattiDesktop = () => {
                   <div
                     className="teenPatti-table-row"
                     style={{ lineHeight: 2 }}
-                  >
-                 
-                  </div>
+                  ></div>
                   <div
                     className="teenPatti-table-row"
                     style={{ lineHeight: 1 }}
@@ -279,9 +277,11 @@ const TeenPattiDesktop = () => {
                           }}
                         >
                           <div
-                          className={`${
-                            section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
-                          }`}
+                            className={`${
+                              section.dstatus !== "True"
+                                ? "teenPatti-table-item suspended-box2"
+                                : "teenPatti-table-item"
+                            }`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
@@ -326,9 +326,11 @@ const TeenPattiDesktop = () => {
                           </div>
 
                           <div
-                              className={`${
-                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
-                              }`}
+                            className={`${
+                              section.dstatus !== "True"
+                                ? "teenPatti-table-item suspended-box2"
+                                : "teenPatti-table-item"
+                            }`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
@@ -373,9 +375,11 @@ const TeenPattiDesktop = () => {
                           </div>
 
                           <div
-                               className={`${
-                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
-                              }`}
+                            className={`${
+                              section.dstatus !== "True"
+                                ? "teenPatti-table-item suspended-box2"
+                                : "teenPatti-table-item"
+                            }`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",

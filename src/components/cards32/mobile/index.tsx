@@ -4,17 +4,18 @@ import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "../../horseRacing/mobile/betTable/style.scss";
 import Card32Result from "../desktop/card32Card";
 import DynamicTable from "./betTable";
 import "./style.scss";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import CasinoHead from "../../commonComponent/casinoGameHeader";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import NewLoader from "../../commonComponent/newLoader";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+
 const Cards32Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
@@ -64,8 +65,12 @@ const Cards32Mobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <div
@@ -118,12 +123,16 @@ const Cards32Mobile = () => {
             )}
           </div>
         ) : (
-          <>
-            <MobileMyBet />
-          </>
+          <MobileMyBet />
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32' type="imageWithContent" />
+      <RulesModal
+        show={show}
+        setShow={setShow}
+        rule={card32rules}
+        gameType="card32"
+        type="imageWithContent"
+      />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {isMobile} from "../../../../utils/screenDimension";
 import { back, club, diamond, heart, spade } from "../../../../assets/images";
+import { isMobile } from "../../../../utils/screenDimension";
 
 interface PlayingCardProps {
   number: string;
@@ -8,7 +8,11 @@ interface PlayingCardProps {
   lock?: boolean;
 }
 
-export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) => {
+export const PlayingCard: React.FC<PlayingCardProps> = ({
+  number,
+  type,
+  lock,
+}) => {
   return (
     <div
       style={{
@@ -17,13 +21,13 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundSize:"100%",
-        WebkitBackgroundSize:"cover",
+        backgroundSize: "100%",
+        WebkitBackgroundSize: "cover",
         background: "white",
         height: isMobile ? "18px" : "24px",
         width: isMobile ? "14px" : "20px",
         padding: "0px",
-        zIndex:"999"
+        zIndex: "999",
       }}
     >
       {!lock ? (
@@ -40,8 +44,15 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
           </span>
           <Icons type={type} />
         </>
-      ):<>
-      <img src={back} width={ isMobile ?12:20} height={ isMobile ?16:26} /></>}
+      ) : (
+        <>
+          <img
+            src={back}
+            width={isMobile ? 12 : 20}
+            height={isMobile ? 16 : 26}
+          />
+        </>
+      )}
     </div>
   );
 };
@@ -52,7 +63,7 @@ interface IconsProps {
 
 export const Icons: React.FC<IconsProps> = ({ type }) => {
   const renderImage = (src: string) => {
-    return <img width={isMobile ? "6" :"11"} alt={type} src={src} />;
+    return <img width={isMobile ? "6" : "11"} alt={type} src={src} />;
   };
 
   switch (type) {
@@ -74,7 +85,6 @@ interface HandleCardsProps {
 }
 
 export const HandleGameCards: React.FC<HandleCardsProps> = ({ card }) => {
-  
   const [type, setType] = useState("");
   const [number, setNumber] = useState("");
 
@@ -99,5 +109,3 @@ export const HandleGameCards: React.FC<HandleCardsProps> = ({ card }) => {
       return null;
   }
 };
-
-

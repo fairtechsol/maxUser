@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import { dragonTigerCards } from "../../../../utils/constants";
 import "../../desktop/style.scss";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
@@ -27,7 +27,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
     } else {
     }
   }, [cardData?.[0]?.gstatus, cardData?.[0]?.b1]);
-  
+
   return (
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any) => {

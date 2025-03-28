@@ -4,16 +4,16 @@ import { abjrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Abj1Result from "../desktop/abj1Card";
-import CardBox from "./CardsBox";
-import "./style.scss";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Abj1Result from "../desktop/abj1Card";
+import CardBox from "./CardsBox";
+import "./style.scss";
 
 const Abj1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);

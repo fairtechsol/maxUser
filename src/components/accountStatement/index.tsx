@@ -200,7 +200,6 @@ const AccountStatementComponent = () => {
                   minDate={minDate}
                   maxDate={new Date()}
                 />
-                {/* <CustomInput type="date" style={{ appearance: "textfield" }} /> */}
               </Col>
               <Col lg={2} md={3} xs={6}>
                 <DatePicker
@@ -213,15 +212,10 @@ const AccountStatementComponent = () => {
                   minDate={minDate2}
                   maxDate={new Date()}
                 />
-                {/* <CustomInput type="date" /> */}
               </Col>
               <Col md={2} xs={12}>
                 <SelectSearch
                   options={[
-                    // {
-                    //   value: "",
-                    //   label: "All",
-                    // },
                     {
                       value: "0",
                       label: "Deposit/Withdraw Reports",
@@ -258,8 +252,6 @@ const AccountStatementComponent = () => {
                 </CustomButton>
               </Col>
             </Row>
-
-            {/* http://localhost:5000/card/result/detail/9.241909153253 */}
             <CustomTable
               placeHolder={`${transactions?.count ?? 0} records...`}
               width={isMobile ? "1200px" : ""}

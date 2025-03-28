@@ -1,4 +1,3 @@
-import React from "react";
 
 import { tprules } from "../../../assets/images";
 const Teen20Rules = () => {

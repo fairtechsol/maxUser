@@ -1,6 +1,3 @@
-import React from "react";
-
-//import { cmeterrules } from "../../../assets/images";
 import "./style.scss";
 const Card32Rules = () => {
   return (

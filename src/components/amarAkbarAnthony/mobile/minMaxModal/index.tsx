@@ -4,7 +4,10 @@ const SmoothDropdownModal = ({ show, min, max }: any) => {
   return (
     <Dropdown align="end" show={show}>
       <div style={{ width: "10%" }}>
-        <Dropdown.Menu className="min-max-info-lucky" style={{ minWidth: "auto" }}>
+        <Dropdown.Menu
+          className="min-max-info-lucky"
+          style={{ minWidth: "auto" }}
+        >
           <Dropdown.ItemText>
             <span style={{ display: "flex", flexDirection: "column" }}>
               <span className="f700 title-12">Min:</span>

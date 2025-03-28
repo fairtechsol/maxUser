@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ball from "../../../assets/images/ball-blank.png";
+import { formatNumber } from "../../../helpers";
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
@@ -11,10 +14,8 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import "./style.scss";
-import { formatNumber } from "../../../helpers";
-import ball from "../../../assets/images/ball-blank.png";
+
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -155,10 +156,6 @@ const TeenPattiMobile = () => {
                   <div className="elem">
                     <img
                       src={ball}
-                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
-                      // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                      //   curR?.result?.desc.split(" ")[0]
-                      // }.png`}
                       style={{
                         width: "30px",
                         height: "30px",
@@ -279,16 +276,6 @@ const TeenPattiMobile = () => {
                       }}
                       key={item.sid}
                     >
-                      {/* <div
-                        style={{
-                          width: "60%",
-                          border: "0.1px solid #fff",
-                          fontSize: "14px",
-                          marginLeft: "3px",
-                        }}
-                      >
-                        {item.nat}
-                      </div> */}
                       <div
                         style={{
                           width: "60%",
@@ -456,56 +443,11 @@ const TeenPattiMobile = () => {
                     type={"ballbyball"}
                   />
                 </div>
-                {/* <div>
-                  <div
-                    className="casino-title mt-2"
-                    style={{ position: "relative" }}
-                  >
-                    <span>Rules</span>
-                  </div>
-                  <div className="table-responsive rules-table">
-                    <Table bordered>
-                      <thead>
-                        <tr>
-                          <th colSpan={2} className="box-10 text-center">
-                            Pair Plus
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {rules.map((item, index) => (
-                          <tr key={index} style={{ lineHeight: 1 }}>
-                            <td
-                              className="box-7"
-                              style={{
-                                backgroundColor: "#eee",
-                                border: "1px solid #dee2e6",
-                              }}
-                            >
-                              {item.label}
-                            </td>
-                            <td
-                              className="box-3"
-                              style={{
-                                backgroundColor: "#eee",
-                                border: "1px solid #dee2e6",
-                              }}
-                            >
-                              {item.value}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </Table>
-                  </div>
-                </div> */}
               </div>
             )}
           </div>
         ) : (
-          <>
-            <MobileMyBet />
-          </>
+          <MobileMyBet />
         )}
       </div>
       <RulesModal

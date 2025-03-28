@@ -31,7 +31,6 @@ const BollywoodTableDesktop = () => {
     `${cardUrl}${cardGamesId.btable}`
   );
 
-
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
@@ -86,14 +85,18 @@ const BollywoodTableDesktop = () => {
 
   return (
     <>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+      <MobilePlacedBet show={show1} setShow={setShow1} />
+      <CasinoHead
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        setShow={setShow}
+      />
 
       {!activeTab ? (
         <Row>
           <Col md={8}>
             <div className="horseRacingTab">
-              <div style={{ width: "100%"}}>
+              <div style={{ width: "100%" }}>
                 <div
                   style={{
                     width: "100%",
@@ -158,7 +161,6 @@ const BollywoodTableDesktop = () => {
                       paddingRight: "4px",
                       borderRight: "1px solid #c7c8ca",
                       borderTop: "1px solid #c7c8ca",
-                     
                     }}
                   >
                     <OddEven

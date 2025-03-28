@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { dragonTigerCards } from "../../../../utils/constants";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
+import { dragonTigerCards } from "../../../../utils/constants";
 
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
@@ -47,7 +47,6 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 item?.gstatus != "SUSPENDED" ? handleBet(item) : null
               }
             >
-              {" "}
               <img src={item?.imgSrc} width={"30px"} />
             </div>
             <span

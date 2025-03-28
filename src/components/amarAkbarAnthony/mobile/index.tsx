@@ -28,7 +28,6 @@ const AmarAkbarAnthonyMobile = () => {
     (state: RootState) => state.card
   );
 
-
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -68,8 +67,12 @@ const AmarAkbarAnthonyMobile = () => {
   return (
     <>
       <div>
-            <MobilePlacedBet show={show1} setShow={setShow1} />
-            <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <div className="horseRacingTab">
@@ -160,7 +163,13 @@ const AmarAkbarAnthonyMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={aaarules} gameType="aaa" type="imageWithContent" />
+      <RulesModal
+        show={show}
+        setShow={setShow}
+        rule={aaarules}
+        gameType="aaa"
+        type="imageWithContent"
+      />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

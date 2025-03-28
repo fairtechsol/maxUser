@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import { back } from "../../../../assets/images";
 import { dragonTigerCards } from "../../../../utils/constants";
-import { useEffect, useState } from "react";
 
 const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
@@ -15,14 +15,13 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
     setCardImg(mergedArray);
   }, [cardData]);
 
-
   const handlock = (item: any) => {
-    if (item?.gstatus === "0" && cardInfo?.[0] === "" ) {
-      return 'suspended';
-    }else if(item?.gstatus === "0" && cardInfo?.[0] != "" ){
-      return "stop"
-    }else{
-      return ""
+    if (item?.gstatus === "0" && cardInfo?.[0] === "") {
+      return "suspended";
+    } else if (item?.gstatus === "0" && cardInfo?.[0] != "") {
+      return "stop";
+    } else {
+      return "";
     }
   };
   return (
@@ -39,11 +38,13 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-              onClick={() => (handlock(item) !="" ? null : handleBet(item))}
+              onClick={() => (handlock(item) != "" ? null : handleBet(item))}
             >
-              {
-              item?.show ? <img src={item?.imgSrc} width={"30px"} /> : <img src={back} width={"30px"} />
-            } 
+              {item?.show ? (
+                <img src={item?.imgSrc} width={"30px"} />
+              ) : (
+                <img src={back} width={"30px"} />
+              )}
             </div>
             <span
               style={{

@@ -18,8 +18,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:parseFloat(item?.min),
-      max:parseFloat(item?.max)
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max),
     };
     dispatch(
       selectedBetAction({
@@ -60,19 +60,20 @@ const BackLay = ({ matchOddsData, data }: any) => {
       </div>
     );
 
-    useEffect(() => {
-      if (matchOddsData?.[0]?.gstatus !== "ACTIVE" || matchOddsData?.[0]?.b1 === "0.00") {
-        dispatch(selectedBetAction(""));
-      } 
-      
-    }, [matchOddsData?.[0]?.gstatus,matchOddsData?.[0]?.b1]);
-  
+  useEffect(() => {
+    if (
+      matchOddsData?.[0]?.gstatus !== "ACTIVE" ||
+      matchOddsData?.[0]?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [matchOddsData?.[0]?.gstatus, matchOddsData?.[0]?.b1]);
+
   return (
     <div className="w-100">
       <div
         style={{
           width: "100%",
-          // marginTop: "3.3%",
           display: "flex",
           flexDirection: "column",
           borderLeft: "0.3px solid #c7c8ca",
@@ -84,15 +85,11 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="dtlTitle">
-          </div>
+          <div className="dtlTitle"></div>
           <div className="dtlsubTitle back-BackGround ">Back</div>
           <div className="dtlsubTitle lay-BackGround ">Lay</div>
         </div>
-        <div
-          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex"}
-          // style={{ height: "30px" }}
-        >
+        <div className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex"}>
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
               <span className="">Player 8</span>
@@ -113,13 +110,17 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     : ""
                 }`}
               >
-                {data?.profitLoss
-                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                    ? JSON.parse(
-                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )["player8"]
-                    : <br></br>
-                  : 0}
+                {data?.profitLoss ? (
+                  data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                    JSON.parse(
+                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    )["player8"]
+                  ) : (
+                    <br></br>
+                  )
+                ) : (
+                  0
+                )}
               </span>
             </div>
           </span>
@@ -151,13 +152,17 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     : ""
                 }`}
               >
-                {data?.profitLoss
-                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                    ? JSON.parse(
-                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )["player9"]
-                    : <br></br>
-                  : 0}
+                {data?.profitLoss ? (
+                  data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                    JSON.parse(
+                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    )["player9"]
+                  ) : (
+                    <br></br>
+                  )
+                ) : (
+                  0
+                )}
               </span>
             </div>
           </span>
@@ -166,7 +171,6 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          // style={{ height: "30px" }}
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
@@ -188,13 +192,17 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     : ""
                 }`}
               >
-                {data?.profitLoss
-                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                    ? JSON.parse(
-                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )["player10"]
-                    : <br></br>
-                  : 0}
+                {data?.profitLoss ? (
+                  data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                    JSON.parse(
+                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    )["player10"]
+                  ) : (
+                    <br></br>
+                  )
+                ) : (
+                  0
+                )}
               </span>
             </div>
           </span>
@@ -225,13 +233,17 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     : ""
                 }`}
               >
-                {data?.profitLoss
-                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                    ? JSON.parse(
-                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )["player11"]
-                    : <br></br>
-                  : 0}
+                {data?.profitLoss ? (
+                  data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                    JSON.parse(
+                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    )["player11"]
+                  ) : (
+                    <br></br>
+                  )
+                ) : (
+                  0
+                )}
               </span>
             </div>
           </span>

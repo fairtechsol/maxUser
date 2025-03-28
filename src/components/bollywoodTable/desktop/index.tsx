@@ -162,7 +162,6 @@ const BollywoodTableDesktop = () => {
                       background: "#EEEEEE",
                       paddingLeft: "4px",
                       paddingRight: "4px",
-                     
                     }}
                   >
                     <OddEven
@@ -205,7 +204,6 @@ const BollywoodTableDesktop = () => {
                       background: "#EEEEEE",
                       paddingLeft: "4px",
                       paddingRight: "4px",
-                      
                     }}
                   >
                     <CardBox
@@ -225,7 +223,13 @@ const BollywoodTableDesktop = () => {
               </div>
             )}
 
-            <RulesModal show={show} setShow={setShow} rule={brules} gameType="btable" type="imageWithContent" />
+            <RulesModal
+              show={show}
+              setShow={setShow}
+              rule={brules}
+              gameType="btable"
+              type="imageWithContent"
+            />
           </div>
         </Col>
         <Col className="p-0 pt-1" md={4}>

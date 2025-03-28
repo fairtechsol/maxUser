@@ -1,18 +1,16 @@
+import moment from "moment";
+import { useEffect, useState } from "react";
 import { Col, Form, Row, Stack } from "react-bootstrap";
-import { isMobile } from "../../utils/screenDimension";
-import ReportContainer from "../containers/reportContainer";
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
 import {
   resetReportBetListData,
   settleUnsettleMatch,
 } from "../../store/actions/match/matchListAction";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import moment from "moment";
-import _ from "lodash";
+import { AppDispatch, RootState } from "../../store/store";
+import { isMobile } from "../../utils/screenDimension";
 import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
+import ReportContainer from "../containers/reportContainer";
 
 interface Column {
   id: string;
@@ -112,22 +110,7 @@ const UnsettledBetComponent = () => {
       params.append("result", "eqPENDING");
     }
     dispatch(settleUnsettleMatch(params.toString()));
-    // if (e.target.id) {
-    // } else {
-    //   dispatch(resetDataUnsettledMatch());
-    // }
   };
-
-  // useEffect(() => {
-  //   dispatch(
-  //     settleUnsettleMatch({
-  //       status: selectedOption,
-  //       page: tableConfig?.page,
-  //       limit: tableConfig?.rowPerPage,
-  //       keyword: tableConfig?.keyword,
-  //     })
-  //   );
-  // }, [tableConfig]);
 
   const handleGame = () => {
     if (!type) {
@@ -143,7 +126,6 @@ const UnsettledBetComponent = () => {
       }`;
       params.append("betType", betType);
     }
-    // if (selectedOption) params.append("betType", selectedOption);
     if (currentPage) params.append("page", currentPage);
     if (limit) params.append("limit", limit);
     if (keyword) params.append("keyword", keyword);
@@ -157,7 +139,6 @@ const UnsettledBetComponent = () => {
     if (!type) {
       return false;
     }
-    // if (e.target.value?.length > 2) {
     const params: any = new URLSearchParams();
     if (selectedOption != "") {
       const betType = `inArr${
@@ -167,7 +148,6 @@ const UnsettledBetComponent = () => {
       }`;
       params.append("betType", betType);
     }
-    // if (selectedOption) params.append("betType", selectedOption);
     if (currentPage) params.append("page", currentPage);
     params.append("searchBy", "betPlaced.eventName");
     if (limit) params.append("limit", limit);
@@ -176,7 +156,6 @@ const UnsettledBetComponent = () => {
     params.append("marketBetType", marketBetType);
     params.append("result", "eqPENDING");
     dispatch(settleUnsettleMatch(params.toString()));
-    // }
   };
   const handlePageChange = (value: any) => {
     const pageValue = parseInt(value, 10);
@@ -291,36 +270,6 @@ const UnsettledBetComponent = () => {
                 </Col>
               </Row>
               <div className="g-2 mt-1 d-flex flex-row justify-content-between">
-                {/* <Col md={2} xs={4}>
-                <Form.Check
-                  label="Matched"
-                  name="matched"
-                  type="radio"
-                  id={"PENDING"}
-                  onChange={(e) => handleCheckboxChange(e)}
-                  defaultChecked={selectedOption === "PENDING"}
-                />
-              </Col>
-              <Col md={2} xs={4}>
-                <Form.Check
-                  label="Un-Matched"
-                  name="matched"
-                  type="radio"
-                  id={"UNMATCHED"}
-                  onChange={(e) => handleCheckboxChange(e)}
-                  defaultChecked={selectedOption === "UNMATCHED"}
-                />
-              </Col>
-              <Col md={2} xs={4}>
-                <Form.Check
-                  label="Deleted"
-                  name="matched"
-                  type="radio"
-                  id={"DELETED"}
-                  onChange={(e) => handleCheckboxChange(e)}
-                  defaultChecked={selectedOption === "DELETED"}
-                />
-              </Col> */}
                 <div className="w-25">
                   <div className="w-100 d-flex flex-row justify-content-start align-items-center">
                     <span className="me-1">Show</span>
@@ -337,7 +286,7 @@ const UnsettledBetComponent = () => {
                     <span className="ms-1">Entries</span>
                   </div>
                 </div>
-                <div className="w-25 d-flex flex-row justify-content-center" >
+                <div className="w-25 d-flex flex-row justify-content-center">
                   <Form.Check
                     label="All"
                     name="matched"
@@ -404,7 +353,6 @@ const UnsettledBetComponent = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
-                
               }}
             >
               <Col md={2} xs={12} className="mt-2">
@@ -461,7 +409,6 @@ const UnsettledBetComponent = () => {
                     type="radio"
                     id={"back"}
                     onChange={(e) => handleCheckboxChange(e)}
-                    // defaultChecked={selectedOption === "PENDING"}
                     className="ms-2 custom-checkbox"
                   />
                   <Form.Check
@@ -470,7 +417,6 @@ const UnsettledBetComponent = () => {
                     type="radio"
                     id={"lay"}
                     onChange={(e) => handleCheckboxChange(e)}
-                    // defaultChecked={selectedOption === "PENDING"}
                     className="ms-2 custom-checkbox"
                   />
                 </div>
@@ -486,7 +432,7 @@ const UnsettledBetComponent = () => {
                   <span className="ms-2 title-14">
                     {" "}
                     Total Amount:{" "}
-                   {parseFloat(
+                    {parseFloat(
                       (selectedCheckedBet?.length > 0
                         ? selectedCheckedBet ?? []
                         : ReportBetList?.rows ?? []
@@ -509,59 +455,17 @@ const UnsettledBetComponent = () => {
               </div>
             </div>
           )}
-          {/* {!isMobile && (
-            <CustomTable
-              bordered={true}
-              striped={!isMobile}
-              isPagination={true}
-              // paginationCount={true}
-              // isSearch={true}
-              setTableConfig={setTableConfig}
-              itemCount={
-                ReportBetList && ReportBetList?.count > 0
-                  ? ReportBetList?.count
-                  : 0
-              }
-              columns={columns}
-            >
-              {ReportBetList && ReportBetList?.count === 0 && (
-                <tr>No data available in table </tr>
-              )}
-              {ReportBetList?.count > 0 &&
-                ReportBetList?.rows?.map((item: any, index: number) => (
-                  <tr key={index}>
-                    {columns.map((column) => (
-                      <td
-                        key={column.id}
-                        className={
-                          item.betType === "NO" || item.betType === "LAY"
-                            ? "bg-red1 lh-1 f200"
-                            : "bg-blue3 lh-1 f200"
-                        }
-                      >
-                        {column.type === "date"
-                          ? moment(_.get(item, column?.id)).format(
-                              "MM/DD/YYYY hh:mm:ss A"
-                            )
-                          : column.type === "index"
-                          ? `${
-                              index +
-                              1 +
-                              tableConfig?.rowPerPage *
-                                ((tableConfig?.page || 1) - 1)
-                            }`
-                          : _.get(item, column.id)}
-                      </td>
-                      // <td key={index}>{item.userName}</td>
-                    ))}
-                  </tr>
-                ))}
-            </CustomTable>
-          )} */}
-          <div className="table-responsive" style={{border:"1px solid #f7f7f7"}}>
+          <div
+            className="table-responsive"
+            style={{ border: "1px solid #f7f7f7" }}
+          >
             <table
               style={{
-                width: isMobile ? gameType === "sports" ?"800px":"100%" : "100%",
+                width: isMobile
+                  ? gameType === "sports"
+                    ? "800px"
+                    : "100%"
+                  : "100%",
                 overflowX: "scroll",
               }}
             >
@@ -570,11 +474,11 @@ const UnsettledBetComponent = () => {
                   className="w-100 d-flex align-items-center fbold"
                   style={{
                     height: "46px",
-                    backgroundColor: isMobile ?"#FFC742":"#f7f7f7",
+                    backgroundColor: isMobile ? "#FFC742" : "#f7f7f7",
                     fontSize: isMobile ? "12px" : "14px",
                     borderBottom: "1px solid #c7c8ca",
-                    border:"1px solid #c7c8ca",
-                    color:isMobile ?"#fff":"#000"
+                    border: "1px solid #c7c8ca",
+                    color: isMobile ? "#fff" : "#000",
                   }}
                 >
                   <th
@@ -645,46 +549,69 @@ const UnsettledBetComponent = () => {
                   className="w-100 d-flex align-items-center fbold"
                   style={{
                     height: "46px",
-                    backgroundColor: isMobile ?"#FFC742":"#f7f7f7",
+                    backgroundColor: isMobile ? "#FFC742" : "#f7f7f7",
                     fontSize: isMobile ? "12px" : "14px",
                     borderBottom: "1px solid #c7c8ca",
-                     border:"1px solid #c7c8ca",
-                     color: isMobile ?"#fff":"#000"
+                    border: "1px solid #c7c8ca",
+                    color: isMobile ? "#fff" : "#000",
                   }}
                 >
                   <td
                     className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                    style={{ width: isMobile?"19%":"30%" }}
+                    style={{ width: isMobile ? "19%" : "30%" }}
                   >
                     Event Name
                   </td>
                   <th
                     className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                    style={{ width: isMobile?"18%":"25%", borderLeft: "1px solid #c7c8ca" }}
+                    style={{
+                      width: isMobile ? "18%" : "25%",
+                      borderLeft: "1px solid #c7c8ca",
+                    }}
                   >
                     Nation
                   </th>
                   <th
-                    className={`pe-1 ${isMobile?"justify-content-center":"justify-content-end"} h-100 d-flex align-items-center`}
-                    style={{ width: isMobile?"18%":"15%", borderLeft: "1px solid #c7c8ca" }}
+                    className={`pe-1 ${
+                      isMobile
+                        ? "justify-content-center"
+                        : "justify-content-end"
+                    } h-100 d-flex align-items-center`}
+                    style={{
+                      width: isMobile ? "18%" : "15%",
+                      borderLeft: "1px solid #c7c8ca",
+                    }}
                   >
                     User Rate
                   </th>
                   <th
-                    className={`pe-1 ${isMobile?"justify-content-center":"justify-content-end"} h-100 d-flex align-items-center`}
-                    style={{ width: isMobile?"15%":"10%", borderLeft: "1px solid #c7c8ca" }}
+                    className={`pe-1 ${
+                      isMobile
+                        ? "justify-content-center"
+                        : "justify-content-end"
+                    } h-100 d-flex align-items-center`}
+                    style={{
+                      width: isMobile ? "15%" : "10%",
+                      borderLeft: "1px solid #c7c8ca",
+                    }}
                   >
                     Amount
                   </th>
                   <th
                     className="ps-1 justify-content-start h-100 d-flex align-items-center"
-                    style={{ width: isMobile?"25%":"16%", borderLeft: "1px solid #c7c8ca" }}
+                    style={{
+                      width: isMobile ? "25%" : "16%",
+                      borderLeft: "1px solid #c7c8ca",
+                    }}
                   >
                     Place Date
                   </th>
                   <th
                     className="justify-content-center h-100 d-flex align-items-center"
-                    style={{ width: isMobile?"5%":"4%", borderLeft: "1px solid #c7c8ca" }}
+                    style={{
+                      width: isMobile ? "5%" : "4%",
+                      borderLeft: "1px solid #c7c8ca",
+                    }}
                   >
                     <input
                       type="checkbox"
@@ -820,32 +747,40 @@ const UnsettledBetComponent = () => {
                           >
                             <td
                               className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                              style={{ width: isMobile?"19%":"30%" }}
+                              style={{ width: isMobile ? "19%" : "30%" }}
                             >
                               {item?.eventName}
                             </td>
                             <td
                               className="ps-2 justify-content-start h-100 d-flex align-items-center"
                               style={{
-                                width: isMobile?"18%":"25%",
+                                width: isMobile ? "18%" : "25%",
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
                               {item?.teamName}
                             </td>
                             <td
-                              className={`pe-1 ${isMobile?"justify-content-center":"justify-content-end"} h-100 d-flex align-items-center`}
+                              className={`pe-1 ${
+                                isMobile
+                                  ? "justify-content-center"
+                                  : "justify-content-end"
+                              } h-100 d-flex align-items-center`}
                               style={{
-                                width: isMobile?"18%":"15%",
+                                width: isMobile ? "18%" : "15%",
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
                               {item?.odds}
                             </td>
                             <td
-                              className={`pe-1 ${isMobile?"justify-content-center":"justify-content-end"} h-100 d-flex align-items-center`}
+                              className={`pe-1 ${
+                                isMobile
+                                  ? "justify-content-center"
+                                  : "justify-content-end"
+                              } h-100 d-flex align-items-center`}
                               style={{
-                                width: isMobile?"15%":"10%",
+                                width: isMobile ? "15%" : "10%",
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
@@ -854,7 +789,7 @@ const UnsettledBetComponent = () => {
                             <td
                               className="ps-1 justify-content-start h-100 d-flex align-items-center"
                               style={{
-                                width: isMobile?"25%":"16%",
+                                width: isMobile ? "25%" : "16%",
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
@@ -865,7 +800,7 @@ const UnsettledBetComponent = () => {
                             <td
                               className="justify-content-center h-100 d-flex align-items-center"
                               style={{
-                                width: isMobile?"5%":"4%",
+                                width: isMobile ? "5%" : "4%",
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
@@ -885,7 +820,11 @@ const UnsettledBetComponent = () => {
               </tbody>
             </table>
             {ReportBetList?.count > 0 && (
-              <div className={`w-100 d-flex justify-content-center align-items-center mt-4 ${isMobile?"flex-column":"flex-row"}`}>
+              <div
+                className={`w-100 d-flex justify-content-center align-items-center mt-4 ${
+                  isMobile ? "flex-column" : "flex-row"
+                }`}
+              >
                 <div
                   className="d-flex flex-row"
                   style={{ border: "1px solid #ddd" }}
@@ -947,120 +886,39 @@ const UnsettledBetComponent = () => {
                     Last
                   </div>
                 </div>
-                <div className={`d-flex flex-row ${isMobile?"mt-1":""}`}>
-                <div className="ms-2">
-                  <span className={`${isMobile ? "title-12" : "title-14"}`}>
-                    Page
-                  </span>
-                  <span
-                    className={`fbold ${isMobile ? "title-12" : "title-14"}`}
-                  >
-                    {currentPage} of{" "}
-                    {Math.floor((ReportBetList?.count || 0) / limit)}
-                  </span>
-                  <span className={`${isMobile ? "title-12" : "title-14"}`}>
-                    {" "}
-                    | Go to Page
-                  </span>
+                <div className={`d-flex flex-row ${isMobile ? "mt-1" : ""}`}>
+                  <div className="ms-2">
+                    <span className={`${isMobile ? "title-12" : "title-14"}`}>
+                      Page
+                    </span>
+                    <span
+                      className={`fbold ${isMobile ? "title-12" : "title-14"}`}
+                    >
+                      {currentPage} of{" "}
+                      {Math.floor((ReportBetList?.count || 0) / limit)}
+                    </span>
+                    <span className={`${isMobile ? "title-12" : "title-14"}`}>
+                      {" "}
+                      | Go to Page
+                    </span>
+                  </div>
+                  <input
+                    type="number"
+                    className="ms-1"
+                    style={{ width: "80px", border: "1px solid #ddd" }}
+                    value={currentPage}
+                    min={1}
+                    onChange={(e) => {
+                      handlePageChange(e.target.value);
+                      setSelectedCheckedBet([]);
+                    }}
+                  />
                 </div>
-                <input
-                  type="number"
-                  className="ms-1"
-                  style={{ width: "80px", border: "1px solid #ddd" }}
-                  value={currentPage}
-                  min={1}
-                  onChange={(e) => {
-                    handlePageChange(e.target.value);
-                    setSelectedCheckedBet([]);
-                  }}
-                />
-              </div>
               </div>
             )}
           </div>
         </Stack>
       </div>
-      {/* {isMobile && (
-        <CustomTable
-          bordered={true}
-          striped={!isMobile}
-          isPagination={true}
-          paginationCount={false}
-          isSearch={false}
-          setTableConfig={setTableConfig}
-          itemCount={
-            ReportBetList && ReportBetList?.count > 0 ? ReportBetList?.count : 0
-          }
-          columns={[]}
-        >
-          <Row className="row row5 mt-2">
-            <Col className="col-12" colspan={12}>
-              {ReportBetList?.count > 0 &&
-                ReportBetList?.rows?.map((item: any, index: number) => {
-                  return (
-                    <div
-                      className={`unsetteled-bet ${
-                        item.betType === "NO" || item.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                      key={index}
-                    >
-                      <div className="row row5">
-                        <div className="col-6 coloumn-6">
-                          <div>
-                            <a>
-                              <span>{item.eventName}</span>
-                            </a>
-                          </div>
-                          <div>
-                            <span className="f600">
-                              Event Type: {item.eventType}
-                            </span>
-                          </div>
-                          <div>
-                            <span className="f600">Market Name: </span>{" "}
-                            {item?.marketType}
-                          </div>
-                          <div>
-                            <span className="f600">Place Date: </span>{" "}
-                            {moment(item?.createdAt).format(
-                              "MM/DD/YYYY hh:mm:ss A"
-                            )}
-                          </div>
-                          <div>
-                            <span className="f600">Matched Date: </span>{" "}
-                            {moment(item?.match?.startAt).format(
-                              "MM/DD/YYYY hh:mm:ss A"
-                            )}
-                          </div>
-                        </div>
-                        <Col className="col-2 reportBody" colspan={6}>
-                          <div>
-                            <span className="f600">Nation</span>
-                          </div>
-                          <div>{item.teamName}</div>
-                        </Col>
-                        <div className="col-2 text-right reportBody">
-                          <div>
-                            <span className="f600">Rate</span>
-                          </div>
-                          <div>{item.odds}</div>
-                        </div>
-                        <div className="col-2 text-right reportBody">
-                          <div>
-                            <span className="f600">Amount</span>
-                          </div>
-                          <div>{item.amount}</div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-            </Col>
-          </Row>
-        </CustomTable>
-      )} */}
     </ReportContainer>
   );
 };

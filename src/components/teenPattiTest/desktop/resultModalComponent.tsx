@@ -71,11 +71,6 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div>
         </div>
-        {/* {data?.result?.win === "0" && (
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            <span className="fs-5">TIE</span>
-          </div>
-        )} */}
         <div className="teen20resultCardContainer mb-3 border-start border-2 border-primar">
           <span className="fs-5">Tiger</span>
           <div

@@ -13,7 +13,6 @@ interface Props {
 const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.desc?.split("|");
   const pair = resultCards?.[0]?.split(" ");
-  // const card = resultCards?.[3]?.split(" ");
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
@@ -32,7 +31,6 @@ const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
-      {/* <div className="w-100 d-sm-flex justify-content-center align-items-center mt-2"> */}
       <div
         className={
           isMobile

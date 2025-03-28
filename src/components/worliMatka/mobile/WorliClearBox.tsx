@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
 
 const WorliClearBox = ({

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import CommonButtonBox from "../CommonButtonBox";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import CommonButtonBox from "../CommonButtonBox";
 
 const SBetBox = ({ type, odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();

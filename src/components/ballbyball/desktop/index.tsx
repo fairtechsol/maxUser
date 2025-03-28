@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import ball from "../../../assets/images/ball-blank.png";
+import { formatNumber } from "../../../helpers";
 import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -14,8 +16,6 @@ import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
-import { formatNumber } from "../../../helpers";
-import ball from "../../../assets/images/ball-blank.png";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -187,10 +187,6 @@ const TeenPattiDesktop = () => {
                   <div className="elemd">
                     <img
                       src={ball}
-                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
-                      // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                      //   curR?.result?.desc.split(" ")[0]
-                      // }.png`}
                       style={{
                         width: "30px",
                         height: "30px",

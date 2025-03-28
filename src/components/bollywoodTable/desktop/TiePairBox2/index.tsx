@@ -17,8 +17,8 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -47,7 +47,6 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
 
   return (
     <div className="tiePairContainer-bt">
-
       <div className="tiePairRateBoxMainlucky">
         <PlayerButton
           value1={lowHigh?.b1}

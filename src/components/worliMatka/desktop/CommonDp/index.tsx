@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch } from "../../../../store/store";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import "../style.scss";
 
 const CommonDp = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [selectedBox, setSelectedBox] = useState<number | null>(null);
-  const [showModal, setShowModal] = useState(false);
   const [clicked, setClicked] = useState<string>("");
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  
- 
+
   const handleBet = (betTeam: any) => {
     let team = {
       bettingType: "BACK",
@@ -41,16 +36,12 @@ const CommonDp = ({ data, odds }: any) => {
   useEffect(() => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
-      setSelectedBox(null);
       setClicked("");
     }
   }, [odds?.gstatus, dispatch]);
 
- 
-  
   useEffect(() => {
     if (selectedBet == null) {
-      setSelectedBox(null);
       setClicked("");
     }
   }, [selectedBet]);
@@ -68,19 +59,20 @@ const CommonDp = ({ data, odds }: any) => {
     </div>
   );
 
-
   return (
-    <div className={`${
-      odds?.gstatus == 0 ? "suspended-box" : ""
-    } worli-full`}>
+    <div className={`${odds?.gstatus == 0 ? "suspended-box" : ""} worli-full`}>
       <div className="worli-box-title">
         <b>240</b>
       </div>
       <div className="worli-box-row">
-        {['1', '2', '3', '4', '5'].map((value, index) => renderBox(value, index))}
+        {["1", "2", "3", "4", "5"].map((value, index) =>
+          renderBox(value, index)
+        )}
       </div>
       <div className="worli-box-row">
-        {['6', '7', '8', '9', '0'].map((value, index) => renderBox(value, index + 5))}
+        {["6", "7", "8", "9", "0"].map((value, index) =>
+          renderBox(value, index + 5)
+        )}
       </div>
     </div>
   );
