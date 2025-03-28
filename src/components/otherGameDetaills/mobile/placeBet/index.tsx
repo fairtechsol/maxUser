@@ -420,10 +420,10 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
       >
         <Container
           className={`${selectedBet?.team?.type === "lay" ||
-              selectedBet?.team?.type === "LAY" ||
-              selectedBet?.team?.type === "no"
-              ? "bg-red1"
-              : "placeBet-bg-blue"
+            selectedBet?.team?.type === "LAY" ||
+            selectedBet?.team?.type === "no"
+            ? "bg-red1"
+            : "placeBet-bg-blue"
             }`}
           fluid
         >
@@ -611,8 +611,8 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                                   selectedBet?.team?.runners?.id,
                                   item?.id
                                 ) < 0
-                                    ? "color-red"
-                                    : "color-green"
+                                  ? "color-red"
+                                  : "color-green"
                                   }`}
                               >
                                 {handleProfitLoss(
@@ -698,8 +698,8 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                                   selectedBet?.team?.matchBetType,
                                   "A"
                                 ) > 0
-                                    ? "color-green"
-                                    : "color-red"
+                                  ? "color-green"
+                                  : "color-red"
                                   }`}
                               >
                                 {handleTeamRates(
@@ -716,8 +716,8 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                                   selectedBet?.team?.matchBetType,
                                   "B"
                                 ) > 0
-                                    ? "color-green"
-                                    : "color-red"
+                                  ? "color-green"
+                                  : "color-red"
                                   }`}
                               >
                                 {handleTeamRates(
@@ -735,8 +735,8 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                                     selectedBet?.team?.matchBetType,
                                     "C"
                                   ) > 0
-                                      ? "color-green"
-                                      : "color-red"
+                                    ? "color-green"
+                                    : "color-red"
                                     }`}
                                 >
                                   {handleTeamRates(
