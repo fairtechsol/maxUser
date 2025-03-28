@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import SuperoverComponentList from "../../components/superover";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -24,28 +25,11 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import SuperoverComponentList from "../../components/superover";
 
 const Superover = () => {
   const dispatch: AppDispatch = useDispatch();
   const [errorCount, setErrorCount] = useState<number>(0);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  // useEffect(() => {
-  //   const scoreBoard = () => {
-  //     if (dragonTigerDetail?.videoInfo?.mid) {
-  //       const Id = dragonTigerDetail.videoInfo?.mid.split(".");
-  //       dispatch(
-  //         casinoScoreboardMatchRates({
-  //           id: Id[1],
-  //           type: cardGamesType.superover,
-  //         })
-  //       );
-  //     }
-  //   };
-  //   const intervalId = setInterval(scoreBoard, 1000);
-
-  //   return () => clearInterval(intervalId);
-  // }, [dispatch, dragonTigerDetail]);
 
   const getScoreBoard = async (marketId: string) => {
     try {
@@ -55,14 +39,7 @@ const Superover = () => {
           type: cardGamesType.cricketv3,
         })
       );
-      // const response: any = await service.get(
-      //   `https://casinoserviceapi.fairgame.club/api/tunnel/casino/sport-score/${marketId}?gameName=${cardGamesType.cricketv3}`
-      //   // `https://scoreboard.fairgame7.com/score/getMatchScore/${marketId}`
-      // );
       setErrorCount(0);
-      // if (response) {
-      //   setLiveScoreBoardData(response);
-      // }
     } catch (e: any) {
       console.log("Error:", e?.message);
       setErrorCount((prevCount: number) => prevCount + 1);

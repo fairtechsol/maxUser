@@ -16,11 +16,11 @@ import {
   loginWithDemo,
   rulesModalShowTrue,
 } from "../../../store/actions/authAction";
+import { getBannerImage } from "../../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-import { getBannerImage } from "../../../store/actions/user/userAction";
 const Login = () => {
   const initialValues: any = {
     userName: "",
@@ -68,13 +68,6 @@ const Login = () => {
       dispatch(authReset());
     }
   }, [success]);
-
-  // useEffect(() => {
-  //   if (isBanner) {
-  //     console.log("isBanner", isBanner);
-  //     navigate("/home");
-  //   }
-  // }, [isBanner]);
 
   return (
     <Form

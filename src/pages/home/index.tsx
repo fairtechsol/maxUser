@@ -1,5 +1,8 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import ImageModal from "../../components/commonComponent/loginModal";
 import MatchList from "../../components/home";
 import {
   expertSocketService,
@@ -13,19 +16,15 @@ import {
   getTabList,
   updateMatchRatesFromApiOnList,
 } from "../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../store/store";
-import { isMobile } from "../../utils/screenDimension";
-import ImageModal from "../../components/commonComponent/loginModal";
 import { getBannerImage } from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
 import { marketApiConst } from "../../utils/constants";
-import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { isMobile } from "../../utils/screenDimension";
 
 const Home = () => {
   const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
   const { rulesPopShow } = useSelector((state: RootState) => state.auth);
-  //const { bannerImage } = useSelector((state: RootState) => state.user.profile);
   const [matchType, setMatchType] = useState("cricket");
   const [show, setShow] = useState(false);
 
@@ -118,7 +117,7 @@ const Home = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [socket, matchType]);          
+  }, [socket, matchType]);
 
   useEffect(() => {
     dispatch(getTabList({}));
@@ -171,7 +170,6 @@ const Home = () => {
       <MatchList setMatchType={setMatchType} matchType={matchType} />
       <ImageModal
         customClass={isMobile ? "" : "modalFull-56 rule-popup"}
-        //show={show && bannerImage}
         show={show}
         setShow={popUpClose}
       />

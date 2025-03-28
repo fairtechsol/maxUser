@@ -1,18 +1,13 @@
 import { useDispatch } from "react-redux";
 
-import { AppDispatch, RootState } from "../../store/store";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { cardGamesType } from "../../utils/constants";
+import Card32BComponentList from "../../components/cards32B";
+import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
-import { useEffect } from "react";
-import {
-  getCasinoButtonValue,
-  getProfile,
-  getProfileInMatchDetail,
-} from "../../store/actions/user/userAction";
 import {
   dragonTigerReset,
   getDragonTigerDetail,
@@ -22,9 +17,14 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
-import { socket, socketService } from "../../socketManager";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import Card32BComponentList from "../../components/cards32B";
+import {
+  getCasinoButtonValue,
+  getProfile,
+  getProfileInMatchDetail,
+} from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
+import { cardGamesType } from "../../utils/constants";
 
 const Cards32B = () => {
   const dispatch: AppDispatch = useDispatch();

@@ -6,13 +6,13 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  casinoMeterPattiMatchRates,
+  dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  dragonTigerReset,
-  casinoMeterPattiMatchRates,
-  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
   getCasinoButtonValue,
@@ -22,8 +22,8 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 
-import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import CasinoMeterComponentList from "../../components/casinoMeter";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const CasinoMeter = () => {
   const dispatch: AppDispatch = useDispatch();

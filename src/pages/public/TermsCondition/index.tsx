@@ -1,6 +1,5 @@
-
-import FooterMain from "../../../layout/main/footerMain";
 import FooterBottom from "../../../layout/main/footerBottom";
+import FooterMain from "../../../layout/main/footerMain";
 
 const Terms = () => {
   return (
@@ -1148,8 +1147,8 @@ const Terms = () => {
           </div>
         </div>
       </div>
-      <FooterMain/>
-      <FooterBottom/>
+      <FooterMain />
+      <FooterBottom />
     </div>
   );
 };

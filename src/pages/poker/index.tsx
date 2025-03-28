@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import PokerComponentList from "../../components/poker";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -22,7 +23,6 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import PokerComponentList from "../../components/poker";
 const Poker6 = () => {
   const dispatch: AppDispatch = useDispatch();
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);

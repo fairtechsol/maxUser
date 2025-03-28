@@ -1,5 +1,11 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import WorliComponentList from "../../components/worli";
 import { socket, socketService } from "../../socketManager";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
   getDragonTigerDetail,
@@ -9,21 +15,14 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
-import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import { useSelector } from "react-redux";
-import {
-  getPlacedBets,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
 import { cardGamesType } from "../../utils/constants";
-import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import WorliComponentList from "../../components/worli";
 
 const Worli = () => {
   const dispatch: AppDispatch = useDispatch();

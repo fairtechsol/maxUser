@@ -1,8 +1,18 @@
-import { useEffect, useRef , useCallback } from "react";
-import {isMobile} from "../../utils/screenDimension";
-import { AppDispatch, RootState } from "../../store/store";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useCallback, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import HorseRaceDetailDesktop from "../../components/horseRacing/desktop/betTable";
+import HorseRaceDetailMobile from "../../components/horseRacing/mobile/betTable";
+import {
+  expertSocketService,
+  socket,
+  socketService,
+} from "../../socketManager";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
 import {
   getMatchDetailHorseRacing,
   updateBalanceOnHorseBetPlace,
@@ -11,26 +21,15 @@ import {
   updateTeamRatesForHorseRacingOnDelete,
 } from "../../store/actions/horseRacing/horseMatchDetailActions";
 import {
-  expertSocketService,
-  socket,
-  socketService,
-} from "../../socketManager";
-import { useNavigate, useParams } from "react-router-dom";
-import {
   getButtonValue,
   getProfileInMatchDetail,
   updateBalanceOnBetDelete,
   updateDeleteReasonBet,
   updatePlacedbetsDeleteReason,
 } from "../../store/actions/user/userAction";
-import {
-  getPlacedBets,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
-import HorseRaceDetailMobile from "../../components/horseRacing/mobile/betTable";
-import HorseRaceDetailDesktop from "../../components/horseRacing/desktop/betTable";
-import axios from "axios";
+import { AppDispatch, RootState } from "../../store/store";
 import { baseUrls } from "../../utils/constants";
+import { isMobile } from "../../utils/screenDimension";
 
 const RaceDetail = () => {
   const intervalRef = useRef<number | null>(null);
@@ -138,8 +137,6 @@ const RaceDetail = () => {
   useEffect(() => {
     try {
       return () => {
-        // expertSocketService.match.leaveMatchRoom(id);
-        // expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
         socketService.userBalance.declaredMatchResultAllUserOff();
@@ -156,16 +153,12 @@ const RaceDetail = () => {
     }
   }, [id]);
 
-  
   const fetchLiveData = useCallback(async () => {
     try {
-      const response = await axios.get(`${baseUrls.matchSocket}/getUserRateDetails/${id}`, {
-        // headers: {
-        //   Authorization: `Bearer ${sessionStorage.getItem("jwtExpert")}`,
-        // },
-      });
+      const response = await axios.get(
+        `${baseUrls.matchSocket}/getUserRateDetails/${id}`
+      );
       setMatchRatesInRedux(response.data);
-      // console.log("Live Data:", response.data);
     } catch (error) {
       console.error("Error fetching live data:", error);
     }
@@ -174,8 +167,11 @@ const RaceDetail = () => {
   const handleVisibilityChange = useCallback(() => {
     if (document.visibilityState === "visible") {
       if (!intervalRef.current) {
-        fetchLiveData(); // Fetch once immediately
-        intervalRef.current = window.setInterval(fetchLiveData, 500) as unknown as number;
+        fetchLiveData();
+        intervalRef.current = window.setInterval(
+          fetchLiveData,
+          500
+        ) as unknown as number;
       }
     } else if (document.visibilityState === "hidden") {
       if (intervalRef.current) {

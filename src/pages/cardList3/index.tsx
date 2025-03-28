@@ -11,13 +11,12 @@ const typeToTitle: { [key: string]: string } = {
   cards32: "CARDS32",
   abj: "ANDAR BAHAR",
   poker: "LIVE POKER",
-  sportCasino : "SPORT CASINO",
+  sportCasino: "SPORT CASINO",
   baccarat: "BACCARAT",
-  bollywoodCasino : "BOLLYWOOD CASINO",
-  worli:"Worli",
-  "3cardj":"3 Cards Judgement",
-  cmatch20:"Cricket Match 20-20"
-  // Add other mappings as needed
+  bollywoodCasino: "BOLLYWOOD CASINO",
+  worli: "Worli",
+  "3cardj": "3 Cards Judgement",
+  cmatch20: "Cricket Match 20-20",
 };
 
 const CardList3 = () => {
@@ -47,7 +46,7 @@ const CardList3 = () => {
                   className="img-fluid"
                   alt={item.name}
                   loading="lazy"
-                  style={{ width: '500px', height: '200px' }}
+                  style={{ width: "500px", height: "200px" }}
                 />
               </NavLink>
             </div>

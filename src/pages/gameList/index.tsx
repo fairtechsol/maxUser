@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -15,9 +16,8 @@ import {
   updateMatchRatesFromApiOnList,
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
-import { isMobile } from "../../utils/screenDimension";
-import axios from "axios";
 import { marketApiConst } from "../../utils/constants";
+import { isMobile } from "../../utils/screenDimension";
 
 const GameList = () => {
   const { loading } = useSelector((state: RootState) => state.match.matchList);
@@ -66,9 +66,7 @@ const GameList = () => {
   useEffect(() => {
     dispatch(getTabList({}));
     if (type) {
-      // setTimeout(() => {
       dispatch(getMatchList({ matchType: type }));
-      // }, 500);
     }
   }, [type]);
 

@@ -67,10 +67,10 @@ const Abj2 = () => {
         socketService.card.cardResult(handleCardResult);
       }
       socketService.card.joinMatchRoom(cardGamesType.andarBahar2);
-        socketService.card.getCardRates(
-          cardGamesType.andarBahar2,
-          setMatchRatesInRedux
-        );
+      socketService.card.getCardRates(
+        cardGamesType.andarBahar2,
+        setMatchRatesInRedux
+      );
       socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
       socketService.card.getLiveGameResultTop10(
         cardGamesType.andarBahar2,

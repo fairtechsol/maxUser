@@ -1,6 +1,5 @@
-
-import FooterMain from "../../../layout/main/footerMain";
 import FooterBottom from "../../../layout/main/footerBottom";
+import FooterMain from "../../../layout/main/footerMain";
 
 const ResponsibleGaming = () => {
   return (
@@ -184,7 +183,7 @@ const ResponsibleGaming = () => {
         </div>
       </div>
       <FooterMain />
-      <FooterBottom/>
+      <FooterBottom />
     </div>
   );
 };

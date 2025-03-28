@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import OTPInput from "react-otp-input";
-import { maxbetLogo } from "../../assets/images";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/store";
+import { useNavigate } from "react-router-dom";
+import { maxbetLogo } from "../../assets/images";
 import {
   resendTokenToDisable,
   verifyAuthToken,
 } from "../../store/actions/authAction";
-import { useNavigate } from "react-router-dom";
+import { AppDispatch } from "../../store/store";
 import { isMobile } from "../../utils/screenDimension";
 const SecurityAuth = () => {
   const navigate = useNavigate();
@@ -44,7 +44,6 @@ const SecurityAuth = () => {
           <img
             src={maxbetLogo}
             alt="MAXBET07"
-            //   className="img-fluid"
             style={{
               width: "100%",
               minHeight: "70px",

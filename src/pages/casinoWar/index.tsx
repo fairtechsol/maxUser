@@ -6,13 +6,13 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  casinoWarPattiMatchRates,
+  dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  casinoWarPattiMatchRates,
-  dragonTigerReset,
-  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
   getCasinoButtonValue,

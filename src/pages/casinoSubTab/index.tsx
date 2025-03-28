@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { liveCasinoList } from "../../store/actions/cards/cardDetail";
-import { isMobile } from "../../utils/screenDimension";
-import LiveCasinoMobile from "../../components/liveCasino/mobile";
-import LiveCasinoDesktop from "../../components/liveCasino/desktop";
 import { useLocation, useNavigate } from "react-router-dom";
+import LiveCasinoDesktop from "../../components/liveCasino/desktop";
+import LiveCasinoMobile from "../../components/liveCasino/mobile";
+import { liveCasinoList } from "../../store/actions/cards/cardDetail";
+import { AppDispatch } from "../../store/store";
+import { isMobile } from "../../utils/screenDimension";
 
 const LiveCasino = () => {
   const dispatch: AppDispatch = useDispatch();

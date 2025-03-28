@@ -86,7 +86,9 @@ const DragonTigerOneDay = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetail(cardGamesType.dragonTigerOneDay));
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay));
+      dispatch(
+        getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay)
+      );
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.dragonTigerOneDay);
         socketService.card.getCardRatesOff(cardGamesType.dragonTigerOneDay);

@@ -7,12 +7,12 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
+  updateCricketMatch20MatchRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  updateCricketMatch20MatchRates,
-  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
   getCasinoButtonValue,
