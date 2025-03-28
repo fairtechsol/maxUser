@@ -1,8 +1,9 @@
-import { dragonTigerCards } from "../../../../utils/constants";
-import { back } from "../../../../assets/images";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { back } from "../../../../assets/images";
 import { RootState } from "../../../../store/store";
+import { dragonTigerCards } from "../../../../utils/constants";
+
 const CommonCardImg = ({
   cardData,
   handleBet,
@@ -81,7 +82,6 @@ const CommonCardImg = ({
                 border: clickedItems[item.code] ? "solid #086f3f 2px" : "none",
               }}
               onClick={() =>
-                
                 handlock(item) !== "" || clickedItems[item.code]
                   ? null
                   : (() => {

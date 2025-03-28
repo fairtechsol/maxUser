@@ -1,4 +1,4 @@
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 
 import CardJDesktop from "./desktop";
 import CardJMobile from "./mobile";

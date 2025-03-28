@@ -14,7 +14,6 @@ import CardBox from "./CardsBox";
 import "./style.scss";
 
 const CardJMobile = () => {
-
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());

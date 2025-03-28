@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { back } from "../../../../assets/images";
 import { RootState } from "../../../../store/store";
 import { dragonTigerCards } from "../../../../utils/constants";
+
 const CommonCardImg = ({
   cardData,
   handleBet,

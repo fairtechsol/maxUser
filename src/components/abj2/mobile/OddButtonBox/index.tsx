@@ -15,27 +15,18 @@ const OddButtonBox = ({
       <div>
         <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
           {value2 === "icon1" ? (
-            <>
-              <ImClubs size={20} color="#000000" />
-            </>
+            <ImClubs size={20} color="#000000" />
           ) : value2 === "icon2" ? (
-            <>
-              <GiSpades size={20} color="#000000" />
-            </>
+            <GiSpades size={20} color="#000000" />
           ) : value2 === "icon3" ? (
-            <>
-              <BiSolidHeart size={20} color="#ff0000" />
-            </>
+            <BiSolidHeart size={20} color="#ff0000" />
           ) : value2 === "icon4" ? (
-            <>
-              <ImDiamonds size={20} color="#ff0000" />
-            </>
+            <ImDiamonds size={20} color="#ff0000" />
           ) : (
             value2
           )}
         </span>
       </div>
-      {/* <div className="tiePairbtn-theme suspended" onClick={handleBet}> */}
       <div
         className={`evenOddbtn-theme-m ${lock ? "suspended" : ""}`}
         style={{ width: "95%" }}
@@ -54,7 +45,7 @@ const OddButtonBox = ({
               : ""
           }`}
         >
-          {profitLoss ||  <br></br>}
+          {profitLoss || <br />}
         </span>
       </div>
     </div>

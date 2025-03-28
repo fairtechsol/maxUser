@@ -1,9 +1,8 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
 
 const CardBox = ({ title, odds, data, cards, bgColor, betType }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -22,9 +21,9 @@ const CardBox = ({ title, odds, data, cards, bgColor, betType }: any) => {
       name: title + " " + nat,
       bettingName: "Match odds",
       selectionId: odds?.sid,
-      min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max,
-      isActive: nat.length==3?true:false
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
+      isActive: nat.length == 3 ? true : false,
     };
     if (nat !== "") {
       dispatch(
@@ -125,7 +124,7 @@ const CardBox = ({ title, odds, data, cards, bgColor, betType }: any) => {
                   `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
                 ]
               ) : (
-                <br></br>
+                <br />
               )
             ) : (
               0

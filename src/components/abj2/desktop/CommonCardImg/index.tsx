@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { dragonTigerCards } from "../../../../utils/constants";
-import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import { dragonTigerCards } from "../../../../utils/constants";
 
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
@@ -68,13 +68,17 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
               }`}
             >
               {" "}
-              {data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
-                  :  <br></br>
-                : 0}
+              {data?.profitLoss ? (
+                data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                ] ? (
+                  data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                ) : (
+                  <br></br>
+                )
+              ) : (
+                0
+              )}
             </span>
           </div>
         );
