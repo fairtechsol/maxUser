@@ -103,7 +103,7 @@ const GameList = () => {
     getMatchListMarket(type);
     const intervalId = setInterval(() => {
       getMatchListMarket(type);
-    }, 60000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [type]);

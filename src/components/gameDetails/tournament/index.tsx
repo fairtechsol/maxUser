@@ -92,7 +92,7 @@ const Tournament = ({ title, box, data, detail }) => {
     const teamA = getBackAndLayRates(data?.runners[0]);
     const teamB = getBackAndLayRates(data?.runners[1]);
 
-    let runner = {};
+    let runner: any = {};
     let odds = 0;
     let type = "";
     let stake = 0;
