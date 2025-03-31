@@ -172,7 +172,7 @@ const Tournament = ({ title, box, data, detail }) => {
   return (
     <>
       <div className="tournamentContainer">
-        <div className="tournamentTitle">
+        <div className="tournamentTitleNew">
           <span
             className={`tournamentTitleTxt ${isMobile ? "f-size13" : "f-size15"
               }`}
