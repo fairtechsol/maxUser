@@ -58,108 +58,108 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
-  const 
-  handleCashoutBet = () => {
-    const [teamAId, teamBId] = data?.runners?.map(team => team.parentRunnerId || team.id);
+  const
+    handleCashoutBet = () => {
+      const [teamAId, teamBId] = data?.runners?.map(team => team.parentRunnerId || team.id);
 
-    const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
-    const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
-    if (profitA === profitB) {
-      toast.error("You are not eligible for cashout!", {
-        style: { backgroundColor: "#ffffff", color: "#000000" },
-      });
-      return;
-    }
-    // profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
-    const getBackAndLayRates = (team) => {
-      const back1 = team?.ex?.availableToBack?.find(item => item.oname === "back1")?.price || 0;
-      const lay1 = team?.ex?.availableToLay?.find(item => item.oname === "lay1")?.price || 0;
+      const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
+      const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
+      if (profitA === profitB) {
+        toast.error("You are not eligible for cashout!", {
+          style: { backgroundColor: "#ffffff", color: "#000000" },
+        });
+        return;
+      }
+      // profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+      const getBackAndLayRates = (team) => {
+        const back1 = team?.ex?.availableToBack?.find(item => item.oname === "back1")?.price || 0;
+        const lay1 = team?.ex?.availableToLay?.find(item => item.oname === "lay1")?.price || 0;
 
-      return {
-        id: team?.id,
-        selectionId: team?.selectionId,
-        teamName: team?.nat || team?.runnerName,
-        back1,
-        lay1,
-        back1Price: data?.gtype === "match" ? (back1 - 1) * 100 : back1,
-        lay1Price: data?.gtype === "match" ? (lay1 - 1) * 100 : lay1,
+        return {
+          id: team?.id,
+          selectionId: team?.selectionId,
+          teamName: team?.nat || team?.runnerName,
+          back1,
+          lay1,
+          back1Price: data?.gtype === "match" ? (back1 - 1) * 100 : back1,
+          lay1Price: data?.gtype === "match" ? (lay1 - 1) * 100 : lay1,
+        };
       };
+
+      // Get back1 & lay1 values for Team A & Team B
+      const teamA = getBackAndLayRates(data?.runners[0]);
+      const teamB = getBackAndLayRates(data?.runners[1]);
+
+      let runner: any = {};
+      let odds = 0;
+      let type = "";
+      let stake = 0;
+
+      const getKeyByValue = (obj, value) => Object.keys(obj).find(key => obj[key] === value);
+
+      if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
+        odds = profitA < profitB ? teamA.back1 : teamA.lay1
+        const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price;
+
+        stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
+        runner = teamA;
+        const key = getKeyByValue(teamA, odds);
+        type = key === "lay1" ? "lay" : "back";
+
+      } else {
+        odds = profitA < profitB ? teamB.lay1 : teamB.back1
+        const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price;
+        stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
+        runner = teamB;
+        const key = getKeyByValue(teamB, odds);
+        type = key === "lay1" ? "lay" : "back";
+      }
+      if (odds < 1) {
+        toast.error("You are not eligible for cashout!", {
+          style: { backgroundColor: "#ffffff", color: "#000000" },
+        });
+        return;
+      }
+      if (!isFinite(stake) || stake <= 0) {
+        toast.error("You are not eligible for cashout!", {
+          style: { backgroundColor: "#ffffff", color: "#000000" },
+        });
+        return;
+      }
+
+      const [teamAStatus, teamBStatus] = data?.runners?.map(team => team.status);
+      if (teamAStatus == "SUSPENDED" || teamBStatus == "SUSPENDED") {
+        toast.error("You are not eligible for cashout!", {
+          style: { backgroundColor: "#ffffff", color: "#000000" },
+        });
+        return;
+      }
+
+      let team = {
+        betOnTeam: runner?.teamName,
+        rate: odds,
+        type: type,
+        stake: stake,
+        betId: data?.id,
+        parentBetId: data?.parentBetId,
+        eventType: data?.gtype,
+        matchId: detail?.id,
+        matchBetType: "tournament",
+        placeIndex: 0,
+        mid: data?.mid?.toString(),
+        selectionId: runner?.selectionId?.toString(),
+        runnerId: runner?.id?.toString(),
+        runners: data,
+        min: data?.minBet,
+        max: data?.maxBet,
+      };
+      dispatch(
+        selectedBetAction({
+          team,
+          data,
+        })
+      );
     };
-
-    // Get back1 & lay1 values for Team A & Team B
-    const teamA = getBackAndLayRates(data?.runners[0]);
-    const teamB = getBackAndLayRates(data?.runners[1]);
-
-    let runner: any = {};
-    let odds = 0;
-    let type = "";
-    let stake = 0;
-
-    const getKeyByValue = (obj, value) => Object.keys(obj).find(key => obj[key] === value);
-
-    if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
-      odds = profitA < profitB ? teamA.back1 : teamA.lay1
-      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price;
-
-      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
-      runner = teamA;
-      const key = getKeyByValue(teamA, odds);
-      type = key === "lay1" ? "lay" : "back";
-
-    } else {
-      odds = profitA < profitB ? teamB.lay1 : teamB.back1
-      const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price;
-      stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
-      runner = teamB;
-      const key = getKeyByValue(teamB, odds);
-      type = key === "lay1" ? "lay" : "back";
-    }
-    if (odds < 1) {
-      toast.error("You are not eligible for cashout!", {
-        style: { backgroundColor: "#ffffff", color: "#000000" },
-      });
-      return;
-    }
-    if (!isFinite(stake) || stake <= 0) {
-      toast.error("You are not eligible for cashout!", {
-        style: { backgroundColor: "#ffffff", color: "#000000" },
-      });
-      return;
-    }
-
-    const [teamAStatus, teamBStatus] = data?.runners?.map(team => team.status);
-    if (teamAStatus == "SUSPENDED" || teamBStatus == "SUSPENDED") {
-      toast.error("You are not eligible for cashout!", {
-        style: { backgroundColor: "#ffffff", color: "#000000" },
-      });
-      return;
-    }
-
-    let team = {
-      betOnTeam: runner?.teamName,
-      rate: odds,
-      type: type,
-      stake: stake,
-      betId: data?.id,
-      parentBetId: data?.parentBetId,
-      eventType: data?.gtype,
-      matchId: detail?.id,
-      matchBetType: "tournament",
-      placeIndex: 0,
-      mid: data?.mid?.toString(),
-      selectionId: runner?.selectionId?.toString(),
-      runnerId: runner?.id?.toString(),
-      runners: data,
-      min: data?.minBet,
-      max: data?.maxBet,
-    };
-    dispatch(
-      selectedBetAction({
-        team,
-        data,
-      })
-    );
-  };
 
   const key = `${data.parentBetId || data.id}_profitLoss_${detail.id}`;
   const profitLossJson = detail?.profitLossDataMatch?.[key];
