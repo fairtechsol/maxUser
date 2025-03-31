@@ -1,5 +1,8 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import ImageModal from "../../components/commonComponent/loginModal";
 import MatchList from "../../components/home";
 import {
   expertSocketService,
@@ -13,13 +16,10 @@ import {
   getTabList,
   updateMatchRatesFromApiOnList,
 } from "../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../store/store";
-import { isMobile } from "../../utils/screenDimension";
-import ImageModal from "../../components/commonComponent/loginModal";
 import { getBannerImage } from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
 import { marketApiConst } from "../../utils/constants";
-import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { isMobile } from "../../utils/screenDimension";
 
 const Home = () => {
   const location = useLocation();
@@ -154,7 +154,9 @@ const Home = () => {
 
   useEffect(() => {
     if (location.pathname == "/home" || location.pathname == "/inPlay") {
-      getMatchListMarket(matchType);
+      setTimeout(() => {
+        getMatchListMarket(matchType);
+      }, 1500);
     }
     const intervalId = setInterval(() => {
       if (location.pathname == "/home" || location.pathname == "/inPlay") {
