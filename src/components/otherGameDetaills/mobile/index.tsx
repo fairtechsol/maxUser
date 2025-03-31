@@ -36,23 +36,23 @@ const FootballMobileGameDetail = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [tvData, setTvData] = useState<any>(null);
 
-  const { otherMatchDetails, loading } = useSelector(
-    (state: RootState) => state.otherGames.matchDetail
+  const { matchDetails, loading } = useSelector(
+    (state: RootState) => state.match.matchList
   );
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
-    if (otherMatchDetails?.eventId) {
+    if (matchDetails?.eventId) {
       getTvData(
-        otherMatchDetails?.eventId,
+        matchDetails?.eventId,
         setTvData,
-        otherMatchDetails?.matchType,
+        matchDetails?.matchType,
         true,
         true
       );
     }
-  }, [otherMatchDetails?.id]);
+  }, [matchDetails?.id]);
 
   return (
     <div>
@@ -62,11 +62,10 @@ const FootballMobileGameDetail = () => {
         <BetTableHeader
           customClass="py-1"
           customTextClass="title-12"
-          title={otherMatchDetails?.title}
+          title={matchDetails?.title}
           rightComponent={
             <span className="title-12 lh-1 f500 text-white ">
-              {otherMatchDetails?.startAt &&
-                formatDate(otherMatchDetails?.startAt)}
+              {matchDetails?.startAt && formatDate(matchDetails?.startAt)}
             </span>
           }
         />
@@ -85,20 +84,19 @@ const FootballMobileGameDetail = () => {
               })`}</div>
             ),
           },
-          otherMatchDetails?.eventId && {
+          matchDetails?.eventId && {
             // id: "live",
             name: (
               <div
                 onClick={() => {
                   if (!showVideo) {
                     getTvData(
-                      otherMatchDetails?.eventId,
+                      matchDetails?.eventId,
                       setTvData,
-                      otherMatchDetails?.matchType,
+                      matchDetails?.matchType,
                       true
                     );
-                  }
-                  else {
+                  } else {
                     setTvData((prev: any) => {
                       return {
                         ...prev,
@@ -137,11 +135,11 @@ const FootballMobileGameDetail = () => {
                       <BetTableHeader
                         customClass="py-2"
                         customTextClass="title-12"
-                        title={otherMatchDetails?.title}
+                        title={matchDetails?.title}
                         rightComponent={
                           <span className="title-12 lh-1 f500">
-                            {otherMatchDetails?.startAt &&
-                              formatDate(otherMatchDetails?.startAt)}
+                            {matchDetails?.startAt &&
+                              formatDate(matchDetails?.startAt)}
                           </span>
                         }
                       />
@@ -156,7 +154,7 @@ const FootballMobileGameDetail = () => {
                                       import.meta.env.VITE_NODE_ENV ==
                                       "production"
                                         ? tvData?.tvData?.iframeUrl
-                                        : `${liveStreamPageUrl}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
+                                        : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
                                     }
                                     title="Live Stream"
                                     referrerPolicy="strict-origin-when-cross-origin"
@@ -189,7 +187,7 @@ const FootballMobileGameDetail = () => {
                               src={
                                 import.meta.env.VITE_NODE_ENV == "production"
                                   ? tvData?.scoreData?.iframeUrl
-                                  : `${scoreBoardUrlMain}${otherMatchDetails?.eventId}/${otherMatchDetails?.matchType}`
+                                  : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`
                               }
                               title="Live Stream"
                               referrerPolicy="strict-origin-when-cross-origin"
@@ -199,59 +197,59 @@ const FootballMobileGameDetail = () => {
                         {/* {liveScoreBoardData && (
                         <Iframe data={liveScoreBoardData} width="100%" />
                       )} */}
-                        {otherMatchDetails?.matchOdd?.isActive && (
+                        {matchDetails?.matchOdd?.isActive && (
                           <Col className="g-0 mt-2" md={12}>
-                            {otherMatchDetails?.matchOdd?.runners?.[0]?.ex
+                            {matchDetails?.matchOdd?.runners?.[0]?.ex
                               ?.availableToBack?.length > 2 ? (
                               <MatchOdd
-                                title={otherMatchDetails?.matchOdd?.name}
-                                data={otherMatchDetails?.matchOdd}
-                                detail={otherMatchDetails}
+                                title={matchDetails?.matchOdd?.name}
+                                data={matchDetails?.matchOdd}
+                                detail={matchDetails}
                               />
                             ) : (
                               <Bookmaker
-                                title={otherMatchDetails?.matchOdd?.name}
+                                title={matchDetails?.matchOdd?.name}
                                 box={2}
-                                data={otherMatchDetails?.matchOdd}
-                                detail={otherMatchDetails}
+                                data={matchDetails?.matchOdd}
+                                detail={matchDetails}
                               />
                             )}
                           </Col>
                         )}
-                        {otherMatchDetails?.bookmaker?.isActive && (
+                        {matchDetails?.bookmaker?.isActive && (
                           <Col className="g-0" md={12}>
                             <Bookmaker
-                              title={otherMatchDetails?.bookmaker?.name}
+                              title={matchDetails?.bookmaker?.name}
                               box={
-                                otherMatchDetails?.bookmaker?.runners?.[0]?.ex
+                                matchDetails?.bookmaker?.runners?.[0]?.ex
                                   ?.availableToBack?.length > 2
                                   ? 6
                                   : 2
                               }
-                              data={otherMatchDetails?.bookmaker}
-                              detail={otherMatchDetails}
+                              data={matchDetails?.bookmaker}
+                              detail={matchDetails}
                               // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
-                        {otherMatchDetails?.bookmaker2?.isActive && (
+                        {matchDetails?.bookmaker2?.isActive && (
                           <Col className="g-0" md={12}>
                             <Bookmaker
-                              title={otherMatchDetails?.bookmaker2?.name}
+                              title={matchDetails?.bookmaker2?.name}
                               box={
-                                otherMatchDetails?.bookmaker2?.runners?.[0]?.ex
+                                matchDetails?.bookmaker2?.runners?.[0]?.ex
                                   ?.availableToBack?.length > 2
                                   ? 6
                                   : 2
                               }
-                              data={otherMatchDetails?.bookmaker2}
-                              detail={otherMatchDetails}
+                              data={matchDetails?.bookmaker2}
+                              detail={matchDetails}
                               // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
-                        {otherMatchDetails?.quickBookmaker?.length > 0 &&
-                          otherMatchDetails?.quickBookmaker
+                        {matchDetails?.quickBookmaker?.length > 0 &&
+                          matchDetails?.quickBookmaker
                             ?.filter((item: any) => item?.isActive)
                             ?.map((item: any) => (
                               <div key={item?.id} className="p-0">
@@ -259,13 +257,13 @@ const FootballMobileGameDetail = () => {
                                   <ManualMarket
                                     title={item?.name}
                                     data={item}
-                                    detail={otherMatchDetails}
+                                    detail={matchDetails}
                                   />
                                 </Col>
                               </div>
                             ))}
-                        {otherMatchDetails?.tournament?.length > 0 &&
-                          otherMatchDetails?.tournament?.map(
+                        {matchDetails?.tournament?.length > 0 &&
+                          matchDetails?.tournament?.map(
                             (item: any, index: number) => (
                               <div key={index} className="pe-0 ps-0">
                                 {item?.activeStatus === "live" &&
@@ -284,8 +282,8 @@ const FootballMobileGameDetail = () => {
                                             : 2
                                         }
                                         data={item}
-                                        detail={otherMatchDetails}
-                                        // data={otherMatchDetails?.matchOdd}
+                                        detail={matchDetails}
+                                        // data={matchDetails?.matchOdd}
                                       />
                                     </Col>
                                   ) : (
@@ -303,16 +301,16 @@ const FootballMobileGameDetail = () => {
                                             : 2
                                         }
                                         data={item}
-                                        detail={otherMatchDetails}
-                                        // data={otherMatchDetails?.matchOdd}
+                                        detail={matchDetails}
+                                        // data={matchDetails?.matchOdd}
                                       />
                                     </Col>
                                   ))}
                               </div>
                             )
                           )}
-                        {otherMatchDetails?.setWinner?.length > 0 &&
-                          otherMatchDetails?.setWinner
+                        {matchDetails?.setWinner?.length > 0 &&
+                          matchDetails?.setWinner
                             ?.filter((item: any) => item?.isActive)
                             ?.slice()
                             ?.sort(customSortOnName)
@@ -328,19 +326,19 @@ const FootballMobileGameDetail = () => {
                                 </Col>
                               </div>
                             ))}
-                        {/* {otherMatchDetails?.bookmaker?.isActive && (
+                        {/* {matchDetails?.bookmaker?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
-                          title={otherMatchDetails?.bookmaker?.name}
+                          title={matchDetails?.bookmaker?.name}
                           type={MatchType.MATCH_ODDS}
-                          data={otherMatchDetails?.bookmaker}
+                          data={matchDetails?.bookmaker}
                           backLayCount={2}
                         />
                       </Col>
                     )} */}
 
-                        {otherMatchDetails?.firstHalfGoal?.length > 0 &&
-                          otherMatchDetails?.firstHalfGoal
+                        {matchDetails?.firstHalfGoal?.length > 0 &&
+                          matchDetails?.firstHalfGoal
                             ?.filter((item: any) => item?.isActive)
                             ?.slice()
                             ?.sort(customSortOnName)
@@ -356,18 +354,18 @@ const FootballMobileGameDetail = () => {
                                 </Col>
                               </div>
                             ))}
-                        {otherMatchDetails?.halfTime?.isActive && (
+                        {matchDetails?.halfTime?.isActive && (
                           <Col className="g-0" md={12}>
                             <BetTable
-                              title={otherMatchDetails?.halfTime?.name}
+                              title={matchDetails?.halfTime?.name}
                               type={MatchType.HALF_TIME}
-                              data={otherMatchDetails?.halfTime}
+                              data={matchDetails?.halfTime}
                               backLayCount={2}
                             />
                           </Col>
                         )}
-                        {otherMatchDetails?.overUnder?.length > 0 &&
-                          otherMatchDetails?.overUnder
+                        {matchDetails?.overUnder?.length > 0 &&
+                          matchDetails?.overUnder
                             ?.filter((item: any) => item?.isActive)
                             ?.slice()
                             ?.sort(customSortOnName)
@@ -423,21 +421,21 @@ const FootballMobileGameDetail = () => {
                               }
                             >
                               <Row>
-                                {otherMatchDetails?.apiSessionActive && (
+                                {matchDetails?.apiSessionActive && (
                                   <Col md={12}>
                                     <BetTable
                                       title={"Session Market"}
                                       type={MatchType.API_SESSION_MARKET}
-                                      data={otherMatchDetails?.apiSession}
+                                      data={matchDetails?.apiSession}
                                     />
                                   </Col>
                                 )}
-                                {otherMatchDetails?.manualSessionActive && (
+                                {matchDetails?.manualSessionActive && (
                                   <Col md={12}>
                                     <BetTable
                                       title={"Quick Session Market"}
                                       type={MatchType.SESSION_MARKET}
-                                      data={otherMatchDetails?.sessionBettings}
+                                      data={matchDetails?.sessionBettings}
                                     />
                                   </Col>
                                 )}

@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   expertSocketService,
+  matchService,
   socket,
   socketService,
-  matchSocket,
-  matchService,
 } from "../../socketManager";
 import {
   betPlacedReset,
@@ -14,19 +13,17 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  matchDetailAction,
+  matchDetailReset,
   // getMatchList,
   selectedBetAction,
-} from "../../store/actions/match/matchListAction";
-import {
-  otherMatchDetailAction,
-  resetOtherMatchDetail,
   updateMatchRates,
-  updateTeamRatesOnPlaceBet,
-  updateUserBalanceOnPlaceBet,
-} from "../../store/actions/otherMatchActions";
+} from "../../store/actions/match/matchListAction";
+import { updateTeamRatesOnPlaceBet } from "../../store/actions/otherMatchActions";
 import {
   getButtonValue,
   getProfileInMatchDetail,
+  updateBalance,
   updateBalanceOnBetDelete,
   updateBalanceOnSessionResult,
   updateDeleteReasonBet,
@@ -41,9 +38,7 @@ import FootballMobileGameDetail from "./mobile";
 
 const FootballGameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { success } = useSelector(
-    (state: RootState) => state.otherGames.matchDetail
-  );
+  const { success } = useSelector((state: RootState) => state.match.matchList);
   const navigate = useNavigate();
   const { id, type } = useParams();
 
@@ -52,7 +47,7 @@ const FootballGameDetails = () => {
       matchService.connect([id]);
     }
     return () => {
-      matchService.disconnect(); 
+      matchService.disconnect();
     };
   }, [id]);
 
@@ -71,7 +66,7 @@ const FootballGameDetails = () => {
   };
   const setMatchBetsPlaced = (event: any) => {
     try {
-      dispatch(updateUserBalanceOnPlaceBet(event?.jobData));
+      dispatch(updateBalance(event?.jobData));
       if (event?.jobData?.matchId === id) {
         dispatch(updateBetsPlaced(event?.jobData?.newBet));
         dispatch(updateTeamRatesOnPlaceBet(event?.jobData));
@@ -186,7 +181,7 @@ const FootballGameDetails = () => {
     try {
       if (id) {
         dispatch(selectedBetAction(null));
-        dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
+        dispatch(matchDetailAction(id));
         dispatch(getPlacedBets(id));
       }
     } catch (e) {
@@ -237,7 +232,7 @@ const FootballGameDetails = () => {
         socketService.userBalance.matchResultUnDeclared(handleMatchResult);
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
-        dispatch(resetOtherMatchDetail());
+        dispatch(matchDetailReset());
         dispatch(betPlacedReset());
       };
     } catch (e) {

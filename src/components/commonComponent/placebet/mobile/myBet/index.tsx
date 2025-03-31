@@ -1,21 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Modal, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { formatNumber } from "../../../../../helpers";
 import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../../../store/actions/match/matchListAction";
-import "./style.scss";
 import { AppDispatch, RootState } from "../../../../../store/store";
-import CustomModal from "../../../modal";
-import CustomButton from "../../../button";
 import { ApiConstants } from "../../../../../utils/constants";
-import Loader from "../../../loader";
-import { formatNumber } from "../../../../../helpers";
 import ButtonValues from "../../../../gameDetails/mobile/buttonValues";
-import { Modal } from "react-bootstrap";
+import CustomButton from "../../../button";
+import Loader from "../../../loader";
+import CustomModal from "../../../modal";
+import "./style.scss";
 
 interface PlaceBetProps {
   show: boolean;
@@ -65,7 +64,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
   }, [buttonValues2]);
 
   useEffect(() => {
-    setStake(selectedBet?.team?.stake<1?"":selectedBet?.team?.stake);
+    setStake(selectedBet?.team?.stake < 1 ? "" : selectedBet?.team?.stake);
   }, [selectedBet]);
 
   useEffect(() => {
@@ -90,7 +89,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
     if (success) {
       setMatchOddLoading(false);
       dispatch(betPlaceSuccessReset());
-      
+
     }
     if (error) {
       setMatchOddLoading(false);
@@ -112,12 +111,11 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
         }}
       >
         <Container
-          className={`${
-            selectedBet?.team?.bettingType === "LAY" ||
-            selectedBet?.team?.bettingType === "NO"
+          className={`${selectedBet?.team?.bettingType === "LAY" ||
+              selectedBet?.team?.bettingType === "NO"
               ? "bg-red1"
               : "placeBet-bg-blue"
-          }`}
+            }`}
           fluid
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
@@ -169,9 +167,8 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             <Col xs={4} className="f800 title-12">
               <CustomButton
                 style={{ height: "28px" }}
-                className={`f600 w-100 br-5 ${
-                  selectedBet?.team?.stake < 1 ? "btnbg-red" : "btnbg-blue"
-                }`}
+                className={`f600 w-100 br-5 ${selectedBet?.team?.stake < 1 ? "btnbg-red" : "btnbg-blue"
+                  }`}
                 disabled={selectedBet?.team?.stake < 1 ? true : false}
                 onClick={() => {
                   try {
@@ -209,7 +206,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                     );
                     setStake(0);
                     // setTimeout(() => {
-                      dispatch(selectedBetAction(null));
+                    dispatch(selectedBetAction(null));
                     // }, 500);
                   } catch (e) {
                     console.log(e);

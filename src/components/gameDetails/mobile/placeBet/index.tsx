@@ -133,20 +133,20 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       profit =
         data?.type === "back" || data?.type === "BACK"
           ? (
-              -Number(data?.stake) +
-              Number(handleTeamRates(data?.matchBetType, type))
-            ).toFixed(2)
+            -Number(data?.stake) +
+            Number(handleTeamRates(data?.matchBetType, type))
+          ).toFixed(2)
           : (
-              Number(data?.stake) +
-              Number(handleTeamRates(data?.matchBetType, type))
-            ).toFixed(2);
+            Number(data?.stake) +
+            Number(handleTeamRates(data?.matchBetType, type))
+          ).toFixed(2);
     }
     return isNaN(profit)
       ? Number(
-          handleTeamRates(data?.matchBetType, type)
-            ? Number(handleTeamRates(data?.matchBetType, type))
-            : 0
-        ).toFixed(2)
+        handleTeamRates(data?.matchBetType, type)
+          ? Number(handleTeamRates(data?.matchBetType, type))
+          : 0
+      ).toFixed(2)
       : parseFloat(profit).toFixed(2);
   };
 
@@ -162,7 +162,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     ) {
       rate =
         matchDetails?.profitLossDataMatch[
-          `team${team}Rate_${matchDetails?.id}`
+        `team${team}Rate_${matchDetails?.id}`
         ];
     } else if (
       type === "completeMatch" ||
@@ -172,11 +172,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       rate =
         team === "A"
           ? matchDetails?.profitLossDataMatch[
-              `yesRateComplete_${matchDetails?.id}`
-            ]
+          `yesRateComplete_${matchDetails?.id}`
+          ]
           : matchDetails?.profitLossDataMatch[
-              `noRateComplete_${matchDetails?.id}`
-            ];
+          `noRateComplete_${matchDetails?.id}`
+          ];
     } else {
       rate =
         team === "A"
@@ -193,7 +193,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : 0;
     return profitLossObj?.[r_id];
   };
-  // console.log('selectedBet',selectedBet)
   const handleKeyDown = (e: any) => {
     if (e.key === "e" || e.key === "E") {
       e.preventDefault();
@@ -328,14 +327,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               placeBet({
                 url:
                   selectedBet?.data?.type === "session" ||
-                  selectedBet?.data?.SelectionId
+                    selectedBet?.data?.SelectionId
                     ? ApiConstants.BET.PLACEBETSESSION
                     : selectedBet?.team?.gameType === "other"
-                    ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
-                    : ApiConstants.BET.PLACEBETMATCHBETTING,
+                      ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
+                      : ApiConstants.BET.PLACEBETMATCHBETTING,
                 data:
                   selectedBet?.data?.type === "session" ||
-                  selectedBet?.data?.SelectionId
+                    selectedBet?.data?.SelectionId
                     ? JSON.stringify(payloadForSession)
                     : JSON.stringify(payloadForBettings),
               })
@@ -367,12 +366,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           placeBet({
             url:
               selectedBet?.team?.matchBetType === "session" ||
-              selectedBet?.data?.SelectionId
+                selectedBet?.data?.SelectionId
                 ? ApiConstants.BET.PLACEBETSESSION
                 : ApiConstants.BET.PLACEBETMATCHBETTING,
             data:
               selectedBet?.team?.matchBetType === "session" ||
-              selectedBet?.data?.SelectionId
+                selectedBet?.data?.SelectionId
                 ? JSON.stringify(payloadForSession)
                 : JSON.stringify(payloadForBettings),
           })
@@ -391,12 +390,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     if (data?.runnerId === id) {
       profit =
         parseFloat(stake) * (parseFloat(data?.rate) - 1) +
-        parseFloat(handleProfitLoss(data?.runners?.id, id));
+        parseFloat(handleProfitLoss(data?.runners?.parentBetId || data?.runners?.id, id));
     } else {
       profit =
-        parseFloat(handleProfitLoss(data?.runners?.id, id)) - parseFloat(stake);
+        parseFloat(handleProfitLoss(data?.runners?.parentBetId || data?.runners?.id, id)) - parseFloat(stake);
     }
-    // console.log(id,'first',data)
+
     return profit ? profit : "";
   };
   const handleName = (selected: any) => {
@@ -419,13 +418,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
         }}
       >
         <Container
-          className={`${
-            selectedBet?.team?.type === "lay" ||
+          className={`${selectedBet?.team?.type === "lay" ||
             selectedBet?.team?.type === "LAY" ||
             selectedBet?.team?.type === "no"
-              ? "bg-red1"
-              : "placeBet-bg-blue"
-          }`}
+            ? "bg-red1"
+            : "placeBet-bg-blue"
+            }`}
           fluid
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
@@ -465,14 +463,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 style={{
                   border:
                     selectedBet?.team?.type === "lay" ||
-                    selectedBet?.team?.type === "LAY" ||
-                    selectedBet?.team?.type === "no"
+                      selectedBet?.team?.type === "LAY" ||
+                      selectedBet?.team?.type === "no"
                       ? "1px solid #faa9ba"
                       : "1px solid #72bbef",
                   backgroundColor:
                     selectedBet?.team?.type === "lay" ||
-                    selectedBet?.team?.type === "LAY" ||
-                    selectedBet?.team?.type === "no"
+                      selectedBet?.team?.type === "LAY" ||
+                      selectedBet?.team?.type === "no"
                       ? "#f7dde2"
                       : "#cbe3f3",
                 }}
@@ -526,9 +524,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             <Col xs={4} className="f800 title-12">
               <CustomButton
                 style={{ height: "28px" }}
-                className={`f600 w-100 br-5 ${
-                  selectedBet?.team?.stake === 0 ? "btnbg-red" : "btnbg-blue"
-                }`}
+                className={`f600 w-100 br-5 ${selectedBet?.team?.stake === 0 ? "btnbg-red" : "btnbg-blue"
+                  }`}
                 onClick={handleSubmit}
                 disabled={selectedBet?.team?.stake === 0 ? true : false}
               >
@@ -547,7 +544,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             </Col>
             <Col xs={4} className="title-12 text-center">
               {selectedBet?.team?.eventType === "horseRacing" ||
-              selectedBet?.team?.eventType === "greyHound"
+                selectedBet?.team?.eventType === "greyHound"
                 ? 0
                 : handleProfit(stake)}
             </Col>
@@ -617,19 +614,18 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           <div className="row">
                             <div className="col-md-12 text-center">
                               <span
-                                className={`f400 title-12 ${
-                                  handleProfitLoss(
-                                    selectedBet?.team?.runners?.id,
-                                    item?.id
-                                  ) < 0
-                                    ? "color-red"
-                                    : "color-green"
-                                }`}
+                                className={`f400 title-12 ${handleProfitLoss(
+                                  selectedBet?.team?.runners?.parentBetId || selectedBet?.team?.runners?.id,
+                                  item?.parentRunnerId || item?.id
+                                ) < 0
+                                  ? "color-red"
+                                  : "color-green"
+                                  }`}
                               >
-                                {handleProfitLoss(
-                                  selectedBet?.team?.runners?.id,
-                                  item?.id
-                                )}
+                                {Number(handleProfitLoss(
+                                  selectedBet?.team?.runners?.parentBetId || selectedBet?.team?.runners?.id,
+                                  item?.parentRunnerId || item?.id
+                                )).toFixed(2)}
                               </span>
                             </div>
                           </div>
@@ -645,17 +641,17 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                                   Number(
                                     handleTounamentProLoss(
                                       selectedBet?.team,
-                                      item?.id
+                                      item?.parentRunnerId || item?.id
                                     )
                                   ) > 0
                                     ? "color-green"
                                     : "color-red"
                                 }
                               >
-                                {handleTounamentProLoss(
+                                {Number(handleTounamentProLoss(
                                   selectedBet?.team,
-                                  item?.id
-                                )}
+                                  item?.parentRunnerId || item?.id
+                                )).toFixed(2)}
                               </span>
                             </div>
                           </div>
