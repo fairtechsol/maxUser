@@ -60,7 +60,8 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
-  const handleCashoutBet = () => {
+  const 
+  handleCashoutBet = () => {
     console.log("data :", data)
     const [teamAId, teamBId] = data?.runners?.map(team => team.parentRunnerId || team.id);
 
@@ -187,7 +188,7 @@ const Tournament = ({ title, box, data, detail }) => {
               disabled={
                 Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? true : false
               }
-              className="submit-buttonn"
+              className="submit-buttonn cursor-pointer"
               onClick={handleCashoutBet}
               style={{
                 backgroundColor:
