@@ -50,8 +50,6 @@ const Tournament = ({ title, box, data, detail }) => {
       max: data?.maxBet,
     };
 
-    console.log(" team :", team)
-    console.log(" data :", data)
     dispatch(
       selectedBetAction({
         team,
@@ -62,7 +60,6 @@ const Tournament = ({ title, box, data, detail }) => {
 
   const 
   handleCashoutBet = () => {
-    console.log("data :", data)
     const [teamAId, teamBId] = data?.runners?.map(team => team.parentRunnerId || team.id);
 
     const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
@@ -117,7 +114,6 @@ const Tournament = ({ title, box, data, detail }) => {
       const key = getKeyByValue(teamB, odds);
       type = key === "lay1" ? "lay" : "back";
     }
-    console.log("odds :", odds)
     if (odds < 1) {
       toast.error("You are not eligible for cashout!", {
         style: { backgroundColor: "#ffffff", color: "#000000" },
@@ -157,7 +153,6 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
-    console.log("team 11:", team)
     dispatch(
       selectedBetAction({
         team,
