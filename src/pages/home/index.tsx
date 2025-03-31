@@ -118,7 +118,7 @@ const Home = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [socket, matchType]);          
+  }, [socket, matchType]);
 
   useEffect(() => {
     dispatch(getTabList({}));
@@ -153,6 +153,9 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    if (location.pathname == "/home" || location.pathname == "/inPlay") {
+      getMatchListMarket(matchType);
+    }
     const intervalId = setInterval(() => {
       if (location.pathname == "/home" || location.pathname == "/inPlay") {
         getMatchListMarket(matchType);
