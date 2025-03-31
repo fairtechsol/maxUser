@@ -50,7 +50,7 @@ const initialState: InitialState = {
   selectedBet: null,
   searchedMatchList: null,
   marketId: "",
-  liveScoreBoardData:null,
+  liveScoreBoardData: null,
 };
 
 const matchListSlice = createSlice({
@@ -224,7 +224,7 @@ const matchListSlice = createSlice({
         //   }
         // });
         state.loading = false;
-        state.liveScoreBoardData=scoreBoard?.data;
+        state.liveScoreBoardData = scoreBoard?.data;
         let parsedSessionBettings =
           state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
         const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];
@@ -485,22 +485,22 @@ const matchListSlice = createSlice({
 
           const updatedProfitLossDataSession = isBetIdPresent
             ? state.matchDetails?.profitLossDataSession?.map((item: any) =>
-                item?.betId === betId
-                  ? {
-                      ...item,
-                      maxLoss: JSON.parse(profitLoss)?.maxLoss,
-                      totalBet: JSON.parse(profitLoss)?.totalBet,
-                    }
-                  : item
-              )
-            : [
-                ...state.matchDetails?.profitLossDataSession,
-                {
-                  betId: betId,
+              item?.betId === betId
+                ? {
+                  ...item,
                   maxLoss: JSON.parse(profitLoss)?.maxLoss,
                   totalBet: JSON.parse(profitLoss)?.totalBet,
-                },
-              ];
+                }
+                : item
+            )
+            : [
+              ...state.matchDetails?.profitLossDataSession,
+              {
+                betId: betId,
+                maxLoss: JSON.parse(profitLoss)?.maxLoss,
+                totalBet: JSON.parse(profitLoss)?.totalBet,
+              },
+            ];
 
           state.matchDetails = {
             ...state.matchDetails,
@@ -519,7 +519,7 @@ const matchListSlice = createSlice({
           matchId,
           matchBetType,
         } = action.payload;
-        
+
         if (matchBetType === "tournament") {
           state.matchDetails = {
             ...state.matchDetails,
@@ -529,15 +529,16 @@ const matchListSlice = createSlice({
             },
           };
         } else {
-        state.matchDetails = {
-          ...state.matchDetails,
-          profitLossDataMatch: {
-            ...state.matchDetails?.profitLossDataMatch,
-            [teamArateRedisKey]: redisObject[teamArateRedisKey],
-            [teamBrateRedisKey]: redisObject[teamBrateRedisKey],
-            [teamCrateRedisKey]: redisObject[teamCrateRedisKey],
-          },
-        };}
+          state.matchDetails = {
+            ...state.matchDetails,
+            profitLossDataMatch: {
+              ...state.matchDetails?.profitLossDataMatch,
+              [teamArateRedisKey]: redisObject[teamArateRedisKey],
+              [teamBrateRedisKey]: redisObject[teamBrateRedisKey],
+              [teamCrateRedisKey]: redisObject[teamCrateRedisKey],
+            },
+          };
+        }
       })
       .addCase(updateProfitLossOnDeleteSession.fulfilled, (state, action) => {
         const { betId, profitLoss, matchId } = action.payload;

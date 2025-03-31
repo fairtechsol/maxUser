@@ -346,7 +346,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                 data: JSON.stringify(payloadForRace),
               })
             );
-          }, 0);
+          }, getProfile?.delayTime * 1000);
         } else {
           setTimeout(() => {
             dispatch(
@@ -365,7 +365,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                     : JSON.stringify(payloadForBettings),
               })
             );
-          }, 0);
+          }, getProfile?.delayTime * 1000);
         }
       } else if (selectedBet?.team?.matchBetType === "tournament") {
         setMatchOddLoading(true);
@@ -377,7 +377,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                 data: JSON.stringify(payloadForTournament),
               })
             );
-          }, 0);
+          }, getProfile?.delayTime * 1000);
         } else {
           dispatch(
             placeBet({
