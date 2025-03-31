@@ -169,7 +169,7 @@ const Tournament = ({ title, box, data, detail }) => {
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
   const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
-
+  console.log("selectedBet :", selectedBet)
   return (
     <>
       <div className="tournamentContainer">
@@ -328,7 +328,7 @@ const Tournament = ({ title, box, data, detail }) => {
                           : profitLossObj?.[item.parentRunnerId || item.id]
                         : ""}
                     </span>
-                    {selectedBet?.team?.parentBetId ===
+                    {selectedBet?.team?.parentBetId || selectedBet?.team?.betId ===
                       (data.parentBetId || data?.id) ? (
                       <span
                         className="title-12 f-400"
@@ -360,7 +360,7 @@ const Tournament = ({ title, box, data, detail }) => {
                             data?.gtype
                           )} */}
                         {profitLossObj?.[item.parentRunnerId || item.id]
-                          ? selectedBet?.team?.parentBetId ===
+                          ? selectedBet?.team?.betId ===
                             (data.parentBetId || data?.id)
                             ? (parseFloat(
                               (profitLossObj?.[item.parentRunnerId || item.id])
@@ -377,6 +377,7 @@ const Tournament = ({ title, box, data, detail }) => {
                     ) : (
                       ""
                     )}
+                    {/* {selectedBet?.team?.betId} */}
                   </div>
                 </div>
                 <div
