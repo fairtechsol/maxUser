@@ -102,7 +102,7 @@ const GameList = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       getMatchListMarket(type);
-    }, 500);
+    }, 60000);
 
     return () => clearInterval(intervalId);
   }, [type]);

@@ -157,7 +157,7 @@ const Home = () => {
       if (location.pathname == "/home" || location.pathname == "/inPlay") {
         getMatchListMarket(matchType);
       }
-    }, 500);
+    }, 60000);
 
     if (location.pathname != "/home" && location.pathname != "/inPlay") {
       clearInterval(intervalId);
