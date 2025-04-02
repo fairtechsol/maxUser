@@ -1,7 +1,6 @@
+import moment from "moment-timezone";
 import { useEffect, useState } from "react";
 import { Modal, Table } from "react-bootstrap";
-// import { FiMonitor } from "react-icons/fi";
-import moment from "moment-timezone";
 import { FaHome, FaLock } from "react-icons/fa";
 import { FiMonitor } from "react-icons/fi";
 import { Img } from "react-image";
@@ -126,16 +125,15 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         <thead>
           <tr>
             {availableGameType[mTypeid] === "horseRacing" ||
-            availableGameType[mTypeid] === "greyHound" ? (
+              availableGameType[mTypeid] === "greyHound" ? (
               <></>
             ) : (
               <>
                 {availableGameType[mTypeid] &&
                   tableHeading?.map((item) => (
                     <th
-                      className={`title-14 lh-1 pt-2 ${
-                        item?.textAlign === "center" ? "text-center" : ""
-                      }`}
+                      className={`title-14 lh-1 pt-2 ${item?.textAlign === "center" ? "text-center" : ""
+                        }`}
                       colSpan={item?.colspan}
                       key={item?.id}
                     >
@@ -144,13 +142,13 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                   ))}
               </>
             )}
-            {}
+            { }
           </tr>
         </thead>
         <tbody>
           {availableGameType[mTypeid] ? (
             availableGameType[mTypeid] === "horseRacing" ||
-            availableGameType[mTypeid] === "greyHound" ? (
+              availableGameType[mTypeid] === "greyHound" ? (
               <>
                 {!countryWiseList || countryWiseList?.length === 0 ? (
                   <div className="text-center">
@@ -346,8 +344,8 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                       {parseInt(getProfile?.userBal?.exposure) === 0
                         ? 0
                         : -parseFloat(
-                            getProfile?.userBal?.exposure || 0
-                          ).toFixed(2)}
+                          getProfile?.userBal?.exposure || 0
+                        ).toFixed(2)}
                     </b>
                   </span>
                 </div>
@@ -396,10 +394,9 @@ const MatchListRow = ({ item, matchType }: any) => {
               expertSocketService.match.joinMatchRoom(item?.id);
 
               navigate(
-                `/${
-                  matchType === "cricket" || matchType === "politics"
-                    ? "game-detail/cricket"
-                    : `other-game-detail/${matchType}`
+                `/${matchType === "cricket" || matchType === "politics"
+                  ? "game-detail/cricket"
+                  : `other-game-detail/${matchType}`
                 }/${item?.id}`
               );
             }}
@@ -437,8 +434,8 @@ const MatchListRow = ({ item, matchType }: any) => {
             )}
             {/* Bookmaker Icon */}
             {item?.bm == "True" ||
-            item?.bm == true ||
-            item?.isBookmaker.length > 0 ? (
+              item?.bm == true ||
+              item?.isBookmaker.length > 0 ? (
               <span className="bookmaker">
                 <img src="/ic_bm.png" alt={"bookmaker"} />
               </span>
@@ -458,10 +455,10 @@ const MatchListRow = ({ item, matchType }: any) => {
             ) : (
               item?.matchOdds?.[0]?.status === "SUSPENDED"
             )) && (
-              <div className="suspended-list-rates">
-                <FaLock color="#fff" />
-              </div>
-            )}
+                <div className="suspended-list-rates">
+                  <FaLock color="#fff" />
+                </div>
+              )}
             <BackLayComponent
               backRate={
                 (item?.matchOdds?.[0]?.runners &&
@@ -520,10 +517,10 @@ const MatchListRow = ({ item, matchType }: any) => {
             ) : (
               item?.matchOdds?.[0]?.status === "SUSPENDED"
             )) && (
-              <div className="suspended-list-rates">
-                <FaLock color="#fff" />
-              </div>
-            )}
+                <div className="suspended-list-rates">
+                  <FaLock color="#fff" />
+                </div>
+              )}
             <BackLayComponent
               backRate={
                 (item?.matchOdds?.[0]?.runners &&
@@ -557,10 +554,10 @@ const MatchListRow = ({ item, matchType }: any) => {
             ) : (
               item?.matchOdds?.[0]?.status === "SUSPENDED"
             )) && (
-              <div className="suspended-list-rates">
-                <FaLock color="#fff" />
-              </div>
-            )}
+                <div className="suspended-list-rates">
+                  <FaLock color="#fff" />
+                </div>
+              )}
             <BackLayComponent
               backRate={item?.back1 || item?.section?.[0]?.odds?.[0]?.odds || 0}
               layRate={item?.lay1 || item?.section?.[0]?.odds?.[1]?.odds || 0}

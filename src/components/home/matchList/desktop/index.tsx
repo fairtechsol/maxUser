@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
-// import { onTabSwitch } from "../../../../utils/tabSwitch";
 import { useLocation, useParams } from "react-router-dom";
+import { RootState } from "../../../../store/store";
 import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";

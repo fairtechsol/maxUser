@@ -1,24 +1,17 @@
+import { useState } from "react";
 import { Table } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
-// import { useDispatch } from "react-redux";
-// import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { useSelector } from "react-redux";
 import {
-  // AppDispatch,
   RootState,
 } from "../../../../store/store";
-// import { teamStatus } from "../../../../utils/constants";
-import {isMobile} from "../../../../utils/screenDimension";
-// import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
-// import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
+import { isMobile } from "../../../../utils/screenDimension";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
-import "../../../gameDetails/betTable/apiSessionMarket/style.scss";
 import CustomModal from "../../../commonComponent/modal";
-import RunBoxTable from "../runBoxTable";
-import { useState } from "react";
-// import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
-import { useSelector } from "react-redux";
+import "../../../gameDetails/betTable/apiSessionMarket/style.scss";
 import Desktop from "../../../rules/desktop";
 import Mobile from "../../../rules/mobile";
+import RunBoxTable from "../runBoxTable";
 import "../style.scss";
 interface SessionMarketTableProps {
   data: any;
@@ -26,9 +19,7 @@ interface SessionMarketTableProps {
   matchDetails: any;
 }
 function TeamMarketTable({
-  // data,
   title,
-  // matchDetails,
 }: SessionMarketTableProps) {
   const { runAmount } = useSelector((state: RootState) => state.bets);
   // State for the "Run Position" modal
@@ -36,16 +27,6 @@ function TeamMarketTable({
 
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
-  // const dispatch: AppDispatch = useDispatch();
-
-  // const handleClick = (team: any, data: any) => {
-  //   dispatch(
-  //     selectedBetAction({
-  //       team,
-  //       data,
-  //     })
-  //   );
-  // };
 
   return (
     <div
@@ -61,11 +42,10 @@ function TeamMarketTable({
                   rightComponent={
                     <div>
                       <span
-                        className={`${
-                          isMobile
-                            ? "text-black title-16"
-                            : "text-white title-20"
-                        }`}
+                        className={`${isMobile
+                          ? "text-black title-16"
+                          : "text-white title-20"
+                          }`}
                       >
                         <IoInformationCircle
                           onClick={() => setShowRulesModal(true)}

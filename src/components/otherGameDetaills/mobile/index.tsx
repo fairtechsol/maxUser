@@ -1,21 +1,19 @@
 import { memo, useEffect, useState } from "react";
 import { Col, Container, Ratio, Row, Tab } from "react-bootstrap";
+import { FaTv } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { customSortOnName } from "../../../helpers";
 import { RootState } from "../../../store/store";
+import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
+import { getTvData } from "../../../utils/tvUrlGet";
 import BetTableHeader from "../../commonComponent/betTableHeader";
-// import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
+import NewLoader from "../../commonComponent/newLoader";
 import CommonTabs from "../../commonComponent/tabs";
 import Bookmaker from "../../gameDetails/bookmaker";
 import ManualMarket from "../../gameDetails/manulMarkets";
 import MatchOdd from "../../gameDetails/matchOdd";
-// import PlacedBet from "../../gameDetails/mobile/placeBet";
-import { FaTv } from "react-icons/fa";
-import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
-import { getTvData } from "../../../utils/tvUrlGet";
-import NewLoader from "../../commonComponent/newLoader";
 import "../../gameDetails/mobile/style.scss";
 import Tournament from "../../gameDetails/tournament";
 import BetTable from "../betTable";
@@ -23,16 +21,8 @@ import HtFt from "../htft";
 import MyBet from "./myBet";
 import FootballPlaceBet from "./placeBet";
 
-// import "./style.scss";
-// import BetTable from "../../gameDetails/betTable";
-// import MyBet from "../../gameDetails/mobile/myBet";
-// import PlacedBet from "../../gameDetails/mobile/placeBet";
-
 const FootballMobileGameDetail = () => {
   const [show, setShow] = useState(true);
-  // const [channelId, setChannelId] = useState<string>("");
-  // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
-  // const [errorCount, setErrorCount] = useState<number>(0);
   const [showVideo, setShowVideo] = useState(false);
   const [tvData, setTvData] = useState<any>(null);
 
@@ -56,7 +46,6 @@ const FootballMobileGameDetail = () => {
 
   return (
     <div>
-      {/* <FootballPlaceBet show={show} setShow={setShow} /> */}
       <FootballPlaceBet show={show} setShow={setShow} />
       <Col md={12}>
         <BetTableHeader
@@ -79,9 +68,8 @@ const FootballMobileGameDetail = () => {
           {
             id: "matchedBet",
             name: (
-              <div className="ps-5 border-end pe-2">{`MATCHED BET(${
-                Array.from(new Set(placedBets))?.length
-              })`}</div>
+              <div className="ps-5 border-end pe-2">{`MATCHED BET(${Array.from(new Set(placedBets))?.length
+                })`}</div>
             ),
           },
           matchDetails?.eventId && {
@@ -107,7 +95,7 @@ const FootballMobileGameDetail = () => {
                   setShowVideo(!showVideo);
                 }}
                 className="ps-5"
-                // style={{  lineHeight: 1.22 }}
+              // style={{  lineHeight: 1.22 }}
               >
                 <FaTv size={15} />
               </div>
@@ -131,19 +119,6 @@ const FootballMobileGameDetail = () => {
                   !loading ? (
                     <div style={{ width: "98%" }}>
                       <Row className="ms-0">
-                        {/* <Col className="g-0" md={12}>
-                      <BetTableHeader
-                        customClass="py-2"
-                        customTextClass="title-12"
-                        title={matchDetails?.title}
-                        rightComponent={
-                          <span className="title-12 lh-1 f500">
-                            {matchDetails?.startAt &&
-                              formatDate(matchDetails?.startAt)}
-                          </span>
-                        }
-                      />
-                    </Col> */}
                         {!sessionStorage.getItem("isDemo") && showVideo && (
                           <Container className="px-0">
                             <Row className="justify-content-md-center">
@@ -152,7 +127,7 @@ const FootballMobileGameDetail = () => {
                                   <iframe
                                     src={
                                       import.meta.env.VITE_NODE_ENV ==
-                                      "production"
+                                        "production"
                                         ? tvData?.tvData?.iframeUrl
                                         : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
                                     }
@@ -228,7 +203,7 @@ const FootballMobileGameDetail = () => {
                               }
                               data={matchDetails?.bookmaker}
                               detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
+                            // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
@@ -244,7 +219,7 @@ const FootballMobileGameDetail = () => {
                               }
                               data={matchDetails?.bookmaker2}
                               detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
+                            // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
@@ -271,7 +246,7 @@ const FootballMobileGameDetail = () => {
                                     <Col
                                       className="g-0"
                                       md={12}
-                                      // style={{ marginTop: "10px" }}
+                                    // style={{ marginTop: "10px" }}
                                     >
                                       <HtFt
                                         title={item?.name}
@@ -283,14 +258,14 @@ const FootballMobileGameDetail = () => {
                                         }
                                         data={item}
                                         detail={matchDetails}
-                                        // data={matchDetails?.matchOdd}
+                                      // data={matchDetails?.matchOdd}
                                       />
                                     </Col>
                                   ) : (
                                     <Col
                                       className="g-0"
                                       md={12}
-                                      // style={{ marginTop: "10px" }}
+                                    // style={{ marginTop: "10px" }}
                                     >
                                       <Tournament
                                         title={item?.name}
@@ -302,7 +277,7 @@ const FootballMobileGameDetail = () => {
                                         }
                                         data={item}
                                         detail={matchDetails}
-                                        // data={matchDetails?.matchOdd}
+                                      // data={matchDetails?.matchOdd}
                                       />
                                     </Col>
                                   ))}
@@ -382,69 +357,7 @@ const FootballMobileGameDetail = () => {
                               </div>
                             ))}
 
-                        {/* <Col className="g-0" md={12}>
-                      <CommonTabs
-                        customClass="overflow-x-auto overflow-y-hidden no-wrap"
-                        defaultActive="fancy"
-                      >
-                        {[
-                          {
-                            id: "fancy",
-                            name: "Fancy",
-                          },
-                          // {
-                          //   id: "fancy1",
-                          //   name: "Fancy 1",
-                          // },
-                          // {
-                          //   id: "meter",
-                          //   name: "Meter",
-                          // },
-                          // {
-                          //   id: "khado",
-                          //   name: "Khado",
-                          // },
-                          // {
-                          //   id: "oddEven",
-                          //   name: "OdeEven",
-                          // },
-                        ]?.map((item, index) => {
-                          return (
-                            <Tab
-                              key={index}
-                              eventKey={item?.id}
-                              tabClassName="m-match-list-tabs"
-                              title={
-                                <div className="title-12 text-uppercase f500">
-                                  <span>{item?.name}</span>
-                                </div>
-                              }
-                            >
-                              <Row>
-                                {matchDetails?.apiSessionActive && (
-                                  <Col md={12}>
-                                    <BetTable
-                                      title={"Session Market"}
-                                      type={MatchType.API_SESSION_MARKET}
-                                      data={matchDetails?.apiSession}
-                                    />
-                                  </Col>
-                                )}
-                                {matchDetails?.manualSessionActive && (
-                                  <Col md={12}>
-                                    <BetTable
-                                      title={"Quick Session Market"}
-                                      type={MatchType.SESSION_MARKET}
-                                      data={matchDetails?.sessionBettings}
-                                    />
-                                  </Col>
-                                )}
-                              </Row>
-                            </Tab>
-                          );
-                        })}
-                      </CommonTabs>
-                    </Col> */}
+
                       </Row>
                     </div>
                   ) : (

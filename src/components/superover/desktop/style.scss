@@ -2,17 +2,18 @@
 
 @keyframes winnerbox {
   0% {
-      box-shadow: 0 0 0 0 rgba(29, 127, 30, 0.6);
+    box-shadow: 0 0 0 0 rgba(29, 127, 30, 0.6);
   }
 
   70% {
-      box-shadow: 0 0 0 10px rgba(29, 127, 30, 0);
+    box-shadow: 0 0 0 10px rgba(29, 127, 30, 0);
   }
 
   100% {
-      box-shadow: 0 0 0 0 rgba(29, 127, 30, 0);
+    box-shadow: 0 0 0 0 rgba(29, 127, 30, 0);
   }
 }
+
 .horse-time-detail span {
   position: relative;
   background: #ffc742;
@@ -28,6 +29,7 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
 }
+
 .horse-time-detail span.active::before {
   content: "";
   position: absolute;
@@ -36,89 +38,84 @@
   border-right: 10px solid transparent;
   border-top: 10px solid green;
 }
-.dt20resultModal{
+
+.dt20resultModal {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
 }
-.dt20resultCardContainer{
+
+.dt20resultCardContainer {
   width: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
-.dt20CommonText{
+
+.dt20CommonText {
   font-size: 16px;
   font-weight: 400;
   color: #a2a2a2;
 }
-.dt20CommonText-2{
+
+.dt20CommonText-2 {
   font-size: 16px;
   font-weight: 400;
   color: #000;
   margin-left: 10px;
 }
-.casino-winner-icon{
+
+.casino-winner-icon {
   // font-size: 26px;
   box-shadow: 0 0 0 #FFC742;
-  animation: winnerbox 1.5s infinite;;
+  animation: winnerbox 1.5s infinite;
+  ;
   border-radius: 50%;
   color: #169733;
 }
-// .match-list-tabs {
-//   border-right: 1px solid $secondary !important;
-//   border-radius: 0px !important;
-//   background-color: $gray;
-//   // padding: 2px 10px;
-//   &:hover {
-//     border-right: 1px solid $secondary !important;
-//   }
-//   &.active {
-//     background-color: $secondary !important;
-//     border-color: transparent !important ;
-//   }
-// }
-
-// .navtem {
-//   padding: 0px !important;
-//   margin-top: 10px !important;
-// }
 
 .match-tabs {
-  margin:  0 !important;
+  margin: 0 !important;
   border-right: 1px solid $secondary !important;
   border-radius: 0px !important;
   background-color: $gray;
+
   &:hover {
-      border-right: 1px solid $secondary !important;
+    border-right: 1px solid $secondary !important;
   }
+
   &.active {
-      background-color: $secondary !important;
-      border-color: transparent !important ;
+    background-color: $secondary !important;
+    border-color: transparent !important;
   }
 }
 
-.tab-content > .active {
+.tab-content>.active {
   display: block;
 }
+
 .coupon-card {
   border-radius: 0 0 2px 2px;
 }
+
 .table {
   margin-bottom: 0 !important;
   // background-color: #f7f7f7
 }
+
 .coupon-table tr {
   margin: 0 !important;
 }
+
 .coupon-table tr td {
   padding: 0;
   vertical-align: middle;
   font-size: 14px;
   word-wrap: break-word;
 }
+
 .table.coupon-table {
   margin-bottom: 0;
   border-collapse: collapse;
@@ -127,10 +124,12 @@
 .table.coupon-table td {
   padding: 3px;
 }
+
 .text-dark {
   font-size: 12px;
   padding: 0 2px;
 }
+
 .table.coupon-table tr {
   margin-bottom: 0;
   display: table-row;
@@ -144,13 +143,16 @@
   flex-wrap: wrap;
   // padding: 5px 5px 0 5px;
 }
+
 .horse-time-detail a {
   // margin-bottom: 0;
   display: flex;
 }
+
 .navi-link {
   width: 100%;
 }
+
 .navi-item {
   max-height: 8%;
 }
@@ -160,99 +162,114 @@
   background-color: #ffc742;
   color: #000;
 }
+
 .navi-tabs .navi-item {
   margin: 0;
   background-color: #dddddd;
 }
+
 .navi-tabs .navi-item.active {
   margin: 0;
   background-color: #ffc742 !important;
 }
 
 .navi-tabs .navi-link {
-  padding: 0; /* Remove padding from Nav.Link */
-  margin: 0; /* Remove margin from Nav.Link */
+  padding: 0;
+  /* Remove padding from Nav.Link */
+  margin: 0;
+  /* Remove margin from Nav.Link */
 }
-.tiePairContainer{
+
+.tiePairContainer {
   width: 100%;
   background-color: #eee;
   padding: 10px;
   display: flex;
   flex-direction: column;
 }
-.tiePairRateBoxMain{
+
+.tiePairRateBoxMain {
   width: 100%;
   display: flex;
   flex-direction: row;
   gap: 3%;
 }
-.dtlTitle{
+
+.dtlTitle {
   width: 60%;
   background-color: #ffffff;
   display: flex;
   justify-content: start;
   align-items: center;
-  border-bottom:0.1px solid #c7c8ca;
+  border-bottom: 0.1px solid #c7c8ca;
   padding: 5px;
   font-weight: 600;
   color: #000;
 }
-.dtlsubTitle{
+
+.dtlsubTitle {
   width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom:0.1px solid #c7c8ca;
+  border-bottom: 0.1px solid #c7c8ca;
   border-right: 0.1px solid #c7c8ca;
   font-weight: 600;
   color: #000;
 }
-.card32bTitle{
+
+.card32bTitle {
   width: 60%;
   background-color: #ffffff;
   display: flex;
   justify-content: start;
   align-items: center;
-  border-bottom:0.1px solid #c7c8ca;
+  border-bottom: 0.1px solid #c7c8ca;
   padding: 5px;
   font-weight: 600;
   color: #000;
 }
-.card32bsubTitle{
+
+.card32bsubTitle {
   width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom:0.1px solid #c7c8ca;
+  border-bottom: 0.1px solid #c7c8ca;
   border-right: 0.1px solid #c7c8ca;
   font-weight: 600;
   color: #000;
 }
-.cardNumberTitle{
+
+.cardNumberTitle {
   width: 100%;
   background-color: #ffffff;
   display: flex;
   justify-content: start;
   align-items: center;
-  border-bottom:0.1px solid #c7c8ca;
+  border-bottom: 0.1px solid #c7c8ca;
   padding: 5px;
   font-weight: 600;
   color: #000;
 }
-.lay-BackGround{
+
+.lay-BackGround {
   background-color: #faa9ba;
 }
-.back-BackGround{
+
+.back-BackGround {
   background-color: #72bbef;
 }
-.flex-justify-center{
+
+.flex-justify-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.commonButtonBoxContainer{
+
+.commonButtonBoxContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -261,7 +278,7 @@
 }
 
 
-.marketHeader{
+.marketHeader {
   width: 100%;
   background-color: #ffc742d9;
   display: flex;
@@ -270,7 +287,8 @@
   padding: 5px;
   color: #ffffff;
 }
-.boxContainer{
+
+.boxContainer {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -279,35 +297,32 @@
   padding-left: 5px;
   border-bottom: 0.5px solid #c7c8ca;
 }
-.blboxes{
+
+.blboxes {
   width: 15%;
   display: flex;
   flex-direction: row;
 }
-.blboxessp1{
+
+.blboxessp1 {
   width: 15%;
   display: flex;
   flex-direction: row;
 }
-.blboxessp2{
+
+.blboxessp2 {
   width: 15%;
   display: flex;
   flex-direction: row;
 }
-.rateText{
+
+.rateText {
   font-size: 16px;
   color: #333333;
   text-align: center;
 }
-// .horseRacingTabHeader{
-//   width: 100%;
-//   height: 10%;
-//   background-color: #ffc742;
-//   display: flex;
-//   justify-content: space-between;
-//   padding: 6px 8px;
-// }
-.resultTabHead{
+
+.resultTabHead {
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -315,25 +330,27 @@
   background-color: rgba(0, 74, 37, 0.9);
   align-items: center;
 }
-.resultTeamTab{
+
+.resultTeamTab {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: #f7f7f7;
 }
-// .horseRacingTab .nav-link{
-//   margin: 0 !important;
-// }
-.super-over-rule{
+
+.super-over-rule {
   overflow: auto;
   // min-height: 200px;
   max-height: 400px;
 }
+
 .super-over-rule img {
   height: 40px;
 }
-.super-over-rule .table-over th, .table-over td {
+
+.super-over-rule .table-over th,
+.table-over td {
   padding: 2px 8px;
   vertical-align: middle;
 }
@@ -341,6 +358,7 @@
 .suspended-row {
   position: relative;
 }
+
 .suspended-row::after {
   content: attr(data-title);
   background-color: #373636d6;
@@ -363,6 +381,7 @@
 .suspended-row1 {
   position: relative;
 }
+
 .suspended-row1::after {
   content: attr(data-title);
   background-color: #373636d6;
@@ -385,6 +404,7 @@
 .suspended-row2 {
   position: relative;
 }
+
 .suspended-row2::after {
   content: attr(data-title2);
   background-color: #373636d6;

@@ -1,15 +1,14 @@
-import { useEffect, useRef, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.scss";
-import PlacedBet from "../../../gameDetails/desktop/placeBet";
-import MyBet from "../../../gameDetails/desktop/myBet";
 import moment from "moment";
-import MatchOddComponent from "../matchOddComponent";
-// import CombinedComponent from "../combinedComponent";
+import { useEffect, useRef, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
+import MyBet from "../../../gameDetails/desktop/myBet";
+import PlacedBet from "../../../gameDetails/desktop/placeBet";
+import MatchOddComponent from "../matchOddComponent";
+import "./style.scss";
 
 const HorseRaceDetailDesktop = () => {
   const { matchDetail } = useSelector(
@@ -74,11 +73,11 @@ const HorseRaceDetailDesktop = () => {
                 new Date(
                   new Date(matchDetail?.startAt).setMinutes(
                     new Date(matchDetail?.startAt).getMinutes() -
-                      parseInt(matchDetail?.betPlaceStartBefore)
+                    parseInt(matchDetail?.betPlaceStartBefore)
                   )
                 ).getTime() && (
-                <div className="text-success horse-status"> open </div>
-              )}
+                  <div className="text-success horse-status"> open </div>
+                )}
             </div>
             {/* <CombinedComponent /> */}
             <MatchOddComponent data={matchDetail} />

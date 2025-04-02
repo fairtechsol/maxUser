@@ -75,29 +75,6 @@ const FootballGameDetails = () => {
       console.log(e);
     }
   };
-  // const betDeleted = (event: any) => {
-  //   try {
-  //     dispatch(updateUserBalanceOnPlaceBet(event));
-  //     if (event?.matchId === id) {
-  //       dispatch(
-  //         otherMatchDetailAction({ matchId: id, matchType: "football" })
-  //       );
-  //       dispatch(getPlacedBets(id));
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  // const resultDeclared = (event: any) => {
-  //   try {
-  //     if (event?.matchId === id) {
-  //       navigate("/game-list/football");
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   const sessionResultDeclared = (event: any) => {
     try {
