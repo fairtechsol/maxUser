@@ -9,14 +9,14 @@ import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
-import TeenOpenResult from "./teenCard";
 import TeenPattiTableRow from "./tableRow";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import NewLoader from "../../commonComponent/newLoader";
+import TeenOpenResult from "./teenCard";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -67,8 +67,8 @@ const TeenPattiDesktop = () => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -142,7 +142,6 @@ const TeenPattiDesktop = () => {
     }
   }, [players?.player1?.gstatus, players?.player1?.rate]);
 
-  // console.log("detail",dragonTigerDetail)
   return (
     <>
       <Row>
@@ -169,8 +168,8 @@ const TeenPattiDesktop = () => {
                 <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}`
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}`
                     : ""}
                 </span>
               </div>
@@ -289,7 +288,7 @@ const TeenPattiDesktop = () => {
                         <th
                           colSpan={2}
                           className="box-10 text-center title-14"
-                          style={{ background: "#f7f7f7" ,lineHeight:"1"}}
+                          style={{ background: "#f7f7f7", lineHeight: "1" }}
                         >
                           Pair Plus
                         </th>
@@ -297,7 +296,7 @@ const TeenPattiDesktop = () => {
                     </thead>
                     <tbody>
                       {rules?.map((item, index) => (
-                        <tr key={index} style={{lineHeight:"1"}}>
+                        <tr key={index} style={{ lineHeight: "1" }}>
                           <td
                             className="box-7"
                             style={{ background: "#f7f7f7" }}

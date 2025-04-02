@@ -59,7 +59,6 @@ const PlacedBet = () => {
   );
 
   const dispatch: AppDispatch = useDispatch();
-  // console.log('selectedBet',selectedBet)
   const handleSubmit = () => {
     if (
       ![

@@ -16,11 +16,11 @@ import {
   loginWithDemo,
   rulesModalShowTrue,
 } from "../../../store/actions/authAction";
+import { getBannerImage } from "../../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-import { getBannerImage } from "../../../store/actions/user/userAction";
 const Login = () => {
   const initialValues: any = {
     userName: "",
@@ -69,13 +69,6 @@ const Login = () => {
     }
   }, [success]);
 
-  // useEffect(() => {
-  //   if (isBanner) {
-  //     console.log("isBanner", isBanner);
-  //     navigate("/home");
-  //   }
-  // }, [isBanner]);
-
   return (
     <Form
       className="auth-main text-center d-flex justify-content-center"
@@ -123,7 +116,7 @@ const Login = () => {
               />
             }
             customStyle="mb-4"
-            // isUnderlinedInput={isMobile}
+          // isUnderlinedInput={isMobile}
           />
           <ValidationError
             touched={touched.userName}

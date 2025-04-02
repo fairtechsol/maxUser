@@ -81,26 +81,6 @@ const Poker1dayMobile = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-  // const handleBet = (item: any) => {
-  //   let team = {
-  //     bettingType: "BACK",
-  //     matchId: dragonTigerDetail?.id,
-  //     odd: item?.rate,
-  //     stake: 0,
-  //     matchBetType: "matchOdd",
-  //     betOnTeam: item?.nat,
-  //     name: item?.nat,
-  //     bettingName: "Match odds",
-  //     selectionId: item?.sid,
-  //   };
-  //   dispatch(
-  //     selectedBetAction({
-  //       team,
-  //       dragonTigerDetail,
-  //     })
-  //   );
-  //   // console.log('team',team)
-  // };
 
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.poker1Day}`);
@@ -109,8 +89,8 @@ const Poker1dayMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
         {!activeTab ? (
           <div
@@ -163,13 +143,13 @@ const Poker1dayMobile = () => {
                     </span>
                   </div>
                 </div> */}
-                    <div className="mt-2" style={{ width: "100%" }}>
-                <PairBox
-                  odds={dragonTigerDetail?.playersBonusPair}
-                  data={dragonTigerDetail}
-                  min={dragonTigerDetail?.videoInfo?.min}
-                  max={dragonTigerDetail?.videoInfo?.max}
-                />
+                <div className="mt-2" style={{ width: "100%" }}>
+                  <PairBox
+                    odds={dragonTigerDetail?.playersBonusPair}
+                    data={dragonTigerDetail}
+                    min={dragonTigerDetail?.videoInfo?.min}
+                    max={dragonTigerDetail?.videoInfo?.max}
+                  />
                 </div>
                 <div style={{ marginTop: "10px" }}>
                   {" "}

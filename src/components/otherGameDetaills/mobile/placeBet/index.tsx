@@ -43,7 +43,6 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
   );
 
   const dispatch: AppDispatch = useDispatch();
-  // console.log('first',selectedBet)
   useEffect(() => {
     let updatedBtnValue = buttonValues?.value;
 
@@ -167,7 +166,6 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
       profit =
         parseFloat(handleProfitLoss(data?.runners?.id, id)) - parseFloat(stake);
     }
-    // console.log(id,'first',data)
     return profit ? profit?.toFixed(2) : "";
   };
 
@@ -218,7 +216,6 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
     const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : 0;
     return profitLossObj?.[r_id];
   };
-  // console.log('selectedBet',selectedBet)
   const handleKeyDown = (e: any) => {
     if (e.key === "e" || e.key === "E") {
       e.preventDefault();
