@@ -12,10 +12,6 @@ const OtherMarket = ({ title, box, data, detail }) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -70,15 +66,15 @@ const OtherMarket = ({ title, box, data, detail }) => {
     "completeMatch1",
   ].includes(data?.type)
     ? detail?.profitLossDataMatch?.[
-        profitLossDataForMatchConstants?.[data?.type]?.A + "_" + detail?.id
-      ]
+    profitLossDataForMatchConstants?.[data?.type]?.A + "_" + detail?.id
+    ]
     : detail?.profitLossDataMatch?.[
-        profitLossDataForMatchConstants?.[data?.type]?.A +
-          "_" +
-          data?.id +
-          "_" +
-          detail?.id
-      ];
+    profitLossDataForMatchConstants?.[data?.type]?.A +
+    "_" +
+    data?.id +
+    "_" +
+    detail?.id
+    ];
   const profitLossTeamB = [
     "tiedMatch1",
     "tiedMatch2",
@@ -87,15 +83,15 @@ const OtherMarket = ({ title, box, data, detail }) => {
     "completeMatch1",
   ].includes(data?.type)
     ? detail?.profitLossDataMatch?.[
-        profitLossDataForMatchConstants?.[data?.type]?.B + "_" + detail?.id
-      ]
+    profitLossDataForMatchConstants?.[data?.type]?.B + "_" + detail?.id
+    ]
     : detail?.profitLossDataMatch?.[
-        profitLossDataForMatchConstants?.[data?.type]?.B +
-          "_" +
-          data?.id +
-          "_" +
-          detail?.id
-      ];
+    profitLossDataForMatchConstants?.[data?.type]?.B +
+    "_" +
+    data?.id +
+    "_" +
+    detail?.id
+    ];
   const profitLossTeamC = [
     "tiedMatch1",
     "tiedMatch2",
@@ -105,20 +101,19 @@ const OtherMarket = ({ title, box, data, detail }) => {
   ].includes(data?.type)
     ? ""
     : detail?.profitLossDataMatch?.[
-        profitLossDataForMatchConstants?.[data?.type]?.C +
-          "_" +
-          data?.id +
-          "_" +
-          detail?.id
-      ];
+    profitLossDataForMatchConstants?.[data?.type]?.C +
+    "_" +
+    data?.id +
+    "_" +
+    detail?.id
+    ];
   return (
     <>
       <div className="otherMarketContainer">
         <div className="otherMarketTitle">
           <span
-            className={`otherMarketTitleTxt ${
-              isMobile ? "f-size13" : "f-size15"
-            }`}
+            className={`otherMarketTitleTxt ${isMobile ? "f-size13" : "f-size15"
+              }`}
           >
             {title}
           </span>
@@ -131,8 +126,8 @@ const OtherMarket = ({ title, box, data, detail }) => {
               {data?.minBet === data?.maxBet
                 ? `Max:${formatNumber(data?.maxBet)}`
                 : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
-                    data?.maxBet
-                  )}`}
+                  data?.maxBet
+                )}`}
             </span>
           </div>
           <div
@@ -164,7 +159,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
           <div
             className="otherMarketTeam"
             style={isMobile && box === 6 ? { width: "28%" } : {}}
-            // style={box === 6 ? { width: "28%" } : {}}
+          // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont otherMarketTeamTxt`}>
               {data?.type === "other"
@@ -173,8 +168,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
-                className={`${
-                  parseFloat(profitLossTeamA) +
+                className={`${parseFloat(profitLossTeamA) +
                     manualProfitLoss(
                       selectedBet,
                       data?.type === "other"
@@ -183,29 +177,29 @@ const OtherMarket = ({ title, box, data, detail }) => {
                       data?.type,
                       data?.gtype
                     ) >
-                  0
+                    0
                     ? "color-green"
                     : "color-red"
-                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {parseFloat(profitLossTeamA) +
-                manualProfitLoss(
-                  selectedBet,
-                  data?.type === "other"
-                    ? data?.runners?.[0]?.nat || data?.metaData?.teamA
-                    : "Yes",
-                  data?.type,
-                  data?.gtype
-                )
+                  manualProfitLoss(
+                    selectedBet,
+                    data?.type === "other"
+                      ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                      : "Yes",
+                    data?.type,
+                    data?.gtype
+                  )
                   ? parseFloat(profitLossTeamA) +
-                    manualProfitLoss(
-                      selectedBet,
-                      data?.type === "other"
-                        ? data?.runners?.[0]?.nat || data?.metaData?.teamA
-                        : "Yes",
-                      data?.type,
-                      data?.gtype
-                    )
+                  manualProfitLoss(
+                    selectedBet,
+                    data?.type === "other"
+                      ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                      : "Yes",
+                    data?.type,
+                    data?.gtype
+                  )
                   : ""}
               </span>
               <span
@@ -234,13 +228,13 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 ) === 0
                   ? ""
                   : manualProfitLoss(
-                      selectedBet,
-                      data?.type === "other"
-                        ? data?.runners?.[0]?.nat || data?.metaData?.teamA
-                        : "Yes",
-                      data?.type,
-                      data?.gtype
-                    )?.toFixed(2)}
+                    selectedBet,
+                    data?.type === "other"
+                      ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                      : "Yes",
+                    data?.type,
+                    data?.gtype
+                  )?.toFixed(2)}
               </span>
             </div>
           </div>
@@ -254,15 +248,15 @@ const OtherMarket = ({ title, box, data, detail }) => {
             {(data?.runners?.[0]?.status !== "OPEN" &&
               data?.runners?.[0]?.status !== "ACTIVE" &&
               data?.runners?.[0]?.status !== "") && (
-              <div className="suspended-overlayRatesotherMarket">
-                <span
-                  className={`suspendTextCmmn`}
-                  style={{ textTransform: "uppercase" }}
-                >
-                  {data?.runners?.[0]?.status}
-                </span>
-              </div>
-            )}
+                <div className="suspended-overlayRatesotherMarket">
+                  <span
+                    className={`suspendTextCmmn`}
+                    style={{ textTransform: "uppercase" }}
+                  >
+                    {data?.runners?.[0]?.status}
+                  </span>
+                </div>
+              )}
             {box === 6 ? (
               <>
                 {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
@@ -336,7 +330,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
           <div
             className="otherMarketTeam"
             style={isMobile && box === 6 ? { width: "28%" } : {}}
-            // style={box === 6 ? { width: "28%" } : {}}
+          // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont otherMarketTeamTxt`}>
               {data?.type === "other"
@@ -345,8 +339,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
-                className={`${
-                  parseFloat(profitLossTeamB) +
+                className={`${parseFloat(profitLossTeamB) +
                     manualProfitLoss(
                       selectedBet,
                       data?.type === "other"
@@ -355,29 +348,29 @@ const OtherMarket = ({ title, box, data, detail }) => {
                       data?.type,
                       data?.gtype
                     ) >
-                  0
+                    0
                     ? "color-green"
                     : "color-red"
-                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {parseFloat(profitLossTeamB) +
-                manualProfitLoss(
-                  selectedBet,
-                  data?.type === "other"
-                    ? data?.runners?.[1]?.nat || data?.metaData?.teamB
-                    : "No",
-                  data?.type,
-                  data?.gtype
-                )
+                  manualProfitLoss(
+                    selectedBet,
+                    data?.type === "other"
+                      ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                      : "No",
+                    data?.type,
+                    data?.gtype
+                  )
                   ? parseFloat(profitLossTeamB) +
-                    manualProfitLoss(
-                      selectedBet,
-                      data?.type === "other"
-                        ? data?.runners?.[1]?.nat || data?.metaData?.teamB
-                        : "No",
-                      data?.type,
-                      data?.gtype
-                    )
+                  manualProfitLoss(
+                    selectedBet,
+                    data?.type === "other"
+                      ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                      : "No",
+                    data?.type,
+                    data?.gtype
+                  )
                   : ""}
               </span>
               <span
@@ -406,13 +399,13 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 ) === 0
                   ? ""
                   : manualProfitLoss(
-                      selectedBet,
-                      data?.type === "other"
-                        ? data?.runners?.[1]?.nat || data?.metaData?.teamB
-                        : "No",
-                      data?.type,
-                      data?.gtype
-                    )?.toFixed(2)}
+                    selectedBet,
+                    data?.type === "other"
+                      ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                      : "No",
+                    data?.type,
+                    data?.gtype
+                  )?.toFixed(2)}
               </span>
             </div>
           </div>
@@ -426,15 +419,15 @@ const OtherMarket = ({ title, box, data, detail }) => {
             {(data?.runners?.[1]?.status !== "OPEN" &&
               data?.runners?.[1]?.status !== "ACTIVE" &&
               data?.runners?.[1]?.status !== "") && (
-              <div className="suspended-overlayRatesotherMarket">
-                <span
-                  className={`suspendTextCmmn`}
-                  style={{ textTransform: "uppercase" }}
-                >
-                  {data?.runners?.[1]?.status}
-                </span>
-              </div>
-            )}
+                <div className="suspended-overlayRatesotherMarket">
+                  <span
+                    className={`suspendTextCmmn`}
+                    style={{ textTransform: "uppercase" }}
+                  >
+                    {data?.runners?.[1]?.status}
+                  </span>
+                </div>
+              )}
             {box === 6 ? (
               <>
                 {(data?.runners?.[1]?.ex?.availableToBack?.length > 0
@@ -509,40 +502,39 @@ const OtherMarket = ({ title, box, data, detail }) => {
             <div
               className="otherMarketTeam"
               style={isMobile && box === 6 ? { width: "28%" } : {}}
-              // style={box === 6 ? { width: "28%" } : {}}
+            // style={box === 6 ? { width: "28%" } : {}}
             >
               <span className={`teamFont otherMarketTeamTxt`}>
                 {data?.runners?.[2]?.nat || data?.metaData?.teamC}
               </span>{" "}
               <div className="d-flex flex-row justify-content-between w-100">
                 <span
-                  className={`${
-                    parseFloat(profitLossTeamC) +
+                  className={`${parseFloat(profitLossTeamC) +
                       manualProfitLoss(
                         selectedBet,
                         data?.runners?.[2]?.nat || data?.metaData?.teamC,
                         data?.type,
                         data?.gtype
                       ) >
-                    0
+                      0
                       ? "color-green"
                       : "color-red"
-                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                    } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                 >
                   {parseFloat(profitLossTeamC) +
-                  manualProfitLoss(
-                    selectedBet,
-                    data?.runners?.[2]?.nat || data?.metaData?.teamC,
-                    data?.type,
-                    data?.gtype
-                  )
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.runners?.[2]?.nat || data?.metaData?.teamC,
+                      data?.type,
+                      data?.gtype
+                    )
                     ? parseFloat(profitLossTeamC) +
-                      manualProfitLoss(
-                        selectedBet,
-                        data?.runners?.[2]?.nat || data?.metaData?.teamC,
-                        data?.type,
-                        data?.gtype
-                      )
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.runners?.[2]?.nat || data?.metaData?.teamC,
+                      data?.type,
+                      data?.gtype
+                    )
                     : 0}
                 </span>
                 <span
@@ -567,11 +559,11 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) === 0
                     ? ""
                     : manualProfitLoss(
-                        selectedBet,
-                        data?.runners?.[2]?.nat || data?.metaData?.teamC,
-                        data?.type,
-                        data?.gtype
-                      )?.toFixed(2)}
+                      selectedBet,
+                      data?.runners?.[2]?.nat || data?.metaData?.teamC,
+                      data?.type,
+                      data?.gtype
+                    )?.toFixed(2)}
                 </span>
               </div>
             </div>
@@ -583,17 +575,17 @@ const OtherMarket = ({ title, box, data, detail }) => {
               }
             >
               {(data?.runners?.[2]?.status !== "OPEN" &&
-              data?.runners?.[2]?.status !== "ACTIVE" &&
-              data?.runners?.[2]?.status !== "") && (
-                <div className="suspended-overlayRatesotherMarket">
-                  <span
-                    className={`suspendTextCmmn`}
-                    style={{ textTransform: "uppercase" }}
-                  >
-                    {data?.runners?.[2]?.status}
-                  </span>
-                </div>
-              )}
+                data?.runners?.[2]?.status !== "ACTIVE" &&
+                data?.runners?.[2]?.status !== "") && (
+                  <div className="suspended-overlayRatesotherMarket">
+                    <span
+                      className={`suspendTextCmmn`}
+                      style={{ textTransform: "uppercase" }}
+                    >
+                      {data?.runners?.[2]?.status}
+                    </span>
+                  </div>
+                )}
               {box === 6 ? (
                 <>
                   {(data?.runners?.[2]?.ex?.availableToBack?.length > 0

@@ -7,14 +7,14 @@ import BookmakerTable from "./bookMaker";
 import MatchOdds from "./matchOdds";
 import SessionMarketTable from "./sessionMarket";
 
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import Loader from "../../commonComponent/loader";
-import ApiSessionMarketTable from "./apiSessionMarket";
-import { useState } from "react";
 import CustomModal from "../../commonComponent/modal";
 import Desktop from "../../rules/desktop";
 import Mobile from "../../rules/mobile";
+import ApiSessionMarketTable from "./apiSessionMarket";
 interface BetTableProps {
   title: string;
   type: string;
@@ -27,22 +27,13 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
     (state: RootState) => state.match.matchList
   );
   const [show, setShow] = useState(false);
-  // const [showModal, setShowModal] = useState(false); // State to manage modal visibility
-
-  // const handleInfoClick = () => {
-  //   // Your condition to check whether to show the modal or not
-  //   const shouldShowModal = true; // Example condition
-  //   if (shouldShowModal) {
-  //     setShowModal(true);
-  //   }
-  // };
   return (
     <>
       {loading && <Loader />}
 
       {isMobile &&
-      (type === MatchType.SESSION_MARKET ||
-        type === MatchType.API_SESSION_MARKET) ? (
+        (type === MatchType.SESSION_MARKET ||
+          type === MatchType.API_SESSION_MARKET) ? (
         ""
       ) : (
         <BetTableHeader
@@ -56,9 +47,8 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
                 </span>
               )}
               <span
-                className={`${
-                  isMobile ? "text-black title-16" : "text-white title-20"
-                }`}
+                className={`${isMobile ? "text-black title-16" : "text-white title-20"
+                  }`}
               >
                 <IoInformationCircle
                   onClick={() => {

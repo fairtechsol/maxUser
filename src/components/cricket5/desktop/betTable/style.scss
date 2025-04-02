@@ -9,6 +9,7 @@
 .five-cricket .market-2 {
   min-width: calc(50% - 8px);
 }
+
 .market-2 {
   min-width: calc(53.33% - 8px);
   max-width: calc(100% - 8px);
@@ -24,12 +25,14 @@
   margin-top: 8px;
 }
 
-.market-header-c, .market-row-c {
+.market-header-c,
+.market-row-c {
   border-bottom: 0.01em solid #fff;
 }
+
 .market-header-c {
   display: flex;
-  
+
   align-items: center;
   padding: 0;
 }
@@ -42,8 +45,10 @@
   padding: 0 5px;
   font-size: 14px;
 }
+
 .market-nation-detail-b {
-  width: calc(100% - 160px);;
+  width: calc(100% - 160px);
+  ;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -85,6 +90,7 @@
 .five-cricket .market-6 {
   min-width: calc(33.33% - 8px);
 }
+
 .market-6 {
   min-width: calc(100% - 8px);
   max-width: calc(100% - 8px);
@@ -92,9 +98,7 @@
   margin-right: 4px;
   flex: 1;
 }
-// .fancy-market {
-//   border-bottom: 1px solid grey;
-// }
+
 .market-6 .market-nation-detail-c .market-nation-name-c {
   white-space: normal;
   overflow: hidden;
@@ -104,9 +108,11 @@
   -webkit-box-orient: vertical;
   max-width: calc(100% - 50px);
 }
+
 .suspended-row {
   position: relative;
 }
+
 .suspended-row::after {
   content: attr(data-title);
   background-color: #373636d6;
@@ -125,12 +131,15 @@
   align-items: center;
   pointer-events: none;
 }
+
 .market-row-c {
   background-color: white;
   display: flex;
   flex-wrap: wrap;
 }
-.market-header-c, .market-row-c {
+
+.market-header-c,
+.market-row-c {
   border-bottom: 0.01em solid #f2f2f2;
   display: flex;
 
@@ -139,27 +148,30 @@
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .fancy-min-max-box {
-      width: 55px;
+    width: 55px;
   }
 }
 
 .fancy-min-max-box {
   width: 85px;
- 
+
   text-align: right;
 }
+
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
   .market-2 .market-nation-detail-c {
-      width: calc(100% - 120px);
+    width: calc(100% - 120px);
   }
 }
+
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .market-6 .market-nation-detail-c {
-      width: calc(100% - 165px);
+    width: calc(100% - 165px);
   }
 }
+
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .market-2 .market-nation-detail-c {
-      width: calc(100% - 910px);
+    width: calc(100% - 910px);
   }
 }

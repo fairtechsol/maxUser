@@ -14,10 +14,6 @@ const MobileSessionKhado = ({ title, data, detail }) => {
   const { runAmount, runAmountModalKhado } = useSelector(
     (state: RootState) => state.bets
   );
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -49,8 +45,8 @@ const MobileSessionKhado = ({ title, data, detail }) => {
       mid: data?.mid?.toString(),
       betPlaceIndex: tno,
       matchBetType: "session",
-      min:item?.min ,
-      max:item?.max 
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -99,133 +95,132 @@ const MobileSessionKhado = ({ title, data, detail }) => {
                 >
                   <span className={`f-size16 sessionBackTxt`}>Back</span>
                 </div>
-               
+
                 {/* <div className="sessionEmptyBox"></div> */}
               </div>
             </div>
             {data?.section?.map((item: any, index: any) => {
               return (
                 <div className="w-100 d-flex flex-column">
-                <div className="sessionRateContainer" key={index}>
-                  <div
-                    className="sessionRateName"
-                    style={{ width: "60%", overflow: "hidden" }}
-                  >
-                    <span className="f-size13" style={{ fontWeight: "400" }}
-                    onClick={() => {
-                      if (item.activeStatus === "save") {
-                        return true;
-                      } else if (
-                        calculateMaxLoss(
-                          detail?.profitLossDataSession,
-                          item?.id
-                        ) === 0
-                      ) {
-                        return;
-                      } else
-                        dispatch(
-                          resetRunAmountModalKhado({
-                            showModal: true,
-                            id: item?.id,
-                          })
-                        );
+                  <div className="sessionRateContainer" key={index}>
+                    <div
+                      className="sessionRateName"
+                      style={{ width: "60%", overflow: "hidden" }}
+                    >
+                      <span className="f-size13" style={{ fontWeight: "400" }}
+                        onClick={() => {
+                          if (item.activeStatus === "save") {
+                            return true;
+                          } else if (
+                            calculateMaxLoss(
+                              detail?.profitLossDataSession,
+                              item?.id
+                            ) === 0
+                          ) {
+                            return;
+                          } else
+                            dispatch(
+                              resetRunAmountModalKhado({
+                                showModal: true,
+                                id: item?.id,
+                              })
+                            );
                           dispatch(getRunAmountMeter(item?.id));
-                        
-                    }}>
-                      {item?.RunnerName}-{item?.ex?.availableToLay?.[0]?.price}
-                    </span>
-                    <span
-                      className={`${
-                        calculateMaxLoss(
+
+                        }}>
+                        {item?.RunnerName}-{item?.ex?.availableToLay?.[0]?.price}
+                      </span>
+                      <span
+                        className={`${calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) < 0
-                          ? "color-red"
-                          : "color-red"
-                      } title-13 fbold`}
-                    >
-                      {calculateMaxLoss(
-                        detail?.profitLossDataSession,
-                        item?.id
-                      ) !== 0
-                        ? `-${calculateMaxLoss(
+                            ? "color-red"
+                            : "color-red"
+                          } title-13 fbold`}
+                      >
+                        {calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) !== 0
+                          ? `-${calculateMaxLoss(
                             detail?.profitLossDataSession,
                             item?.id
                           )}`
-                        : ""}
-                    </span>
-                  </div>
-                  <div
-                    className="sessionRateBoxContainer rateBoxWidthKhado"
-                  >
-                    {(item?.activeStatus != "live" ||
-                      item?.GameStatus != "") && (
-                      <div className="suspended-overlayRates">
-                        <span
-                          className={`suspendTextCmmn`}
-                        >
-                          {item?.GameStatus ?? "SUSPENDED"}
-                        </span>
-                      </div>
-                    )}
-                    <div
-                      className={`sessionRateBox back1Background`}
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        handlePlaceBet(
-                          item?.ex?.availableToBack?.[0]?.price,
-                          "Back",
-                          `${item?.RunnerName}-${item?.ex?.availableToLay?.[0]?.price}`,
-                          item?.activeStatus,
-                          item?.ex?.availableToBack?.[0]?.size,
-                          item,
-                          item?.ex?.availableToBack?.[0]?.tno
-                        )
-                      }
-                    >
-                      <span className={`rateFont`}>
-                        {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
-                          "-"}
-                      </span>
-                      <span className={`f-size11 sessionRate2Box`}>
-                        {handleSize(item?.ex?.availableToBack?.[0]?.size)}
+                          : ""}
                       </span>
                     </div>
-                    
+                    <div
+                      className="sessionRateBoxContainer rateBoxWidthKhado"
+                    >
+                      {(item?.activeStatus != "live" ||
+                        item?.GameStatus != "") && (
+                          <div className="suspended-overlayRates">
+                            <span
+                              className={`suspendTextCmmn`}
+                            >
+                              {item?.GameStatus ?? "SUSPENDED"}
+                            </span>
+                          </div>
+                        )}
+                      <div
+                        className={`sessionRateBox back1Background`}
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>
+                          handlePlaceBet(
+                            item?.ex?.availableToBack?.[0]?.price,
+                            "Back",
+                            `${item?.RunnerName}-${item?.ex?.availableToLay?.[0]?.price}`,
+                            item?.activeStatus,
+                            item?.ex?.availableToBack?.[0]?.size,
+                            item,
+                            item?.ex?.availableToBack?.[0]?.tno
+                          )
+                        }
+                      >
+                        <span className={`rateFont`}>
+                          {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
+                            "-"}
+                        </span>
+                        <span className={`f-size11 sessionRate2Box`}>
+                          {handleSize(item?.ex?.availableToBack?.[0]?.size)}
+                        </span>
+                      </div>
+
+                    </div>
                   </div>
-                </div>
-                {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                  {item?.rem && (<div className="w-100 text-start" style={{ fontSize: "11px", color: "#097c93", backgroundColor: "#f2f2f2", borderBottom: "1px solid #c7c8ca" }}>{item?.rem}
                   </div>)}
                 </div>
               );
             })}
           </div>
         </div>
-        <Modal show={runAmountModalKhado} onHide={()=>handleModal(false)}>
-        <Modal.Header
-          className="bg-primary rounded-0"
-          style={{ zIndex: "999" }}
-        >
-          <Modal.Title>
-            <span
-              style={{ color: "#fff", fontSize: "16px", fontWeight: "bold" }}
-            >
-              Run Amount
-            </span>
-          </Modal.Title>
-          <button
-            type="button"
-            className="btn-close btn-close-white"
-            aria-label="Close"
-            onClick={()=>handleModal(false)}
-          ></button>
-        </Modal.Header>
-        <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
-        <div style={{ width: "100%", height: "100vh", overflowY: "auto",padding:"10px" }}>
-          <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
-        </div>
-        </Modal.Body>
-      </Modal>
+        <Modal show={runAmountModalKhado} onHide={() => handleModal(false)}>
+          <Modal.Header
+            className="bg-primary rounded-0"
+            style={{ zIndex: "999" }}
+          >
+            <Modal.Title>
+              <span
+                style={{ color: "#fff", fontSize: "16px", fontWeight: "bold" }}
+              >
+                Run Amount
+              </span>
+            </Modal.Title>
+            <button
+              type="button"
+              className="btn-close btn-close-white"
+              aria-label="Close"
+              onClick={() => handleModal(false)}
+            ></button>
+          </Modal.Header>
+          <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
+            <div style={{ width: "100%", height: "100vh", overflowY: "auto", padding: "10px" }}>
+              <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+            </div>
+          </Modal.Body>
+        </Modal>
       </div>
     </>
   );

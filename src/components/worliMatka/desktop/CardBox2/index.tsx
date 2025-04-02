@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch } from "../../../../store/store";
-import WorliClearBox from "../../mobile/WorliClearBox";
+import { AppDispatch, RootState } from "../../../../store/store";
 import { isMobile } from "../../../../utils/screenDimension";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
+import WorliClearBox from "../../mobile/WorliClearBox";
 import "../style.scss";
 
 const CardBox2 = ({ data, odds }: any) => {
@@ -18,26 +16,6 @@ const CardBox2 = ({ data, odds }: any) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  // const handleBet = (item: any, index: number) => {
-  //   setSelectedBox(index);
-  //   let team = {
-  //     bettingType: "BACK",
-  //     matchId: data?.id,
-  //     odd: item?.rate,
-  //     stake: 0,
-  //     matchBetType: "matchOdd",
-  //     betOnTeam: betTeam,
-  //     name: betTeam,
-  //     bettingName: "Match odds",
-  //     selectionId: item?.sid,
-  //   };
-  //   dispatch(
-  //     selectedBetAction({
-  //       team,
-  //       data,
-  //     })
-  //   );
-  // };
 
   const bettingOdds = (num: any) => {
     const hash = new Array(10);
@@ -103,9 +81,8 @@ const CardBox2 = ({ data, odds }: any) => {
   const renderBox = (value: string, index: number) => (
     <div
       key={index}
-      className={`worli-odd-box back ${
-        betTeam.includes(value) || zeros.includes(value) ? "selected" : ""
-      }`}
+      className={`worli-odd-box back ${betTeam.includes(value) || zeros.includes(value) ? "selected" : ""
+        }`}
       onClick={() => {
         setZeros((p) => {
           if ((betTeam ? betTeam.length : 0) + (p ? p.length : 0) == 3)

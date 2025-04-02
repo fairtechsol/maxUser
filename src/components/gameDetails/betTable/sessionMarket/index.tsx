@@ -10,7 +10,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { AppDispatch, RootState } from "../../../../store/store";
 import { teamStatus } from "../../../../utils/constants";
 import { formattedMinMax } from "../../../../utils/formatMinMax";
-import {isMobile} from "../../../../utils/screenDimension";
+import { isMobile } from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
@@ -72,11 +72,10 @@ function SessionMarketTable({
                   rightComponent={
                     <div>
                       <span
-                        className={`${
-                          isMobile
+                        className={`${isMobile
                             ? "text-black title-16"
                             : "text-white title-20"
-                        }`}
+                          }`}
                       >
                         <IoInformationCircle
                           onClick={() => setShowRulesModal(true)}
@@ -105,17 +104,7 @@ function SessionMarketTable({
         <tbody>
           {data?.map((item: any, index: number) => {
             if (!JSON.parse(item).selectionId) {
-              //   const [showMinsModal, setShowMinsModal] = useState(false); // State for the dropdown modal
-
-              //   const handleMinModalToggle = () => {
-              //     setShowMinsModal(!showMinsModal);
-              //   };
               return (
-                // <BetStatusOverlay
-                //   key={index}
-                //   title={JSON.parse(item)?.active}
-                //   active={JSON.parse(item)?.active != teamStatus.active}
-                // >
                 <tr key={index}>
                   <td>
                     <div className="minmaxsession">
@@ -159,25 +148,8 @@ function SessionMarketTable({
                     </div>
                     <div className="backLayRunner d-flex flex-column px-1">
                       <span
-                        className={`title-14 mt-2 ${
-                          matchDetails?.profitLossDataSession?.length > 0
+                        className={`title-14 mt-2 ${matchDetails?.profitLossDataSession?.length > 0
                             ? matchDetails?.profitLossDataSession?.reduce(
-                                (accumulator: any, bet: any) => {
-                                  const maxLossToAdd =
-                                    bet?.betId === JSON.parse(item)?.id
-                                      ? +bet?.maxLoss
-                                      : 0;
-                                  return accumulator + maxLossToAdd;
-                                },
-                                0
-                              ) < 0
-                              ? "color-red"
-                              : "color-green"
-                            : ""
-                        }`}
-                      >
-                        {matchDetails?.profitLossDataSession?.length > 0
-                          ? matchDetails?.profitLossDataSession?.reduce(
                               (accumulator: any, bet: any) => {
                                 const maxLossToAdd =
                                   bet?.betId === JSON.parse(item)?.id
@@ -186,7 +158,23 @@ function SessionMarketTable({
                                 return accumulator + maxLossToAdd;
                               },
                               0
-                            )
+                            ) < 0
+                              ? "color-red"
+                              : "color-green"
+                            : ""
+                          }`}
+                      >
+                        {matchDetails?.profitLossDataSession?.length > 0
+                          ? matchDetails?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === JSON.parse(item)?.id
+                                  ? +bet?.maxLoss
+                                  : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
                           : 0}
                       </span>
                     </div>

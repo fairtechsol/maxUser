@@ -1,10 +1,14 @@
 @import "/src/assets/variable.scss";
+
 html {
   -webkit-text-size-adjust: 100% !important;
 }
+
 .custom-toast {
-  height: 45px; /* Increase the height here */
-  border-radius: 3px; /* Adjust the border radius here */
+  height: 45px;
+  /* Increase the height here */
+  border-radius: 3px;
+  /* Adjust the border radius here */
 }
 
 .bg-blue-600 {
@@ -21,37 +25,42 @@ html {
 }
 
 .bg-gray-600 {
-  background-color: #4b5563; /* Example hexadecimal color code for gray */
+  background-color: #4b5563;
+  /* Example hexadecimal color code for gray */
 }
 
 .bg-orange-400 {
-  background-color: rgba(
-    245,
-    198,
-    203,
-    0.85
-  ); /* Example hexadecimal color code for orange */
+  background-color: rgba(245,
+      198,
+      203,
+      0.85);
+  /* Example hexadecimal color code for orange */
 }
 
 .bg-indigo-600 {
-  background-color: #4f46e5; /* Example hexadecimal color code for indigo */
+  background-color: #4f46e5;
+  /* Example hexadecimal color code for indigo */
 }
 
 .bg-white-600 {
-  background-color: #ffffff; /* Example hexadecimal color code for white */
+  background-color: #ffffff;
+  /* Example hexadecimal color code for white */
 }
 
 .font-gray-300 {
-  color: #d1d5db; /* Example hexadecimal color code for gray */
+  color: #d1d5db;
+  /* Example hexadecimal color code for gray */
 }
 
 body {
   font-family: "Roboto Condensed", sans-serif !important;
   line-height: 15px;
 }
+
 body table.table {
   margin-bottom: 0;
 }
+
 .whitespace {
   // background-color: black;
   position: absolute;
@@ -59,6 +68,7 @@ body table.table {
   height: 100%;
   margin-top: 1%;
 }
+
 .custom-checkbox .form-check-input:checked {
   background-color: #ffc742;
   border-color: #ffc742;
@@ -71,11 +81,8 @@ body table.table {
 .custom-checkbox .form-check-input {
   border-radius: 50%;
 }
+
 .loader1 {
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%); // Center the loader
   background: $white;
   opacity: 0.6;
   display: flex;
@@ -202,25 +209,6 @@ body table.table {
   pointer-events: none;
 }
 
-// .suspended:after {
-//   position: absolute;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100%;
-//   width: 100%;
-//   right: 0;
-//   background-color: rgba(0, 0, 0, 0.6);
-//   color: #ffffff;
-//   text-transform: uppercase;
-//   font-family: "Font Awesome 5 Free";
-//   content: "\f023";
-//   font-weight: 900;
-//   font-size: 18px;
-//   top: 0;
-// //  bottom: 10px;
-// }
-
 .suspended-poker20 {
   position: relative;
   pointer-events: none;
@@ -296,12 +284,14 @@ body table.table {
   align-items: center;
   pointer-events: none;
 }
+
 .card32-table-container {
   width: 100%;
   background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
 }
+
 .card32-table-row {
   width: 100%;
   display: flex;
@@ -324,15 +314,18 @@ body table.table {
   font-style: italic;
   animation: marqueeAnimation 60s linear infinite;
 }
+
 .liveDot {
   width: 10px;
   height: 10px;
   background-color: $green;
   border-radius: 50%;
 }
+
 .react-date-picker {
   border: 0;
 }
+
 .react-date-picker__wrapper {
   height: 38px;
   border-radius: 5px !important;
@@ -354,6 +347,7 @@ body table.table {
 .excel {
   background-color: $excel !important;
 }
+
 .pdf {
   background-color: $pdf !important;
 }
@@ -363,15 +357,18 @@ body table.table {
   padding: 0px 10px !important;
   height: auto !important;
 }
+
 .modalFull-90.customModal .modal-dialog {
   width: 96%;
   max-width: none;
 }
+
 .modalFull-56.customModal .modal-dialog {
   width: 56%;
   max-width: none;
   margin-top: 10px;
 }
+
 // cursor pointer
 .cursor-pointer {
   cursor: pointer;
@@ -387,8 +384,10 @@ body table.table {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8); /* Optional for overlay effect */
-  z-index: 1050; /* To be on top of other elements */
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Optional for overlay effect */
+  z-index: 1050;
+  /* To be on top of other elements */
 }
 
 .fullscreen-modal .modal-header,
@@ -397,7 +396,8 @@ body table.table {
 }
 
 .modal-custom {
-  max-width: 100%; /* Fallback for smaller screens */
+  max-width: 100%;
+  /* Fallback for smaller screens */
   margin: 1.75rem auto;
 }
 
@@ -415,10 +415,12 @@ body table.table {
 
 // ===== blink text ====
 @keyframes blink {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
@@ -427,6 +429,7 @@ body table.table {
 .blinking-text {
   animation: blink 1s infinite;
 }
+
 .color {
   background-color: $primary !important;
   // border-top: 1px solid #ffffff;
@@ -435,6 +438,7 @@ body table.table {
   display: flex;
   box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
 }
+
 .font {
   font-size: 12px;
 }
@@ -450,111 +454,123 @@ body table.table {
   color: $white !important;
   // border-right: 1px solid $white !important;
   width: 100% !important;
+
   div {
     width: 100% !important;
   }
 }
-// .m-tab.active {
-//   border-color: transparent;
-//   border-top: 0.1rem solid $white !important;
-//   border-left: none !important;
-// }
-
-//  .m-tab .active::after {
-//   // position: absolute;
-//   width: 100%;
-//   // height: 2px;
-//   // background-color: #ffffff;
-//   // top: -12px;
-//   content: "";
-//   left: 0;
-// }
 
 @media only screen and (max-width: 1199px) {
   .m-tab .active::after {
     top: -7px;
   }
 }
+
 .flex-1 {
   flex: 1 !important;
 }
+
 .no-wrap {
   flex-wrap: nowrap !important;
   text-wrap: nowrap;
 }
+
 .btnbg-blue {
   background-color: #004a25 !important;
 }
+
 .btnbg-red {
   background-color: #0d6efd !important;
 }
+
 /* ====== bg Colors start ====  */
 .bg-secondaryLight {
   background-color: rgba($secondary, 0.7) !important;
 }
+
 .bg-secondary {
   background-color: $secondary;
 }
+
 .placeBet-bg-blue {
   background-color: #72bbef !important;
 }
+
 .bg-blue1 {
   background-color: $blue1 !important;
 }
+
 .bg-blue2 {
   background-color: $blue2 !important;
 }
+
 .bg-blue3 {
   background-color: $blue3 !important;
 }
+
 .bg-blue4 {
   background-color: $blue4 !important;
 }
+
 .bg-blue5 {
   background-color: #6cb1e3 !important;
 }
+
 .bg-red1 {
   background-color: $red1 !important;
 }
+
 .bg-red2 {
   background-color: $red2 !important;
 }
+
 .bg-red3 {
   background-color: $red3 !important;
 }
+
 .bg-red4 {
   background-color: #faa9ba !important;
 }
+
 .bg-gray {
   background-color: $gray !important;
 }
+
 .bg-darkGrey {
   background-color: $darkGray !important;
 }
+
 .bg-lightGray {
   background-color: $lightGray !important;
 }
+
 .bg-primaryBlue {
   background-color: $primaryBlue !important;
 }
+
 .bg-green {
   background-color: $green !important;
 }
+
 .color-green {
   color: $green !important;
 }
+
 .color-red {
   color: $pdf !important;
 }
+
 /* ====== bg Colors end ====  */
 
 body input,
 body select {
   border-radius: 3px !important;
 }
+
 .white-text {
   color: $white;
 }
+
 .text-primaryBlue {
   color: $primaryBlue;
 }
@@ -601,6 +617,7 @@ body select {
     height: 100%;
   }
 }
+
 .latest-event-item {
   flex: 1;
   max-width: 100%;
@@ -633,27 +650,30 @@ body select {
   color: $black;
   width: 90%;
   white-space: nowrap;
+
   &.active {
     background-color: #177165d9 !important;
     color: $white !important;
-    border-color: transparent !important ;
+    border-color: transparent !important;
   }
 }
+
 .matchListTab {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: $primary !important;
-  color: $white !important ;
+  color: $white !important;
   padding: 10px;
   border: 0.5px $white solid;
 }
+
 .matchListTab.active {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: $secondary !important;
-  color: $white !important ;
+  color: $white !important;
   padding: 10px;
   border: 0.5px $white solid;
 }
@@ -661,6 +681,7 @@ body select {
 .navtab-name {
   font-weight: 410;
 }
+
 .tab-img {
   display: block;
   margin: 0 auto;
@@ -678,6 +699,7 @@ body select {
   text-align: start;
   font-size: 11px;
 }
+
 .reportBody {
   font-size: 12px;
 }
@@ -704,11 +726,13 @@ body select {
   -ms-flex: 0 0 100% !important;
   flex: 0 0 100% !important;
 }
+
 .coupon-card {
   padding: 0px 0px 0px 7px;
   // margin-bottom: 16px;
   border-radius: 0 0 2px 2px;
 }
+
 .game-heading {
   position: relative;
 }
@@ -718,6 +742,7 @@ body select {
   color: #000000;
   padding: 5px;
 }
+
 .game-heading .card-header-title {
   font-size: 10px;
   text-transform: uppercase;
@@ -727,6 +752,7 @@ body select {
   font-size: 14px;
   font-weight: 600;
 }
+
 .div-figure {
   width: 31.33% !important;
   height: 10%;
@@ -740,15 +766,19 @@ body select {
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: #000;
 }
+
 .m-b-30 {
   margin-bottom: 30px;
 }
+
 .provider-modal {
   --bs-modal-width: 90vw;
 }
+
 .provider-modal-m {
   --bs-modal-width: 100vw;
 }
+
 .div-figure img {
   -webkit-transition: transform 0.5s linear;
   transition: transform 0.5s linear;
@@ -760,20 +790,24 @@ body select {
   -webkit-transform: scale3d(1.1, 1.1, 1.1);
   transform: scale3d(1.1, 1.1, 1.1);
 }
+
 .img-fluid {
   max-width: 100%;
   height: auto;
 }
+
 img {
   vertical-align: middle;
   border-style: none;
 }
+
 .cardResultBoxContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
 }
+
 .cardResultBoxHeader {
   width: 100%;
   display: flex;
@@ -784,6 +818,7 @@ img {
   background-color: #ffc742d9;
   color: #ffffff;
 }
+
 .cardResultBoxRound {
   width: 100%;
   display: flex;
@@ -795,6 +830,7 @@ img {
   margin-bottom: 10px;
   padding-right: 5px;
 }
+
 .cardResultCircle {
   cursor: pointer;
   width: 30px;
@@ -805,6 +841,7 @@ img {
   justify-content: center;
   align-items: center;
 }
+
 .casino-header {
   display: flex;
   justify-content: space-between;
@@ -826,6 +863,7 @@ img {
   color: #000;
   font-size: 14px;
 }
+
 .casino-video {
   position: absolute;
   background-color: #000;
@@ -844,6 +882,7 @@ img {
 .table-bordered th {
   border: 1px solid #aaa;
 }
+
 .back {
   background-color: #a7d8fd !important;
 }
@@ -854,15 +893,18 @@ img {
   max-width: 50%;
   font-size: 12px;
 }
+
 .casino-container .table td {
   border-bottom: 0;
   line-height: 1;
 }
+
 .casino-container .table tr {
   background-color: rgba(0, 0, 0, 0.05);
   display: table;
   width: 100%;
 }
+
 .table thead th {
   border-bottom: 0;
   vertical-align: middle;
@@ -874,10 +916,12 @@ img {
   border-bottom-width: 1px;
   // background-color: #f7f7f7;
 }
+
 .table thead th {
   vertical-align: bottom;
   border-bottom: 1px solid #dee2e6;
 }
+
 .casino-container .table td {
   border-bottom: 0;
   padding-left: 2px;
@@ -893,20 +937,25 @@ img {
 .table thead th tr b {
   padding-left: 2px;
 }
+
 .b-table-sticky-header,
 .table-responsive,
 [class*="table-responsive-"] {
   margin-bottom: 0.5rem;
 }
+
 .rules-table .table {
   background-color: rgb(241 245 248);
 }
+
 .box-7 {
   font-size: 12px;
 }
+
 .box-3 {
   font-size: 12px;
 }
+
 .coupon-table .tablebg {
   background-color: rgb(241 245 248);
 }
@@ -920,29 +969,35 @@ img {
   color: #303030;
   line-height: 1;
 }
+
 .coupon-table thead td tr {
   padding: 4px 0;
 }
+
 .back,
 .back-color {
   background-color: #72bbef !important;
 }
+
 .box-2 {
   width: 20%;
   min-width: 20%;
   max-width: 20%;
   font-size: 10px;
 }
+
 .coupon-table tr td:first-child {
   padding-left: 15px;
   vertical-align: middle;
   padding-right: 15px;
 }
+
 .coupon-table tr td:first-child {
   padding-left: 15px;
   vertical-align: middle;
   padding-right: 15px;
 }
+
 .fontb {
   font-size: 9px;
   padding: 0px;
@@ -958,6 +1013,7 @@ img {
   padding: 6px 8px;
   color: #ffffff;
 }
+
 .horseRacingTabHeader-m {
   width: 100%;
   // height: 12%;
@@ -968,9 +1024,11 @@ img {
   color: #ffffff;
   flex-direction: column;
 }
+
 .teenpatti-20 .suspended:after {
   width: 50%;
 }
+
 .no-scrollbar {
   height: 400px;
   overflow: auto;
@@ -991,6 +1049,7 @@ img {
   align-items: center;
   color: #ffffff;
 }
+
 .resultModalSubHead {
   width: 100%;
   height: 50px;
@@ -1002,6 +1061,7 @@ img {
   align-items: center;
   color: #000000;
 }
+
 // .suspended {
 //   position: relative;
 // }
@@ -1009,6 +1069,7 @@ img {
 .lockk {
   position: relative;
 }
+
 .locked {
   position: relative;
 }
@@ -1055,6 +1116,7 @@ img {
   display: flex;
   flex-direction: row;
 }
+
 .loader-inner {
   display: flex;
   justify-content: center;
@@ -1069,11 +1131,13 @@ img {
   width: 100%;
   margin-top: 2rem;
 }
+
 .dt20subheader1 {
   color: #fff;
   display: flex;
   // padding: 0 5px;
 }
+
 .dt20subheader2 {
   color: #fff;
   display: flex;
@@ -1104,111 +1168,148 @@ img {
 .title-46 {
   font-size: 46px !important;
 }
+
 .title-40 {
   font-size: 40px !important;
 }
+
 .title-36 {
   font-size: 36px !important;
 }
+
 .title-34 {
   font-size: 34px !important;
 }
+
 .title-32 {
   font-size: 32px !important;
 }
+
 .title-30 {
   font-size: 30px !important;
 }
+
 .title-28 {
   font-size: 28px !important;
 }
+
 .title-26 {
   font-size: 26px !important;
 }
+
 .title-24 {
   font-size: 24px !important;
 }
+
 .title-22 {
   font-size: 22px !important;
 }
+
 .title-20 {
   font-size: 20px !important;
 }
+
 .title-18 {
   font-size: 18px !important;
 }
+
 .title-16 {
   font-size: 16px !important;
 }
+
 .title-16px {
   font-size: 16px !important;
 }
+
 .title-15 {
   font-size: 15px !important;
 }
+
 .title-14 {
   font-size: 14px !important;
 }
+
 .title-13 {
   font-size: 13px !important;
 }
+
 .title-12 {
   font-size: 12px !important;
 }
+
 .title-10 {
   font-size: 10px !important;
 }
+
 .f100 {
   font-weight: 100 !important;
 }
+
 .f300 {
   font-weight: 300 !important;
 }
+
 .fbold {
   font-weight: bold !important;
 }
+
 .f400 {
   font-weight: 400 !important;
 }
+
 .f500 {
   font-weight: 500 !important;
 }
+
 .f600 {
   font-weight: 600 !important;
 }
+
 .f700 {
   font-weight: 700 !important;
 }
+
 .f800 {
   font-weight: 800 !important;
 }
+
 .f900 {
   font-weight: 900 !important;
 }
+
 .font-color {
   color: $black;
 }
+
 .auth-security {
   height: 100vh;
   width: 100%;
   background-image: linear-gradient(#004a25, #ffc742);
 }
+
 // width
 .w-35 {
   width: 35% !important;
 }
+
 .form-check-input[type="radio"] {
   border-radius: 50% !important;
 }
+
 .latest-eventt {
-  display: flex; /* Use flex to make items align in a row */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  scrollbar-width: none; /* Hide scrollbar in Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar in IE 10+ */
+  display: flex;
+  /* Use flex to make items align in a row */
+  overflow-x: auto;
+  /* Enable horizontal scrolling */
+  scrollbar-width: none;
+  /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none;
+  /* Hide scrollbar in IE 10+ */
 }
 
 .latest-eventt::-webkit-scrollbar {
-  display: none; /* Hide scrollbar in WebKit browsers */
+  display: none;
+  /* Hide scrollbar in WebKit browsers */
 }
 
 /* Styles for width 0px to 760px */
@@ -1216,54 +1317,69 @@ img {
   .backLayBoxWidth {
     width: 48% !important;
   }
+
   .backLayBoxWidth2 {
     width: 40% !important;
   }
+
   .rateBoxWidth {
     width: 72% !important;
   }
+
   .rateBoxWidth2 {
     width: 40% !important;
   }
+
   .rateBoxWidth3 {
     width: 20% !important;
   }
+
   .rateFont {
     font-size: 15px !important;
     font-weight: bold !important;
     color: #333 !important;
   }
+
   .sizeFont {
     font-size: 11px !important;
     font-weight: 200 !important;
   }
+
   .teamFont {
     font-size: 13px !important;
   }
+
   .side-W {
     display: none !important;
   }
+
   .sideBet-W {
     display: none !important;
     width: 0 !important;
   }
+
   .betMain-W {
     width: 100% !important;
   }
+
   .suspendTextCmmn {
     font-size: 12px !important;
     font-weight: bold;
     color: #ff0000;
   }
+
   .deatilShow-m {
     display: block !important;
   }
+
   .deatilShow-d {
     display: none !important;
   }
+
   .rateBoxWidthKhado {
     width: 20% !important;
   }
+
   .setbtn-modal .modal-dialog {
     margin: 0 !important;
   }
@@ -1275,60 +1391,77 @@ img {
   .backLayBoxWidth {
     width: 240px !important;
   }
+
   .backLayBoxWidth2 {
     width: 120px !important;
   }
+
   .rateBoxWidth {
     width: 360px !important;
   }
+
   .rateBoxWidth2 {
     width: 120px !important;
   }
+
   .rateBoxWidth3 {
     width: 60px !important;
   }
+
   .rateBoxWidthNormal {
     width: 180px !important;
   }
+
   .rateBoxWidthKhado {
     width: 120px !important;
   }
+
   .rateFont {
     font-size: 16px !important;
     font-weight: bold !important;
     color: #333 !important;
   }
+
   .sizeFont {
     font-size: 12px !important;
     font-weight: 200 !important;
   }
+
   .teamFont {
     font-size: 14px !important;
   }
+
   .side-W {
     display: none !important;
   }
+
   .sideBet-W {
     display: none !important;
     width: 0 !important;
   }
+
   .betMain-W {
     width: 100% !important;
   }
+
   .suspendTextCmmn {
     font-size: 13px !important;
     font-weight: bold;
     color: #ff0000;
   }
+
   .bookTeamWidth {
     width: 27% !important;
   }
+
   .deatilShow-m {
     display: block;
   }
+
   .deatilShow-d {
     display: none;
   }
+
   .sessionMinMaxFont {
     font-size: 9px !important;
   }
@@ -1340,63 +1473,81 @@ img {
   .backLayBoxWidth {
     width: 220px !important;
   }
+
   .backLayBoxWidth2 {
     width: 110px !important;
   }
+
   .rateBoxWidth {
     width: 330px !important;
   }
+
   .rateBoxWidth2 {
     width: 110px !important;
   }
+
   .rateBoxWidth3 {
     width: 55px !important;
   }
+
   .rateBoxWidthNormal {
     width: 165px !important;
   }
+
   .rateBoxWidthKhado {
     width: 110px !important;
   }
+
   .runnerWidthNormal {
     flex-grow: 1;
     width: 48% !important;
   }
+
   .rateFont {
     font-size: 16px !important;
     font-weight: bold !important;
     color: #333 !important;
   }
+
   .sizeFont {
     font-size: 12px !important;
     font-weight: 200 !important;
   }
+
   .teamFont {
     font-size: 13px !important;
   }
+
   .side-W {
     width: 210px !important;
   }
+
   .betMain-W {
     width: calc(100% - 352px) !important;
   }
+
   .suspendTextCmmn {
     font-size: 14px !important;
     font-weight: bold;
     color: #ff0000;
   }
+
   .bookTeamWidth {
     width: 26% !important;
   }
+
   .deatilShow-m {
     display: none;
   }
+
   .deatilShow-d {
     display: block;
   }
+
   .placeBet-w {
     width: 350px !important;
   }
+
   .sessionMinMaxFont {
     font-size: 9px !important;
   }
@@ -1408,63 +1559,81 @@ img {
   .backLayBoxWidth {
     width: 240px !important;
   }
+
   .backLayBoxWidth2 {
     width: 120px !important;
   }
+
   .rateBoxWidth {
     width: 360px !important;
   }
+
   .rateBoxWidth2 {
     width: 120px !important;
   }
+
   .rateBoxWidth3 {
     width: 60px !important;
   }
+
   .rateBoxWidthNormal {
     width: 180px !important;
   }
+
   .rateBoxWidthKhado {
     width: 120px !important;
   }
+
   .runnerWidthNormal {
     flex-grow: 1;
     width: 48% !important;
   }
+
   .rateFont {
     font-size: 16px !important;
     font-weight: bold !important;
     color: #333 !important;
   }
+
   .sizeFont {
     font-size: 12px !important;
     font-weight: 200 !important;
   }
+
   .teamFont {
     font-size: 14px !important;
   }
+
   .side-W {
     width: 240px !important;
   }
+
   .betMain-W {
     width: calc(100% - 402px) !important;
   }
+
   .suspendTextCmmn {
     font-size: 15px !important;
     font-weight: bold;
     color: #ff0000;
   }
+
   .bookTeamWidth {
     width: 27% !important;
   }
+
   .deatilShow-m {
     display: none;
   }
+
   .deatilShow-d {
     display: block;
   }
+
   .placeBet-w {
     width: 400px !important;
   }
+
   .sessionMinMaxFont {
     font-size: 10px !important;
   }
@@ -1476,63 +1645,81 @@ img {
   .backLayBoxWidth {
     width: 320px !important;
   }
+
   .backLayBoxWidth2 {
     width: 160px !important;
   }
+
   .rateBoxWidth {
     width: 480px !important;
   }
+
   .rateBoxWidth2 {
     width: 160px !important;
   }
+
   .rateBoxWidth3 {
     width: 80px !important;
   }
+
   .rateBoxWidthNormal {
     width: 240px !important;
   }
+
   .rateBoxWidthKhado {
     width: 160px !important;
   }
+
   .runnerWidthNormal {
     flex-grow: 1;
     width: 45% !important;
   }
+
   .rateFont {
     font-size: 18px !important;
     font-weight: bold !important;
     color: #333 !important;
   }
+
   .sizeFont {
     font-size: 12px !important;
     font-weight: 200 !important;
   }
+
   .teamFont {
     font-size: 14px !important;
   }
+
   .side-W {
     width: 280px !important;
   }
+
   .betMain-W {
     width: calc(100% - 452px) !important;
   }
+
   .suspendTextCmmn {
     font-size: 16px !important;
     font-weight: bold;
     color: #ff0000;
   }
+
   .bookTeamWidth {
     width: 28% !important;
   }
+
   .deatilShow-m {
     display: none;
   }
+
   .deatilShow-d {
     display: block;
   }
+
   .placeBet-w {
     width: 450px !important;
   }
+
   .sessionMinMaxFont {
     font-size: 12px !important;
   }
@@ -1570,10 +1757,12 @@ img {
 .form-check-input-custom[type="radio"] {
   border-radius: 50% !important;
 }
+
 .form-check-custom .form-check-input-custom {
   float: left;
   margin-left: -1.5em;
 }
+
 .form-check-input-custom {
   width: 1em;
   height: 1em;

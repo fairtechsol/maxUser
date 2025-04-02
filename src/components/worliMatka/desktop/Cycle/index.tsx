@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { FaInfoCircle } from "react-icons/fa"; // Using an info icon from react-icons
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch } from "../../../../store/store";
-import WorliClearBox from "../../mobile/WorliClearBox";
+import { AppDispatch, RootState } from "../../../../store/store";
 import { isMobile } from "../../../../utils/screenDimension";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
+import WorliClearBox from "../../mobile/WorliClearBox";
 import "../style.scss";
 
 const Cycle = ({ data, odds }: any) => {
@@ -19,51 +17,6 @@ const Cycle = ({ data, odds }: any) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-
-  // const handleBoxClick = (index: number) => {
-  //   setSelectedBoxes((prev) => {
-  //     const updatedBoxes = prev.includes(index)
-  //       ? prev.filter((box) => box !== index)
-  //       : prev.length < 2
-  //       ? [...prev, index]
-  //       : prev;
-
-  //     // If two boxes are selected, automatically trigger the bet handling.
-  //     if (updatedBoxes.length === 2) {
-  //       handleBet(updatedBoxes);
-  //     }
-
-  //     return updatedBoxes;
-  //   });
-  // };
-
-  // const handleBet = (selectedIndices: number[]) => {
-  //   if (selectedIndices.length === 2) {
-  //     const selectedItems = selectedIndices.map((i) => ({
-  //       bettingType: "BACK",
-  //       matchId: data?.id,
-  //       odd: odds[i]?.rate, // Assuming odds is an array of objects
-  //       stake: 0,
-  //       matchBetType: "matchOdd",
-  //       betOnTeam: odds[i]?.nat,
-  //       name: odds[i]?.nat,
-  //       bettingName: "Match odds",
-  //       selectionId: odds[i]?.sid,
-  //     }));
-
-  //     selectedItems.forEach((team) => {
-  //       dispatch(
-  //         selectedBetAction({
-  //           team,
-  //           data,
-  //         })
-  //       );
-  //     });
-
-  //     setSelectedBoxes([]); // Reset selection after placing the bet
-  //     setShowModal(false); // Close modal after bet is placed
-  //   }
-  // };
 
   const handleBet = () => {
     let team = {
@@ -115,9 +68,8 @@ const Cycle = ({ data, odds }: any) => {
   const renderBox = (value: string, index: number) => (
     <div
       key={index}
-      className={`worli-odd-box back ${
-        betTeam.includes(value) ? "selected" : ""
-      }`}
+      className={`worli-odd-box back ${betTeam.includes(value) ? "selected" : ""
+        }`}
       onClick={() => {
         setBetTeam((p) => {
           if (p && p.length == 2) return p;
@@ -127,21 +79,14 @@ const Cycle = ({ data, odds }: any) => {
           return p;
         });
 
-        //handleBoxClick(index);
       }}
-      // style={{
-      //   backgroundColor: selectedBoxes.includes(index)
-      //     ? "var(--bg-success)"
-      //     : "",
-      //   color: selectedBoxes.includes(index) ? "#fff" : "",
-      // }}
     >
       <span className="worli-odd">{value}</span>
     </div>
   );
 
-  const handleClear = ()=>{
-  
+  const handleClear = () => {
+
     setBetTeam("")
     setMobileBox(false)
   }
@@ -170,7 +115,7 @@ const Cycle = ({ data, odds }: any) => {
       )}
 
       {/* React Bootstrap Modal */}
-      {isMobile && ( betTeam?.length > 0) && (
+      {isMobile && (betTeam?.length > 0) && (
         <WorliClearBox game="Cycle" team={betTeam} zeros={""} setBox={setMobileBox} handleClear={handleClear} disabled={betTeam?.length < 2} />
       )}
       <Modal show={showModal} onHide={() => setShowModal(false)}>

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   expertSocketService,
+  matchService,
   matchSocket,
   socket,
   socketService,
-  matchService,
 } from "../../socketManager";
 import {
   // getMatchList,
@@ -60,7 +60,7 @@ const GameDetails = () => {
       matchService.connect([id]);
     }
     return () => {
-      matchService.disconnect(); 
+      matchService.disconnect();
     };
   }, [id]);
 
@@ -332,9 +332,6 @@ const GameDetails = () => {
     try {
       const handleVisibilityChange = () => {
         if (document.visibilityState === "visible") {
-          // if (!socket.connected) {
-          //   socketService.connect();
-          // }
           if (id) {
             dispatch(selectedBetAction(null));
             // dispatch(matchDetailAction(id));
@@ -360,7 +357,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, id,matchSocket]);
+  }, [socket, id, matchSocket]);
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };

@@ -1,26 +1,13 @@
-// import { TextField, useMediaQuery, useTheme } from "@mui/material";
-
-
-// import { SEARCH, Search } from "../../assets";
 import { debounce } from "lodash";
-import { SearchList } from "../../../store/actions/match/matchListAction";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
-import { Form } from "react-bootstrap";
 import { useState } from "react";
+import { Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { SearchList } from "../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../store/store";
 
 const SearchInput = (props: any) => {
   const {
-    // placeholder,
-    // inputContainerStyle,
-    // showTextInput,
-    // header,
-    // setShowSearch,
-    // show,
-    // width,
-    // searchContainerStyle,
     onChange,
-    // endpoint,
   } = props;
 
   const dispatch: AppDispatch = useDispatch();

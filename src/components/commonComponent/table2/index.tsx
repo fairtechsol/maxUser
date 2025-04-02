@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Column } from "../../../models/tableInterface";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import TableHeader from "./tableHeader";
 import PaginationComponent from "./tableUtils/pagination"; // Import the PaginationComponent
@@ -29,7 +29,7 @@ interface CustomTableProps {
   striped?: boolean;
   paginationCount?: boolean;
   width?: any;
-  placeHolder?:any;
+  placeHolder?: any;
 }
 
 const CustomTable2: React.FC<CustomTableProps> = ({
@@ -81,7 +81,6 @@ const CustomTable2: React.FC<CustomTableProps> = ({
         rowPerPage: rowPerPage,
       };
     });
-    // alert(tHeadTheme);
   }, [currentPage, sortConfig, rowPerPage]);
 
   useEffect(() => {
@@ -108,16 +107,15 @@ const CustomTable2: React.FC<CustomTableProps> = ({
       {/* Table for displaying data */}
       <div className="w-100" >
         <Table {...props} responsive style={width ? { width: width } : {}}>
-          <thead style={{border:"1px solid #aaa"}}>
+          <thead style={{ border: "1px solid #aaa" }}>
             <tr>
               {/* Table header with sorting icons */}
               {columns.map((column, index) => (
                 <th
-                  className={`${tHeadTheme} text-start ${
-                    isMobile ? " title-12 f800 p-1" : "title-16 f600"
-                  }`}
+                  className={`${tHeadTheme} text-start ${isMobile ? " title-12 f800 p-1" : "title-16 f600"
+                    }`}
                   key={index}
-                  style={{borderRight:"1px solid #aaa",backgroundColor:"#eee"}}
+                  style={{ borderRight: "1px solid #aaa", backgroundColor: "#eee" }}
                 >
                   {column.label}
                   {/* Display sorting icons based on the sorting configuration */}
@@ -133,7 +131,7 @@ const CustomTable2: React.FC<CustomTableProps> = ({
               ))}
             </tr>
           </thead>
-          <tbody className="text-center" style={{border:"1px solid #aaa"}}>
+          <tbody className="text-center" style={{ border: "1px solid #aaa" }}>
             {/* Table body with sorted data */}
             {itemCount === 0 ? (
               <tr className="text-center ">

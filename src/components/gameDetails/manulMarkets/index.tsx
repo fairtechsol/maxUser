@@ -11,10 +11,6 @@ const ManualMarket = ({ title, data, detail }) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -77,25 +73,24 @@ const ManualMarket = ({ title, data, detail }) => {
               {data?.minBet === data?.maxBet
                 ? `Max:${formatNumber(data?.maxBet)}`
                 : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
-                    data?.maxBet
-                  )}`}
+                  data?.maxBet
+                )}`}
             </span>
           </div>
           <div
-            className={`manualBackLayBoxContainer ${
-              isMobile ? "backLayBoxWidth" : "backLayBoxWidth"
-            }`}
-            // style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
+            className={`manualBackLayBoxContainer ${isMobile ? "backLayBoxWidth" : "backLayBoxWidth"
+              }`}
+          // style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
               className="manualBackBoxTab"
-              // style={{ width: isMobile ? "50%" : "25%" }}
+            // style={{ width: isMobile ? "50%" : "25%" }}
             >
               <span className={`f-size16 manualBackTxt`}>Back</span>
             </div>
             <div
               className="manualLayBoxTab"
-              // style={{ width: isMobile ? "50%" : "25%" }}
+            // style={{ width: isMobile ? "50%" : "25%" }}
             >
               <span className={`f-size16 manualBackTxt`}>Lay</span>
             </div>
@@ -119,23 +114,22 @@ const ManualMarket = ({ title, data, detail }) => {
                 ? detail?.teamA
                 : "Yes") > 25
                 ? `${(data?.type?.includes("quickbookmaker")
-                    ? detail?.teamA
-                    : "Yes"
-                  )?.slice(0, 25)}...`
+                  ? detail?.teamA
+                  : "Yes"
+                )?.slice(0, 25)}...`
                 : data?.type?.includes("quickbookmaker")
-                ? detail?.teamA
-                : "Yes"}
+                  ? detail?.teamA
+                  : "Yes"}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
-                className={`${
-                  parseFloat(
-                    detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A +
-                        "_" +
-                        detail?.id
-                    ]
-                  ) +
+                className={`${parseFloat(
+                  detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A +
+                  "_" +
+                  detail?.id
+                  ]
+                ) +
                     manualProfitLoss(
                       selectedBet,
                       data?.type?.includes("quickbookmaker")
@@ -144,37 +138,37 @@ const ManualMarket = ({ title, data, detail }) => {
                       data?.type,
                       data?.gtype
                     ) >
-                  0
+                    0
                     ? "color-green"
                     : "color-red"
-                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {detail?.profitLossDataMatch?.[
                   profitLossDataForMatchConstants[data?.type]?.A +
-                    "_" +
-                    detail?.id
+                  "_" +
+                  detail?.id
                 ]
                   ? detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A +
-                        "_" +
-                        detail?.id
-                    ] === "0"
+                    profitLossDataForMatchConstants[data?.type]?.A +
+                    "_" +
+                    detail?.id
+                  ] === "0"
                     ? ""
                     : parseFloat(
-                        detail?.profitLossDataMatch?.[
-                          profitLossDataForMatchConstants[data?.type]?.A +
-                            "_" +
-                            detail?.id
-                        ]
-                      ) +
-                      manualProfitLoss(
-                        selectedBet,
-                        data?.type?.includes("quickbookmaker")
-                          ? detail?.teamA
-                          : "Yes",
-                        data?.type,
-                        data?.gtype
-                      )
+                      detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A +
+                      "_" +
+                      detail?.id
+                      ]
+                    ) +
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.type?.includes("quickbookmaker")
+                        ? detail?.teamA
+                        : "Yes",
+                      data?.type,
+                      data?.gtype
+                    )
                   : ""}
               </span>
               <span
@@ -203,21 +197,20 @@ const ManualMarket = ({ title, data, detail }) => {
                 ) === 0
                   ? ""
                   : manualProfitLoss(
-                      selectedBet,
-                      data?.type?.includes("quickbookmaker")
-                        ? detail?.teamA
-                        : "Yes",
-                      data?.type,
-                      data?.gtype
-                    )?.toFixed(2)}
+                    selectedBet,
+                    data?.type?.includes("quickbookmaker")
+                      ? detail?.teamA
+                      : "Yes",
+                    data?.type,
+                    data?.gtype
+                  )?.toFixed(2)}
               </span>
             </div>
           </div>
           <div
-            className={`manualRateBox ${
-              isMobile ? "rateBoxWidth" : "rateBoxWidth"
-            }`}
-            // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            className={`manualRateBox ${isMobile ? "rateBoxWidth" : "rateBoxWidth"
+              }`}
+          // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {data?.statusTeamA != "active" && (
               <div className="suspended-overlayRatesmanual">
@@ -330,8 +323,8 @@ const ManualMarket = ({ title, data, detail }) => {
                   ? detail?.rateThan100
                     ? Math.floor(data?.layTeamA) + 1
                     : Math.floor(data?.layTeamA) + 1 > 100
-                    ? "-"
-                    : Math.floor(data?.layTeamA) + 1
+                      ? "-"
+                      : Math.floor(data?.layTeamA) + 1
                   : "-"}
               </span>
             </div>
@@ -356,8 +349,8 @@ const ManualMarket = ({ title, data, detail }) => {
                   ? detail?.rateThan100
                     ? Math.floor(data?.layTeamA) + 2
                     : Math.floor(data?.layTeamA) + 2 > 100
-                    ? "-"
-                    : Math.floor(data?.layTeamA) + 2
+                      ? "-"
+                      : Math.floor(data?.layTeamA) + 2
                   : "-"}
               </span>
             </div>
@@ -377,25 +370,24 @@ const ManualMarket = ({ title, data, detail }) => {
           <div className="manualTeam" style={isMobile ? { width: "28%" } : {}}>
             <span className={`teamFont manualTeamTxt`}>
               {(data?.type?.includes("quickbookmaker") ? detail?.teamB : "No") >
-              25
+                25
                 ? `${(data?.type?.includes("quickbookmaker")
-                    ? detail?.teamB
-                    : "No"
-                  )?.slice(0, 25)}...`
+                  ? detail?.teamB
+                  : "No"
+                )?.slice(0, 25)}...`
                 : data?.type?.includes("quickbookmaker")
-                ? detail?.teamB
-                : "No"}
+                  ? detail?.teamB
+                  : "No"}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
-                className={`${
-                  parseFloat(
-                    detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B +
-                        "_" +
-                        detail?.id
-                    ]
-                  ) +
+                className={`${parseFloat(
+                  detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B +
+                  "_" +
+                  detail?.id
+                  ]
+                ) +
                     manualProfitLoss(
                       selectedBet,
                       data?.type?.includes("quickbookmaker")
@@ -404,37 +396,37 @@ const ManualMarket = ({ title, data, detail }) => {
                       data?.type,
                       data?.gtype
                     ) >
-                  0
+                    0
                     ? "color-green"
                     : "color-red"
-                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {detail?.profitLossDataMatch?.[
                   profitLossDataForMatchConstants[data?.type]?.B +
-                    "_" +
-                    detail?.id
+                  "_" +
+                  detail?.id
                 ]
                   ? detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B +
-                        "_" +
-                        detail?.id
-                    ] === "0"
+                    profitLossDataForMatchConstants[data?.type]?.B +
+                    "_" +
+                    detail?.id
+                  ] === "0"
                     ? ""
                     : parseFloat(
-                        detail?.profitLossDataMatch?.[
-                          profitLossDataForMatchConstants[data?.type]?.B +
-                            "_" +
-                            detail?.id
-                        ]
-                      ) +
-                      manualProfitLoss(
-                        selectedBet,
-                        data?.type?.includes("quickbookmaker")
-                          ? detail?.teamB
-                          : "No",
-                        data?.type,
-                        data?.gtype
-                      )
+                      detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B +
+                      "_" +
+                      detail?.id
+                      ]
+                    ) +
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.type?.includes("quickbookmaker")
+                        ? detail?.teamB
+                        : "No",
+                      data?.type,
+                      data?.gtype
+                    )
                   : ""}
               </span>
               <span
@@ -461,21 +453,20 @@ const ManualMarket = ({ title, data, detail }) => {
                 ) === 0
                   ? ""
                   : manualProfitLoss(
-                      selectedBet,
-                      data?.type?.includes("quickbookmaker")
-                        ? detail?.teamB
-                        : "No",
-                      data?.type,
-                      data?.gtype
-                    )?.toFixed(2)}
+                    selectedBet,
+                    data?.type?.includes("quickbookmaker")
+                      ? detail?.teamB
+                      : "No",
+                    data?.type,
+                    data?.gtype
+                  )?.toFixed(2)}
               </span>
             </div>
           </div>
           <div
-            className={`manualRateBox ${
-              isMobile ? "rateBoxWidth" : "rateBoxWidth"
-            }`}
-            // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            className={`manualRateBox ${isMobile ? "rateBoxWidth" : "rateBoxWidth"
+              }`}
+          // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {data?.statusTeamB != "active" && (
               <div className="suspended-overlayRatesmanual">
@@ -578,8 +569,8 @@ const ManualMarket = ({ title, data, detail }) => {
                   ? detail?.rateThan100
                     ? Math.floor(data?.layTeamB) + 1
                     : Math.floor(data?.layTeamB) + 1 > 100
-                    ? "-"
-                    : Math.floor(data?.layTeamB) + 1
+                      ? "-"
+                      : Math.floor(data?.layTeamB) + 1
                   : "-"}
               </span>
             </div>
@@ -602,8 +593,8 @@ const ManualMarket = ({ title, data, detail }) => {
                   ? detail?.rateThan100
                     ? Math.floor(data?.layTeamB) + 2
                     : Math.floor(data?.layTeamB) + 2 > 100
-                    ? "-"
-                    : Math.floor(data?.layTeamB) + 2
+                      ? "-"
+                      : Math.floor(data?.layTeamB) + 2
                   : "-"}
               </span>
             </div>
@@ -632,49 +623,48 @@ const ManualMarket = ({ title, data, detail }) => {
               </span>{" "}
               <div className="d-flex flex-row justify-content-between w-100">
                 <span
-                  className={`${
-                    parseFloat(
-                      detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C +
-                          "_" +
-                          detail?.id
-                      ]
-                    ) +
+                  className={`${parseFloat(
+                    detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.C +
+                    "_" +
+                    detail?.id
+                    ]
+                  ) +
                       manualProfitLoss(
                         selectedBet,
                         detail?.teamC,
                         data?.type,
                         data?.gtype
                       ) >
-                    0
+                      0
                       ? "color-green"
                       : "color-red"
-                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                    } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                 >
                   {detail?.profitLossDataMatch?.[
                     profitLossDataForMatchConstants[data?.type]?.C +
-                      "_" +
-                      detail?.id
+                    "_" +
+                    detail?.id
                   ]
                     ? detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C +
-                          "_" +
-                          detail?.id
-                      ] === "0"
+                      profitLossDataForMatchConstants[data?.type]?.C +
+                      "_" +
+                      detail?.id
+                    ] === "0"
                       ? ""
                       : parseFloat(
-                          detail?.profitLossDataMatch?.[
-                            profitLossDataForMatchConstants[data?.type]?.C +
-                              "_" +
-                              detail?.id
-                          ]
-                        ) +
-                        manualProfitLoss(
-                          selectedBet,
-                          detail?.teamC,
-                          data?.type,
-                          data?.gtype
-                        )
+                        detail?.profitLossDataMatch?.[
+                        profitLossDataForMatchConstants[data?.type]?.C +
+                        "_" +
+                        detail?.id
+                        ]
+                      ) +
+                      manualProfitLoss(
+                        selectedBet,
+                        detail?.teamC,
+                        data?.type,
+                        data?.gtype
+                      )
                     : ""}
                 </span>
                 <span
@@ -699,19 +689,18 @@ const ManualMarket = ({ title, data, detail }) => {
                   ) === 0
                     ? ""
                     : manualProfitLoss(
-                        selectedBet,
-                        detail?.teamC,
-                        data?.type,
-                        data?.gtype
-                      )?.toFixed(2)}
+                      selectedBet,
+                      detail?.teamC,
+                      data?.type,
+                      data?.gtype
+                    )?.toFixed(2)}
                 </span>
               </div>
             </div>
             <div
-              className={`manualRateBox ${
-                isMobile ? "rateBoxWidth" : "rateBoxWidth"
-              }`}
-              // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+              className={`manualRateBox ${isMobile ? "rateBoxWidth" : "rateBoxWidth"
+                }`}
+            // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
             >
               {data?.statusTeamC != "active" && (
                 <div className="suspended-overlayRatesmanual">
@@ -814,8 +803,8 @@ const ManualMarket = ({ title, data, detail }) => {
                     ? detail?.rateThan100
                       ? Math.floor(data?.layTeamC) + 1
                       : Math.floor(data?.layTeamC) + 1 > 100
-                      ? "-"
-                      : Math.floor(data?.layTeamC) + 1
+                        ? "-"
+                        : Math.floor(data?.layTeamC) + 1
                     : "-"}
                 </span>
               </div>
@@ -838,8 +827,8 @@ const ManualMarket = ({ title, data, detail }) => {
                     ? detail?.rateThan100
                       ? Math.floor(data?.layTeamC) + 2
                       : Math.floor(data?.layTeamC) + 2 > 100
-                      ? "-"
-                      : Math.floor(data?.layTeamC) + 2
+                        ? "-"
+                        : Math.floor(data?.layTeamC) + 2
                     : "-"}
                 </span>
               </div>

@@ -1,7 +1,6 @@
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
+import { GiSpades } from "react-icons/gi";
+import { ImClubs, ImDiamonds } from "react-icons/im";
 
 const CommonButtonBox = ({
   value1,
@@ -12,7 +11,6 @@ const CommonButtonBox = ({
   lock,
   data,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
 
   return (
     <div className="commonButtonBoxContainer" style={{ width: width }}>
@@ -44,13 +42,12 @@ const CommonButtonBox = ({
       <div>
         <span
           style={{ fontSize: "16px" }}
-          className={`${
-            value3 && value3 > 0
+          className={`${value3 && value3 > 0
               ? "color-green"
               : value3 < 0
-              ? " color-red"
-              : ""
-          }`}
+                ? " color-red"
+                : ""
+            }`}
         >
           {value3 || "\u00A0"}
         </span>

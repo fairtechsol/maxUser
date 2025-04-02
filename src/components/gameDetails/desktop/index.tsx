@@ -28,14 +28,8 @@ const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
-  // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
-  // const [errorCount, setErrorCount] = useState<number>(0);
-  // const [channelId, setChannelId] = useState<string>("");
-  // const [currInterval, setCurrInterval] = useState<any>(null);
 
   const [tvData, setTvData] = useState<any>(null);
-  // const [loading, setLoading] = useState<boolean>(true);
-  // const [error, setError] = useState<string | null>(null);
 
   const { matchDetails, liveScoreBoardData, loading } = useSelector(
     (state: RootState) => state.match.matchList
@@ -76,20 +70,6 @@ const DesktopGameDetail = () => {
     ? normalizedData?.filter((item: any) => item?.isManual)
     : [];
 
-  // useEffect(() => {
-  //   try {
-  //     if (matchDetails?.id && matchSocket) {
-  //       let currRateInt = setInterval(() => {
-  //         expertSocketService.match.joinMatchRoom(matchDetails?.id);
-  //       }, 60000);
-  //       return () => {
-  //         clearInterval(currRateInt);
-  //       };
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [matchDetails?.id]);
 
   return (
     <Container fluid className="pe-0 ps-1">
@@ -148,7 +128,7 @@ const DesktopGameDetail = () => {
                         }
                         data={matchDetails?.bookmaker}
                         detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
+                      // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
@@ -161,13 +141,13 @@ const DesktopGameDetail = () => {
                             title={item?.name}
                             box={
                               item?.runners?.[0]?.ex?.availableToBack?.length >
-                              2
+                                2
                                 ? 6
                                 : 2
                             }
                             data={item}
                             detail={matchDetails}
-                            // data={matchDetails?.matchOdd}
+                          // data={matchDetails?.matchOdd}
                           />
                         </Col>
                       )}
@@ -196,7 +176,7 @@ const DesktopGameDetail = () => {
                               }
                               data={item}
                               detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
+                            // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
@@ -215,8 +195,8 @@ const DesktopGameDetail = () => {
                         }
                         data={matchDetails?.bookmaker2}
                         detail={matchDetails}
-                        // type={MatchType.MATCH_ODDS}
-                        // data={matchDetails?.matchOdd}
+                      // type={MatchType.MATCH_ODDS}
+                      // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
@@ -230,7 +210,7 @@ const DesktopGameDetail = () => {
                               title={item?.name}
                               data={item}
                               detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
+                            // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
@@ -250,8 +230,8 @@ const DesktopGameDetail = () => {
                         }
                         data={matchDetails?.apiTideMatch2}
                         detail={matchDetails}
-                        // type={MatchType.MATCH_ODDS}
-                        // data={matchDetails?.matchOdd}
+                      // type={MatchType.MATCH_ODDS}
+                      // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
@@ -259,21 +239,21 @@ const DesktopGameDetail = () => {
                   matchDetails?.manualTiedMatch?.isActive) ||
                   (matchDetails?.manualTideMatch?.activeStatus === "live" &&
                     matchDetails?.manualTideMatch?.isActive)) && (
-                  <Col md={12}>
-                    <ManualMarket
-                      title={
-                        matchDetails?.manualTiedMatch?.name ||
-                        matchDetails?.manualTideMatch?.name
-                      }
-                      data={
-                        matchDetails?.manualTiedMatch ||
-                        matchDetails?.manualTideMatch
-                      }
-                      detail={matchDetails}
+                    <Col md={12}>
+                      <ManualMarket
+                        title={
+                          matchDetails?.manualTiedMatch?.name ||
+                          matchDetails?.manualTideMatch?.name
+                        }
+                        data={
+                          matchDetails?.manualTiedMatch ||
+                          matchDetails?.manualTideMatch
+                        }
+                        detail={matchDetails}
                       // data={matchDetails?.matchOdd}
-                    />
-                  </Col>
-                )}
+                      />
+                    </Col>
+                  )}
                 {matchDetails?.marketCompleteMatch1?.activeStatus === "live" &&
                   matchDetails?.marketCompleteMatch1?.isActive && (
                     <Col md={12}>
@@ -297,22 +277,22 @@ const DesktopGameDetail = () => {
                         title={matchDetails?.manualCompleteMatch?.name}
                         data={matchDetails?.manualCompleteMatch}
                         detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
+                      // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
                 {(matchDetails?.apiSession?.session?.section?.length > 0 ||
                   manualEntries?.length > 0) && (
-                  <Col md={12}>
-                    <SessionNormal
-                      title={"Normal"}
-                      mtype={"session"}
-                      data={matchDetails?.apiSession?.session}
-                      detail={matchDetails}
-                      manual={manualEntries ? manualEntries : []}
-                    />
-                  </Col>
-                )}
+                    <Col md={12}>
+                      <SessionNormal
+                        title={"Normal"}
+                        mtype={"session"}
+                        data={matchDetails?.apiSession?.session}
+                        detail={matchDetails}
+                        manual={manualEntries ? manualEntries : []}
+                      />
+                    </Col>
+                  )}
                 {matchDetails?.apiSession?.overByover?.section?.length > 0 && (
                   <Col md={12}>
                     <SessionNormal
@@ -339,7 +319,7 @@ const DesktopGameDetail = () => {
                       title={"fancy1"}
                       data={matchDetails?.apiSession?.fancy1}
                       detail={matchDetails}
-                      // data={matchDetails?.matchOdd}
+                    // data={matchDetails?.matchOdd}
                     />
                   </Col>
                 )}{" "}
@@ -369,7 +349,7 @@ const DesktopGameDetail = () => {
                       // type={"fancy"}
                       data={matchDetails?.apiSession?.oddEven}
                       detail={matchDetails}
-                      // data={matchDetails?.matchOdd}
+                    // data={matchDetails?.matchOdd}
                     />
                   </Col>
                 )}
@@ -397,8 +377,8 @@ const DesktopGameDetail = () => {
                                 length % 2 === 0
                                   ? "49.5%"
                                   : index === length - 1
-                                  ? "100%"
-                                  : "49.5%",
+                                    ? "100%"
+                                    : "49.5%",
                             }}
                           >
                             {item?.activeStatus === "live" && (
@@ -437,7 +417,7 @@ const DesktopGameDetail = () => {
                               }
                               data={item}
                               detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
+                            // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
@@ -456,7 +436,7 @@ const DesktopGameDetail = () => {
                         }
                         data={matchDetails?.apiTideMatch}
                         detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
+                      // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
@@ -473,7 +453,7 @@ const DesktopGameDetail = () => {
                         }
                         data={matchDetails?.marketCompleteMatch}
                         detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
+                      // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
@@ -498,30 +478,8 @@ const DesktopGameDetail = () => {
                   : "100%",
               }}
             >
-              {/* <Col md={12}>
-                <div
-                  // onClick={() => setShowContactAdmin(true)}
-                  style={{
-                    display: "flex",
-                    margin: "10px 0",
-                    marginBottom: "0",
-                    alignItems: "center",
-                  }}
-                  className="fs-4"
-                >
-                  <IoInformationCircle />
-                  <h6
-                    style={{ margin: "0 0 0 5px", color: "#ff0000" }}
-                    className="fs-5 text-decoration-underline cursor-pointer blinking-text"
-                  >
-                    <Link className="text-danger" to={"/ballbyball"}>
-                      {" "}
-                      Ball By Ball
-                    </Link>
-                  </h6>
-                </div>
-              </Col> */}
-              {matchDetails?.eventId  &&
+
+              {matchDetails?.eventId &&
                 matchDetails?.matchType !== "politics" && (
                   <Col md={12} className="px-1 pt-1">
                     <LiveStreamComponent

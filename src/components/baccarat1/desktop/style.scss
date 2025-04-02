@@ -1,5 +1,3 @@
-
-
 .baccarat {
     display: flex;
     flex-direction: row;
@@ -7,24 +5,26 @@
     background-color: #f7f7f7;
     padding: 20px;
 }
+
 .baccarat-other-odds {
     display: flex;
     flex-wrap: nowrap;
-    
+
     gap: 10px;
     width: 100%;
 }
+
 .baccarat-other-odds-m {
     display: flex;
     flex-wrap: nowrap;
-    
+
     gap: 10px;
     width: 100%;
 }
 
 .baccarat-other-odd-box-container {
     width: 24%;
-    
+
 }
 
 .baccarat-graph {
@@ -43,6 +43,7 @@
     align-items: center;
     flex: 1;
 }
+
 .baccarat .baccarat-main-odds {
     // width: 80%;
     display: flex;
@@ -62,21 +63,15 @@
 .baccarat-main-odds .player-box-container,
 .baccarat-main-odds .tie-box-container,
 .baccarat-main-odds .banker-box-container {
-  margin-left: -15px; 
-  margin-right: -15px; 
+    margin-left: -15px;
+    margin-right: -15px;
 }
-
-// .baccarat-main-odds .player-pair-box-container,
-// .baccarat-main-odds .banker-pair-box-container {
-//   padding-left: 15px;
-//   padding-right: 15px;
-// }
 
 .baccarat-main-odds-m .player-box-m,
 .baccarat-main-odds-m .player-box-m,
 .baccarat-main-odds-m .player-box-m {
-  margin-left: -20px; 
-  margin-right: -20px; 
+    margin-left: -20px;
+    margin-right: -20px;
 }
 
 @media only screen and (max-width: 1199px) {
@@ -84,6 +79,7 @@
         font-size: 11px;
     }
 }
+
 .suspended-box {
     position: relative;
     pointer-events: none;
@@ -126,10 +122,12 @@
     width: 20%;
     // margin-right: 1%;
 }
+
 .player-pair-box-container-m {
     width: 18%;
     // margin-right: 1%;
 }
+
 .player-pair-box {
     background-color: #086cb8;
     border-top-left-radius: 30px;
@@ -143,12 +141,17 @@
     height: 70px;
     flex-direction: column;
 }
-.player-box-container, .tie-box-container, .banker-box-container {
+
+.player-box-container,
+.tie-box-container,
+.banker-box-container {
     width: 22%;
 }
-.player-box-m{
+
+.player-box-m {
     width: 30%;
 }
+
 .player-box {
     background-color: #086cb8;
     color: #fff;
@@ -156,9 +159,13 @@
     line-height: 1;
     height: 70px;
 }
-.player-box-container, .tie-box-container, .banker-box-container {
+
+.player-box-container,
+.tie-box-container,
+.banker-box-container {
     width: 22%;
 }
+
 .tie-box {
     background-color: #279532;
     display: flex;
@@ -168,12 +175,14 @@
     flex-direction: column;
     height: 70px;
 }
+
 .banker-box {
     background-color: #ae2130;
     color: #fff;
     padding: 10px;
     height: 70px;
 }
+
 .banker-pair-box {
     background-color: #ae2130;
     border-top-right-radius: 30px;
@@ -189,24 +198,29 @@
     flex-direction: column;
     line-height: 1;
 }
+
 .banker-pair-box-container {
     width: 20%;
     // margin-left: 1%;
 }
+
 .banker-pair-box-container-m {
     width: 18%;
     // margin-left: 1%;
 }
+
 .banker-box>div {
     line-height: 1;
     display: flex;
     // flex-wrap: wrap;
 }
+
 .player-box>div {
     line-height: 1;
     display: flex;
     // flex-wrap: wrap;
 }
+
 .player-pair-box.suspended-box:after {
     border-radius: 30px 0 0 30px;
     -webkit-border-radius: 30px 0 0 30px;
@@ -214,6 +228,7 @@
     -ms-border-radius: 30px 0 0 30px;
     -o-border-radius: 30px 0 0 30px;
 }
+
 .banker-pair-box.suspended-box:after {
     border-radius: 0 30px 30px 0;
     -webkit-border-radius: 0 30px 30px 0;
@@ -221,8 +236,11 @@
     -ms-border-radius: 0 30px 30px 0;
     -o-border-radius: 0 30px 30px 0;
 }
+
 @media only screen and (max-width: 767px) {
-    .player-box img, .banker-box img {
+
+    .player-box img,
+    .banker-box img {
         height: 15px;
         margin-right: 4px;
     }
@@ -231,65 +249,74 @@
 
 
 
-.player-box img, .banker-box img {
+.player-box img,
+.banker-box img {
     height: 20px;
     margin-right: 10px;
     z-index: 1;
 }
-.baccarateContainer{
-    width:100%;
+
+.baccarateContainer {
+    width: 100%;
     background-color: #eee;
     display: flex;
     flex-direction: row;
     gap: 10px;
     padding: 20px 10px;
 }
-.baccarateContainer-m{
-    width:100%;
+
+.baccarateContainer-m {
+    width: 100%;
     background-color: #eee;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 20px 10px;
 }
-.baccarateChartContainer{
+
+.baccarateChartContainer {
     width: 25%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     gap: 5px;
 }
-.baccarateRateContainer{
+
+.baccarateRateContainer {
     width: 75%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 5px;
 }
-.baccarateChartContainer-m{
+
+.baccarateChartContainer-m {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     gap: 5px;
 }
-.baccarateRateContainer-m{
+
+.baccarateRateContainer-m {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 5px;
 }
-.baccarateRateContainer1{
+
+.baccarateRateContainer1 {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 10px;
 }
-.perfectpairBox{
+
+.perfectpairBox {
     width: 100%;
     background-color: #ffc742;
     display: flex;
@@ -300,14 +327,16 @@
     color: #fff;
     cursor: pointer;
 }
-.perfectpairBoxpl{
+
+.perfectpairBoxpl {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.baccaratePlayerBox{
+
+.baccaratePlayerBox {
     width: 20%;
     border-top-left-radius: 35px;
     border-bottom-left-radius: 35px;
@@ -320,7 +349,8 @@
     align-items: center;
     cursor: pointer;
 }
-.baccarateBankerBox{
+
+.baccarateBankerBox {
     width: 20%;
     border-top-right-radius: 35px;
     border-bottom-right-radius: 35px;
@@ -333,12 +363,14 @@
     align-items: center;
     cursor: pointer;
 }
-.baccarateTieBox{
+
+.baccarateTieBox {
     width: 60%;
     display: flex;
     flex-direction: row;
 }
-.baccarateTieBox1{
+
+.baccarateTieBox1 {
     width: 33.3%;
     background-color: #086cb8;
     height: 80px;
@@ -349,7 +381,8 @@
     padding: 5px;
     cursor: pointer;
 }
-.baccarateTieBox2{
+
+.baccarateTieBox2 {
     width: 33.3%;
     background-color: #279532;
     height: 80px;
@@ -360,7 +393,8 @@
     align-items: center;
     cursor: pointer;
 }
-.baccarateTieBox3{
+
+.baccarateTieBox3 {
     width: 33.3%;
     background-color: #ae2130;
     height: 80px;
@@ -371,25 +405,30 @@
     padding: 5px;
     cursor: pointer;
 }
+
 .baccarateBankerBox.suspended-box:after {
     border-top-right-radius: 35px;
     border-bottom-right-radius: 35px;
 }
+
 .baccaratePlayerBox.suspended-box:after {
     border-top-left-radius: 35px;
     border-bottom-left-radius: 35px;
 }
-.bacarrateCards{
+
+.bacarrateCards {
     // width: 45px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.baccarateMinMax{
+
+.baccarateMinMax {
     width: 100%;
     text-align: end;
 }
-.bacarrate-result{
+
+.bacarrate-result {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -397,14 +436,16 @@
     align-items: center;
     margin-bottom: 20px;
 }
-.bacarrate-player-result{
+
+.bacarrate-player-result {
     width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.bacarrate-player-card{
+
+.bacarrate-player-card {
     width: auto;
     display: flex;
     flex-direction: row;
@@ -412,6 +453,7 @@
     align-items: center;
     gap: 7px;
 }
+
 .chartContainer {
     width: 100px;
     height: 100px;
@@ -419,14 +461,9 @@
     position: absolute;
     margin-bottom: 20px;
     z-index: 999;
-    // background: conic-gradient(
-    //   #086cb8 0% 45%,
-    //   #ae2130 45% 90%,
-    //   #279532 90% 100%
-    // );
-  }
-  
-  .sliceText {
+}
+
+.sliceText {
     width: 100%;
     height: 100%;
     display: flex;
@@ -434,27 +471,23 @@
     font-size: 12px;
     align-items: center;
     color: #fff;
-  }
-.secondCiecle {
-  /* background-color: #831924; */
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  position: absolute;
-//   background: conic-gradient(
-//     #06518a 0% 44%,
-//     #831924 44% 90%,
-//     #279532 90% 100%
-//   );
-  /* bottom: 320px; */
-  /* left: 100px; */
 }
-.legend-circle{
+
+.secondCiecle {
+    /* background-color: #831924; */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.legend-circle {
     width: 10px;
     height: 10px;
     border-radius: 50%;
 }
-.legend-Container{
+
+.legend-Container {
     width: 45px;
     height: 150px;
     display: flex;

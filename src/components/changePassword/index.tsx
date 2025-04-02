@@ -1,11 +1,13 @@
 import { Stack } from "react-bootstrap";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
 
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { debounce } from "lodash";
+import { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   changePassword,
   checkOldPassword,
@@ -13,17 +15,8 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { changePasswordValidation } from "../../utils/fieldValidations/auth";
 import ValidationError from "../commonComponent/validationError";
-import { debounce } from "lodash";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
 
 const ChangePasswordComponent = () => {
-  // State object to store the values of input fields
-  // const [formData, setFormData] = useState({
-  //   currentPassword: "",
-  //   newPassword: "",
-  //   confirmNewPassword: "",
-  // });
   const initialValues: any = {
     oldPassword: "",
     newPassword: "",
@@ -42,19 +35,6 @@ const ChangePasswordComponent = () => {
   });
 
   const { handleSubmit, touched, errors } = formik;
-
-  // Handler function to update the state when input values change
-  // const handleInputChange = (fieldName: string) => (event: any) => {
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [fieldName]: event.target.value,
-  //   }));
-  // };
-
-  // Handler function to handle the "Change Password" button click
-  // const handleChangePassword = () => {
-  //   // Add logic here to handle the password change
-  // };
 
   const debouncedInputValue = useMemo(() => {
     return debounce((value) => {

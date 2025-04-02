@@ -7,10 +7,6 @@ import "./style.scss";
 
 const SessionFancy = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -119,8 +115,8 @@ const SessionFancy = ({ title, data, detail }) => {
                           detail?.profitLossDataSession,
                           item?.id
                         ) < 0
-                            ? "color-red"
-                            : "color-red"
+                          ? "color-red"
+                          : "color-red"
                           } title-14 fbold`}
                       >
                         {calculateMaxLoss(
@@ -264,8 +260,8 @@ const SessionFancy = ({ title, data, detail }) => {
                             detail?.profitLossDataSession,
                             item?.id
                           ) < 0
-                              ? "color-red"
-                              : "color-red"
+                            ? "color-red"
+                            : "color-red"
                             } title-14 fbold`}
                         >
                           {calculateMaxLoss(

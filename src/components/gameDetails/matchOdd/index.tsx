@@ -12,10 +12,6 @@ const MatchOdd = ({ title, data, detail }) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -114,15 +110,15 @@ const MatchOdd = ({ title, data, detail }) => {
                   detail?.id
                   ]
                 ) +
-                    manualProfitLoss(
-                      selectedBet,
-                      detail?.teamA,
-                      data?.type,
-                      data?.gtype
-                    ) >
-                    0
-                    ? "color-green"
-                    : "color-red"
+                  manualProfitLoss(
+                    selectedBet,
+                    detail?.teamA,
+                    data?.type,
+                    data?.gtype
+                  ) >
+                  0
+                  ? "color-green"
+                  : "color-red"
                   } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {detail?.profitLossDataMatch?.[
@@ -247,15 +243,15 @@ const MatchOdd = ({ title, data, detail }) => {
                   detail?.id
                   ]
                 ) +
-                    manualProfitLoss(
-                      selectedBet,
-                      detail?.teamB,
-                      data?.type,
-                      data?.gtype
-                    ) >
-                    0
-                    ? "color-green"
-                    : "color-red"
+                  manualProfitLoss(
+                    selectedBet,
+                    detail?.teamB,
+                    data?.type,
+                    data?.gtype
+                  ) >
+                  0
+                  ? "color-green"
+                  : "color-red"
                   } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {detail?.profitLossDataMatch?.[
@@ -381,15 +377,15 @@ const MatchOdd = ({ title, data, detail }) => {
                     detail?.id
                     ]
                   ) +
-                      manualProfitLoss(
-                        selectedBet,
-                        detail?.teamC,
-                        data?.type,
-                        data?.gtype
-                      ) >
-                      0
-                      ? "color-green"
-                      : "color-red"
+                    manualProfitLoss(
+                      selectedBet,
+                      detail?.teamC,
+                      data?.type,
+                      data?.gtype
+                    ) >
+                    0
+                    ? "color-green"
+                    : "color-red"
                     } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                 >
                   {detail?.profitLossDataMatch?.[

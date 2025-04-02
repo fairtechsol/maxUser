@@ -15,10 +15,6 @@ const SessionKhado = ({ title, data, detail }) => {
   const { runAmount, runAmountModalKhado } = useSelector(
     (state: RootState) => state.bets
   );
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -153,8 +149,8 @@ const SessionKhado = ({ title, data, detail }) => {
                           detail?.profitLossDataSession,
                           item?.id
                         ) < 0
-                            ? "color-red"
-                            : "color-red"
+                          ? "color-red"
+                          : "color-red"
                           } title-14 fbold`}
                       >
                         {calculateMaxLoss(

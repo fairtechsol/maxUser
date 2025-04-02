@@ -20,14 +20,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
     odds: any,
     type: any,
     betTeam: any,
-    status: any,
     value: any,
     item: any,
     tno: any
   ) => {
-    // if ( status != "live" || ( data?.status != "OPEN" || item?.status != "active")) {
-    //   return false;
-    // }
     if (odds === 0) {
       return false;
     }
