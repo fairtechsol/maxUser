@@ -42,7 +42,6 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
         : mac88ListJSON
       ).filter((item: any) => item.category === gameType);
     }
-    console.log(firstArr);
     setGame(firstArr);
     setIsLoading(false);
   }, [gameType]);

@@ -73,11 +73,11 @@ export const ApiConstants = {
     CURRENTBET: "/bet",
     PROFIT_LOSS_REPORT: "/bet/profitLoss",
     MARKET_MATCH_LIST_CRICKET:
-      "https://marketsarket.qnsports.live/getcricketmatches",
+      import.meta.env.VITE_THIRD_PARTY_BASE_URL + `/sportsList?type=cricket`,
     MARKET_MATCH_LIST_FOOTBALL:
-      "https://marketsarket.qnsports.live/getsoccerallmatches2",
+      import.meta.env.VITE_THIRD_PARTY_BASE_URL + `/sportsList?type=football`,
     MARKET_MATCH_LIST_TENNIS:
-      "https://marketsarket.qnsports.live/gettennisallmatches2",
+      import.meta.env.VITE_THIRD_PARTY_BASE_URL + `/sportsList?type=tennis`,
   },
   USER: {
     MARQUEE: "/expert/notification",
@@ -4127,7 +4127,7 @@ export const liveCasinoGameList: any = [
     url_thumb: "https://cdn.dreamdelhi.com/macexcite/roulette.webp",
     game_code: "ME-BRT101",
   },
-  
+
   {
     game_id: "150014",
     game_name: "Amar Akbar Anthony",

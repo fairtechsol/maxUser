@@ -98,9 +98,12 @@ const GameList = () => {
   }, [socket]);
 
   useEffect(() => {
+    setTimeout(() => {
+      getMatchListMarket(type);
+    }, 1500);
     const intervalId = setInterval(() => {
       getMatchListMarket(type);
-    }, 500);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [type]);

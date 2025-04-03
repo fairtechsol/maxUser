@@ -59,8 +59,9 @@ const Tournament = ({ title, box, data, detail }) => {
 
   const handleCashoutBet = () => {
     const [teamAId, teamBId] = data?.runners?.map(
-      (team: any) => team?.parentRunnerId || team?.id
+      (team) => team.parentRunnerId || team.id
     );
+
     const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
     const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
     if (profitA === profitB) {
@@ -69,6 +70,7 @@ const Tournament = ({ title, box, data, detail }) => {
       });
       return;
     }
+    // profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
     const getBackAndLayRates = (team) => {
       const back1 =
         team?.ex?.availableToBack?.find((item) => item.oname === "back1")
@@ -88,6 +90,7 @@ const Tournament = ({ title, box, data, detail }) => {
       };
     };
 
+    // Get back1 & lay1 values for Team A & Team B
     const teamA = getBackAndLayRates(data?.runners[0]);
     const teamB = getBackAndLayRates(data?.runners[1]);
 
@@ -133,7 +136,6 @@ const Tournament = ({ title, box, data, detail }) => {
       const key = getKeyByValue(teamB, odds);
       type = key === "lay1" ? "lay" : "back";
     }
-    console.log("odds :", odds);
     if (odds < 1) {
       toast.error("You are not eligible for cashout!", {
         style: { backgroundColor: "#ffffff", color: "#000000" },
@@ -175,7 +177,6 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
-    console.log("team 11:", team);
     dispatch(
       selectedBetAction({
         team,
@@ -184,15 +185,14 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
-  const key = `${data.parentBetId || data?.id}_profitLoss_${detail?.id}`;
+  const key = `${data.parentBetId || data.id}_profitLoss_${detail.id}`;
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
   const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
-
   return (
     <>
       <div className="tournamentContainer">
-        <div className="tournamentTitle">
+        <div className="tournamentTitleNew">
           <span
             className={`tournamentTitleTxt ${
               isMobile ? "f-size13" : "f-size15"
@@ -208,7 +208,7 @@ const Tournament = ({ title, box, data, detail }) => {
                   ? true
                   : false
               }
-              className="submit-buttonn"
+              className="submit-buttonn cursor-pointer"
               onClick={handleCashoutBet}
               style={{
                 backgroundColor:
@@ -321,8 +321,9 @@ const Tournament = ({ title, box, data, detail }) => {
                           : profitLossObj?.[item?.parentRunnerId || item?.id]
                         : ""}
                     </span>
-                    {selectedBet?.team?.parentBetId ===
-                    (data.parentBetId || data?.id) ? (
+                    {selectedBet?.team?.parentBetId ||
+                    selectedBet?.team?.betId ===
+                      (data.parentBetId || data?.id) ? (
                       <span
                         className="title-12 f-400"
                         style={{
@@ -363,6 +364,7 @@ const Tournament = ({ title, box, data, detail }) => {
                     ) : (
                       ""
                     )}
+                    {/* {selectedBet?.team?.betId} */}
                   </div>
                 </div>
                 <div
