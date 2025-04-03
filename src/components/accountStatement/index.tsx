@@ -370,7 +370,7 @@ const AccountStatementComponent = () => {
                   >
                     <td className={isMobile ? "date-as bg-grey" : ""}>
                       {moment(new Date(item?.createdAt)).format(
-                        "YYYY-MM-DD hh:mm"
+                        "YYYY-MM-DD hh:mm:ss A"
                       )}
                     </td>
                     <td className={isMobile ? "sr-as bg-grey" : ""}>
@@ -891,7 +891,7 @@ const AccountStatementComponent = () => {
                           }}
                         >
                           {moment(new Date(item?.createdAt)).format(
-                            "YYYY-MM-DD hh:mm"
+                            "YYYY-MM-DD hh:mm:ss A"
                           )}
                         </div>
                         <div

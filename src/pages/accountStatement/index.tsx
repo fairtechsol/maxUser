@@ -1,9 +1,7 @@
-import AccountStatementComponent from '../../components/accountStatement';
+import AccountStatementComponent from "../../components/accountStatement";
 
 const AccountStatement = () => {
-  return (
-    <AccountStatementComponent/>
-  );
-}
+  return <AccountStatementComponent />;
+};
 
 export default AccountStatement;
