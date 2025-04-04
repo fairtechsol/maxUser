@@ -1,11 +1,13 @@
 import { Stack } from "react-bootstrap";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
 
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { debounce } from "lodash";
+import { useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   changePassword,
   checkOldPassword,
@@ -13,9 +15,6 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { changePasswordValidation } from "../../utils/fieldValidations/auth";
 import ValidationError from "../commonComponent/validationError";
-import { debounce } from "lodash";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
 
 const ChangePasswordComponent = () => {
   // State object to store the values of input fields
@@ -57,9 +56,10 @@ const ChangePasswordComponent = () => {
   // };
 
   const debouncedInputValue = useMemo(() => {
-    return debounce((value) => {
+    const debouncedFn = debounce((value) => {
       dispatch(checkOldPassword({ oldPassword: value }));
     }, 500);
+    return debouncedFn;
   }, []);
 
   const handleOldPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +67,18 @@ const ChangePasswordComponent = () => {
     formik.handleChange(e);
     debouncedInputValue(query);
   };
+
+  useEffect(() => {
+    return () => {
+      debouncedInputValue.cancel();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (formik.values.oldPassword) {
+      formik.validateForm();
+    }
+  }, [oldPasswordMatched]);
 
   return (
     <ReportContainer title="Change Password">
