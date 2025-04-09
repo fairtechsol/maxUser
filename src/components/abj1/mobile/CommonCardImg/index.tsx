@@ -1,9 +1,9 @@
-import { back } from "../../../../assets/images";
-import { dragonTigerCards } from "../../../../utils/constants";
 import { useEffect, useState } from "react";
-import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
+import { back } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import { dragonTigerCards } from "../../../../utils/constants";
 
 const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
@@ -38,10 +38,10 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
   }, [cardData?.[0]?.gstatus]);
 
   return (
-    <div className="commonCardImgContainer">
+    <div className="commonCardImgContainerAbj">
       {cardImg?.map((item: any) => {
         return (
-          <div style={{margin:"2px"}}>
+          <div style={{ margin: "2px" }}>
             <div
               key={item?.code}
               className={handlock(item)}
@@ -56,7 +56,7 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
               {item?.show ? (
                 <img src={item?.imgSrc} width={"31px"} height={"45px"} />
               ) : (
-                <img src={back} width={"31px"} height={"45px"}/>
+                <img src={back} width={"31px"} height={"45px"} />
               )}
             </div>
             <span
@@ -65,29 +65,28 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              className={`${
-                data?.profitLoss
+              className={`${data?.profitLoss
+                ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                ]
                   ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
                       `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
-                      ? "color-green"
-                      : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
+                    ] < 0
                       ? "color-red"
                       : ""
-                    : ""
                   : ""
-              }`}
+                : ""
+                }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                   : ""
                 : ""}
             </span>

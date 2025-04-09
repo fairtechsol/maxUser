@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { bollywoodTableCards } from "../../../../utils/constants";
-import "../../desktop/style.scss";
+import "../../../commonStyle.scss";
 
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(bollywoodTableCards);
@@ -15,15 +15,15 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   }, [cardData]);
 
   return (
-    <div className="commonCardImgContainer">
+    <div className="commonCardImgContainerAb">
       {cardImg?.map((item: any) => {
         return (
           <div>
             <div
               className={
                 item?.gstatus === "SUSPENDED" ||
-                item?.gstatus === "CLOSED" ||
-                item?.b1 === "0.00"
+                  item?.gstatus === "CLOSED" ||
+                  item?.b1 === "0.00"
                   ? "suspended"
                   : ""
               }
@@ -49,29 +49,28 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              className={`${
-                data?.profitLoss
+              className={`${data?.profitLoss
+                ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                ]
                   ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
                       `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
-                      ? "color-green"
-                      : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
+                    ] < 0
                       ? "color-red"
                       : ""
-                    : ""
                   : ""
-              }`}
+                : ""
+                }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                   : <br></br>
                 : 0}
             </span>

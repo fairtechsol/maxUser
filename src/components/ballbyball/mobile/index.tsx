@@ -14,7 +14,7 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
+import "../../commonStyle.scss";
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -303,20 +303,20 @@ const TeenPattiMobile = () => {
                         </div>
                         <span
                           className={`f10-b ${dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
                                 `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                              ]
-                                ? dragonTigerDetail?.profitLoss[
+                              ] > 0
+                                ? "color-green"
+                                : dragonTigerDetail?.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                  ] < 0
-                                    ? "color-red"
-                                    : ""
-                                : ""
+                                ] < 0
+                                  ? "color-red"
+                                  : ""
                               : ""
+                            : ""
                             }`}
                           style={{ zIndex: "100" }}
                         >
@@ -414,7 +414,7 @@ const TeenPattiMobile = () => {
                   </div>
 
                   <div
-                    className="ticker-container"
+                    className="ticker-container-b"
                     style={{
                       width: "85%",
 

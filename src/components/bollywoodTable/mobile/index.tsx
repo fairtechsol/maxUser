@@ -13,10 +13,10 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Lucky7Result from "../desktop/lucky7Card";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
-import "./style.scss";
 import TiePairBox from "./TiePairBox";
 import TiePairBox2 from "./TiePairBox2";
 
@@ -86,14 +86,14 @@ const BollywoodTableDesktop = () => {
 
   return (
     <>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+      <MobilePlacedBet show={show1} setShow={setShow1} />
+      <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
       {!activeTab ? (
         <Row>
           <Col md={8}>
             <div className="horseRacingTab">
-              <div style={{ width: "100%"}}>
+              <div style={{ width: "100%" }}>
                 <div
                   style={{
                     width: "100%",
@@ -158,7 +158,7 @@ const BollywoodTableDesktop = () => {
                       paddingRight: "4px",
                       borderRight: "1px solid #c7c8ca",
                       borderTop: "1px solid #c7c8ca",
-                     
+
                     }}
                   >
                     <OddEven

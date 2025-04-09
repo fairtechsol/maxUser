@@ -3,7 +3,8 @@ import { Container } from "react-bootstrap";
 import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
-import "./style.scss";
+// import "./style.scss";
+import "../../commonStyle.scss";
 interface Props {
   data: {
     C1: string;

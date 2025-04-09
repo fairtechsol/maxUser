@@ -1,13 +1,14 @@
-import "../style.scss"
-const CommonButtonBox = ({ name,value1,background,text,lock ,data,handleBet}: any) => {
+
+import "../../../commonStyle.scss";
+const CommonButtonBox = ({ name, value1, background, text, lock, data, handleBet }: any) => {
 
   return (
-    <div className={`commonButtonBoxContainerSbox ${lock?'suspended':""}`} style={{width:"100%",backgroundColor:background}} onClick={()=>!lock ? handleBet(data):null}>
+    <div className={`commonButtonBoxContainerSbox ${lock ? 'suspended' : ""}`} style={{ width: "100%", backgroundColor: background }} onClick={() => !lock ? handleBet(data) : null}>
       <div className={``}>
-        <span style={{fontSize:"14px",fontWeight:"bolder",color:text}}>{name}</span>
+        <span style={{ fontSize: "14px", fontWeight: "bolder", color: text }}>{name}</span>
       </div>
       <div>
-      <span style={{fontSize:"14px",color:text}}>{value1}</span>
+        <span style={{ fontSize: "14px", color: text }}>{value1}</span>
       </div>
     </div>
   );

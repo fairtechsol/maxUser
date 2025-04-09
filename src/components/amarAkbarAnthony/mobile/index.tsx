@@ -11,11 +11,11 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Lucky7Result from "../desktop/lucky7Card";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
-import "./style.scss";
 
 const AmarAkbarAnthonyMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -68,8 +68,8 @@ const AmarAkbarAnthonyMobile = () => {
   return (
     <>
       <div>
-            <MobilePlacedBet show={show1} setShow={setShow1} />
-            <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
         {!activeTab ? (
           <div className="horseRacingTab">

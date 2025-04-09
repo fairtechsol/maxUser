@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.scss"; // Make sure to define your styles in this file
+import "../../commonStyle.scss";
 
 const Abj2Rules = () => {
   return (
@@ -46,7 +46,7 @@ const Abj2Rules = () => {
       <div className="payout-section">
         <h6 className="rules-highlight">Payout</h6>
         <div className="table-responsive">
-          <table className="table" style={{background:"#f2f2f2"}}>
+          <table className="table" style={{ background: "#f2f2f2" }}>
             <thead>
               <tr>
                 <th>Bet</th>

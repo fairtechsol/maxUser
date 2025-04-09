@@ -1,7 +1,7 @@
 import React from "react";
 
 //import { cmeterrules } from "../../../assets/images";
-import "./style.scss";
+import "../../commonStyle.scss";
 const BTableRules = () => {
   return (
     <div className="rules-section">
@@ -25,7 +25,7 @@ const BTableRules = () => {
             <span className="card-character-red ">A</span>
             <span className="card-red"> &hearts;</span>
             <span className="card-character-red ">A</span>
-              <span className="card-red"> &diams;</span>
+            <span className="card-red"> &diams;</span>
             <span className="card-character-black ">A</span>
             <span className="card-black"> &clubs;</span>
             <span>Amar Akbar Anthony Wins</span>

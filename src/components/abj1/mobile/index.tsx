@@ -13,7 +13,8 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Abj1Result from "../desktop/abj1Card";
 import CardBox from "./CardsBox";
-import "./style.scss";
+// import "./style.scss";
+import "../../commonStyle.scss";
 
 const Abj1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
