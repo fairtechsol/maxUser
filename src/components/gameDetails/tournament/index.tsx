@@ -177,7 +177,7 @@ const Tournament = ({ title, box, data, detail }) => {
               //   selectedBet?.team?.stake == 0 ? true : false
               // }
               disabled={
-                Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? true : false
+                Object.keys(profitLossObj).length <= 0 ? true : false
               }
               className="submit-buttonn cursor-pointer"
               onClick={handleCashoutBet}

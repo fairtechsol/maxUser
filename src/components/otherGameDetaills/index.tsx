@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   expertSocketService,
   matchService,
@@ -38,7 +39,7 @@ import FootballMobileGameDetail from "./mobile";
 
 const FootballGameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { success } = useSelector((state: RootState) => state.match.matchList);
+  const { success, matchDetails } = useSelector((state: RootState) => state.match.matchList);
   const navigate = useNavigate();
   const { id, type } = useParams();
 
@@ -165,6 +166,13 @@ const FootballGameDetails = () => {
       console.log(e);
     }
   }, [id]);
+
+  useEffect(() => {
+    if (matchDetails && matchDetails?.stopAt) {
+      toast.error("Match has been over.");
+      navigate(`/game-list/${type}`);
+    }
+  }, [matchDetails]);
 
   useEffect(() => {
     try {
