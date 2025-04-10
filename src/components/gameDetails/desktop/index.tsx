@@ -521,9 +521,9 @@ const DesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col> */}
-              {matchDetails?.eventId  &&
+              {matchDetails?.eventId &&
                 matchDetails?.matchType !== "politics" && (
-                  <Col md={12} className="px-1 pt-1">
+                  <Col md={12} className="px-1">
                     <LiveStreamComponent
                       url={
                         import.meta.env.VITE_NODE_ENV == "production"
@@ -539,7 +539,7 @@ const DesktopGameDetail = () => {
               <Col md={12} className="px-1 pt-1">
                 <PlacedBet />
               </Col>
-              <Col md={12} className="px-1 pt-1 ">
+              <Col md={12} className="px-1 pt-1">
                 <MyBet />
               </Col>
             </Row>
