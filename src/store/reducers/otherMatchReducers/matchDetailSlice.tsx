@@ -173,7 +173,7 @@ const otherMatchDetail = createSlice({
           state.otherMatchDetails = {
             ...state.otherMatchDetails,
             profitLossDataMatch: {
-              ...state.otherMatchDetails.profitLossDataMatch,
+              ...state.otherMatchDetails?.profitLossDataMatch,
               [betId + "_profitLoss_" + matchId]: JSON.stringify(
                 newTeamRateData
               ),
