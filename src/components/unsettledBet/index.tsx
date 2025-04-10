@@ -775,7 +775,7 @@ const UnsettledBetComponent = () => {
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
-                              {item?.bettingName || item?.marketType}
+                              {item?.bettingName}
                             </td>
                             <td
                               className="ps-2 justify-content-start h-100 d-flex align-items-center"
