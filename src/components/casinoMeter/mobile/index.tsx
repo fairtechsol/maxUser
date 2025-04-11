@@ -11,11 +11,11 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import HighCards from "../desktop/High";
 import LowCards from "../desktop/Low";
 import Meter from "../desktop/meter";
 import CasinoWarResult from "../desktop/teenCard";
-import "./style.scss";
 
 const CasinoMeterMobile = () => {
   const [activeTab, setActiveTab] = useState(false);

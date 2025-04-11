@@ -587,6 +587,13 @@
     // margin-top: 5%;
 }
 
+.teenPatti-table-container-c {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+}
+
 .f12-b {
     font-size: 12px;
     font-weight: bolder;
@@ -597,6 +604,24 @@
     font-weight: bolder;
 }
 
+.locked:after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: "Font Awesome 5 Free";
+    content: "\f023";
+    font-weight: 900;
+    font-size: 18px;
+    top: 0;
+    padding-top: 6px !important;
+}
 
 .teen20resultModal {
     display: flex;
@@ -610,6 +635,31 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+}
+
+.teenPatti-table-container-m {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.LowCommonCardImgContainer {
+    width: 100%;
+    height: 185px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+}
+
+.lowCardContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -802,6 +852,20 @@
     color: #000;
 }
 
+.card32bTitleNew {
+    background-color: #fff;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 0.1px solid #c7c8ca;
+    // padding: 5px;
+    font-weight: 600;
+    text-align: start;
+    // background-color: #ffc742;
+}
+
 .card32bsubTitle {
     width: 40%;
     display: flex;
@@ -950,6 +1014,40 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.ticker-container {
+    width: 100%;
+    overflow: hidden;
+    background: #f7f7f7;
+    border-top: 0px;
+
+    border-bottom: 2px solid #ddd;
+
+    margin-top: 5px;
+    box-shadow: 0 0 3px #aaa
+}
+
+.ticker-wrap {
+    display: flex;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.ticker-move {
+    display: flex;
+    animation: ticker 40s linear infinite;
+}
+
+
+@keyframes ticker {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 /* Updated keyframes for grow and shrink */

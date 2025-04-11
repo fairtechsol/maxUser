@@ -74,18 +74,18 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                 <div className="market-nation-book-c"></div>
                 <span
                   className={`${data?.profitLoss
-                      ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        ? JSON.parse(
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )[row?.nat?.toLowerCase()] > 0
+                        ? "color-green"
+                        : JSON.parse(
                           data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        )[row?.nat?.toLowerCase()] > 0
-                          ? "color-green"
-                          : JSON.parse(
-                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                          )[row?.nat?.toLowerCase()] < 0
-                            ? "color-red"
-                            : ""
-                        : ""
+                        )[row?.nat?.toLowerCase()] < 0
+                          ? "color-red"
+                          : ""
                       : ""
+                    : ""
                     }`}
                 >
                   {data?.profitLoss

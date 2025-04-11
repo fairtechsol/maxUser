@@ -1,26 +1,12 @@
-.card32-table-container-m{
-    width: 100%;
-    background-color: #f7f7f7;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .card32-table-item-m{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border: 0.2px solid #c7c8ca;
-  }
-  .marketHeader{
-    width: 100%;
-    background-color: #ffc742d9;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 5px;
-    color: #ffffff;
-  }
+.marketHeader {
+  width: 100%;
+  background-color: #ffc742d9;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  color: #ffffff;
+}
 
 .market-6 {
   min-width: calc(100% - 8px);
@@ -29,6 +15,7 @@
   margin-right: 0px;
   flex: 1;
 }
+
 .market-odd-box-c {
   width: 50%;
   padding: 2px 0;

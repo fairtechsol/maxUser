@@ -11,12 +11,12 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Dragon20Result from "../desktop/card32B";
 import BackLay from "./BackLay";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import PairBox from "./PairBox";
-import "./style.scss";
 import TotalCards from "./totalCards";
 
 const Card32BMobile = () => {
