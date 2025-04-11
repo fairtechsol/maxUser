@@ -7,7 +7,7 @@ import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { CustomCards } from "../../commonComponent/customCardComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
-import "./style.scss";
+import "../../commonStyle.scss";
 interface Props {
   data: {
     C1: string;

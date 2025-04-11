@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const TiePairBox = ({ tiePair, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -25,16 +25,16 @@ const TiePairBox = ({ tiePair, data }: any) => {
     );
   };
   return (
-    <div className="tiePairContainer-m">
-      <div className="tiePairRateBoxMain">
+    <div className="tiePairContainer-m-new">
+      <div className="tiePairRateBoxMainNew">
         <CommonButtonBox
           value1={tiePair?.[0]?.rate}
           value2={"Dragon"}
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[0]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${tiePair?.[0]?.sid}_card`
+              ]
               : 0
           }
           width={"35%"}
@@ -48,8 +48,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[2]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${tiePair?.[2]?.sid}_card`
+              ]
               : 0
           }
           width={"20%"}
@@ -63,8 +63,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[1]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${tiePair?.[1]?.sid}_card`
+              ]
               : 0
           }
           width={"35%"}
@@ -79,8 +79,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
         value3={
           data?.profitLoss
             ? data?.profitLoss[
-                `${data?.videoInfo?.mid}_${tiePair?.[3]?.sid}_card`
-              ]
+            `${data?.videoInfo?.mid}_${tiePair?.[3]?.sid}_card`
+            ]
             : 0
         }
         width={"95%"}

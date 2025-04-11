@@ -13,12 +13,12 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import BackLay from "./BackLay";
 import OddEven from "./OddEvenBox";
 import PairBox from "./PairBox";
 import Card32BResult from "./card32B";
 import CardBox from "./cardBox";
-import "./style.scss";
 import TotalCards from "./totalCards";
 
 const Card32BDesktop = () => {
@@ -108,8 +108,8 @@ const Card32BDesktop = () => {
               <span className="title-12 mt-1">
                 {dragonTigerDetail?.videoInfo
                   ? `Round ID:  ${handleRoundId(
-                      dragonTigerDetail?.videoInfo?.mid
-                    )}`
+                    dragonTigerDetail?.videoInfo?.mid
+                  )}`
                   : ""}
               </span>
             </div>
