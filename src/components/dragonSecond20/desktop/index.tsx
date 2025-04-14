@@ -13,11 +13,11 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import Dragon20Result from "./dragonCard";
-import "./style.scss";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -106,8 +106,8 @@ const DragonTigerDesktop = () => {
               <span>
                 {dragonTigerDetail?.videoInfo
                   ? `Round ID:  ${handleRoundId(
-                      dragonTigerDetail?.videoInfo?.mid
-                    )}`
+                    dragonTigerDetail?.videoInfo?.mid
+                  )}`
                   : ""}
               </span>
             </div>

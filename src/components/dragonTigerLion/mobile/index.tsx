@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
+import { Tab, Tabs } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { dtrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/dragonCard";
-import OddEven from "./OddEvenBox";
-import "./style.scss";
-import { Tab, Tabs } from "react-bootstrap";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
+import Dragon20Result from "../desktop/dragonCard";
+import OddEven from "./OddEvenBox";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -109,9 +109,8 @@ const DragonTigerMobile = () => {
                       key={tab.id}
                       eventKey={tab.id}
                       title={tab.name}
-                      tabClassName={`match-tabs lh-1 mt-1 p-2 ${
-                        activeCardTab === tab.id ? "active" : ""
-                      }`}
+                      tabClassName={`match-tabs lh-1 mt-1 p-2 ${activeCardTab === tab.id ? "active" : ""
+                        }`}
                     >
                       {tab.id === "dragon" && (
                         <OddEven

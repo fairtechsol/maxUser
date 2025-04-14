@@ -18,8 +18,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -29,16 +29,16 @@ const TiePairBox = ({ tiePair, data }: any) => {
     );
   };
   return (
-    <div className="tiePairContainer-m">
-      <div className="tiePairRateBoxMain">
+    <div className="tiePairContainer-m-new">
+      <div className="tiePairRateBoxMainNew">
         <CommonButtonBox
           value1={tiePair?.[0]?.rate}
           value2={"Dragon"}
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[0]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${tiePair?.[0]?.sid}_card`
+              ]
               : 0
           }
           width={"35%"}
@@ -52,8 +52,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[2]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${tiePair?.[2]?.sid}_card`
+              ]
               : 0
           }
           width={"20%"}
@@ -67,8 +67,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[1]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${tiePair?.[1]?.sid}_card`
+              ]
               : 0
           }
           width={"35%"}
@@ -83,8 +83,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
         value3={
           data?.profitLoss
             ? data?.profitLoss[
-                `${data?.videoInfo?.mid}_${tiePair?.[3]?.sid}_card`
-              ]
+            `${data?.videoInfo?.mid}_${tiePair?.[3]?.sid}_card`
+            ]
             : 0
         }
         width={"95%"}

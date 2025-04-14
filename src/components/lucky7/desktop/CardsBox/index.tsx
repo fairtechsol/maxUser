@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const CardBox = ({ cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -28,7 +28,7 @@ const CardBox = ({ cardData, data }: any) => {
   };
   return (
     <>
-      <div className="cardContainer">
+      <div className="cardContainerMobNew">
         <div style={{ textAlign: "center" }}>
           <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
             {parseFloat(

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const CardBox = ({ name, cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -16,8 +16,8 @@ const CardBox = ({ name, cardData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -28,8 +28,8 @@ const CardBox = ({ name, cardData, data }: any) => {
   };
   return (
     <>
-      <div className="cardContainerMob">
-        <div style={{ textAlign: "center",display:"flex",alignItems:"center",justifyContent:"center" }}>
+      <div className="cardContainerMobNew">
+        <div style={{ textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div style={{ textAlign: "center" }}>
             <span style={{ fontSize: "16px", fontWeight: "bold" }}>{name}</span>
           </div>
@@ -39,7 +39,7 @@ const CardBox = ({ name, cardData, data }: any) => {
             ).toFixed(2)}
           </span>
         </div>
-        <div style={{display:"flex",justifyContent:"center"}}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <CommonCardImg
             cardData={cardData}
             handleBet={handleBet}

@@ -39,6 +39,106 @@
     border-top: 10px solid green;
 }
 
+.horse-time-detail-m span {
+    background: #ffc742;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    position: relative;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+
+.horse-time-detail-m {
+    // width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4px 0px 0px 0px;
+}
+
+.tabs-nav .nav-item {
+    flex: 1 1 0;
+    padding-top: 0 !important;
+    padding-bottom: 0;
+}
+
+.tabs-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs-nav {
+    background-color: #ffc742;
+    display: flex;
+    flex-wrap: wrap;
+    color: #495057;
+    border-radius: 0px;
+    font-size: 12px;
+}
+
+.tabs-nav .nav-item .nav-link {
+    text-align: left;
+}
+
+.tabs-nav .nav-links {
+    background-color: #ffc742;
+    display: flex;
+    flex-wrap: wrap;
+    color: #495057;
+    border-radius: 0px;
+    font-size: 12px;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.tabs-nav .nav-link.active {
+    // width: 30vw;/* Change this to your desired active tab background color */
+    background-color: #004a25;
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 12px;
+}
+
+.game-name {
+    flex: 1 0 100%;
+    /* This means each tab will take up 25% of the container width */
+    max-width: 100vw;
+    /* Ensure it doesn't exceed 25% of the width */
+    font-size: 14px;
+}
+
+
+.game-list {
+    background-color: #f1f5f8;
+    border-bottom: 1px solid #d6d8d7;
+    padding-left: 15px;
+}
+
+.game-icon .fa-tv {
+    color: #000;
+    font-size: 12px;
+    margin-top: 6px;
+    vertical-align: top;
+}
+
+.game-icon {
+    width: 20px;
+    padding: 10px 7px 0px 1px;
+}
+
+.horse-time-detail-m a {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .rules-section .row.row5 {
     margin-left: -5px;
@@ -267,6 +367,57 @@
     gap: 3%;
 }
 
+.dt20resultModal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.dt20resultCardContainer {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dt20CommonText {
+    font-size: 16px;
+    font-weight: 400;
+    color: #a2a2a2;
+}
+
+.dg20tiePairContainer {
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dg20tiePairRateBoxMain {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+}
+
+.dt20CommonText-2 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    margin-left: 10px;
+}
+
+.casino-winner-icon {
+    // font-size: 26px;
+    box-shadow: 0 0 0 #ffc742;
+    animation: winnerbox 1.5s infinite;
+    border-radius: 50%;
+    color: #169733;
+}
+
 .tiePairRateBoxMainNew {
     width: 100%;
     display: flex;
@@ -290,6 +441,29 @@
     justify-content: center;
     align-items: center;
     gap: 3px;
+}
+
+.commonButtonBoxContainerLucky {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.tiePairContainer-lucky7 {
+    width: 100%;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.commonButtonBoxContainerNew {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
 }
 
 .tiePairbtnlucky-theme {
@@ -347,6 +521,24 @@
     width: 50%;
     background-color: #eee;
     padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.oddEvenContainerNew {
+    width: 50%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cardContainerNew {
+    width: 50%;
+    background-color: #eee;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -803,6 +995,18 @@
     color: #000;
 }
 
+.dtlTitleNew {
+    width: 40%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1px solid #c7c8ca;
+    padding: 5px;
+    font-weight: 600;
+    color: #000;
+}
+
 .dtlTitleo32b {
     width: 60%;
     background-color: #ffffff;
@@ -838,6 +1042,20 @@
     border-right: 0.1px solid #c7c8ca;
     font-weight: 600;
     color: #000;
+}
+
+.dtlsubTitleNew {
+    width: 20%;
+    background-color: #72bbef;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.1px solid #c7c8ca;
+    border-right: 0.1px solid #c7c8ca;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
 }
 
 .card32bTitle {
@@ -1039,6 +1257,140 @@
     animation: ticker 40s linear infinite;
 }
 
+.oddEvenContainerMob {
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cardContainerMob {
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.cardContainerMobNew {
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tiePairbtnMob-theme {
+    color: #fff !important;
+    background-image: linear-gradient(to right, #004a25, #ffc742) !important;
+    width: 100% !important;
+    // border-radius: 4px !important;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
+    border: 0 !important;
+    padding: 2px 8px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    font-weight: 600;
+    position: relative;
+    text-align: center;
+}
+
+.tiePairContainer-d2 {
+    width: 100%;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.oddEvenContainerMob-d2 {
+    width: 100%;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.commonCardImgContainerDg {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 7px;
+    margin-top: 5px;
+}
+
+.dlt-m-conatainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.dtlTitle-m {
+    width: 60%;
+    height: 50px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1px solid #c7c8ca;
+    padding: 5px;
+    font-weight: 600;
+    color: #000;
+    font-size: 12px;
+}
+
+.dtlsubTitle-m {
+    width: 40%;
+    height: 50px;
+    background-color: #72bbef;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.1px solid #c7c8ca;
+    border-right: 0.1px solid #c7c8ca;
+    font-weight: 600;
+    color: #000;
+}
+
+.lay-BackGround {
+    background-color: #faa9ba;
+}
+
+.back-BackGround {
+    background-color: #72bbef;
+    line-height: 1;
+}
+
+.dtlTitlee {
+    width: 20%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1px solid #c7c8ca;
+    padding: 5px;
+    font-weight: 600;
+    color: #000;
+}
+
+.ddt1 {
+    //{backgroundColor:"#f7f7f7",width:"100%",margin:"5px",paddingRight:"10px"}
+    background: #f7f7f7;
+    width: 100%;
+    margin: 5px;
+    padding-right: 10px;
+}
 
 @keyframes ticker {
     0% {
@@ -1096,5 +1448,15 @@
 @media (max-width: 768px) {
     .tabs-navs .nav-link {
         flex: 1 0 10%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .game-name {
+        flex: 1 0 25%;
+        /* Maintain 25% width on mobile */
+        max-width: none;
+        /* Allow flexibility for scrolling */
     }
 }

@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/horseMatchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import CommonTabs from "../../commonComponent/tabs";
+import "../../commonStyle.scss";
 import RaceListItems from "./raceDetails";
-import "./style.scss";
 
 const HorseRacingListTabsDesktop = ({ matchType }: any) => {
   const { countryWiseList, racingList } = useSelector(
