@@ -100,7 +100,9 @@ const GameList = () => {
   }, [socket]);
 
   useEffect(() => {
-    getMatchListMarket(type);
+    setTimeout(() => {
+      getMatchListMarket(type);
+    }, 1500);
     const intervalId = setInterval(() => {
       getMatchListMarket(type);
     }, 3000);
