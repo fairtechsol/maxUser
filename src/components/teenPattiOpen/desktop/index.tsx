@@ -17,7 +17,6 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import TeenPattiTableRow from "./tableRow";
 import TeenOpenResult from "./teenCard";
-
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -169,8 +168,8 @@ const TeenPattiDesktop = () => {
                 <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}`
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}`
                     : ""}
                 </span>
               </div>

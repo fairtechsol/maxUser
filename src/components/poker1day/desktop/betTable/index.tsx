@@ -1,9 +1,9 @@
-import "./style.scss";
-import { AppDispatch } from "../../../../store/store";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import { isMobile } from "../../../../utils/screenDimension";
-import { useEffect } from "react";
+import "./style.scss";
 const DynamicTable = ({ data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -30,7 +30,6 @@ const DynamicTable = ({ data, playerNum }: any) => {
         data,
       })
     );
-    // console.log("team", team);
   };
 
   let player1Key = `playera`;
@@ -63,34 +62,33 @@ const DynamicTable = ({ data, playerNum }: any) => {
             {playerNum?.nation}
           </span>
           <span
-            className={`f400 ${
-              data?.profitLoss
+            className={`f400 ${data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   ? JSON.parse(
-                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                    )[
-                      playerNum?.nation === "Player A" ? player1Key : player2Key
-                    ] > 0
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )[
+                    playerNum?.nation === "Player A" ? player1Key : player2Key
+                  ] > 0
                     ? "color-green"
                     : JSON.parse(
-                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )[
-                        playerNum?.nation === "Player A"
-                          ? player1Key
-                          : player2Key
-                      ] < 0
-                    ? "color-red"
-                    : ""
+                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    )[
+                      playerNum?.nation === "Player A"
+                        ? player1Key
+                        : player2Key
+                    ] < 0
+                      ? "color-red"
+                      : ""
                   : ""
                 : ""
-            }`}
+              }`}
             style={{ zIndex: "111" }}
           >
             {data?.profitLoss
               ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                 ? JSON.parse(
-                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                  )[playerNum?.nation === "Player A" ? player1Key : player2Key]
+                  data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                )[playerNum?.nation === "Player A" ? player1Key : player2Key]
                 : "\u00A0"
               : "\u00A0"}
           </span>
@@ -106,14 +104,14 @@ const DynamicTable = ({ data, playerNum }: any) => {
           <div
             className={
               playerNum?.gstatus === "SUSPENDED" ||
-              playerNum?.gstatus === "CLOSED"
+                playerNum?.gstatus === "CLOSED"
                 ? "card32-table-item back suspended"
                 : "card32-table-item back"
             }
             style={{ width: "50%" }}
             onClick={() =>
               playerNum?.gstatus === "SUSPENDED" ||
-              playerNum?.gstatus === "CLOSED"
+                playerNum?.gstatus === "CLOSED"
                 ? null
                 : handleBet(playerNum, "BACK")
             }
@@ -124,14 +122,14 @@ const DynamicTable = ({ data, playerNum }: any) => {
           <div
             className={
               playerNum?.gstatus === "SUSPENDED" ||
-              playerNum?.gstatus === "CLOSED"
+                playerNum?.gstatus === "CLOSED"
                 ? "card32-table-item lay suspended"
                 : "card32-table-item lay"
             }
             style={{ width: "50%" }}
             onClick={() =>
               playerNum?.gstatus === "SUSPENDED" ||
-              playerNum?.gstatus === "CLOSED"
+                playerNum?.gstatus === "CLOSED"
                 ? null
                 : handleBet(playerNum, "LAY")
             }

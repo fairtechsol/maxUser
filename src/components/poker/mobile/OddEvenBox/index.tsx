@@ -1,13 +1,12 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const OddEven = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = odds?.[0]?.min;
   const max = odds?.[0]?.max;
-  // console.log(data,'first',odds)
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -26,7 +25,7 @@ const OddEven = ({ data, odds }: any) => {
         data,
       })
     );
-    
+
   };
   return (
     <>
@@ -44,8 +43,8 @@ const OddEven = ({ data, odds }: any) => {
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                ]
                 : 0
             }
             width={"40%"}
@@ -59,8 +58,8 @@ const OddEven = ({ data, odds }: any) => {
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                ]
                 : 0
             }
             width={"40%"}
@@ -88,8 +87,8 @@ const OddEven = ({ data, odds }: any) => {
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                ]
                 : 0
             }
             width={"40%"}
@@ -103,8 +102,8 @@ const OddEven = ({ data, odds }: any) => {
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
+                ]
                 : 0
             }
             width={"40%"}

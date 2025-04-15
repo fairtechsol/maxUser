@@ -17,12 +17,6 @@ import { changePasswordValidation } from "../../utils/fieldValidations/auth";
 import ValidationError from "../commonComponent/validationError";
 
 const ChangePasswordComponent = () => {
-  // State object to store the values of input fields
-  // const [formData, setFormData] = useState({
-  //   currentPassword: "",
-  //   newPassword: "",
-  //   confirmNewPassword: "",
-  // });
   const initialValues: any = {
     oldPassword: "",
     newPassword: "",
@@ -41,19 +35,6 @@ const ChangePasswordComponent = () => {
   });
 
   const { handleSubmit, touched, errors } = formik;
-
-  // Handler function to update the state when input values change
-  // const handleInputChange = (fieldName: string) => (event: any) => {
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [fieldName]: event.target.value,
-  //   }));
-  // };
-
-  // Handler function to handle the "Change Password" button click
-  // const handleChangePassword = () => {
-  //   // Add logic here to handle the password change
-  // };
 
   const debouncedInputValue = useMemo(() => {
     const debouncedFn = debounce((value) => {

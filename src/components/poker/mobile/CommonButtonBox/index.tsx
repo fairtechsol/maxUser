@@ -10,14 +10,11 @@ const CommonButtonBox = ({
   card1,
   card2,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
-  // console.log(data, "data")
   return (
     <div className="poker6-container" style={{ width: width }}>
       <div
-        className={`tiePairbtnMob-theme-poker back py-1 d-flex row ${
-          lock ? "suspended" : ""
-        }`}
+        className={`tiePairbtnMob-theme-poker back py-1 d-flex row ${lock ? "suspended" : ""
+          }`}
         onClick={() => (!lock ? handleBet(data) : null)}
       >
         <div className="d-flex column justify-content-between align-center">

@@ -159,8 +159,8 @@ const DesktopHeader = () => {
                       {parseInt(getProfile?.userBal?.exposure) === 0
                         ? 0
                         : -parseFloat(
-                            getProfile?.userBal?.exposure || 0
-                          ).toFixed(2)}
+                          getProfile?.userBal?.exposure || 0
+                        ).toFixed(2)}
                     </b>
                   </span>
                   <ExposureModal

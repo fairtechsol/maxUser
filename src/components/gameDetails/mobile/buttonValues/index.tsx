@@ -15,7 +15,7 @@ interface ButtonProps {
   value: string;
 }
 
-const ButtonValues = ({setShow}:any) => {
+const ButtonValues = ({ setShow }: any) => {
   const [casinoBtn, setCasinoBtn] = useState(false)
   const initialValues = [
     {
@@ -50,11 +50,11 @@ const ButtonValues = ({setShow}:any) => {
       label: "",
       value: "",
     },
-    
+
   ];
 
   const dispatch: AppDispatch = useDispatch();
-  const { buttonValues,buttonValues2 } = useSelector(
+  const { buttonValues, buttonValues2 } = useSelector(
     (state: RootState) => state.user.profile
   );
 
@@ -68,8 +68,8 @@ const ButtonValues = ({setShow}:any) => {
         }
       });
       const payload = {
-        id:casinoBtn?buttonValues2?.id: buttonValues?.id,
-        type: casinoBtn?"Casino":"Match",
+        id: casinoBtn ? buttonValues2?.id : buttonValues?.id,
+        type: casinoBtn ? "Casino" : "Match",
         value: result,
       };
       dispatch(setButtonValue(payload));
@@ -84,7 +84,7 @@ const ButtonValues = ({setShow}:any) => {
 
   const { handleSubmit, values, setValues, setFieldValue } = formik;
   useEffect(() => {
-    if(casinoBtn){
+    if (casinoBtn) {
       if (buttonValues2 && buttonValues2?.value) {
         setValues(
           Object.keys(JSON.parse(buttonValues2?.value))?.map((item) => {
@@ -95,7 +95,7 @@ const ButtonValues = ({setShow}:any) => {
           })
         );
       }
-    }else{
+    } else {
       if (buttonValues && buttonValues?.value) {
         setValues(
           Object.keys(JSON.parse(buttonValues?.value))?.map((item) => {
@@ -107,65 +107,64 @@ const ButtonValues = ({setShow}:any) => {
         );
       }
     }
-    
-  }, [buttonValues,casinoBtn]);
-// console.log(buttonValues,'initialValues',buttonValues2)
+
+  }, [buttonValues, casinoBtn]);
   return (
     <>
       <div className="ms-1">
-        <div className="ms-1" style={{width:"60%",height:"30px",display:"flex",justifyContent:"space-around",alignItems:"center",marginBottom:"10px"}}>
-          <div className={`title-16 f-500 ${casinoBtn ?"text-black":"text-white"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#cccccc":"#ffc742",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}} onClick={()=>setCasinoBtn(false)}>Game Buttons</div>
-          <div className={`title-16 f-500 ${casinoBtn ?"text-white":"text-black"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#ffc742":"#cccccc",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}} onClick={()=>setCasinoBtn(true)}>Casino Buttons</div>
+        <div className="ms-1" style={{ width: "60%", height: "30px", display: "flex", justifyContent: "space-around", alignItems: "center", marginBottom: "10px" }}>
+          <div className={`title-16 f-500 ${casinoBtn ? "text-black" : "text-white"}`} style={{ width: "50%", height: "100%", backgroundColor: casinoBtn ? "#cccccc" : "#ffc742", display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer" }} onClick={() => setCasinoBtn(false)}>Game Buttons</div>
+          <div className={`title-16 f-500 ${casinoBtn ? "text-white" : "text-black"}`} style={{ width: "50%", height: "100%", backgroundColor: casinoBtn ? "#ffc742" : "#cccccc", display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer" }} onClick={() => setCasinoBtn(true)}>Casino Buttons</div>
         </div>
-      <form onSubmit={handleSubmit}>
-        <Row className={` ${isMobile ? "g-1" : "w-100 g-2"}`}>
-          <Col md={6} xs={6}>
-            <span className={`ms-2 ${isMobile ? "title-12 f800" : "f700"}`}>
-              Price Label:
-            </span>
-          </Col>
-          <Col md={6} xs={6}>
-            <span className={`${isMobile ? "title-12 f800" : "f700"}`}>
-              Price Value:
-            </span>
-          </Col>
-          {  initialValues?.map((_: any, index: number) => {
-            return (
-              <Row key={index} style={{marginBottom:"10Px"}}>
-                <Col md={6} xs={6}>
-                  <CustomInput
-                    type="text"
-                    value={values[index]?.label}
-                    onChange={(e: any) => {
-                      setFieldValue(`[${index}].label`, e.target.value);
-                    }}
-                  />
-                </Col>
-                <Col md={6} xs={6}>
-                  <CustomInput
-                    value={values[index]?.value}
-                    onChange={(e: any) => {
-                      setFieldValue(`[${index}].value`, e.target.value);
-                    }}
-                    type="number"
-                  />
-                </Col>
-              </Row>
-            );
-          })}
-        </Row>
-        <Row style={{marginLeft:!isMobile && "12px",padding:isMobile && "12px"}}>
-        <CustomButton
-          type={"submit"}
-          size={isMobile ? "sm" : "lg"}
-          className={`${isMobile ? "w-100" : "w-40 bg-primary"} border-0 mt-2`}
-        >
-          Update
-        </CustomButton>
-        </Row>
-        
-      </form>
-    </div>
+        <form onSubmit={handleSubmit}>
+          <Row className={` ${isMobile ? "g-1" : "w-100 g-2"}`}>
+            <Col md={6} xs={6}>
+              <span className={`ms-2 ${isMobile ? "title-12 f800" : "f700"}`}>
+                Price Label:
+              </span>
+            </Col>
+            <Col md={6} xs={6}>
+              <span className={`${isMobile ? "title-12 f800" : "f700"}`}>
+                Price Value:
+              </span>
+            </Col>
+            {initialValues?.map((_: any, index: number) => {
+              return (
+                <Row key={index} style={{ marginBottom: "10Px" }}>
+                  <Col md={6} xs={6}>
+                    <CustomInput
+                      type="text"
+                      value={values[index]?.label}
+                      onChange={(e: any) => {
+                        setFieldValue(`[${index}].label`, e.target.value);
+                      }}
+                    />
+                  </Col>
+                  <Col md={6} xs={6}>
+                    <CustomInput
+                      value={values[index]?.value}
+                      onChange={(e: any) => {
+                        setFieldValue(`[${index}].value`, e.target.value);
+                      }}
+                      type="number"
+                    />
+                  </Col>
+                </Row>
+              );
+            })}
+          </Row>
+          <Row style={{ marginLeft: !isMobile && "12px", padding: isMobile && "12px" }}>
+            <CustomButton
+              type={"submit"}
+              size={isMobile ? "sm" : "lg"}
+              className={`${isMobile ? "w-100" : "w-40 bg-primary"} border-0 mt-2`}
+            >
+              Update
+            </CustomButton>
+          </Row>
+
+        </form>
+      </div>
     </>
   );
 };

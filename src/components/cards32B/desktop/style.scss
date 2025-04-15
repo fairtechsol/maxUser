@@ -13,6 +13,7 @@
     box-shadow: 0 0 0 0 rgba(29, 127, 30, 0);
   }
 }
+
 .horse-time-detail span {
   position: relative;
   background: #ffc742;
@@ -28,6 +29,7 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
 }
+
 .horse-time-detail span.active::before {
   content: "";
   position: absolute;
@@ -36,12 +38,14 @@
   border-right: 10px solid transparent;
   border-top: 10px solid green;
 }
+
 .dt20resultModal {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
 }
+
 .dt20resultCardContainer {
   width: 30%;
   display: flex;
@@ -49,17 +53,20 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .dt20CommonText {
   font-size: 16px;
   font-weight: 400;
   color: #a2a2a2;
 }
+
 .dt20CommonText-2 {
   font-size: 16px;
   font-weight: 400;
   color: #000;
   margin-left: 10px;
 }
+
 .casino-winner-icon {
   // font-size: 26px;
   box-shadow: 0 0 0 #ffc742;
@@ -67,57 +74,46 @@
   border-radius: 50%;
   color: #169733;
 }
-// .match-list-tabs {
-//   border-right: 1px solid $secondary !important;
-//   border-radius: 0px !important;
-//   background-color: $gray;
-//   // padding: 2px 10px;
-//   &:hover {
-//     border-right: 1px solid $secondary !important;
-//   }
-//   &.active {
-//     background-color: $secondary !important;
-//     border-color: transparent !important ;
-//   }
-// }
-
-// .navtem {
-//   padding: 0px !important;
-//   margin-top: 10px !important;
-// }
 
 .match-tabs {
   margin: 0 !important;
   border-right: 1px solid $secondary !important;
   border-radius: 0px !important;
   background-color: $gray;
+
   &:hover {
     border-right: 1px solid $secondary !important;
   }
+
   &.active {
     background-color: $secondary !important;
-    border-color: transparent !important ;
+    border-color: transparent !important;
   }
 }
 
-.tab-content > .active {
+.tab-content>.active {
   display: block;
 }
+
 .coupon-card {
   border-radius: 0 0 2px 2px;
 }
+
 .table {
   margin-bottom: 0 !important;
 }
+
 .coupon-table tr {
   margin: 0 !important;
 }
+
 .coupon-table tr td {
   padding: 0;
   vertical-align: middle;
   font-size: 14px;
   word-wrap: break-word;
 }
+
 .table.coupon-table {
   margin-bottom: 0;
   border-collapse: collapse;
@@ -126,10 +122,12 @@
 .table.coupon-table td {
   padding: 3px;
 }
+
 .text-dark {
   font-size: 12px;
   padding: 0 2px;
 }
+
 .table.coupon-table tr {
   margin-bottom: 0;
   display: table-row;
@@ -143,13 +141,16 @@
   flex-wrap: wrap;
   // padding: 5px 5px 0 5px;
 }
+
 .horse-time-detail a {
   // margin-bottom: 0;
   display: flex;
 }
+
 .navi-link {
   width: 100%;
 }
+
 .navi-item {
   max-height: 8%;
 }
@@ -159,19 +160,24 @@
   background-color: #ffc742;
   color: #000;
 }
+
 .navi-tabs .navi-item {
   margin: 0;
   background-color: #dddddd;
 }
+
 .navi-tabs .navi-item.active {
   margin: 0;
   background-color: #ffc742 !important;
 }
 
 .navi-tabs .navi-link {
-  padding: 0; /* Remove padding from Nav.Link */
-  margin: 0; /* Remove margin from Nav.Link */
+  padding: 0;
+  /* Remove padding from Nav.Link */
+  margin: 0;
+  /* Remove margin from Nav.Link */
 }
+
 .tiePairContainer {
   width: 100%;
   background-color: #eee;
@@ -179,12 +185,14 @@
   display: flex;
   flex-direction: column;
 }
+
 .tiePairRateBoxMain {
   width: 100%;
   display: flex;
   flex-direction: row;
   gap: 3%;
 }
+
 .dtlTitle {
   width: 60%;
   background-color: #ffffff;
@@ -196,6 +204,7 @@
   font-weight: 600;
   color: #000;
 }
+
 .dtlTitleo32b {
   width: 60%;
   background-color: #ffffff;
@@ -207,6 +216,7 @@
   color: #000;
   line-height: 1.9;
 }
+
 .dtlTitleo {
   width: 60%;
   background-color: #ffffff;
@@ -219,6 +229,7 @@
   color: #000;
   line-height: 1.9;
 }
+
 .dtlsubTitle {
   width: 20%;
   display: flex;
@@ -230,6 +241,7 @@
   font-weight: 600;
   color: #000;
 }
+
 .card32bTitle {
   width: 60%;
   background-color: #ffffff;
@@ -241,6 +253,7 @@
   font-weight: 600;
   color: #000;
 }
+
 .card32bsubTitle {
   width: 40%;
   display: flex;
@@ -252,6 +265,7 @@
   font-weight: 600;
   color: #000;
 }
+
 .cardNumberTitle {
   width: 100%;
   background-color: #ffffff;
@@ -264,13 +278,16 @@
   font-weight: 600;
   color: #000;
 }
+
 .lay-BackGround {
   background-color: #faa9ba;
 }
+
 .back-BackGround {
   background-color: #72bbef;
   line-height: 1.2;
 }
+
 .commonButtonBoxContainer {
   display: flex;
   flex-direction: column;
@@ -278,26 +295,6 @@
   align-items: center;
   gap: 3px;
 }
-
-// .lock:after {
-//   position: absolute;
-//   display: flex;
-//   justify-content: center;
-//   // align-items: center;
-//   height: 100%;
-//   width: 100%;
-//   right: 0;
-//   background-color: rgba(0, 0, 0, 0.6);
-//   color: #ffffff;
-//   text-transform: uppercase;
-//   font-family: "Font Awesome 5 Free";
-//   content: "\f023";
-//   font-weight: 900;
-//   font-size: 18px;
-//   top: 0;
-//   padding-top: 5px;
-//   line-height: 0.7;
-// }
 
 .lock-32 {
   position: relative;
@@ -311,14 +308,18 @@
   background-repeat: no-repeat;
   content: "";
   position: absolute;
-  z-index: 10; /* Increased z-index to ensure visibility */
+  z-index: 10;
+  /* Increased z-index to ensure visibility */
   top: 1px;
   // left: 27px;
-  width: 17px; /* Set specific width */
-  height: 17px; /* Set specific height */
+  width: 17px;
+  /* Set specific width */
+  height: 17px;
+  /* Set specific height */
   background-position: center;
   pointer-events: none;
-  filter: invert(1); /* Ensure this doesn't affect visibility */
+  filter: invert(1);
+  /* Ensure this doesn't affect visibility */
   -webkit-filter: invert(1);
 }
 
@@ -345,6 +346,7 @@
   flex-direction: column;
   justify-content: space-around;
 }
+
 .cardContainer {
   width: 50%;
   background-color: #f7f7f7;
@@ -353,6 +355,7 @@
   flex-direction: column;
   justify-content: space-around;
 }
+
 .commonCardImgContainer {
   width: 100%;
   display: flex;
@@ -362,24 +365,12 @@
   gap: 5px;
   margin-top: 5px;
 }
-// .horseRacingTabHeader {
-//   width: 100%;
-//   height: 10%;
-//   background-color: #ffc742;
-//   display: flex;
-//   justify-content: space-between;
-//   padding: 6px 8px;
-//    color : "#ffffff"
-// }
 
 .profitLoss-text {
   width: "100%";
   display: "flex";
   flex-direction: "column";
 }
-// .horseRacingTab .nav-link{
-//   margin: 0 !important;
-// }
 
 .profitLoss-Text {
   width: 100%;

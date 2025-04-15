@@ -15,7 +15,6 @@ import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
-
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -293,32 +292,31 @@ const TeenPattiMobile = () => {
                           {item.nat}
                         </div>
                         <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
+                          className={`f10-b ${dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                ]
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                  ] > 0
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
                               : ""
-                          }`}
+                            }`}
                           style={{ zIndex: "100" }}
                         >
                           {(dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                              ]
                               : ""
                             : "") || "\u00A0"}
                         </span>
@@ -335,13 +333,13 @@ const TeenPattiMobile = () => {
                         }}
                         className={
                           runs?.[0]?.gstatus === "SUSPENDED" &&
-                          runs?.[0]?.b === 0
+                            runs?.[0]?.b === 0
                             ? "suspended"
                             : "teenPatti-table-item"
                         }
                         onClick={() =>
                           runs?.[0]?.gstatus === "SUSPENDED" &&
-                          runs?.[0]?.b === 0
+                            runs?.[0]?.b === 0
                             ? ""
                             : handleBet(item)
                         }

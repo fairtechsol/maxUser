@@ -4,17 +4,16 @@ import { p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Poker6Result from "../desktop/poker6Card";
-import TiePairBox from "./TiePairBox";
-import "./style.scss";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Poker6Result from "../desktop/poker6Card";
+import TiePairBox from "./TiePairBox";
+import "./style.scss";
 
 const Poker6Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -67,14 +66,14 @@ const Poker6Mobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%"}}>
+            <div style={{ width: "100%" }}>
               <div
                 style={{
                   width: "100%",
@@ -97,7 +96,7 @@ const Poker6Mobile = () => {
                 <div className="dt20TabBox-poker">
                   <div className="dt20tabheaderp">
                     <div
-                    onClick={() => setActiveCardTab(false)}
+                      onClick={() => setActiveCardTab(false)}
                       style={{
                         height: "100%",
                         borderTop: !activeCardTab ? "1px solid white" : "none",
@@ -109,7 +108,7 @@ const Poker6Mobile = () => {
                     >
                       <span
                         style={{ fontSize: "14px", fontWeight: "normal" }}
-                        
+
                       >
                         HANDS
                       </span>
@@ -121,7 +120,7 @@ const Poker6Mobile = () => {
                       |{" "} */}
                     </span>
                     <div
-                     onClick={() => setActiveCardTab(true)}
+                      onClick={() => setActiveCardTab(true)}
                       style={{
                         height: "100%",
                         borderTop: activeCardTab ? "1px solid white" : "none",
@@ -133,14 +132,14 @@ const Poker6Mobile = () => {
                     >
                       <span
                         style={{ fontSize: "14px", fontWeight: "normal" }}
-                       
+
                       >
                         PATTERN
                       </span>
                     </div>
                   </div>
                 </div>
-                
+
                 {activeCardTab ? (
                   <div>
                     <TiePairBox
@@ -161,7 +160,7 @@ const Poker6Mobile = () => {
                     />
                   </div>
                 )}
-                <div style={{ width: "100%"}}>
+                <div style={{ width: "100%" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["T", "1"]}

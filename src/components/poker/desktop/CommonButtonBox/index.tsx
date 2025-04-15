@@ -1,6 +1,3 @@
-// import { useDispatch } from "react-redux";
-// import { AppDispatch } from "../../../../store/store";
-
 import { HandleGameCards } from "../card";
 
 const CommonButtonBox = ({
@@ -14,7 +11,6 @@ const CommonButtonBox = ({
   card1,
   card2,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
   return (
     <div className="poker6player" style={{ width: width }}>
       <div

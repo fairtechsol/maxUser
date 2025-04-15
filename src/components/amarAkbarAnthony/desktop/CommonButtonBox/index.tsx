@@ -41,13 +41,12 @@ const CommonButtonBox = ({
       <div>
         <span
           style={{ fontSize: "16px" }}
-          className={`${
-            value3 && value3 > 0
+          className={`${value3 && value3 > 0
               ? "color-green"
               : value3 < 0
-              ? " color-red"
-              : ""
-          }`}
+                ? " color-red"
+                : ""
+            }`}
         >
           {value3 || "\u00A0"}
         </span>

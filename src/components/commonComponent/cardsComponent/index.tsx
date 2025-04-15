@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { back, club, diamond, heart, spade } from "../../../assets/images";
-import {isMobile} from "../../../utils/screenDimension";
-// import Club from "../../assets/cards/clubs.png";
-// import Diamond from "../../assets/cards/diamond.png";
-// import Heart from "../../assets/cards/heart.png";
-// import Spade from "../../assets/cards/spade.png";
+import { isMobile } from "../../../utils/screenDimension";
 
 interface PlayingCardProps {
   number: string;
@@ -23,8 +19,8 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundSize:"100%",
-        WebkitBackgroundSize:"cover",
+        backgroundSize: "100%",
+        WebkitBackgroundSize: "cover",
         // padding: isMobile ?  "0px" :"8px",
         background: "white",
         height: isMobile ? "24px" : "40px",
@@ -47,8 +43,8 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
           </span>
           <Icons type={type} />
         </>
-      ):<>
-      <img src={back} width={ isMobile ?16:30} height={ isMobile ?20:40} /></>}
+      ) : <>
+        <img src={back} width={isMobile ? 16 : 30} height={isMobile ? 20 : 40} /></>}
     </div>
   );
 };
@@ -59,7 +55,7 @@ interface IconsProps {
 
 export const Icons: React.FC<IconsProps> = ({ type }) => {
   const renderImage = (src: string) => {
-    return <img width={isMobile ? "8" :"15"} alt={type} src={src} />;
+    return <img width={isMobile ? "8" : "15"} alt={type} src={src} />;
   };
 
   switch (type) {
@@ -81,7 +77,7 @@ interface HandleCardsProps {
 }
 
 export const HandleCards: React.FC<HandleCardsProps> = ({ card }) => {
-  
+
   const [type, setType] = useState("");
   const [number, setNumber] = useState("");
 

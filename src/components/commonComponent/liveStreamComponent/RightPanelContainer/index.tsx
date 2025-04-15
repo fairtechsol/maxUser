@@ -18,13 +18,6 @@ const RightPanelContainer = ({
           customClass=" rounded-0 py-1 mt-1"
           customTextClass="cursor-pointer"
           title={title}
-          // rightComponent={
-          //   <FiMonitor
-          //     onClick={() => setShowVideo((prev: boolean) => !prev)}
-          //     style={{ cursor: "pointer" }}
-          //     color="white"
-          //   />
-          // }
           setShowVideo={setShowVideo}
         />
       </div>

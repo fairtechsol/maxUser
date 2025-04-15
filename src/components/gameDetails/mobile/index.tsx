@@ -2,7 +2,6 @@ import { memo, useEffect, useState } from "react";
 import { Col, Container, Ratio, Row, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-// import { formatDate } from "../../../utils/dateUtils";
 import moment from "moment";
 import { FaTv } from "react-icons/fa";
 import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";

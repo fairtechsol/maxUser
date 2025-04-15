@@ -8,10 +8,9 @@ export const getMatchList = createAsyncThunk<any, any>(
   async ({ type, searchKeyword, matchType }, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.MATCHLIST}?sort=match.startAt:ASC${
-          type == "search"
-            ? `&searchBy=title&keyword=${searchKeyword || ""}`
-            : ""
+        `${ApiConstants.MATCH.MATCHLIST}?sort=match.startAt:ASC${type == "search"
+          ? `&searchBy=title&keyword=${searchKeyword || ""}`
+          : ""
         }${matchType ? `&match.matchType=${matchType}` : ""}`
       );
       if (resp) {
@@ -26,7 +25,7 @@ export const getMatchList = createAsyncThunk<any, any>(
 
 export const getTabList = createAsyncThunk<any, any>(
   "/tab/list",
-  async ({}, thunkApi) => {
+  async ({ }, thunkApi) => {
     try {
       const resp = await service.get(`${ApiConstants.MATCH.TABLIST}`);
       if (resp) {
@@ -59,8 +58,7 @@ export const SearchList = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.MATCHLIST}?searchBy=title&keyword=${
-          requestData?.title ? requestData?.title : ""
+        `${ApiConstants.MATCH.MATCHLIST}?searchBy=title&keyword=${requestData?.title ? requestData?.title : ""
         }`
       );
       if (resp) {
@@ -73,20 +71,7 @@ export const SearchList = createAsyncThunk<any, any>(
   }
 );
 
-// export const userChangePassword = createAsyncThunk<any, any>(
-//   "user/changePassword",
-//   async (requestData) => {
-//     try {
-//       const resp = await service.post("/user/changePassword", requestData);
-//       if (resp) {
-//         return resp?.data;
-//       }
-//     } catch (error: any) {
-//       const err = error as AxiosError;
-//       throw err;
-//     }
-//   }
-// );
+
 
 export const matchDetailAction = createAsyncThunk<any, any>(
   "/match/details",
@@ -153,12 +138,9 @@ export const betReportList = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.CURRENTBET}?status=${
-          requestData.status
-        }&betPlaced.eventType=${requestData?.matchType}&keyword=${
-          requestData?.keyword || ""
-        }${requestData?.filter || ""}&page=${requestData.page || 1}&limit=${
-          requestData.limit || 10
+        `${ApiConstants.MATCH.CURRENTBET}?status=${requestData.status
+        }&betPlaced.eventType=${requestData?.matchType}&keyword=${requestData?.keyword || ""
+        }${requestData?.filter || ""}&page=${requestData.page || 1}&limit=${requestData.limit || 10
         }`
       );
       if (resp?.data) {

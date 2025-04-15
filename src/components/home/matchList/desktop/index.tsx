@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
-// import { onTabSwitch } from "../../../../utils/tabSwitch";
 import { useLocation, useParams } from "react-router-dom";
+import { RootState } from "../../../../store/store";
 import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
@@ -21,39 +20,6 @@ const DesktopMatchList = ({
   const isGameRoute = location.pathname.includes("game-list");
   // const dispatch: AppDispatch = useDispatch();
   const { tabList } = useSelector((state: RootState) => state.match.matchList);
-  // const setMatchOddRatesInRedux = (event: any) => {
-  //   dispatch(updateMatchOddRates(event));
-  // };
-
-  // useEffect(() => {
-  //   try {
-  //     if (
-  //       success &&
-  //       matchList.length > 0 &&
-  //       ["cricket", "football", "tennis", "politics"].includes(
-  //         matchType || type || matchTypeGameList
-  //       )
-  //     ) {
-  //       matchList?.forEach((element: any) => {
-  //         expertSocketService.match.joinMatchRoom(element?.id, "user");
-  //       });
-  //       matchList?.forEach((element: any) => {
-  //         expertSocketService.match.getMatchRates(
-  //           element?.id,
-  //           setMatchOddRatesInReduxj
-  //         );
-  //       });
-  //       return () => {
-  //         matchList?.forEach((element: any) => {
-  //           expertSocketService.match.leaveMatchRoom(element?.id);
-  //           expertSocketService.match.getMatchRatesOff(element?.id);
-  //         });
-  //       };
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }, [matchList.length, success, type, matchType, matchTypeGameList]);
 
   useEffect(() => {
     if (type) {

@@ -1,7 +1,6 @@
+import moment from "moment-timezone";
 import { useEffect, useState } from "react";
 import { Modal, Table } from "react-bootstrap";
-// import { FiMonitor } from "react-icons/fi";
-import moment from "moment-timezone";
 import { FaHome, FaLock } from "react-icons/fa";
 import { FiMonitor } from "react-icons/fi";
 import { Img } from "react-image";
@@ -381,13 +380,8 @@ const MatchListRow = ({ item, matchType }: any) => {
     <tr className="one-v-one-row overflow-hidden">
       <td className="px-2 w-50 align-middle">
         <div className="d-flex justify-content-between align-items-center ">
-          {/* <Link
-            className="text-decoration-none"
-            to={`/game-detail/${item?.id}`}
-          > */}
           <span
             className="text-decoration-none"
-            // to={`/game-detail/${matchType}/${item?.id}`}
             onClick={() => {
               expertSocketService.match.joinMatchRoom(item?.id);
               navigate(`/game-detail/${matchType}/${item?.id}`);

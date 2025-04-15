@@ -79,9 +79,8 @@ const CardBox2 = ({ data, odds }: any) => {
   const renderBox = (value: string, index: number) => (
     <div
       key={index}
-      className={`worli-odd-box back ${
-        betTeam.includes(value) || zeros.includes(value) ? "selected" : ""
-      }`}
+      className={`worli-odd-box back ${betTeam.includes(value) || zeros.includes(value) ? "selected" : ""
+        }`}
       onClick={() => {
         setZeros((p) => {
           if ((betTeam ? betTeam.length : 0) + (p ? p.length : 0) == 3)

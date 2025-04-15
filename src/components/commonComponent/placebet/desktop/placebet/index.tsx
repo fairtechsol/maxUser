@@ -3,31 +3,22 @@ import { ImCross } from "react-icons/im";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Modal } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   betPlaceSuccessReset,
-//   placeBet,
-// } from "../../../../store/actions/betPlace/betPlaceActions";
-// import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-// import { AppDispatch, RootState } from "../../../../store/store";
-// import { ApiConstants } from "../../../../utils/constants";
-// import CustomButton from "../../../commonComponent/button";
-// import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
-import CustomLoader from "../../../customLoader/CustomLoader";
-import CustomButton from "../../../button";
+import { formatNumber } from "../../../../../helpers";
 import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../../../store/actions/match/matchListAction";
-import RightPanelContainer from "../rightPanelContainer";
-import "./style.scss";
 import { AppDispatch, RootState } from "../../../../../store/store";
 import { ApiConstants, cardGamesType } from "../../../../../utils/constants";
-import { formatNumber } from "../../../../../helpers";
-import { Modal } from "react-bootstrap";
 import ButtonValues from "../../../../gameDetails/mobile/buttonValues";
+import CustomButton from "../../../button";
+import CustomLoader from "../../../customLoader/CustomLoader";
+import RightPanelContainer from "../rightPanelContainer";
+import "./style.scss";
 
 const placeBetHeader = [
   {
@@ -205,15 +196,14 @@ const DesktopPlacedBet = ({ type }: any) => {
                 <tbody>
                   <tr
                     className={`
-                    ${
-                      type === cardGamesType.andarBahar1
+                    ${type === cardGamesType.andarBahar1
                         ? selectedBet?.team?.name?.includes("Andar")
                           ? "game-type-andar"
                           : "game-type-bahar"
                         : selectedBet?.team?.bettingType === "LAY"
-                        ? "place-bet-table-red"
-                        : "place-bet-table-blue"
-                    }
+                          ? "place-bet-table-red"
+                          : "place-bet-table-blue"
+                      }
                   `}
                   >
                     {/* <td width={"8%"}>
@@ -307,15 +297,14 @@ const DesktopPlacedBet = ({ type }: any) => {
                   </tr>
                   <tr
                     className={`
-                  ${
-                    type === cardGamesType.andarBahar1
-                      ? selectedBet?.team?.bettingType === "BACK"
-                        ? "game-type-andar"
-                        : "game-type-bahar"
-                      : selectedBet?.team?.bettingType === "LAY"
-                      ? "place-bet-table-red"
-                      : "place-bet-table-blue"
-                  }
+                  ${type === cardGamesType.andarBahar1
+                        ? selectedBet?.team?.bettingType === "BACK"
+                          ? "game-type-andar"
+                          : "game-type-bahar"
+                        : selectedBet?.team?.bettingType === "LAY"
+                          ? "place-bet-table-red"
+                          : "place-bet-table-blue"
+                      }
                 `}
                   >
                     <td colSpan={5}>
@@ -387,18 +376,18 @@ const DesktopPlacedBet = ({ type }: any) => {
                                 selectedBet?.team?.stake == 0
                                   ? true
                                   : false &&
-                                    (selectedBet?.team?.isActive != undefined
-                                      ? selectedBet?.team?.isActive
-                                      : true)
+                                  (selectedBet?.team?.isActive != undefined
+                                    ? selectedBet?.team?.isActive
+                                    : true)
                               }
                               className="submit-buttonn1"
                               onClick={handleSubmit}
                               style={{
                                 backgroundColor:
                                   selectedBet?.team?.stake == 0 ||
-                                  (selectedBet?.team?.isActive != undefined
-                                    ? !selectedBet?.team?.isActive
-                                    : false)
+                                    (selectedBet?.team?.isActive != undefined
+                                      ? !selectedBet?.team?.isActive
+                                      : false)
                                     ? "#198754"
                                     : "#086f3f",
                                 fontSize: "13px",

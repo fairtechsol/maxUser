@@ -1,17 +1,14 @@
-import { useState } from "react";
-import { Tab, Card, Row } from "react-bootstrap";
-import "./style.scss";
-// import { useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from "../../../../store/store";
-import { useSelector } from "react-redux";
 import moment from "moment";
+import { useState } from "react";
+import { Card, Row, Tab } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useDispatch } from "react-redux";
-import PlacedBet from "../../../gameDetails/mobile/placeBet";
+import { AppDispatch, RootState } from "../../../../store/store";
 import CommonTabs from "../../../commonComponent/tabs";
 import MyBet from "../../../gameDetails/desktop/myBet";
+import PlacedBet from "../../../gameDetails/mobile/placeBet";
 import MatchOddCompnentMobile from "../matchOddComponent";
-// import CombinedComponentMobile from "../combinedComponent";
+import "./style.scss";
 
 const HorseRaceDetailMobile = () => {
   const dispatch: AppDispatch = useDispatch();

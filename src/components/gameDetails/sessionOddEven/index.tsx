@@ -88,7 +88,7 @@ const SessionOddEven = ({ title, data, detail }) => {
             <div className="sessionYesNoBoxContainer">
               <div
                 className="sessionYesNoBox rateBoxWidthNormal"
-                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+              // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
               >
                 <div
                   className="sessionYesBox back1Background"
@@ -112,44 +112,39 @@ const SessionOddEven = ({ title, data, detail }) => {
                     >
                       <span
                         className="teamFont"
-                        style={{
-                          width: "60%",
-                          fontWeight: "400",
-                          lineHeight: 1,
-                        }}
+                        style={{ width: "60%", fontWeight: "400", lineHeight: 1 }}
                       >
                         {item?.RunnerName}
                       </span>{" "}
                       <span
-                        className={`${
-                          calculateMaxLoss(
-                            detail?.profitLossDataSession,
-                            item?.id
-                          ) < 0
+                        className={`${calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
                             ? "color-red"
                             : "color-red"
-                        }  title-14 fbold`}
+                          }  title-14 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) !== 0
                           ? `-${calculateMaxLoss(
-                              detail?.profitLossDataSession,
-                              item?.id
-                            )}`
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
                           : ""}
                       </span>
                     </div>
                     <div className="sessionRateBoxContainer rateBoxWidthNormal">
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
-                        <div className="suspended-overlayRates">
-                          <span className={`suspendTextCmmn`}>
-                            {item?.GameStatus ?? "SUSPENDED"}
-                          </span>
-                        </div>
-                      )}
+                          <div className="suspended-overlayRates">
+                            <span className={`suspendTextCmmn`}>
+                              {item?.GameStatus ?? "SUSPENDED"}
+                            </span>
+                          </div>
+                        )}
                       <div
                         style={{
                           width: "33.33%",
@@ -175,9 +170,8 @@ const SessionOddEven = ({ title, data, detail }) => {
                           }
                         >
                           <span className={`rateFont`}>
-                            {handlePrice(
-                              item?.ex?.availableToBack?.[0]?.price
-                            ) ?? "-"}
+                            {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
+                              "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
                             {handleSize(item?.ex?.availableToBack?.[0]?.size)}
@@ -208,9 +202,8 @@ const SessionOddEven = ({ title, data, detail }) => {
                           }
                         >
                           <span className={`rateFont`}>
-                            {handlePrice(
-                              item?.ex?.availableToLay?.[0]?.price
-                            ) ?? "-"}
+                            {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
+                              "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
                             {handleSize(item?.ex?.availableToLay?.[0]?.size)}

@@ -132,31 +132,30 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                         {index} Number
                       </span>
                       <span
-                        className={`${
-                          detail?.profitLossDataSession
+                        className={`${detail?.profitLossDataSession
                             ? detail?.profitLossDataSession?.filter(
-                                (a: any) => a?.betId === data?.id
-                              )
+                              (a: any) => a?.betId === data?.id
+                            )
                               ? detail?.profitLossDataSession?.filter(
-                                  (a: any) => a?.betId === data?.id
-                                )[0]?.profitLoss?.[index] > 0
+                                (a: any) => a?.betId === data?.id
+                              )[0]?.profitLoss?.[index] > 0
                                 ? "color-green"
                                 : detail?.profitLossDataSession?.filter(
-                                    (a: any) => a?.betId === data?.id
-                                  )[0]?.profitLoss?.[index] < 0
-                                ? "color-red"
-                                : "color-red"
+                                  (a: any) => a?.betId === data?.id
+                                )[0]?.profitLoss?.[index] < 0
+                                  ? "color-red"
+                                  : "color-red"
                               : 0
                             : 0
-                        }`}
+                          }`}
                       >
                         {detail?.profitLossDataSession
                           ? detail?.profitLossDataSession?.filter(
-                              (a: any) => a?.betId === data?.id
-                            )
+                            (a: any) => a?.betId === data?.id
+                          )
                             ? detail?.profitLossDataSession?.filter(
-                                (a: any) => a?.betId === data?.id
-                              )[0]?.profitLoss?.[index]
+                              (a: any) => a?.betId === data?.id
+                            )[0]?.profitLoss?.[index]
                             : ""
                           : ""}
                       </span>
@@ -200,9 +199,8 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                             {handlePrice(item?.odds?.[0]?.odds) ?? "-"}
                           </span>
                           <span
-                            className={`${
-                              !isMobile ? "f-size12" : "f-size11"
-                            } sessionRate2Box`}
+                            className={`${!isMobile ? "f-size12" : "f-size11"
+                              } sessionRate2Box`}
                           >
                             {handleSize(item?.odds?.[0]?.size)}
                           </span>

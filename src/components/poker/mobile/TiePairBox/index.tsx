@@ -1,11 +1,10 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
-const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
+const TiePairBox = ({ handsData, data, width, title, cards }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  // console.log(data,'tiePair',tiePair)
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -17,8 +16,8 @@ const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:parseFloat(item?.min),
-      max:parseFloat(item?.max)
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -27,50 +26,50 @@ const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
       })
     );
   };
-  const handleCard=(data:any,index:number,type:string)=>{
-    let card ;
-  if(type==='first'){
-    card = `C${index+1}`
-    return data[card]
-  }else{
-    card = `C${index+7}`
-    return data[card]
-  }
+  const handleCard = (data: any, index: number, type: string) => {
+    let card;
+    if (type === 'first') {
+      card = `C${index + 1}`
+      return data[card]
+    } else {
+      card = `C${index + 7}`
+      return data[card]
+    }
   }
 
   useEffect(() => {
-    if (handsData?.[0]?.gstatus === "0" ||handsData?.[0]?.rate === "0.00") {
+    if (handsData?.[0]?.gstatus === "0" || handsData?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [handsData?.[0]?.gstatus,handsData?.[0]?.rate]);
-  
+    }
+
+  }, [handsData?.[0]?.gstatus, handsData?.[0]?.rate]);
+
   return (
     <div className="tiePairContainer-poker6">
       <div className="tiePairRateBoxMainP">
-      {handsData?.map((hand:any, index:any) => (
-        <CommonButtonBox
-          key={index}
-          value1={hand?.rate}
-          value2={hand?.nat} // Assuming hand has a name property
-          value3={
-            data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${hand?.sid}_card`
+        {handsData?.map((hand: any, index: any) => (
+          <CommonButtonBox
+            key={index}
+            value1={hand?.rate}
+            value2={hand?.nat} // Assuming hand has a name property
+            value3={
+              data?.profitLoss
+                ? data?.profitLoss[
+                `${data?.videoInfo?.mid}_${hand?.sid}_card`
                 ]
-              : ""
-          }
-          width={width}
-          handleBet={handleBet}
-          lock={hand?.gstatus === "0"}
-          data={hand}
-          title={title}
-          card1={title ==='hand' ? handleCard(cards,index,'first'):null}
-          card2={title ==='hand' ? handleCard(cards,index,'second'):null}
-          min={hand?.min}
-          max={hand?.max}
-        />
-      ))}
+                : ""
+            }
+            width={width}
+            handleBet={handleBet}
+            lock={hand?.gstatus === "0"}
+            data={hand}
+            title={title}
+            card1={title === 'hand' ? handleCard(cards, index, 'first') : null}
+            card2={title === 'hand' ? handleCard(cards, index, 'second') : null}
+            min={hand?.min}
+            max={hand?.max}
+          />
+        ))}
       </div>
     </div>
   );

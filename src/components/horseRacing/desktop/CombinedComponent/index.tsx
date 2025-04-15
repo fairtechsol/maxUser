@@ -1,20 +1,6 @@
-// import { useDispatch } from "react-redux";
-// import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-// import { AppDispatch } from "../../../../store/store";
-
 import RatesBox from "../ratesBox";
 
 const CombinedComponent = () => {
-  //   const dispatch: AppDispatch = useDispatch();
-
-  //   const handleClick = (team: any, data: any) => {
-  //     dispatch(
-  //       selectedBetAction({
-  //         team,
-  //         data,
-  //       })
-  //     );
-  //   };
 
   return (
     <div className="game-market market-12">
@@ -42,7 +28,7 @@ const CombinedComponent = () => {
           <RatesBox
             bgColor="bg-blue3"
             onClick={
-              () => {}
+              () => { }
               // const rate = parseFloat(
               //   race?.ex?.availableToBack[0]?.price
               // );
@@ -70,7 +56,7 @@ const CombinedComponent = () => {
           <RatesBox
             bgColor="bg-red1"
             onClick={
-              () => {}
+              () => { }
               // const rate = parseFloat(
               //   race?.ex?.availableToLay[0]?.price
               // );

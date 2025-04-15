@@ -93,8 +93,6 @@ const placedBet = createSlice({
         let dataArr: any = [];
         state.loading = false;
         state.success = true;
-        // dataArr=arr?.slice(1)
-        // console.log(arr,'dataArr',dataArr)
         if (
           arr.every((bet: any) => bet.profitLoss >= 0) ||
           arr.every((bet: any) => bet.profitLoss >= 0)
@@ -112,7 +110,6 @@ const placedBet = createSlice({
                   (arr[i - 1].profitLoss < 0 && arr[i].profitLoss >= 0) ||
                   (arr[i - 1].profitLoss >= 0 && arr[i].profitLoss < 0)
                 ) {
-                  // console.log('first',i)
                   return i;
                 }
               }
@@ -132,8 +129,6 @@ const placedBet = createSlice({
             dataArr = arr;
           }
         }
-        // const modifiedBets= arr?.slice(4,arr?.length-5)
-        // console.log('arrz',arr?.slice(1))
         let data = {
           betId: id,
           runAmountData: dataArr?.length > 0 ? dataArr : [],
@@ -257,7 +252,6 @@ const placedBet = createSlice({
         state.runAmount = {};
       })
       .addCase(resetRunAmountModalKhado.fulfilled, (state, action) => {
-        // console.log('first',action.payload)
         const { id, showModal } = action.payload;
         if (showModal) {
           state.runAmountModalKhado = showModal;

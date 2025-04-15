@@ -1,29 +1,27 @@
 @import "/src/assets/variable.scss";
-input{
-    ::placeholder{
+
+input {
+    ::placeholder {
         color: #000;
     }
 }
-.input-icon{
-    position:absolute;
-    right:10px;
-    top:5px;
+
+.input-icon {
+    position: absolute;
+    right: 10px;
+    top: 5px;
     z-index: 999;
     font-size: 16px;
 }
 
 .input-group-text-custom {
-    position:absolute;
-    right:0px;
-    top:0px;
-    z-index: 999;   
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 999;
     display: flex;
     align-items: center;
     justify-content: center;
-    // padding: .375rem .75rem;
-    // font-size: 24px;
-    // font-weight: 300 !important;
-    // line-height: 1;
     color: #212529;
     text-align: center;
     white-space: nowrap;
@@ -33,18 +31,15 @@ input{
     height: 38px;
     width: 40px;
 }
+
 .input-group-text-custom-m {
-    position:absolute;
-    right:0px;
-    top:0px;
-    z-index: 999;   
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 999;
     display: flex;
     align-items: center;
     justify-content: center;
-    // padding: .375rem .75rem;
-    // font-size: 24px;
-    // font-weight: 300 !important;
-    // line-height: 1;
     color: #212529;
     text-align: center;
     white-space: nowrap;
@@ -54,10 +49,11 @@ input{
     height: 38px;
     width: 40px;
 }
+
 .underline-textbox {
     border: none !important;
     border-bottom: 1px solid $secondary !important;
     border-radius: 0 !important;
-    outline: none !important; /* Remove the default focus border */
-  }
-  
+    outline: none !important;
+    /* Remove the default focus border */
+}
