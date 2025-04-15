@@ -91,7 +91,7 @@ const DesktopGameDetail = () => {
                     />
                   ) : (
                     <BetTableHeader
-                      customClass="py-1"
+                      customClass="mt-1 py-1"
                       title={matchDetails?.title}
                       setShowScoreboard={(e) => {
                         if (!showScoreboard) {
