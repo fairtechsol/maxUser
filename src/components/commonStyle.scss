@@ -366,6 +366,12 @@
     /* Remove margin from Nav.Link */
 }
 
+.teenPatti-table-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4%;
+}
 
 .tiePairContainer-m {
     width: 100%;
@@ -1405,14 +1411,6 @@
     color: #000;
 }
 
-.lay-BackGround {
-    background-color: #faa9ba;
-}
-
-.back-BackGround {
-    background-color: #72bbef;
-    line-height: 1;
-}
 
 .dtlTitlee {
     width: 20%;
@@ -1495,6 +1493,310 @@
     // justify-content: space-around;
 }
 
+.dt20TabBox-poker {
+    width: 50%;
+    background-color: #cccccc;
+    // padding: 2px 0px 0px 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.dt20tabheaderp {
+    width: 100%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    // justify-content: space-between;
+    align-items: center;
+}
+
+.tiePairContainer-poker6 {
+    width: 100%;
+    background-color: #eee;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    align-items: center;
+}
+
+.poker-table-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.casino-table-box-divider {
+    background-color: #c7c8ca;
+    width: 2px;
+}
+
+.poker-table-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 0.2px solid #fff;
+    cursor: pointer;
+}
+
+.poker6-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+
+.tiePairbtnMob-theme-poker {
+    display: flex;
+    color: #fff !important;
+    width: 100% !important;
+    height: 100%;
+    // border-radius: 4px !important;
+    // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
+    border: 0 !important;
+    // padding: 2px 8px 0px 0px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    font-weight: 600;
+    // position: relative;
+    text-align: start;
+    justify-content: flex-start;
+}
+
+.rate-box {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.casino-volume {
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1;
+    margin-top: 5px;
+}
+
+.lay-BackGround {
+    background-color: #faa9ba;
+}
+
+.back-BackGround {
+    background-color: #72bbef;
+}
+
+.totalContainer {
+    width: 40%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.winContainer {
+    width: 60%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.oddBoxContainer {
+    width: 100%;
+    background-color: #eee;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.result-card-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px
+}
+
+.flex-justify-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.marketHeader {
+    width: 100%;
+    background-color: #ffc742d9;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    color: #ffffff;
+}
+
+.boxContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #eee;
+    padding-left: 5px;
+    border-bottom: 0.5px solid #c7c8ca;
+}
+
+.blboxessp1 {
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+}
+
+.blboxessp2 {
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+}
+
+.rateText {
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+}
+
+.resultTabHead {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px;
+    background-color: rgba(0, 74, 37, 0.9);
+    align-items: center;
+}
+
+.resultTeamTab {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f7f7f7;
+}
+
+.super-over-rule {
+    overflow: auto;
+    // min-height: 200px;
+    max-height: 400px;
+}
+
+.super-over-rule img {
+    height: 40px;
+}
+
+.super-over-rule .table-over th,
+.table-over td {
+    padding: 2px 8px;
+    vertical-align: middle;
+}
+
+.suspended-row {
+    position: relative;
+}
+
+.suspended-row::after {
+    content: attr(data-title);
+    background-color: #373636d6;
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    cursor: not-allowed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.suspended-row2 {
+    position: relative;
+}
+
+.suspended-row2::after {
+    content: attr(data-title2);
+    background-color: #373636d6;
+    color: #ff0000;
+    font-weight: bold !important;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    cursor: not-allowed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.subwinContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.total-mainRateBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.win-mainRateBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.win-rateBox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    line-height: 1;
+    height: 42px
+}
+
+.total-rateBox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+    padding: 5px;
+    line-height: 1.2;
+}
+
+.oddsBoxProfitLoss {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @keyframes ticker {
     0% {
         transform: translateX(100%);
@@ -1545,6 +1847,43 @@
 
     100% {
         transform: scale(1);
+    }
+}
+
+.teen-back-m {
+    width: 50%;
+    background-color: rgb(114, 187, 239);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bolder;
+}
+
+.border-all {
+    border: 1px solid #bfbfbf;
+}
+
+@media (min-width: 768px) {
+    .border-md-right {
+        border-right: 1px solid #bfbfbf;
+        border-top: none;
+        border-bottom: none;
+        border-left: none;
+    }
+
+    .border-md-none {
+        border-right: 0px solid #bfbfbf;
+        border-top: none;
+        border-bottom: none;
+        border-left: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .tabs-navs .nav-link {
+        flex: 1 0 10%;
     }
 }
 

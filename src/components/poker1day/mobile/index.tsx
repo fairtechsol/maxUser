@@ -12,11 +12,11 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import "../../horseRacing/mobile/betTable/style.scss";
 import DynamicTable from "../desktop/betTable";
 import PairBox from "../desktop/pairBox";
 import Poker1DayResult from "../desktop/poker1DayCard";
-import "./style.scss";
 const Poker1dayMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);

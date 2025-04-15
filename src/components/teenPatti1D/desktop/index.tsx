@@ -9,13 +9,13 @@ import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
+import "../../commonStyle.scss";
 import Teen1DResult from "./teenCard";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import NewLoader from "../../commonComponent/newLoader";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -113,11 +113,11 @@ const TeenPattiDesktop = () => {
   useEffect(() => {
     if (playerA?.[0]?.gstatus === "SUSPENDED" || playerA?.[0]?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [playerA?.[0]?.gstatus,playerA?.[0]?.b1]);
+    }
 
-  
+  }, [playerA?.[0]?.gstatus, playerA?.[0]?.b1]);
+
+
   return (
     <>
       <Row>
@@ -130,7 +130,7 @@ const TeenPattiDesktop = () => {
                     1 DAY TEEN PATTI
                   </span>
                   <span
-                    style={{ fontSize: "14px", textDecoration: "underline",cursor:"pointer" }}
+                    style={{ fontSize: "14px", textDecoration: "underline", cursor: "pointer" }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
@@ -140,10 +140,9 @@ const TeenPattiDesktop = () => {
                 <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${parseFloat(dragonTigerDetail?.videoInfo?.min)}|Max: ${
-                        parseFloat(dragonTigerDetail?.videoInfo?.max)
-                      }`
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}|Min: ${parseFloat(dragonTigerDetail?.videoInfo?.min)}|Max: ${parseFloat(dragonTigerDetail?.videoInfo?.max)
+                    }`
                     : ""}
                 </span>
               </div>
@@ -218,34 +217,34 @@ const TeenPattiDesktop = () => {
                         className={
                           dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                            ]
                               ? JSON.parse(
-                                  dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                                  ]
-                                )["playera"] > 0
+                                dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                                ]
+                              )["playera"] > 0
                                 ? "color-green"
                                 : JSON.parse(
-                                    dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                                    ]
-                                  )["playera"] < 0
-                                ? "color-red"
-                                : ""
+                                  dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                                  ]
+                                )["playera"] < 0
+                                  ? "color-red"
+                                  : ""
                               : ""
                             : ""
                         }
                       >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                            ]
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                          ]
                             ? JSON.parse(
-                                dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                                ]
-                              )["playera"]
+                              dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                              ]
+                            )["playera"]
                             : 0
                           : 0}
                       </span>
@@ -311,34 +310,34 @@ const TeenPattiDesktop = () => {
                         className={
                           dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                            ]
                               ? JSON.parse(
-                                  dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                                  ]
-                                )["playerb"] > 0
+                                dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                                ]
+                              )["playerb"] > 0
                                 ? "color-green"
                                 : JSON.parse(
-                                    dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                                    ]
-                                  )["playerb"] < 0
-                                ? "color-red"
-                                : ""
+                                  dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                                  ]
+                                )["playerb"] < 0
+                                  ? "color-red"
+                                  : ""
                               : ""
                             : ""
                         }
                       >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                            ]
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                          ]
                             ? JSON.parse(
-                                dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
-                                ]
-                              )["playerb"]
+                              dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
+                              ]
+                            )["playerb"]
                             : 0
                           : 0}
                       </span>

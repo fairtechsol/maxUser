@@ -12,8 +12,8 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Teen1DResult from "../desktop/teenCard";
-import "./style.scss";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -268,9 +268,9 @@ const TeenPattiMobile = () => {
                         </div>
                         <div
                           className={`teenPatti-table-item ${playerA?.[0]?.gstatus != "0" &&
-                              playerA?.[1]?.gstatus === "0"
-                              ? "suspended"
-                              : ""
+                            playerA?.[1]?.gstatus === "0"
+                            ? "suspended"
+                            : ""
                             }`}
                           style={{ width: "50%", background: "#f9c9d4" }}
                           onClick={() =>
@@ -372,9 +372,9 @@ const TeenPattiMobile = () => {
                         </div>
                         <div
                           className={`teenPatti-table-item ${playerA?.[0]?.gstatus != "0" &&
-                              playerA?.[1]?.gstatus === "0"
-                              ? "suspended"
-                              : ""
+                            playerA?.[1]?.gstatus === "0"
+                            ? "suspended"
+                            : ""
                             }`}
                           style={{ width: "50%", background: "#f9c9d4" }}
                           onClick={() =>

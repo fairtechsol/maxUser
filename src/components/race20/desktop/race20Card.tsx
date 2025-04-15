@@ -4,7 +4,7 @@ import { BiSolidHeart } from "react-icons/bi";
 import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import "./style.scss";
+import "../../commonStyle.scss";
 interface Props {
   data: {
     C1: string;

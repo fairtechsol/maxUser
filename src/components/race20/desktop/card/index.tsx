@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {isMobile} from "../../../../utils/screenDimension";
 import { back, club, diamond, heart, spade } from "../../../../assets/images";
+import { isMobile } from "../../../../utils/screenDimension";
 
 interface PlayingCardProps {
   number: string;
@@ -17,14 +17,14 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundSize:"100%",
-        WebkitBackgroundSize:"cover",
+        backgroundSize: "100%",
+        WebkitBackgroundSize: "cover",
         background: "white",
-        height:"40px",
+        height: "40px",
         width: isMobile ? "32px" : "36px",
         padding: "0px",
-        zIndex:"999",
-        border:"1px solid yellow",
+        zIndex: "999",
+        border: "1px solid yellow",
       }}
     >
       {!lock ? (
@@ -41,8 +41,8 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
           </span>
           <Icons type={type} />
         </>
-      ):<>
-      <img src={back} width={ isMobile ? 12 : 25} height={ isMobile ? 16 : 30} /></>}
+      ) : <>
+        <img src={back} width={isMobile ? 12 : 25} height={isMobile ? 16 : 30} /></>}
     </div>
   );
 };
@@ -75,7 +75,7 @@ interface HandleCardsProps {
 }
 
 export const HandleRaceCards: React.FC<HandleCardsProps> = ({ card }) => {
-  
+
   const [type, setType] = useState("");
   const [number, setNumber] = useState("");
 

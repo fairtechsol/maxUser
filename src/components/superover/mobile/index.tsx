@@ -12,10 +12,10 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Iframe from "../../iframe/iframe";
 import Bookmaker from "../desktop/bookmaker";
 import SuperoverResult from "../desktop/superOver";
-import "./style.scss";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
