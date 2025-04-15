@@ -14,6 +14,32 @@
     }
 }
 
+.casino-result-desc {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    padding: 6px;
+    box-shadow: 0 0 4px -1px;
+    margin-top: 10px;
+}
+
+.casino-result-desc-item {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.casino-result-desc-item div:first-child {
+    margin-right: 2%;
+    opacity: 0.6;
+}
+
+.casino-result-desc-item div:last-child {
+    word-break: break-all;
+}
+
 .horse-time-detail span {
     position: relative;
     background: #ffc742;
@@ -454,6 +480,14 @@
 .tiePairContainer-lucky7 {
     width: 100%;
     background-color: #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.tiePairContainer-l7a {
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -1217,6 +1251,14 @@
     line-height: 3;
 }
 
+.tiePairContainer {
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
 .tiePairContainer-bt {
     width: 100%;
     background-color: #eee;
@@ -1390,6 +1432,67 @@
     width: 100%;
     margin: 5px;
     padding-right: 10px;
+}
+
+.tab-containerp {
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px 0px 0px 0px;
+    // margin-bottom: 20px;
+}
+
+.hands {
+    padding: 4px 20px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+
+    // margin-right: 5px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.hands.active {
+    // border-top: 4px solid white;
+    background-color: $secondary;
+    border-bottom: none;
+    color: #fff;
+}
+
+.hands:hover {
+    background-color: none;
+}
+
+.tab-contentp {
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.casino-odds-box-poker {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    // padding: 5px;
+    font-weight: bold;
+    border-left: 1px solid #c7c8ca;
+    cursor: pointer;
+    min-height: 46px;
+}
+
+.poker6player .casino-odds-box {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+
+.tiePairRateBoxMainP-m {
+    width: 100%;
+    display: flex;
+    // flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    // justify-content: space-around;
 }
 
 @keyframes ticker {

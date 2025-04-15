@@ -28,7 +28,7 @@ const CardBox = ({ name, cardData, data }: any) => {
   };
   return (
     <>
-      <div className="cardContainer">
+      <div className="cardContainerNew">
         <div style={{ textAlign: "center" }}>
           <span style={{ fontSize: "1.5rem" }}>
             {name}{" "}

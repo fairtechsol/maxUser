@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { dragonTigerCards } from "../../../../utils/constants";
-import "../../desktop/style.scss";
+import "../../../commonStyle.scss";
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
   useEffect(() => {
@@ -14,7 +14,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   }, [cardData]);
 
   return (
-    <div className="commonCardImgContainer">
+    <div className="commonCardImgContainerAbj">
       {cardImg?.map((item: any) => {
         return (
           <div>
@@ -37,29 +37,28 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              className={`${
-                data?.profitLoss
+              className={`${data?.profitLoss
+                ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                ]
                   ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
                       `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
-                      ? "color-green"
-                      : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
+                    ] < 0
                       ? "color-red"
                       : ""
-                    : ""
                   : ""
-              }`}
+                : ""
+                }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                   : ""
                 : ""}
             </span>
