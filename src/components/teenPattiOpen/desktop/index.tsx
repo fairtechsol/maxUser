@@ -14,7 +14,7 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
+import "../../commonStyle.scss";
 import TeenPattiTableRow from "./tableRow";
 import TeenOpenResult from "./teenCard";
 const TeenPattiDesktop = () => {

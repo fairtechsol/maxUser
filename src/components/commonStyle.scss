@@ -970,6 +970,37 @@
     animation: ticker 40s linear infinite;
 }
 
+.ticker-move-60 {
+    display: flex;
+    animation: ticker 60s linear infinite;
+}
+
+.parent-rate {
+    display: flex;
+    width: 100%;
+}
+
+.child-rate1 {
+    width: 70%;
+    font-weight: 600;
+    text-align: center;
+}
+
+.child-rate2 {
+    width: 30%;
+    font-weight: 600;
+    text-align: center;
+}
+
+.oddEvenContainer-m-new {
+    width: 100%;
+    background-color: #eee;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .ticker-item {
     display: inline-block;
     padding: 0 2rem;
@@ -1626,6 +1657,53 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.teenPatti-table-container-open-new {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.teenPatti-table-itemo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-left: 0.01px solid #c7c8ca;
+    border-bottom: 0.01px solid #c7c8ca;
+    cursor: pointer;
+}
+
+.teen20resultCardContainer2 {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
+
+.winner-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.row-render {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 40px;
+}
+
+.teenPatti-table-container-open {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
 }
 
 .marketHeader {

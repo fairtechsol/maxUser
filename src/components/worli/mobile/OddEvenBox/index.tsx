@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import OddButtonBox from "../OddButtonBox";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import OddButtonBox from "../OddButtonBox";
 
 const OddEven = ({ card, odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -26,7 +26,7 @@ const OddEven = ({ card, odds, data }: any) => {
   };
   return (
     <>
-      <div className="oddEvenContainer-m">
+      <div className="oddEvenContainer-m-new">
         {card ? (
           <>
             {" "}
@@ -43,8 +43,8 @@ const OddEven = ({ card, odds, data }: any) => {
                 profitLoss={
                   data?.profitLoss
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                      ]
+                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                    ]
                     : 0
                 }
                 width={"40%"}
@@ -58,8 +58,8 @@ const OddEven = ({ card, odds, data }: any) => {
                 profitLoss={
                   data?.profitLoss
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                      ]
+                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                    ]
                     : 0
                 }
                 width={"40%"}
@@ -84,8 +84,8 @@ const OddEven = ({ card, odds, data }: any) => {
                 profitLoss={
                   data?.profitLoss
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                      ]
+                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                    ]
                     : 0
                 }
                 width={"20%"}
@@ -99,8 +99,8 @@ const OddEven = ({ card, odds, data }: any) => {
                 profitLoss={
                   data?.profitLoss
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                      ]
+                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                    ]
                     : 0
                 }
                 width={"20%"}
@@ -114,8 +114,8 @@ const OddEven = ({ card, odds, data }: any) => {
                 profitLoss={
                   data?.profitLoss
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                      ]
+                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                    ]
                     : 0
                 }
                 width={"20%"}
@@ -129,8 +129,8 @@ const OddEven = ({ card, odds, data }: any) => {
                 profitLoss={
                   data?.profitLoss
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
-                      ]
+                    `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
+                    ]
                     : 0
                 }
                 width={"20%"}

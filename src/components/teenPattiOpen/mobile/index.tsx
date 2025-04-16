@@ -9,8 +9,8 @@ import { cardGamesId, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import TeenOpenResult from "../desktop/teenCard";
-import "./style.scss";
 import TeenPattiTableRow from "./tableRow";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
@@ -50,8 +50,8 @@ const TeenPattiMobile = () => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -164,7 +164,7 @@ const TeenPattiMobile = () => {
             ) : (
               <div>
                 <div style={{ width: "100%" }}>
-                  <div className="teenPatti-table-container-open">
+                  <div className="teenPatti-table-container-open-new">
                     <div className="teenPatti-table-row">
                       <div
                         style={{

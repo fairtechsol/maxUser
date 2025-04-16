@@ -6,15 +6,15 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import TeenTestResult from "../desktop/teenCard";
-import "./style.scss";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
+import TeenTestResult from "../desktop/teenCard";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -39,8 +39,8 @@ const TeenPattiMobile = () => {
       rateType === "drate"
         ? item.drate
         : rateType === "lrate"
-        ? item.lrate
-        : item.trate;
+          ? item.lrate
+          : item.trate;
 
     let team = {
       bettingType: "BACK",
@@ -52,22 +52,22 @@ const TeenPattiMobile = () => {
         (rateType == "drate"
           ? "Dragon"
           : rateType == "lrate"
-          ? "Lion"
-          : "Tiger") +
+            ? "Lion"
+            : "Tiger") +
         " " +
         item?.nation,
       name:
         (rateType == "drate"
           ? "Dragon"
           : rateType == "lrate"
-          ? "Lion"
-          : "Tiger") +
+            ? "Lion"
+            : "Tiger") +
         " " +
         item?.nation,
       bettingName: "Match odds",
       selectionId: sectionId,
-      min:dragonTigerDetail?.videoInfo?.min,
-      max:dragonTigerDetail?.videoInfo?.max
+      min: dragonTigerDetail?.videoInfo?.min,
+      max: dragonTigerDetail?.videoInfo?.max
     };
 
     dispatch(
@@ -122,8 +122,8 @@ const TeenPattiMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
         {!activeTab ? (
           <div
@@ -200,23 +200,21 @@ const TeenPattiMobile = () => {
                         <span className="f12-b">{"TIGER"}</span>
                       </div>
                       <div
-                        className={`teenPatti-table-item ${
-                          playerA?.[0]?.gstatus != "0" &&
+                        className={`teenPatti-table-item ${playerA?.[0]?.gstatus != "0" &&
                           playerA?.[1]?.gstatus === "0"
-                            ? "suspended-box2"
-                            : ""
-                        }`}
+                          ? "suspended-box2"
+                          : ""
+                          }`}
                         style={{ width: "20%", backgroundColor: "#72bbef" }}
                       >
                         <span className="f12-b">{"LION"}</span>
                       </div>
                       <div
-                        className={`teenPatti-table-item ${
-                          playerA?.[0]?.gstatus != "0" &&
+                        className={`teenPatti-table-item ${playerA?.[0]?.gstatus != "0" &&
                           playerA?.[1]?.gstatus === "0"
-                            ? "suspended-box2"
-                            : ""
-                        }`}
+                          ? "suspended-box2"
+                          : ""
+                          }`}
                         style={{ width: "20%", backgroundColor: "#72bbef" }}
                       >
                         <span className="f12-b">{"DRAGON"}</span>
@@ -252,9 +250,8 @@ const TeenPattiMobile = () => {
                             }}
                           >
                             <div
-                             className={`${
-                              section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
-                            }`}
+                              className={`${section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
+                                }`}
                               style={{
                                 width: "33.3%",
                                 backgroundColor: "#72bbef",
@@ -263,10 +260,10 @@ const TeenPattiMobile = () => {
                                 section.tstatus === "False"
                                   ? null
                                   : handleBet(
-                                      section,
-                                      "trate",
-                                      section.tsection
-                                    )
+                                    section,
+                                    "trate",
+                                    section.tsection
+                                  )
                               }
                             >
                               <span className="f12-b mt-2">{section.trate}</span>
@@ -274,17 +271,17 @@ const TeenPattiMobile = () => {
                                 className={
                                   dragonTigerDetail?.profitLoss
                                     ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
-                                      ]
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                    ]
                                       ? dragonTigerDetail?.profitLoss[
-                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
-                                        ] > 0
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                      ] > 0
                                         ? "color-green"
                                         : dragonTigerDetail?.profitLoss[
-                                            `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
-                                          ] < 0
-                                        ? "color-red"
-                                        : ""
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                        ] < 0
+                                          ? "color-red"
+                                          : ""
                                       : ""
                                     : ""
                                 }
@@ -292,20 +289,19 @@ const TeenPattiMobile = () => {
                               >
                                 {dragonTigerDetail?.profitLoss
                                   ? dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
-                                    ]
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                  ]
                                     ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
-                                      ]
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                    ]
                                     : ""
                                   : ""}
                               </span>
                             </div>
 
                             <div
-                               className={`${
-                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
-                              }`}
+                              className={`${section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
+                                }`}
                               style={{
                                 width: "33.3%",
                                 backgroundColor: "#72bbef",
@@ -314,10 +310,10 @@ const TeenPattiMobile = () => {
                                 section.lstatus === "False"
                                   ? null
                                   : handleBet(
-                                      section,
-                                      "lrate",
-                                      section.lsection
-                                    )
+                                    section,
+                                    "lrate",
+                                    section.lsection
+                                  )
                               }
                             >
                               <span className="f12-b mt-2">{section.lrate}</span>
@@ -325,17 +321,17 @@ const TeenPattiMobile = () => {
                                 className={
                                   dragonTigerDetail?.profitLoss
                                     ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
-                                      ]
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                    ]
                                       ? dragonTigerDetail?.profitLoss[
-                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
-                                        ] > 0
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                      ] > 0
                                         ? "color-green"
                                         : dragonTigerDetail?.profitLoss[
-                                            `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
-                                          ] < 0
-                                        ? "color-red"
-                                        : ""
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                        ] < 0
+                                          ? "color-red"
+                                          : ""
                                       : ""
                                     : ""
                                 }
@@ -343,20 +339,19 @@ const TeenPattiMobile = () => {
                               >
                                 {dragonTigerDetail?.profitLoss
                                   ? dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
-                                    ]
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                  ]
                                     ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
-                                      ]
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                    ]
                                     : ""
                                   : ""}
                               </span>
                             </div>
 
                             <div
-                               className={`${
-                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
-                              }`}
+                              className={`${section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
+                                }`}
                               style={{
                                 width: "33.3%",
                                 backgroundColor: "#72bbef",
@@ -365,10 +360,10 @@ const TeenPattiMobile = () => {
                                 section.dstatus === "False"
                                   ? null
                                   : handleBet(
-                                      section,
-                                      "drate",
-                                      section.dsectionid
-                                    )
+                                    section,
+                                    "drate",
+                                    section.dsectionid
+                                  )
                               }
                             >
                               <span className="f12-b mt-2">{section.drate}</span>
@@ -376,17 +371,17 @@ const TeenPattiMobile = () => {
                                 className={
                                   dragonTigerDetail?.profitLoss
                                     ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
-                                      ]
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                    ]
                                       ? dragonTigerDetail?.profitLoss[
-                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
-                                        ] > 0
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                      ] > 0
                                         ? "color-green"
                                         : dragonTigerDetail?.profitLoss[
-                                            `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
-                                          ] < 0
-                                        ? "color-red"
-                                        : ""
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                        ] < 0
+                                          ? "color-red"
+                                          : ""
                                       : ""
                                     : ""
                                 }
@@ -394,11 +389,11 @@ const TeenPattiMobile = () => {
                               >
                                 {dragonTigerDetail?.profitLoss
                                   ? dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
-                                    ]
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                  ]
                                     ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
-                                      ]
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                    ]
                                     : ""
                                   : ""}
                               </span>
@@ -410,7 +405,7 @@ const TeenPattiMobile = () => {
                     <div className="ticker-container">
                       <div className="ticker-wrap">
                         <div
-                          className="ticker-move"
+                          className="ticker-move-60"
                           style={{ color: "#8b0000", fontWeight: "700" }}
                         >
                           {videoInfo && videoInfo.remark}
