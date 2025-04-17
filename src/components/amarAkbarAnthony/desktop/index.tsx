@@ -190,8 +190,13 @@ const AmarAkbarAnthonyDesktop = () => {
                 </div>
               </div>
             )}
-
-            <RulesModal show={show} setShow={setShow} rule={aaarules} gameType="aaa" type="imageWithContent" />
+            <RulesModal
+              show={show}
+              setShow={setShow}
+              rule={aaarules}
+              gameType="aaa"
+              type="imageWithContent"
+            />
           </div>
         </Col>
         <Col className="p-0 pt-1" md={4}>

@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, formatNumber, handleSize } from "../../../helpers";
-import { getRunAmountMeter, resetRunAmountModalKhado } from "../../../store/actions/betPlace/betPlaceActions";
+import {
+  getRunAmountMeter,
+  resetRunAmountModalKhado,
+} from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
@@ -73,11 +76,13 @@ const SessionKhado = ({ title, data, detail }) => {
   };
 
   useEffect(() => {
-    handleModal(false)
-  }, [])
+    handleModal(false);
+  }, []);
 
   const handleModal = (event: any) => {
-    dispatch(resetRunAmountModalKhado({ showModal: event, id: runAmount?.betId }));
+    dispatch(
+      resetRunAmountModalKhado({ showModal: event, id: runAmount?.betId })
+    );
   };
   return (
     <>
@@ -87,7 +92,6 @@ const SessionKhado = ({ title, data, detail }) => {
       >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{
@@ -100,11 +104,8 @@ const SessionKhado = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div className="sessionYesNoBoxContainer" >
-              <div
-                className="sessionYesNoBox  rateBoxWidthKhado"
-              // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
-              >
+            <div className="sessionYesNoBoxContainer">
+              <div className="sessionYesNoBox  rateBoxWidthKhado">
                 <div className="sessionKhadoYesBox back1Background">
                   <span className={`f-size16 sessionBackTxt`}>Back</span>
                 </div>
@@ -116,8 +117,10 @@ const SessionKhado = ({ title, data, detail }) => {
               return (
                 <div className="w-100 d-flex flex-column">
                   <div className="sessionRateContainer" key={index}>
-                    <div className="sessionRateName runnerWidthNormal"
-                      style={{ overflow: "hidden" }}>
+                    <div
+                      className="sessionRateName runnerWidthNormal"
+                      style={{ overflow: "hidden" }}
+                    >
                       <span
                         className="teamFont"
                         style={{ fontWeight: "400", lineHeight: 1 }}
@@ -139,18 +142,18 @@ const SessionKhado = ({ title, data, detail }) => {
                               })
                             );
                           dispatch(getRunAmountMeter(item?.id));
-
                         }}
                       >
-                        {item?.RunnerName}-{item?.ex?.availableToLay?.[0]?.price}
+                        {item?.RunnerName}-
+                        {item?.ex?.availableToLay?.[0]?.price}
                       </span>{" "}
                       <span
                         className={`${calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) < 0
-                          ? "color-red"
-                          : "color-red"
+                            ? "color-red"
+                            : "color-red"
                           } title-14 fbold`}
                       >
                         {calculateMaxLoss(
@@ -164,18 +167,11 @@ const SessionKhado = ({ title, data, detail }) => {
                           : ""}
                       </span>
                     </div>
-                    <div
-                      className="sessionRateBoxContainer rateBoxWidthKhado"
-                    // style={{
-                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                    // }}
-                    >
+                    <div className="sessionRateBoxContainer rateBoxWidthKhado">
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                           <div className="suspended-overlayRates">
-                            <span
-                              className={`suspendTextCmmn`}
-                            >
+                            <span className={`suspendTextCmmn`}>
                               {item?.GameStatus ?? "SUSPENDED"}
                             </span>
                           </div>
@@ -195,15 +191,11 @@ const SessionKhado = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span
-                          className={`rateFont`}
-                        >
+                        <span className={`rateFont`}>
                           {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
                             "-"}
                         </span>
-                        <span
-                          className={`f-size12 sessionRate2Box`}
-                        >
+                        <span className={`f-size12 sessionRate2Box`}>
                           {handleSize(item?.ex?.availableToBack?.[0]?.size)}
                         </span>
                       </div>
@@ -218,14 +210,23 @@ const SessionKhado = ({ title, data, detail }) => {
                       </div>
                     </div>
                   </div>
-                  {item?.rem && (<div className="w-100 text-start" style={{ fontSize: "11px", color: "#097c93", backgroundColor: "#f2f2f2", borderBottom: "1px solid #c7c8ca" }}>{item?.rem}
-                  </div>)}
+                  {item?.rem && (
+                    <div
+                      className="w-100 text-start"
+                      style={{
+                        fontSize: "11px",
+                        color: "#097c93",
+                        backgroundColor: "#f2f2f2",
+                        borderBottom: "1px solid #c7c8ca",
+                      }}
+                    >
+                      {item?.rem}
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
-
-
         </div>
       </div>
       <Modal show={runAmountModalKhado} onHide={() => handleModal(false)}>
@@ -248,7 +249,14 @@ const SessionKhado = ({ title, data, detail }) => {
           ></button>
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
-          <div style={{ width: "100%", height: "85vh", overflowY: "auto", padding: "10px" }}>
+          <div
+            style={{
+              width: "100%",
+              height: "85vh",
+              overflowY: "auto",
+              padding: "10px",
+            }}
+          >
             <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
           </div>
         </Modal.Body>

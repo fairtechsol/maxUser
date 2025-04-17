@@ -15,14 +15,13 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
     setCardImg(mergedArray);
   }, [cardData]);
 
-
   const handlock = (item: any) => {
     if (item?.gstatus === "0" && cardInfo?.[0] === "") {
-      return 'suspended';
+      return "suspended";
     } else if (item?.gstatus === "0" && cardInfo?.[0] != "") {
-      return "stop"
+      return "stop";
     } else {
-      return ""
+      return "";
     }
   };
   return (
@@ -41,9 +40,11 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
               }}
               onClick={() => (handlock(item) != "" ? null : handleBet(item))}
             >
-              {
-                item?.show ? <img src={item?.imgSrc} width={"30px"} /> : <img src={back} width={"30px"} />
-              }
+              {item?.show ? (
+                <img src={item?.imgSrc} width={"30px"} />
+              ) : (
+                <img src={back} width={"30px"} />
+              )}
             </div>
             <span
               style={{
@@ -52,20 +53,20 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                 justifyContent: "center",
               }}
               className={`${data?.profitLoss
+                ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                ]
                   ? data?.profitLoss[
                     `${data?.videoInfo?.mid}_${item?.sid}_card`
-                  ]
-                    ? data?.profitLoss[
+                  ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
                       `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ] > 0
-                      ? "color-green"
-                      : data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] < 0
-                        ? "color-red"
-                        : ""
-                    : ""
+                    ] < 0
+                      ? "color-red"
+                      : ""
                   : ""
+                : ""
                 }`}
             >
               {data?.profitLoss

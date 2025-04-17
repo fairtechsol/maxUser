@@ -8,7 +8,6 @@ import "../style.scss";
 
 const CardBox2 = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [betTeam, setBetTeam] = useState("");
   const [zeros, setZeros] = useState("");
   const [mobileBox, setMobileBox] = useState(false);
@@ -63,7 +62,6 @@ const CardBox2 = ({ data, odds }: any) => {
   useEffect(() => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
-      setSelectedBox(null);
       setBetTeam("");
       setZeros("");
       setMobileBox(false);
@@ -98,8 +96,6 @@ const CardBox2 = ({ data, odds }: any) => {
 
           return p;
         });
-
-        //handleBet({ rate: value, nat: value, sid: index }, index);
       }}
     >
       <span className="worli-odd">{value}</span>

@@ -11,7 +11,6 @@ const CommonButtonBox = ({
   lock,
   data,
 }: any) => {
-
   return (
     <div className="commonButtonBoxContainer" style={{ width: width }}>
       <div>
@@ -21,7 +20,7 @@ const CommonButtonBox = ({
       </div>
       <div
         className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
-        onClick={() => !lock ? handleBet(data) : null}
+        onClick={() => (!lock ? handleBet(data) : null)}
       >
         <span>
           {value2 === "Red" ? (
@@ -43,10 +42,10 @@ const CommonButtonBox = ({
         <span
           style={{ fontSize: "16px" }}
           className={`${value3 && value3 > 0
-              ? "color-green"
-              : value3 < 0
-                ? " color-red"
-                : ""
+            ? "color-green"
+            : value3 < 0
+              ? " color-red"
+              : ""
             }`}
         >
           {value3 || "\u00A0"}

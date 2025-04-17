@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 
 interface Props {
@@ -13,30 +13,36 @@ interface Props {
   };
 }
 
-const Teen20Result: React.FC<Props> = ({ data }:any) => {
-  return data?.mid !="0" && (  
-    <Container>
-      <Row>
-        <Col>
-          <span style={{ color: "white",fontWeight:"bolder" }}>PLAYER A</span>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <HandleCards card={data?.C1} />
-            <HandleCards card={data?.C2} />
-            <HandleCards card={data?.C3} />
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <span style={{ color: "white",fontWeight:"bolder"  }}>PLAYER B</span>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <HandleCards card={data?.C4} />
-            <HandleCards card={data?.C5} />
-            <HandleCards card={data?.C6} />
-          </div>
-        </Col>
-      </Row>
-    </Container>
+const Teen20Result: React.FC<Props> = ({ data }: any) => {
+  return (
+    data?.mid != "0" && (
+      <Container>
+        <Row>
+          <Col>
+            <span style={{ color: "white", fontWeight: "bolder" }}>
+              PLAYER A
+            </span>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <HandleCards card={data?.C1} />
+              <HandleCards card={data?.C2} />
+              <HandleCards card={data?.C3} />
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <span style={{ color: "white", fontWeight: "bolder" }}>
+              PLAYER B
+            </span>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <HandleCards card={data?.C4} />
+              <HandleCards card={data?.C5} />
+              <HandleCards card={data?.C6} />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    )
   );
 };
 

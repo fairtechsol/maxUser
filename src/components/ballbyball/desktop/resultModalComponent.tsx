@@ -19,8 +19,6 @@ const BallByBallResultComponent: React.FC<Props> = ({ data }: any) => {
       >
         {data?.result?.win && (
           <div className=" cricket20ballresult cricket20ballpopup d-sm-flex flex-row justify-content-center align-items-center">
-            {/* <img src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/cricket20/ball0.png"></img> */}
-
             {isMobile ? (
               <img
                 style={{ height: "50px", width: "50px" }}

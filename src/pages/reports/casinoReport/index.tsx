@@ -1,27 +1,26 @@
-import { Col, Row, Stack } from "react-bootstrap";
+import moment from "moment";
 import { useEffect, useState } from "react";
+import { Col, Row, Stack } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { isMobile } from "../../../utils/screenDimension";
-import { AppDispatch, RootState } from "../../../store/store";
+import { useLocation } from "react-router-dom";
+import SelectSearch from "../../../components/commonComponent/SelectSearch";
+import CustomButton from "../../../components/commonComponent/button";
+import NotSet from "../../../components/commonComponent/notSet";
+import { ResultComponent } from "../../../components/commonComponent/resultComponent";
+import CustomTable2 from "../../../components/commonComponent/table2";
+import ReportContainer from "../../../components/containers/reportContainer";
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import {
   getCardReport,
   resetCardReport,
 } from "../../../store/actions/user/userAction";
-import ReportContainer from "../../../components/containers/reportContainer";
-import SelectSearch from "../../../components/commonComponent/SelectSearch";
-import CustomButton from "../../../components/commonComponent/button";
-import CustomTable from "../../../components/commonComponent/table";
-import NotSet from "../../../components/commonComponent/notSet";
-import moment from "moment";
-import { useLocation } from "react-router-dom";
-import Modal from "react-bootstrap/Modal";
-import { ResultComponent } from "../../../components/commonComponent/resultComponent";
-import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
+import { AppDispatch, RootState } from "../../../store/store";
 import { cardGames } from "../../../utils/constants";
-import CustomTable2 from "../../../components/commonComponent/table2";
+import { isMobile } from "../../../utils/screenDimension";
 
 const CasinoReports = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -203,8 +202,11 @@ const CasinoReports = () => {
               </Col>
             </Row>
             <CustomTable2
-              // width={isMobile ? "1200px" : ""}
-              placeHolder={cardReport?.count>0?`${cardReport?.count} records`:"0 records..."}
+              placeHolder={
+                cardReport?.count > 0
+                  ? `${cardReport?.count} records`
+                  : "0 records..."
+              }
               paginationCount={true}
               bordered={true}
               striped={!isMobile}
@@ -239,7 +241,6 @@ const CasinoReports = () => {
                         textAlign: "left",
                         width: "20%",
                       }}
-                      // onClick={() => handleResult(item?.mid)}
                     >
                       <NotSet item={item?.mid} />
                     </td>

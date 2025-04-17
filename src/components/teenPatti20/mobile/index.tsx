@@ -141,12 +141,7 @@ const TeenPattiMobile = () => {
                           border: "0.1px solid #dee2e6",
                           textAlign: "left",
                         }}
-                      >
-                        {/* <span className="f12-b">
-                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
-                          {dragonTigerDetail?.videoInfo?.max}
-                        </span> */}
-                      </div>
+                      ></div>
                       <div className="teen-back-m">BACK</div>
                     </div>
                     <div className="teenPatti-table-row">

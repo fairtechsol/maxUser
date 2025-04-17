@@ -133,9 +133,7 @@ const WorliMobile = () => {
             )}
           </div>
         ) : (
-          <>
-            <MobileMyBet />
-          </>
+          <MobileMyBet />
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={abjrules} />

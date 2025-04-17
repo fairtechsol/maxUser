@@ -166,7 +166,6 @@ const Abj1Desktop = () => {
                       </div>
                     </div>
                   </div>
-
                 </div>
 
                 <div style={{ width: "100%", margin: "5px" }}>
@@ -179,8 +178,8 @@ const Abj1Desktop = () => {
               </div>
             )}
             <RulesModal show={show} setShow={setShow} rule={abjrules} type="No Record Found." />
-          </div>
-        </Col>
+          </div >
+        </Col >
         <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
@@ -200,7 +199,7 @@ const Abj1Desktop = () => {
             </Row>
           </Container>
         </Col>
-      </Row>
+      </Row >
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

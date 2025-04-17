@@ -5,7 +5,6 @@ export const loginValidationSchema = Yup.object({
   password: Yup.string().required("Password is required"),
 });
 
-/*** Change Passworsd */
 export const changePassValidationSchema = Yup.object({
   newPassword: Yup.string()
     .required("Password is required")

@@ -106,7 +106,6 @@ const Race20 = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
-
         socketService.card.joinMatchRoom(cardGamesType.race20);
         socketService.card.getCardRates(
           cardGamesType.race20,

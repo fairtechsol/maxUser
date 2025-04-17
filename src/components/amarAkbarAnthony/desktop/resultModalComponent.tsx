@@ -31,7 +31,6 @@ const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
-      {/* <div className="w-100 d-sm-flex justify-content-center align-items-center mt-2"> */}
       <div
         className={
           isMobile

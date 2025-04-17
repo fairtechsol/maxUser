@@ -16,8 +16,8 @@ const OddEven = ({ data, card, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -86,60 +86,58 @@ const OddEven = ({ data, card, odds }: any) => {
             </div>
           </>
         ) : (
-          <>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-                alignItems: "center",
-                gap: "4px",
-              }}
-            >
-              <CommonButtonBox
-                value1={odds?.[0]?.b1}
-                value2={odds?.[0]?.nat}
-                value3={
-                  data?.profitLoss
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                      ]
-                    : 0
-                }
-                width={"80%"}
-                handleBet={handleBet}
-                lock={
-                  odds?.[0]?.gstatus === "CLOSED" ||
-                  odds?.[0]?.gstatus === "SUSPENDED" ||
-                  odds?.[0]?.b1 === "0.00"
-                    ? true
-                    : false
-                }
-                data={odds?.[0]}
-              />
-              <CommonButtonBox
-                value1={odds?.[1]?.b1}
-                value2={odds?.[1]?.nat}
-                value3={
-                  data?.profitLoss
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                      ]
-                    : 0
-                }
-                width={"80%"}
-                handleBet={handleBet}
-                lock={
-                  odds?.[1]?.gstatus === "CLOSED" ||
-                  odds?.[0]?.gstatus === "SUSPENDED" ||
-                  odds?.[1]?.b1 === "0.00"
-                    ? true
-                    : false
-                }
-                data={odds?.[1]}
-              />
-            </div>
-          </>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center",
+              gap: "4px",
+            }}
+          >
+            <CommonButtonBox
+              value1={odds?.[0]?.b1}
+              value2={odds?.[0]?.nat}
+              value3={
+                data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                    ]
+                  : 0
+              }
+              width={"80%"}
+              handleBet={handleBet}
+              lock={
+                odds?.[0]?.gstatus === "CLOSED" ||
+                odds?.[0]?.gstatus === "SUSPENDED" ||
+                odds?.[0]?.b1 === "0.00"
+                  ? true
+                  : false
+              }
+              data={odds?.[0]}
+            />
+            <CommonButtonBox
+              value1={odds?.[1]?.b1}
+              value2={odds?.[1]?.nat}
+              value3={
+                data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                    ]
+                  : 0
+              }
+              width={"80%"}
+              handleBet={handleBet}
+              lock={
+                odds?.[1]?.gstatus === "CLOSED" ||
+                odds?.[0]?.gstatus === "SUSPENDED" ||
+                odds?.[1]?.b1 === "0.00"
+                  ? true
+                  : false
+              }
+              data={odds?.[1]}
+            />
+          </div>
         )}
       </div>
     </>

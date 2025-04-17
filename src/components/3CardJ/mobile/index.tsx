@@ -14,7 +14,6 @@ import Card3Result from "../desktop/abj1Card";
 import CardBox from "./CardsBox";
 
 const CardJMobile = () => {
-
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());

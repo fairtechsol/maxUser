@@ -46,27 +46,36 @@ const BTableRules = () => {
         <li>
           <div className="cards-box">
             <span>If the card is</span>
-            <span className="card-character-red ">K</span><span className="card-red"> &diams;</span>
-            <span className="card-character-black ">K</span><span className="card-black"> &clubs;</span>
+            <span className="card-character-red ">K</span>
+            <span className="card-red"> &diams;</span>
+            <span className="card-character-black ">K</span>
+            <span className="card-black"> &clubs;</span>
             <span>Dharam Veer Wins.</span>
           </div>
         </li>
         <li>
           <div className="cards-box">
             <span>If the card is</span>
-            <span className="card-character-red ">K</span> <span className="card-red"> &hearts;</span>
-            <span className="card-character-black ">Q</span><span className="card-black"> &clubs;</span>
-            <span className="card-character-red ">Q</span><span className="card-red"> &diams;</span>
-            <span className="card-character-red ">Q</span> <span className="card-red"> &hearts;</span>
+            <span className="card-character-red ">K</span>{" "}
+            <span className="card-red"> &hearts;</span>
+            <span className="card-character-black ">Q</span>
+            <span className="card-black"> &clubs;</span>
+            <span className="card-character-red ">Q</span>
+            <span className="card-red"> &diams;</span>
+            <span className="card-character-red ">Q</span>{" "}
+            <span className="card-red"> &hearts;</span>
             <span>Kis Kisko Pyaar Karoon Wins.</span>
           </div>
         </li>
         <li>
           <div className="cards-box">
             <span>If the card is</span>
-            <span className="card-character-red ">J</span><span className="card-red"> &hearts;</span>
-            <span className="card-character-black ">J</span><span className="card-black"> &spades;</span>
-            <span className="card-character-red ">J</span><span className="card-red"> &diams;</span>
+            <span className="card-character-red ">J</span>
+            <span className="card-red"> &hearts;</span>
+            <span className="card-character-black ">J</span>
+            <span className="card-black"> &spades;</span>
+            <span className="card-character-red ">J</span>
+            <span className="card-red"> &diams;</span>
             <span>Ghulam Wins.</span>
           </div>
         </li>

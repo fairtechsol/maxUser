@@ -435,8 +435,8 @@ export const cardGamesId: any = {
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
-  [availableGameType.football]: "/other-game-detail/",
-  [availableGameType.tennis]: "/other-game-detail/",
+  [availableGameType.football]: "/game-detail/",
+  [availableGameType.tennis]: "/game-detail/",
   [availableGameType.horseRacing]: "/race/",
   [availableGameType.greyHound]: "/race/",
   [cardGamesType.teen20]: "teen20",

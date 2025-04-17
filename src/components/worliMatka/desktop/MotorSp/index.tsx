@@ -1,12 +1,9 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useState } from "react";
-import WorliClearBox from "../../mobile/WorliClearBox";
+import { AppDispatch, RootState } from "../../../../store/store";
 import { isMobile } from "../../../../utils/screenDimension";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
+import WorliClearBox from "../../mobile/WorliClearBox";
 import "../style.scss";
 
 const MotorSp = ({ odds, data }: any) => {

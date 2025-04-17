@@ -73,7 +73,6 @@ const SessionOddEven = ({ title, data, detail }) => {
       >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{
@@ -91,7 +90,10 @@ const SessionOddEven = ({ title, data, detail }) => {
                 className="sessionYesNoBox rateBoxWidthNormal"
               // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
               >
-                <div className="sessionYesBox back1Background" style={{ borderRight: "1px solid #c7c8ca" }}>
+                <div
+                  className="sessionYesBox back1Background"
+                  style={{ borderRight: "1px solid #c7c8ca" }}
+                >
                   <span className={`f-size16 sessionBackTxt`}>Odd</span>
                 </div>
                 <div className="sessionYesBox back1Background">
@@ -119,8 +121,8 @@ const SessionOddEven = ({ title, data, detail }) => {
                           detail?.profitLossDataSession,
                           item?.id
                         ) < 0
-                            ? "color-red"
-                            : "color-red"
+                          ? "color-red"
+                          : "color-red"
                           }  title-14 fbold`}
                       >
                         {calculateMaxLoss(
@@ -134,12 +136,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                           : ""}
                       </span>
                     </div>
-                    <div
-                      className="sessionRateBoxContainer rateBoxWidthNormal"
-                    // style={{
-                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                    // }}
-                    >
+                    <div className="sessionRateBoxContainer rateBoxWidthNormal">
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                           <div className="suspended-overlayRates">
@@ -213,7 +210,10 @@ const SessionOddEven = ({ title, data, detail }) => {
                           </span>
                         </div>
                       </div>
-                      <div className="sessionMinBoxContainer" style={{ width: "33.33%" }}>
+                      <div
+                        className="sessionMinBoxContainer"
+                        style={{ width: "33.33%" }}
+                      >
                         <span className={`sessionMinBox sessionMinMaxFont`}>
                           Min:{formatNumber(item?.min)}
                         </span>
@@ -223,8 +223,19 @@ const SessionOddEven = ({ title, data, detail }) => {
                       </div>
                     </div>
                   </div>
-                  {item?.rem && (<div className="w-100 text-start" style={{ fontSize: "11px", color: "#097c93", backgroundColor: "#f2f2f2", borderBottom: "1px solid #c7c8ca" }}>{item?.rem}
-                  </div>)}
+                  {item?.rem && (
+                    <div
+                      className="w-100 text-start"
+                      style={{
+                        fontSize: "11px",
+                        color: "#097c93",
+                        backgroundColor: "#f2f2f2",
+                        borderBottom: "1px solid #c7c8ca",
+                      }}
+                    >
+                      {item?.rem}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -239,11 +250,11 @@ const SessionOddEven = ({ title, data, detail }) => {
               }}
             >
               <div className="sessionYesNoBoxContainer">
-                <div
-                  className="sessionYesNoBox rateBoxWidthNormal"
-                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
-                >
-                  <div className="sessionYesBox back1Background" style={{ borderRight: "1px solid #c7c8ca" }}>
+                <div className="sessionYesNoBox rateBoxWidthNormal">
+                  <div
+                    className="sessionYesBox back1Background"
+                    style={{ borderRight: "1px solid #c7c8ca" }}
+                  >
                     <span className={`f-size16 sessionBackTxt`}>Odd</span>
                   </div>
                   <div className="sessionYesBox back1Background">
@@ -275,8 +286,8 @@ const SessionOddEven = ({ title, data, detail }) => {
                             detail?.profitLossDataSession,
                             item?.id
                           ) < 0
-                              ? "color-red"
-                              : "color-red"
+                            ? "color-red"
+                            : "color-red"
                             }  title-14 fbold`}
                         >
                           {calculateMaxLoss(
@@ -290,12 +301,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                             : ""}
                         </span>
                       </div>
-                      <div
-                        className="sessionRateBoxContainer rateBoxWidthNormal"
-                      // style={{
-                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                      // }}
-                      >
+                      <div className="sessionRateBoxContainer rateBoxWidthNormal">
                         {(item?.activeStatus != "live" ||
                           item?.GameStatus != "") && (
                             <div className="suspended-overlayRates">
@@ -313,8 +319,8 @@ const SessionOddEven = ({ title, data, detail }) => {
                         >
                           <div
                             className={`sessionRateBox ${title === "oddeven"
-                                ? "back1Background"
-                                : "lay1Background"
+                              ? "back1Background"
+                              : "lay1Background"
                               }`}
                             style={{
                               cursor: "pointer",
@@ -392,8 +398,19 @@ const SessionOddEven = ({ title, data, detail }) => {
                         </div>
                       </div>
                     </div>
-                    {item?.rem && (<div className="w-100 text-start" style={{ fontSize: "11px", color: "#097c93", backgroundColor: "#f2f2f2", borderBottom: "1px solid #c7c8ca" }}>{item?.rem}
-                    </div>)}
+                    {item?.rem && (
+                      <div
+                        className="w-100 text-start"
+                        style={{
+                          fontSize: "11px",
+                          color: "#097c93",
+                          backgroundColor: "#f2f2f2",
+                          borderBottom: "1px solid #c7c8ca",
+                        }}
+                      >
+                        {item?.rem}
+                      </div>
+                    )}
                   </div>
                 );
               })}

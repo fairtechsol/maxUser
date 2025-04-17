@@ -187,10 +187,6 @@ const TeenPattiDesktop = () => {
                   <div className="elemd">
                     <img
                       src={ball}
-                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
-                      // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                      //   curR?.result?.desc.split(" ")[0]
-                      // }.png`}
                       style={{
                         width: "30px",
                         height: "30px",

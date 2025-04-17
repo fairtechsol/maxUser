@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import PlayerButton from "../PlayerButton";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const TiePairBox2 = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -17,8 +17,8 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -61,8 +61,7 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
           fontWeight: "600",
           paddingLeft: "4px",
         }}
-      >
-      </div>
+      />
 
       {lowHigh &&
         lowHigh?.map((item: any, index: number) => (

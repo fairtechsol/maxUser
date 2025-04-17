@@ -91,14 +91,13 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   };
 
   useEffect(() => {
-    handleModal(false)
-  }, [])
+    handleModal(false);
+  }, []);
   return (
     <>
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size13">{title}</span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{
@@ -193,10 +192,10 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         item?.status
                       ) && (
                           <div className="suspended-overlayRates">
-                            <span
-                              className={`suspendTextCmmn`}
-                            >
-                              {(item?.GameStatus || item?.status)?.toUpperCase() ?? "SUSPENDED"}
+                            <span className={`suspendTextCmmn`}>
+                              {(
+                                item?.GameStatus || item?.status
+                              )?.toUpperCase() ?? "SUSPENDED"}
                             </span>
                           </div>
                         )}
@@ -205,7 +204,6 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                           width: "100%",
                           display: "flex",
                           flexDirection: "column",
-                          // borderRight: "1px solid #c7c8ca",
                         }}
                       >
                         <div
@@ -227,12 +225,15 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         >
                           <span className={`rateFont`}>
                             {handlePrice(
-                              item?.ex?.availableToLay?.[0]?.price || item?.noRate
+                              item?.ex?.availableToLay?.[0]?.price ||
+                              item?.noRate
                             ) ?? "-"}
                           </span>
                           <span className={`f-size11 sessionRate2Box`}>
-                            {handleSize(item?.ex?.availableToLay?.[0]?.size ||
-                              item?.noPercent)}
+                            {handleSize(
+                              item?.ex?.availableToLay?.[0]?.size ||
+                              item?.noPercent
+                            )}
                           </span>
                         </div>
                         {item?.ex?.availableToLay?.length > 1 && (
@@ -319,8 +320,10 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             ) ?? "-"}
                           </span>
                           <span className={`f-size11 sessionRate2Box`}>
-                            {handleSize(item?.ex?.availableToBack?.[0]?.size ||
-                              item?.yesPercent)}
+                            {handleSize(
+                              item?.ex?.availableToBack?.[0]?.size ||
+                              item?.yesPercent
+                            )}
                           </span>
                         </div>
                         {item?.ex?.availableToBack?.length > 1 && (
@@ -378,15 +381,31 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                       </div>
                     </div>
                   </div>
-                  {item?.rem && (<div className="w-100 text-start" style={{ fontSize: "11px", color: "#097c93", backgroundColor: "#f2f2f2", borderBottom: "1px solid #c7c8ca" }}>{item?.rem}
-                  </div>)}
+                  {item?.rem && (
+                    <div
+                      className="w-100 text-start"
+                      style={{
+                        fontSize: "11px",
+                        color: "#097c93",
+                        backgroundColor: "#f2f2f2",
+                        borderBottom: "1px solid #c7c8ca",
+                      }}
+                    >
+                      {item?.rem}
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
         </div>
       </div>
-      <Modal className="runbetMobileModal" show={runAmountModal} onHide={() => handleModal(false)} style={{ margin: 0 }}>
+      <Modal
+        className="runbetMobileModal"
+        show={runAmountModal}
+        onHide={() => handleModal(false)}
+        style={{ margin: 0 }}
+      >
         <Modal.Header
           className="bg-primary rounded-0"
           style={{ zIndex: "999" }}

@@ -275,16 +275,6 @@ const TeenPattiMobile = () => {
                       }}
                       key={item.sid}
                     >
-                      {/* <div
-                        style={{
-                          width: "60%",
-                          border: "0.1px solid #fff",
-                          fontSize: "14px",
-                          marginLeft: "3px",
-                        }}
-                      >
-                        {item.nat}
-                      </div> */}
                       <div
                         style={{
                           width: "60%",
@@ -451,56 +441,11 @@ const TeenPattiMobile = () => {
                     type={"ballbyball"}
                   />
                 </div>
-                {/* <div>
-                  <div
-                    className="casino-title mt-2"
-                    style={{ position: "relative" }}
-                  >
-                    <span>Rules</span>
-                  </div>
-                  <div className="table-responsive rules-table">
-                    <Table bordered>
-                      <thead>
-                        <tr>
-                          <th colSpan={2} className="box-10 text-center">
-                            Pair Plus
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {rules.map((item, index) => (
-                          <tr key={index} style={{ lineHeight: 1 }}>
-                            <td
-                              className="box-7"
-                              style={{
-                                backgroundColor: "#eee",
-                                border: "1px solid #dee2e6",
-                              }}
-                            >
-                              {item.label}
-                            </td>
-                            <td
-                              className="box-3"
-                              style={{
-                                backgroundColor: "#eee",
-                                border: "1px solid #dee2e6",
-                              }}
-                            >
-                              {item.value}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </Table>
-                  </div>
-                </div> */}
               </div>
             )}
           </div>
         ) : (
-          <>
-            <MobileMyBet />
-          </>
+          <MobileMyBet />
         )}
       </div>
       <RulesModal

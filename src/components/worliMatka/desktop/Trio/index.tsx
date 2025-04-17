@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch } from "../../../../store/store";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import "../style.scss";
 
 const Trio = ({ odds, data }: any) => {

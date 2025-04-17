@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
+
 const DynamicTable = ({ odds, data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -20,8 +21,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({

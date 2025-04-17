@@ -204,7 +204,6 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "40%",
-                        //border: "0.1px solid #fff"
                       }}
                     ></div>
                     <div
@@ -219,8 +218,6 @@ const TeenPattiDesktop = () => {
                         className="teenPatti-table-itemo f12-b"
                         style={{ width: "50%" }}
                       >
-                        {/* BACK(Min: {dragonTigerDetail?.players?.player1?.min}{" "}
-                        Max: {dragonTigerDetail?.players?.player1?.max}) */}
                         Odds
                       </div>
                       <div
@@ -228,8 +225,6 @@ const TeenPattiDesktop = () => {
                         style={{ width: "50%" }}
                       >
                         Pair Plus
-                        {/* (Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min}{" "}
-                        Max: {dragonTigerDetail?.pairsPlus?.pairPlus1?.max}) */}
                       </div>
                     </div>
                   </div>

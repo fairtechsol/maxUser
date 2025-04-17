@@ -1,17 +1,16 @@
-import { Col, Form, Row, Stack } from "react-bootstrap";
-import ReportContainer from "../../../components/containers/reportContainer";
-import { isMobile } from "../../../utils/screenDimension";
-import CustomButton from "../../../components/commonComponent/button";
+import moment from "moment";
 import { useEffect, useState } from "react";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
+import { Col, Form, Row, Stack } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import CustomButton from "../../../components/commonComponent/button";
+import CustomTable from "../../../components/commonComponent/table";
+import ReportContainer from "../../../components/containers/reportContainer";
 import {
   getCasinoReportGameList,
   getLiveCasinoBets,
 } from "../../../store/actions/user/userAction";
-import { useSelector } from "react-redux";
-import moment from "moment";
-import CustomTable from "../../../components/commonComponent/table";
+import { AppDispatch, RootState } from "../../../store/store";
+import { isMobile } from "../../../utils/screenDimension";
 
 const casinoTypeOptions = [
   { value: "settledBets", label: "Settled" },
@@ -262,20 +261,6 @@ const LiveCasinoBets = () => {
           </CustomTable>
         </Stack>
       </ReportContainer>
-      {/* <Modal
-        size="lg"
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Body style={{ padding: 0 }}>
-          <ResultComponent
-            data={resultData}
-            setfalse={setLgShow}
-            type={resultData?.gameType}
-          />
-        </Modal.Body>
-      </Modal> */}
     </div>
   );
 };

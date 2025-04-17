@@ -28,7 +28,6 @@ const AmarAkbarAnthonyMobile = () => {
     (state: RootState) => state.card
   );
 
-
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -160,7 +159,13 @@ const AmarAkbarAnthonyMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={aaarules} gameType="aaa" type="imageWithContent" />
+      <RulesModal
+        show={show}
+        setShow={setShow}
+        rule={aaarules}
+        gameType="aaa"
+        type="imageWithContent"
+      />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

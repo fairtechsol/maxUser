@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, handleSize } from "../../../helpers";
-import { getRunAmountMeter, resetRunAmountModalKhado } from "../../../store/actions/betPlace/betPlaceActions";
+import {
+  getRunAmountMeter,
+  resetRunAmountModalKhado,
+} from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import RunBoxTable from "../betTable/runBoxTable";
@@ -46,7 +49,7 @@ const MobileSessionKhado = ({ title, data, detail }) => {
       betPlaceIndex: tno,
       matchBetType: "session",
       min: item?.min,
-      max: item?.max
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -64,17 +67,18 @@ const MobileSessionKhado = ({ title, data, detail }) => {
   };
 
   useEffect(() => {
-    handleModal(false)
-  }, [])
+    handleModal(false);
+  }, []);
   const handleModal = (event: any) => {
-    dispatch(resetRunAmountModalKhado({ showModal: event, id: runAmount?.betId }));
+    dispatch(
+      resetRunAmountModalKhado({ showModal: event, id: runAmount?.betId })
+    );
   };
   return (
     <>
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size13">{title}</span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{
@@ -95,8 +99,6 @@ const MobileSessionKhado = ({ title, data, detail }) => {
                 >
                   <span className={`f-size16 sessionBackTxt`}>Back</span>
                 </div>
-
-                {/* <div className="sessionEmptyBox"></div> */}
               </div>
             </div>
             {data?.section?.map((item: any, index: any) => {
@@ -107,7 +109,9 @@ const MobileSessionKhado = ({ title, data, detail }) => {
                       className="sessionRateName"
                       style={{ width: "60%", overflow: "hidden" }}
                     >
-                      <span className="f-size13" style={{ fontWeight: "400" }}
+                      <span
+                        className="f-size13"
+                        style={{ fontWeight: "400" }}
                         onClick={() => {
                           if (item.activeStatus === "save") {
                             return true;
@@ -126,9 +130,10 @@ const MobileSessionKhado = ({ title, data, detail }) => {
                               })
                             );
                           dispatch(getRunAmountMeter(item?.id));
-
-                        }}>
-                        {item?.RunnerName}-{item?.ex?.availableToLay?.[0]?.price}
+                        }}
+                      >
+                        {item?.RunnerName}-
+                        {item?.ex?.availableToLay?.[0]?.price}
                       </span>
                       <span
                         className={`${calculateMaxLoss(
@@ -150,15 +155,11 @@ const MobileSessionKhado = ({ title, data, detail }) => {
                           : ""}
                       </span>
                     </div>
-                    <div
-                      className="sessionRateBoxContainer rateBoxWidthKhado"
-                    >
+                    <div className="sessionRateBoxContainer rateBoxWidthKhado">
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                           <div className="suspended-overlayRates">
-                            <span
-                              className={`suspendTextCmmn`}
-                            >
+                            <span className={`suspendTextCmmn`}>
                               {item?.GameStatus ?? "SUSPENDED"}
                             </span>
                           </div>
@@ -186,11 +187,21 @@ const MobileSessionKhado = ({ title, data, detail }) => {
                           {handleSize(item?.ex?.availableToBack?.[0]?.size)}
                         </span>
                       </div>
-
                     </div>
                   </div>
-                  {item?.rem && (<div className="w-100 text-start" style={{ fontSize: "11px", color: "#097c93", backgroundColor: "#f2f2f2", borderBottom: "1px solid #c7c8ca" }}>{item?.rem}
-                  </div>)}
+                  {item?.rem && (
+                    <div
+                      className="w-100 text-start"
+                      style={{
+                        fontSize: "11px",
+                        color: "#097c93",
+                        backgroundColor: "#f2f2f2",
+                        borderBottom: "1px solid #c7c8ca",
+                      }}
+                    >
+                      {item?.rem}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -216,8 +227,17 @@ const MobileSessionKhado = ({ title, data, detail }) => {
             ></button>
           </Modal.Header>
           <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
-            <div style={{ width: "100%", height: "100vh", overflowY: "auto", padding: "10px" }}>
-              <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+            <div
+              style={{
+                width: "100%",
+                height: "100vh",
+                overflowY: "auto",
+                padding: "10px",
+              }}
+            >
+              <RunBoxTable
+                runAmount={{ betPlaced: runAmount?.runAmountData }}
+              />
             </div>
           </Modal.Body>
         </Modal>

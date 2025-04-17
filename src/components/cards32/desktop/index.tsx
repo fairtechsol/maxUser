@@ -119,9 +119,6 @@ const Cards32Desktop = () => {
                 id={videoFrameId}
               />
             </div>
-            {/* <Row md={4}> */}
-
-            {/* </Row> */}
           </div>
           {loading ? (
             <NewLoader />
@@ -150,7 +147,13 @@ const Cards32Desktop = () => {
             </div>
           )}
 
-          <RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32' type="imageWithContent" />
+          <RulesModal
+            show={show}
+            setShow={setShow}
+            rule={card32rules}
+            gameType="card32"
+            type="imageWithContent"
+          />
         </Col>
         <Col className="p-0" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>

@@ -10,7 +10,13 @@ import {
   socketService,
 } from "../../socketManager";
 import {
-  // getMatchList,
+  betPlacedReset,
+  getPlacedBets,
+  resetRunAmount,
+  resetRunAmountModal,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
+import {
   matchDetailAction,
   matchDetailReset,
   resetMarketId,
@@ -36,14 +42,6 @@ import {
   updateTeamRatesOnDeleteMatch,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
-// import { isMobile } from "../../utils/screenDimension";
-import {
-  betPlacedReset,
-  getPlacedBets,
-  resetRunAmount,
-  resetRunAmountModal,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 
@@ -70,10 +68,8 @@ const GameDetails = () => {
       setIsMobile(window.innerWidth <= 1199);
     };
 
-    // Add event listener to update isMobile on window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -120,7 +116,7 @@ const GameDetails = () => {
     try {
       if (event?.matchId === id) {
         dispatch(getProfileInMatchDetail());
-        if (event?.betType === "quickbookmaker1" || event.isMatchDeclare) {
+        if (event.isMatchDeclare) {
           navigate(`/home`);
         } else {
           dispatch(getPlacedBets(id));
@@ -225,7 +221,6 @@ const GameDetails = () => {
   };
 
   const handleMatchResult = () => {
-    // dispatch(getMatchList({}));
     dispatch(getProfileInMatchDetail());
   };
   const getUserProfile = () => {
@@ -304,7 +299,6 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       return () => {
-        // expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
@@ -342,7 +336,6 @@ const GameDetails = () => {
         if (document.visibilityState === "visible") {
           if (id) {
             dispatch(selectedBetAction(null));
-            // dispatch(matchDetailAction(id));
             dispatch(getPlacedBets(id));
             setTimeout(() => {
               expertSocketService.match.joinMatchRoom(id);
@@ -350,7 +343,6 @@ const GameDetails = () => {
             }, 500);
           }
         } else if (document.visibilityState === "hidden") {
-          // expertSocketService.match.leaveMatchRoom(id);
           expertSocketService.match.getMatchRatesOff(id);
         }
       };

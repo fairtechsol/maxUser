@@ -13,7 +13,7 @@ import {
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  updateQueenRates
+  updateQueenRates,
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {

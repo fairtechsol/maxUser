@@ -1,4 +1,3 @@
-import React from "react";
 import "../../commonStyle.scss";
 
 const Abj2Rules = () => {
@@ -17,8 +16,8 @@ const Abj2Rules = () => {
         </li>
         <li>
           Before the dealer starts dealing/opening cards from the deck, they
-          also offer a side bet to the players who have time to bet if the card/joker
-          will be dealt as the 1st card.
+          also offer a side bet to the players who have time to bet if the
+          card/joker will be dealt as the 1st card.
         </li>
         <li>
           If the 1st placed card doesn't match the Joker's card, the game

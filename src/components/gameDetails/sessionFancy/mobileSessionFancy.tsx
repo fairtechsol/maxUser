@@ -38,7 +38,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
       betPlaceIndex: tno,
       matchBetType: "session",
       min: item?.min,
-      max: item?.max
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -60,7 +60,6 @@ const MobileSessionFancy = ({ title, data, detail }) => {
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size13">{title}</span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{
@@ -87,7 +86,6 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                 >
                   <span className={`f-size16 sessionBackTxt`}>Lay</span>
                 </div>
-                {/* <div className="sessionEmptyBox"></div> */}
               </div>
             </div>
             {data?.section?.map((item: any, index: any) => {
@@ -128,9 +126,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                           <div className="suspended-overlayRates">
-                            <span
-                              className={`suspendTextCmmn`}
-                            >
+                            <span className={`suspendTextCmmn`}>
                               {item?.GameStatus ?? "SUSPENDED"}
                             </span>
                           </div>
@@ -183,8 +179,19 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                       </div>
                     </div>
                   </div>
-                  {item?.rem && (<div className="w-100 text-start" style={{ fontSize: "11px", color: "#097c93", backgroundColor: "#f2f2f2", borderBottom: "1px solid #c7c8ca" }}>{item?.rem}
-                  </div>)}
+                  {item?.rem && (
+                    <div
+                      className="w-100 text-start"
+                      style={{
+                        fontSize: "11px",
+                        color: "#097c93",
+                        backgroundColor: "#f2f2f2",
+                        borderBottom: "1px solid #c7c8ca",
+                      }}
+                    >
+                      {item?.rem}
+                    </div>
+                  )}
                 </div>
               );
             })}

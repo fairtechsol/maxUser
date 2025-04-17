@@ -7,13 +7,13 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
-  getDragonTigerDetailHorseRacing,
-  updateBollywoodTableCardMatchRates,
-  updateBalanceOnBetPlaceCards,
-  updateLiveGameResultTop10,
-  updateProfitLossCards,
   dragonTigerReset,
   getDragonTigerDetail,
+  getDragonTigerDetailHorseRacing,
+  updateBalanceOnBetPlaceCards,
+  updateBollywoodTableCardMatchRates,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {

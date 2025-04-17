@@ -9,7 +9,7 @@ const SearchResult = ({ data, setOpen }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   return (
-    <div className="position-absolute bg-white text-black p-1 search-result" >
+    <div className="position-absolute bg-white text-black p-1 search-result">
       {data?.length == 0 ? (
         <p className="text-start pt-1">No real-time records found</p>
       ) : (
@@ -20,7 +20,12 @@ const SearchResult = ({ data, setOpen }: any) => {
               setOpen(false);
             }}
             className="text-decoration-none"
-            to={item?.matchType === "greyHound" || item?.matchType === "horseRacing" ? `/race/${item?.id}` : `/game-detail/${item.matchType}/${item?.id}`}
+            to={
+              item?.matchType === "greyHound" ||
+                item?.matchType === "horseRacing"
+                ? `/race/${item?.id}`
+                : `/game-detail/${item.matchType}/${item?.id}`
+            }
             key={index}
           >
             <div className="d-flex flex-column w-100 border-bottom">

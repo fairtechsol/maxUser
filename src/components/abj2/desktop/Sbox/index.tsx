@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import CommonButtonBox from "../CommonButtonBox";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import CommonButtonBox from "../CommonButtonBox";
 
 const SBetBox = ({ type, odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -16,8 +16,8 @@ const SBetBox = ({ type, odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -75,15 +75,19 @@ const SBetBox = ({ type, odds, data }: any) => {
                 : ""
             }`}
           >
-            {data?.profitLoss
-              ? data?.profitLoss[
+            {data?.profitLoss ? (
+              data?.profitLoss[
+                `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+              ] ? (
+                data?.profitLoss[
                   `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                 ]
-                ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                  ]
-                :  <br></br>
-              : 0}
+              ) : (
+                <br></br>
+              )
+            ) : (
+              0
+            )}
           </span>
         </div>
         <div
@@ -120,15 +124,19 @@ const SBetBox = ({ type, odds, data }: any) => {
                 : ""
             }`}
           >
-            {data?.profitLoss
-              ? data?.profitLoss[
+            {data?.profitLoss ? (
+              data?.profitLoss[
+                `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+              ] ? (
+                data?.profitLoss[
                   `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                 ]
-                ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                  ]
-                :  <br></br>
-              : 0}
+              ) : (
+                <br></br>
+              )
+            ) : (
+              0
+            )}
           </span>
         </div>
 
@@ -166,15 +174,19 @@ const SBetBox = ({ type, odds, data }: any) => {
                 : ""
             }`}
           >
-            {data?.profitLoss
-              ? data?.profitLoss[
+            {data?.profitLoss ? (
+              data?.profitLoss[
+                `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+              ] ? (
+                data?.profitLoss[
                   `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
                 ]
-                ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                  ]
-                : <br></br>
-              : 0}
+              ) : (
+                <br></br>
+              )
+            ) : (
+              0
+            )}
           </span>
         </div>
         <div style={{ width: "5%", paddingBottom: "20px" }}>

@@ -1,5 +1,6 @@
- import { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Baccarat2ComponentList from "../../components/baccarat2";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -23,7 +24,6 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import Baccarat2ComponentList from "../../components/baccarat2";
 
 const Bacarrat2 = () => {
   const dispatch: AppDispatch = useDispatch();

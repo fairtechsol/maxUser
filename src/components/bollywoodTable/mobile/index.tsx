@@ -31,7 +31,6 @@ const BollywoodTableDesktop = () => {
     `${cardUrl}${cardGamesId.btable}`
   );
 
-
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
@@ -158,7 +157,6 @@ const BollywoodTableDesktop = () => {
                       paddingRight: "4px",
                       borderRight: "1px solid #c7c8ca",
                       borderTop: "1px solid #c7c8ca",
-
                     }}
                   >
                     <OddEven

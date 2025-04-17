@@ -6,20 +6,14 @@
   background-image: linear-gradient($primary, $secondary);
   display: flex;
   justify-content: center;
-  /* Center horizontally */
   align-items: flex-start;
-  /* Align items to the top */
-  // padding-top: 2rem;
-
 }
 
 .login-form {
   width: 350px;
   max-width: 90%;
   position: fixed;
-  /* Fix the position of the form */
   top: 2%;
-  /* Set a 2% margin from the top of the viewport */
   margin-bottom: 0 !important;
 }
 
@@ -40,14 +34,12 @@
   }
 }
 
-/* Main container to ensure footer stays at the bottom */
 .main-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Wrapper for content to take available space */
 .content-wrapper {
   flex: 1;
   display: flex;
@@ -101,8 +93,6 @@
   right: 0;
 }
 
-/*# sourceMappingURL=style.css.map */
-
 .login-button {
   display: flex;
   justify-content: center;
@@ -142,8 +132,6 @@
   align-items: center;
 }
 
-
-
 @keyframes rotate {
   100% {
     transform: rotate(360deg);
@@ -151,7 +139,7 @@
 }
 
 .spinner-icon::before {
-  content: '';
+  content: "";
   display: block;
   width: 6px;
   height: 6px;
@@ -193,5 +181,4 @@
       margin: 0;
     }
   }
-
 }

@@ -17,22 +17,23 @@ const Card3Result: React.FC<Props> = ({ data }: any) => {
     data?.mid != "0" && (
       <Container>
         <Row className="m-0">
-          <Col className="mt-2 p-1" style={{ backgroundColor: "rgb(0 0 0 / 8%)" }}>
-
+          <Col
+            className="mt-2 p-1"
+            style={{ backgroundColor: "rgb(0 0 0 / 8%)" }}
+          >
             <HandleCards card={data?.C1} />
-
           </Col>
-
-          <Col className="mt-2 p-1" style={{ backgroundColor: "rgb(0 0 0 / 8%)" }}>
-
+          <Col
+            className="mt-2 p-1"
+            style={{ backgroundColor: "rgb(0 0 0 / 8%)" }}
+          >
             <HandleCards card={data?.C2} />
-
           </Col>
-
-          <Col className="mt-2 p-1" style={{ backgroundColor: "rgb(0 0 0 / 8%)" }}>
-
+          <Col
+            className="mt-2 p-1"
+            style={{ backgroundColor: "rgb(0 0 0 / 8%)" }}
+          >
             <HandleCards card={data?.C3} />
-
           </Col>
         </Row>
       </Container>

@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { FaInfoCircle } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch } from "../../../../store/store";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import "../style.scss";
 
 const Card64 = ({ odds, data }: any) => {
@@ -47,8 +45,6 @@ const Card64 = ({ odds, data }: any) => {
     }
   }, [odds?.gstatus, dispatch]);
 
-  
-  
   useEffect(() => {
     if (selectedBet == null) {
       setSelectedBox(null);
@@ -66,7 +62,7 @@ const Card64 = ({ odds, data }: any) => {
           ? ""
           : value == "64CHART"
           ? handleBet(value)
-          : handleBet("64 - " +value );
+          : handleBet("64 - " + value);
       }}
     >
       <span className="worli-odd">{value}</span>

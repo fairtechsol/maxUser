@@ -13,7 +13,6 @@ interface Props {
 const BollywoodTableResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.desc?.split("|");
   const pair = resultCards?.[0];
-  //const card = resultCards?.[3]?.split(" ");
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>

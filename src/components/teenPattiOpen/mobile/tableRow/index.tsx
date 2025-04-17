@@ -121,7 +121,6 @@ const TeenPattiTableRow = ({
             }`}
             style={{ zIndex: "100" }}
           >
-            {" "}
             {dragonTigerDetail?.profitLoss
               ? dragonTigerDetail?.profitLoss[
                   `${dragonTigerDetail?.videoInfo?.mid}_${pairPlus?.sid}_card`

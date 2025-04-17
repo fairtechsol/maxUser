@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
+
 const OddEven = ({ data, card, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any) => {
@@ -15,8 +16,8 @@ const OddEven = ({ data, card, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -53,7 +54,13 @@ const OddEven = ({ data, card, odds }: any) => {
               }
               width={"45%"}
               handleBet={handleBet}
-              lock={odds?.[0]?.gstatus === "SUSPENDED"||odds?.[0]?.gstatus === "CLOSED" || odds?.[0]?.b1 === "0.00" ? true : false}
+              lock={
+                odds?.[0]?.gstatus === "SUSPENDED" ||
+                odds?.[0]?.gstatus === "CLOSED" ||
+                odds?.[0]?.b1 === "0.00"
+                  ? true
+                  : false
+              }
               data={odds?.[0]}
             />
             <CommonButtonBox
@@ -68,7 +75,13 @@ const OddEven = ({ data, card, odds }: any) => {
               }
               width={"45%"}
               handleBet={handleBet}
-              lock={odds?.[1]?.gstatus === "SUSPENDED" ||odds?.[1]?.gstatus === "CLOSED" || odds?.[1]?.b1 === "0.00" ? true : false}
+              lock={
+                odds?.[1]?.gstatus === "SUSPENDED" ||
+                odds?.[1]?.gstatus === "CLOSED" ||
+                odds?.[1]?.b1 === "0.00"
+                  ? true
+                  : false
+              }
               data={odds?.[1]}
             />
           </div>
@@ -95,7 +108,13 @@ const OddEven = ({ data, card, odds }: any) => {
               }
               width={"45%"}
               handleBet={handleBet}
-              lock={odds?.[0]?.gstatus === "SUSPENDED" ||odds?.[0]?.gstatus === "CLOSED" || odds?.[0]?.b1 === "0.00" ? true : false}
+              lock={
+                odds?.[0]?.gstatus === "SUSPENDED" ||
+                odds?.[0]?.gstatus === "CLOSED" ||
+                odds?.[0]?.b1 === "0.00"
+                  ? true
+                  : false
+              }
               data={odds?.[0]}
             />
             <CommonButtonBox
@@ -110,7 +129,13 @@ const OddEven = ({ data, card, odds }: any) => {
               }
               width={"45%"}
               handleBet={handleBet}
-              lock={odds?.[1]?.gstatus === "SUSPENDED" ||odds?.[1]?.gstatus === "CLOSED" || odds?.[1]?.b1 === "0.00" ? true : false}
+              lock={
+                odds?.[1]?.gstatus === "SUSPENDED" ||
+                odds?.[1]?.gstatus === "CLOSED" ||
+                odds?.[1]?.b1 === "0.00"
+                  ? true
+                  : false
+              }
               data={odds?.[1]}
             />
           </div>

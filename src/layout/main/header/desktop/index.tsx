@@ -40,10 +40,8 @@ const DesktopHeader = () => {
       setIsMobile(window.innerWidth <= 1199);
     };
 
-    // Add event listener to update isMobile on window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -197,7 +195,8 @@ const DesktopHeader = () => {
                       return (
                         <Dropdown.Item
                           className="title-14 px-2 py-1"
-                          onClick={(e) => handleClick(e, item?.isModal, item?.link)
+                          onClick={(e) =>
+                            handleClick(e, item?.isModal, item?.link)
                           }
                           key={item?.id}
                           eventKey={item?.id}
@@ -221,15 +220,6 @@ const DesktopHeader = () => {
             </li>
           </ul>
           <MarqueeHeader />
-          {/* <div className="marquee-container nav-marquee text-white">
-          <div className="marquee-content title-14">
-            <i>
-              {" "}
-              Use https://sept23.olddata.info/login for view old account between
-              March23 to September23
-            </i>
-          </div>
-        </div> */}
         </Col>
       </Row>
       <CustomModal

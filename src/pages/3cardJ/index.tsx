@@ -1,29 +1,28 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import CardJComponentList from "../../components/3CardJ";
 import { socket, socketService } from "../../socketManager";
 import {
-  getDragonTigerDetailHorseRacing,
-  updateBalanceOnBetPlaceCards,
-  update3CardJRates,
-  updateLiveGameResultTop10,
-  updateProfitLossCards,
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
+import {
   dragonTigerReset,
   getDragonTigerDetail,
+  getDragonTigerDetailHorseRacing,
+  update3CardJRates,
+  updateBalanceOnBetPlaceCards,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
-import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import { useSelector } from "react-redux";
-import {
-  getPlacedBets,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
 import { cardGamesType } from "../../utils/constants";
-import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import CardJComponentList from "../../components/3CardJ";
 
 const CardJ = () => {
   const dispatch: AppDispatch = useDispatch();

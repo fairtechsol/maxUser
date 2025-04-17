@@ -89,16 +89,6 @@ const WorliDesktop = () => {
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
-                  {/* <a
-                    style={{
-                      fontSize: "12px",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setShow(true)}
-                  >
-                    Rules
-                  </a> */}
                 </div>
                 <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
@@ -111,9 +101,7 @@ const WorliDesktop = () => {
               </div>
               <div
                 style={{
-                  // flex: '1 0 auto',
                   width: "100%",
-                  // height: "92%",
                   backgroundColor: "#000",
                 }}
               >

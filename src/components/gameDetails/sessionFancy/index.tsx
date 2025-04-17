@@ -71,7 +71,6 @@ const SessionFancy = ({ title, data, detail }) => {
       >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
         <div
           style={{
@@ -84,11 +83,8 @@ const SessionFancy = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div className="sessionYesNoBoxContainer" >
-              <div
-                className="sessionYesNoBox  rateBoxWidthNormal"
-              // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
-              >
+            <div className="sessionYesNoBoxContainer">
+              <div className="sessionYesNoBox rateBoxWidthNormal">
                 <div className="sessionYesBox back1Background">
                   <span className={`f-size16 sessionBackTxt`}>Back</span>
                 </div>
@@ -102,8 +98,10 @@ const SessionFancy = ({ title, data, detail }) => {
               return (
                 <div className="w-100 d-flex flex-column">
                   <div className="sessionRateContainer" key={index}>
-                    <div className="sessionRateName runnerWidthNormal"
-                      style={{ overflow: "hidden" }}>
+                    <div
+                      className="sessionRateName runnerWidthNormal"
+                      style={{ overflow: "hidden" }}
+                    >
                       <span
                         className="teamFont"
                         style={{ fontWeight: "400", lineHeight: 1 }}
@@ -115,8 +113,8 @@ const SessionFancy = ({ title, data, detail }) => {
                           detail?.profitLossDataSession,
                           item?.id
                         ) < 0
-                          ? "color-red"
-                          : "color-red"
+                            ? "color-red"
+                            : "color-red"
                           } title-14 fbold`}
                       >
                         {calculateMaxLoss(
@@ -130,18 +128,11 @@ const SessionFancy = ({ title, data, detail }) => {
                           : ""}
                       </span>
                     </div>
-                    <div
-                      className="sessionRateBoxContainer rateBoxWidthNormal"
-                    // style={{
-                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                    // }}
-                    >
+                    <div className="sessionRateBoxContainer rateBoxWidthNormal">
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                           <div className="suspended-overlayRates">
-                            <span
-                              className={`suspendTextCmmn`}
-                            >
+                            <span className={`suspendTextCmmn`}>
                               {item?.GameStatus ?? "SUSPENDED"}
                             </span>
                           </div>
@@ -161,15 +152,11 @@ const SessionFancy = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span
-                          className={`rateFont`}
-                        >
+                        <span className={`rateFont`}>
                           {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
                             "-"}
                         </span>
-                        <span
-                          className={`f-size12 sessionRate2Box`}
-                        >
+                        <span className={`f-size12 sessionRate2Box`}>
                           {handleSize(item?.ex?.availableToBack?.[0]?.size)}
                         </span>
                       </div>
@@ -188,9 +175,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span
-                          className={`rateFont`}
-                        >
+                        <span className={`rateFont`}>
                           {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
                             "-"}
                         </span>
@@ -211,8 +196,19 @@ const SessionFancy = ({ title, data, detail }) => {
                       </div>
                     </div>
                   </div>
-                  {item?.rem && (<div className="w-100 text-start" style={{ fontSize: "11px", color: "#097c93", backgroundColor: "#f2f2f2", borderBottom: "1px solid #c7c8ca" }}>{item?.rem}
-                  </div>)}
+                  {item?.rem && (
+                    <div
+                      className="w-100 text-start"
+                      style={{
+                        fontSize: "11px",
+                        color: "#097c93",
+                        backgroundColor: "#f2f2f2",
+                        borderBottom: "1px solid #c7c8ca",
+                      }}
+                    >
+                      {item?.rem}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -227,10 +223,7 @@ const SessionFancy = ({ title, data, detail }) => {
               }}
             >
               <div className="sessionYesNoBoxContainer">
-                <div
-                  className="sessionYesNoBox rateBoxWidthNormal"
-                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
-                >
+                <div className="sessionYesNoBox rateBoxWidthNormal">
                   <div className="sessionYesBox back1Background">
                     <span className={`f-size16 sessionBackTxt`}>Back</span>
                   </div>
@@ -244,7 +237,10 @@ const SessionFancy = ({ title, data, detail }) => {
                 return (
                   <div className="w-100 d-flex flex-column">
                     <div className="sessionRateContainer" key={index}>
-                      <div className="sessionRateName runnerWidthNormal" style={{ overflow: "hidden" }}>
+                      <div
+                        className="sessionRateName runnerWidthNormal"
+                        style={{ overflow: "hidden" }}
+                      >
                         <span
                           className="teamFont"
                           style={{
@@ -260,8 +256,8 @@ const SessionFancy = ({ title, data, detail }) => {
                             detail?.profitLossDataSession,
                             item?.id
                           ) < 0
-                            ? "color-red"
-                            : "color-red"
+                              ? "color-red"
+                              : "color-red"
                             } title-14 fbold`}
                         >
                           {calculateMaxLoss(
@@ -275,18 +271,11 @@ const SessionFancy = ({ title, data, detail }) => {
                             : ""}
                         </span>
                       </div>
-                      <div
-                        className="sessionRateBoxContainer rateBoxWidthNormal"
-                      // style={{
-                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                      // }}
-                      >
+                      <div className="sessionRateBoxContainer rateBoxWidthNormal">
                         {(item?.activeStatus != "live" ||
                           item?.GameStatus != "") && (
                             <div className="suspended-overlayRates">
-                              <span
-                                className={`suspendTextCmmn`}
-                              >
+                              <span className={`suspendTextCmmn`}>
                                 {item?.GameStatus ?? "SUSPENDED"}
                               </span>
                             </div>
@@ -306,11 +295,10 @@ const SessionFancy = ({ title, data, detail }) => {
                             )
                           }
                         >
-                          <span
-                            className={`rateFont`}
-                          >
-                            {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
-                              "-"}
+                          <span className={`rateFont`}>
+                            {handlePrice(
+                              item?.ex?.availableToBack?.[0]?.price
+                            ) ?? "-"}
                           </span>
                           <span
                             className={`${!isMobile ? "f-size12" : "f-size11"
@@ -334,11 +322,10 @@ const SessionFancy = ({ title, data, detail }) => {
                             )
                           }
                         >
-                          <span
-                            className={`rateFont`}
-                          >
-                            {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
-                              "-"}
+                          <span className={`rateFont`}>
+                            {handlePrice(
+                              item?.ex?.availableToLay?.[0]?.price
+                            ) ?? "-"}
                           </span>
                           <span
                             className={`${!isMobile ? "f-size12" : "f-size11"
@@ -357,8 +344,19 @@ const SessionFancy = ({ title, data, detail }) => {
                         </div>
                       </div>
                     </div>
-                    {item?.rem && (<div className="w-100 text-start" style={{ fontSize: "11px", color: "#097c93", backgroundColor: "#f2f2f2", borderBottom: "1px solid #c7c8ca" }}>{item?.rem}
-                    </div>)}
+                    {item?.rem && (
+                      <div
+                        className="w-100 text-start"
+                        style={{
+                          fontSize: "11px",
+                          color: "#097c93",
+                          backgroundColor: "#f2f2f2",
+                          borderBottom: "1px solid #c7c8ca",
+                        }}
+                      >
+                        {item?.rem}
+                      </div>
+                    )}
                   </div>
                 );
               })}

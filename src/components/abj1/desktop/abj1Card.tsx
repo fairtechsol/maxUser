@@ -67,7 +67,6 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
             <div
               style={{
                 width: isMobile ? "70px" : "110px",
-                // margin: "0px 10px 0px 10px",
               }}
             >
               {elementsAndar?.length > 0 && (

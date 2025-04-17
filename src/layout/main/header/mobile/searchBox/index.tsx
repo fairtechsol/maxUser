@@ -9,7 +9,7 @@ import "./style.scss";
 
 const SearchBox = () => {
   const [searchIco, setSearchIco] = useState(false);
-  const [searchValue, setSearchValue] = useState("")
+  const [searchValue, setSearchValue] = useState("");
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -52,13 +52,6 @@ const SearchBox = () => {
       <div className="search-icon" onClick={searchIcoHandle}>
         <FaSearchPlus />
       </div>
-
-      {/* <div className="search-icon" onClick={searchIcoHandle}>
-        {searchIco ? <IoClose style={{color: "black"}} /> : <FaSearchPlus/>}
-      </div> */}
-      {/* </div> */}
-
-      {/* <div className="search-icon" onClick={searchIcoHandle}></div> */}
     </div>
   );
 };

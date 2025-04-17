@@ -8,7 +8,6 @@ const PlayerButton = ({
   lock,
   data,
 }: any) => {
-
   return (
     <div
       className="commonButtonBoxContainer"
@@ -124,7 +123,7 @@ const PlayerButton = ({
             <span className="f18-b my-2 fw-bold">
               {parseFloat(value4).toFixed(2)}
             </span>
-            <span className="f10-b">{}</span>
+            <span className="f10-b" />
           </div>
         </div>
       </div>

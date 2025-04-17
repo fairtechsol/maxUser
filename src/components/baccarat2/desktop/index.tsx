@@ -122,21 +122,18 @@ const Baccarat2Desktop = () => {
               </div>
               <div
                 style={{
-                  // flex: '1 0 auto',
                   width: "100%",
-                  // height: "92%",
                   backgroundColor: "#000",
                 }}
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  //   result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-                <NewLoader />
+              <NewLoader />
             ) : (
               <div>
                 <div
@@ -154,13 +151,19 @@ const Baccarat2Desktop = () => {
                 <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["P", "B","T"]}
+                    name={["P", "B", "T"]}
                     type={cardGamesType.baccarat2}
                   />
                 </div>
               </div>
             )}
-            <RulesModal show={show} setShow={setShow} rule={b2rules} gameType="baccarat2" type="imageWithContent" />
+            <RulesModal
+              show={show}
+              setShow={setShow}
+              rule={b2rules}
+              gameType="baccarat2"
+              type="imageWithContent"
+            />
           </div>
         </Col>
         <Col className="p-0 pt-1" md={4}>
