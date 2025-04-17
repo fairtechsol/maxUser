@@ -361,5 +361,4 @@ const GameDetails = () => {
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };
-
 export default GameDetails;
