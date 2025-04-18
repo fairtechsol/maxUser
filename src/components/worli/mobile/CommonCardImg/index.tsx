@@ -41,9 +41,9 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
               onClick={() => (handlock(item) != "" ? null : handleBet(item))}
             >
               {item?.show ? (
-                <img src={item?.imgSrc} width={"30px"} />
+                <img src={item?.imgSrc} width={"30px"} alt="lock" />
               ) : (
-                <img src={back} width={"30px"} />
+                <img src={back} width={"30px"} alt="lock" />
               )}
             </div>
             <span

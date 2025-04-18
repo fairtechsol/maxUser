@@ -41,9 +41,9 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
               onClick={() => (handlock(item) != "" ? null : handleBet(item))}
             >
               {item?.show ? (
-                <img src={item?.imgSrc} width={"30px"} />
+                <img src={item?.imgSrc} width={"30px"} alt="lock" />
               ) : (
-                <img src={back} width={"30px"} />
+                <img src={back} width={"30px"} alt="lock" />
               )}
             </div>
             <span
@@ -52,30 +52,29 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              className={`${
-                data?.profitLoss
+              className={`${data?.profitLoss
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
+                      `${data?.videoInfo?.mid}_${item?.sid}_card`
+                    ] > 0
                       ? "color-green"
                       : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
-                      ? "color-red"
-                      : ""
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ] < 0
+                        ? "color-red"
+                        : ""
                     : ""
                   : ""
-              }`}
+                }`}
             >
               {" "}
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                   : 0
                 : 0}
             </span>

@@ -1,26 +1,26 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import CommonButtonBox from "../CommonButtonBox";
 import { seven } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
+import { AppDispatch } from "../../../../store/store";
+import CommonButtonBox from "../CommonButtonBox";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
 
-  const handleBet=(item:any)=>{
-    let team ={
+  const handleBet = (item: any) => {
+    let team = {
       "bettingType": "BACK",
       "matchId": data?.id,
       "odd": item?.rate,
       "stake": 0,
       "matchBetType": "matchOdd",
-      "betOnTeam":item?.nation,
-      "name":item?.nation,
+      "betOnTeam": item?.nation,
+      "name": item?.nation,
       "bettingName": "Match odds",
       "selectionId": item?.sid,
-      "min":item?.min,
-      "max":item?.max
+      "min": item?.min,
+      "max": item?.max
     }
     dispatch(
       selectedBetAction({
@@ -31,11 +31,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   }
 
   useEffect(() => {
-    if (lowHigh?.[0]?.gstatus === "0" ||lowHigh?.[0]?.rate === "0.00") {
+    if (lowHigh?.[0]?.gstatus === "0" || lowHigh?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.rate]);
+    }
+
+  }, [lowHigh?.[0]?.gstatus, lowHigh?.[0]?.rate]);
 
   return (
     <div className="tiePairContainer-lucky7">
@@ -44,33 +44,33 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value1={lowHigh?.[0]?.rate || 0}
           value2={"Low Card"}
           value3={data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
-                ]
-              : 0}
+            ? data?.profitLoss[
+            `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
+            ]
+            : 0}
           width={"40%"}
           handleBet={handleBet}
-          lock={lowHigh?.[0]?.gstatus==="0"?true:false}
+          lock={lowHigh?.[0]?.gstatus === "0" ? true : false}
           data={lowHigh?.[0]}
         />
         <div className="mb-3" >
-        <img src={seven} width={"55px"} height={"70px"}/>
+          <img src={seven} width={"55px"} height={"70px"} alt="bet" />
         </div>
-         
+
         <CommonButtonBox
           value1={lowHigh?.[1]?.rate || 0}
           value2={"High Card"}
           value3={data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
-                ]
-              : 0}
+            ? data?.profitLoss[
+            `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
+            ]
+            : 0}
           width={"40%"}
           handleBet={handleBet}
-          lock={lowHigh?.[1]?.gstatus==="0"?true:false}
+          lock={lowHigh?.[1]?.gstatus === "0" ? true : false}
           data={lowHigh?.[1]}
         />
-       
+
       </div>
       {/* <div style={{ textAlign: "end",width:"100%" }}>
         <span style={{ fontWeight: "bolder" }}>Min:</span>

@@ -30,7 +30,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
               key={item?.code}
             >
               {" "}
-              <img src={item?.imgSrc} width={"40px"} />
+              <img src={item?.imgSrc} width={"40px"} alt="bet" />
             </div>
             <span
               style={{

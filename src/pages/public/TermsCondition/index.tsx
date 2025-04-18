@@ -8,7 +8,7 @@ const Terms = () => {
         <div className="about-us-container">
           <div className="container">
             <div className="text-center logo">
-              <img src="https://sitethemedata.com/sitethemes/jsk2468.com/front/logo.png" />
+              <img src="https://sitethemedata.com/sitethemes/jsk2468.com/front/logo.png" alt="logo" />
             </div>
             <div>
               <h2 className="page-title">Terms and Conditions</h2>

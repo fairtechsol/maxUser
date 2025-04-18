@@ -28,14 +28,14 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
       firstArr =
         import.meta.env.VITE_NODE_ENV == "production"
           ? liveCasinoGameList.filter(
-              (item: any) =>
-                item.game_id === "151027" || item.game_id === "151067"
-            )
+            (item: any) =>
+              item.game_id === "151027" || item.game_id === "151067"
+          )
           : mac88ListJSON.filter(
-              (item: any) =>
-                item.game_name === "AVIATORX" ||
-                item.game_name === "Aviator Blue"
-            );
+            (item: any) =>
+              item.game_name === "AVIATORX" ||
+              item.game_name === "Aviator Blue"
+          );
     } else {
       firstArr = (import.meta.env.VITE_NODE_ENV == "production"
         ? liveCasinoGameList
@@ -140,8 +140,8 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
                       {parseInt(getProfile?.userBal?.exposure) === 0
                         ? 0
                         : -parseFloat(
-                            getProfile?.userBal?.exposure || 0
-                          ).toFixed(2)}
+                          getProfile?.userBal?.exposure || 0
+                        ).toFixed(2)}
                     </b>
                   </span>
                 </div>

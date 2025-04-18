@@ -29,7 +29,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
               onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
               key={item?.code}
             >
-              <img src={item?.imgSrc} width={"40px"} />
+              <img src={item?.imgSrc} width={"40px"} alt="bet" />
             </div>
             <span
               style={{

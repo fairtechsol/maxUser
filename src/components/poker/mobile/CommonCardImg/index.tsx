@@ -28,7 +28,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
               }}
               onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
             >
-              <img src={item?.imgSrc} width={"30px"} />
+              <img src={item?.imgSrc} width={"30px"} alt="bet" />
             </div>
             <span
               style={{
@@ -36,29 +36,28 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              className={`${
-                data?.profitLoss
+              className={`${data?.profitLoss
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
+                      `${data?.videoInfo?.mid}_${item?.sid}_card`
+                    ] > 0
                       ? "color-green"
                       : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
-                      ? "color-red"
-                      : ""
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ] < 0
+                        ? "color-red"
+                        : ""
                     : ""
                   : ""
-              }`}
+                }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                   : 0
                 : 0}
             </span>
