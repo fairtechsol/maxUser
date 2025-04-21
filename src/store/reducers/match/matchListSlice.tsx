@@ -152,77 +152,9 @@ const matchListSlice = createSlice({
         state.marketId = action.payload?.marketId;
       })
       .addCase(updateMatchRates.fulfilled, (state, action) => {
-        const {
-          apiSession,
-          apiTiedMatch,
-          apiTiedMatch2,
-          other,
-          bookmaker,
-          bookmaker2,
-          marketCompleteMatch,
-          marketCompleteMatch1,
-          matchOdd,
-          sessionBettings,
-          manualTideMatch,
-          quickbookmaker,
-          firstHalfGoal,
-          halfTime,
-          overUnder,
-          setWinner,
-          completeManual,
-          tournament,
-          scoreBoard
-        } = action.payload;
+        const { apiSession, sessionBettings, tournament, scoreBoard } =
+          action.payload;
 
-        // let removedsessionBettings =
-        //   state.matchDetails?.sessionBettings?.filter((item: any) => {
-        //     return apiSession?.some(
-        //       (apiItem: any) => apiItem?.id === JSON.parse(item)?.id
-        //     );
-        //   });
-
-        // let newSessionBettings = removedsessionBettings?.filter((item: any) => {
-        //   return sessionBettings?.some(
-        //     (apiItem: any) => JSON.parse(apiItem)?.id === JSON.parse(item)?.id
-        //   );
-        // });
-
-        // apiSession?.forEach((apiItem: any) => {
-        //   if (
-        //     !newSessionBettings?.some(
-        //       (item: any) => JSON.parse(item)?.id === apiItem?.id
-        //     )
-        //   ) {
-        //     newSessionBettings?.push(
-        //       JSON.stringify({
-        //         id: apiItem?.id,
-        //         name: apiItem?.RunnerName,
-        //         yesRate: apiItem?.BackPrice1,
-        //         yesPercent: apiItem?.BackSize1,
-        //         noRate: apiItem?.LayPrice1,
-        //         noPercent: apiItem?.LaySize1,
-        //         selectionId: apiItem?.SelectionId,
-        //         minBet: apiItem?.min,
-        //         maxBet: apiItem?.max,
-        //         activeStatus: apiItem?.activeStatus,
-        //         updatedAt: apiItem?.updatedAt,
-        //         type: "session",
-        //         isManual: false,
-        //         status:
-        //           apiItem?.GameStatus === "" ? "active" : apiItem?.GameStatus,
-        //       })
-        //     );
-        //   }
-        // });
-        // sessionBettings?.forEach((apiItem: any) => {
-        //   if (
-        //     !newSessionBettings?.some(
-        //       (item: any) => JSON.parse(item)?.id === apiItem?.id
-        //     )
-        //   ) {
-        //     newSessionBettings?.push(apiItem);
-        //   }
-        // });
         state.loading = false;
         state.liveScoreBoardData = scoreBoard?.data;
         let parsedSessionBettings =
@@ -253,20 +185,6 @@ const matchListSlice = createSlice({
         const stringifiedSessionBetting = parsedSessionBettings.map(
           JSON.stringify
         );
-        const updatedOther = state.matchDetails?.other?.map((item: any) => {
-          const updatedItem = other.find(
-            (newItem: any) => newItem.id === item.id
-          );
-
-          if (updatedItem) {
-            return {
-              ...item,
-              ...updatedItem,
-            };
-          }
-
-          return item;
-        });
         state.matchDetails = {
           ...state.matchDetails,
           gmid: action.payload?.gmid,
@@ -275,11 +193,6 @@ const matchListSlice = createSlice({
           apiSessionActive:
             apiSession && apiSession?.length >= 0 ? true : false,
           apiSession: apiSession,
-          apiTideMatch: apiTiedMatch,
-          apiTideMatch2: apiTiedMatch2,
-          bookmaker: bookmaker,
-          bookmaker2: bookmaker2,
-          other,
           tournament: tournament?.sort((a: any, b: any) => {
             // Primary sort by sno (ascending)
             if (a.sno !== b.sno) {
@@ -290,69 +203,7 @@ const matchListSlice = createSlice({
             if (a.parentBetId !== null && b.parentBetId === null) return 1;
             return 0;
           }),
-          manualTiedMatch: manualTideMatch,
-          marketCompleteMatch: marketCompleteMatch,
-          marketCompleteMatch1: marketCompleteMatch1,
-          manualCompleteMatch: completeManual,
-          matchOdd: matchOdd,
-          quickBookmaker: quickbookmaker,
-          firstHalfGoal,
-          halfTime,
-          overUnder,
-          setWinner,
           sessionBettings: stringifiedSessionBetting,
-          // sessionBettings: newSessionBettings?.map((item: any) => {
-          //   if (!JSON.parse(item)?.selectionId) {
-          //     const parsedItem = JSON.parse(item);
-          //     let id = parsedItem?.id;
-          //     const matchingSession = sessionBettings?.find(
-          //       (sessionItem: any) => JSON.parse(sessionItem)?.id === id
-          //     );
-          //     let parsedSession = JSON.parse(matchingSession);
-          //     if (parsedSession) {
-          //       return JSON.stringify({
-          //         ...parsedItem,
-          //         ...parsedSession,
-          //       });
-          //     } else return JSON.stringify(parsedItem);
-          //   } else {
-          //     const parsedItem = JSON.parse(item);
-          //     let id = parsedItem?.id;
-          //     const matchingApiSession = apiSession?.find(
-          //       (sessionItem: any) => sessionItem?.id === id
-          //     );
-          //     if (matchingApiSession) {
-          //       return JSON.stringify({
-          //         ...parsedItem,
-          //         yesRate: matchingApiSession?.BackPrice1,
-          //         yesPercent: matchingApiSession?.BackSize1,
-          //         noRate: matchingApiSession?.LayPrice1,
-          //         noPercent: matchingApiSession?.LaySize1,
-          //         activeStatus: matchingApiSession?.activeStatus,
-          //         status:
-          //           matchingApiSession?.GameStatus === ""
-          //             ? "active"
-          //             : matchingApiSession?.GameStatus,
-          //       });
-          //     } else {
-          //       return JSON.stringify({
-          //         ...parsedItem,
-          //         noRate: 0,
-          //         yesRate: 0,
-          //         yesPercent: 0,
-          //         noPercent: 0,
-          //         activeStatus:
-          //           parsedItem?.activeStatus === "live"
-          //             ? "save"
-          //             : parsedItem?.activeStatus,
-          //         status:
-          //           matchingApiSession?.GameStatus === ""
-          //             ? "active"
-          //             : matchingApiSession?.GameStatus,
-          //       });
-          //     }
-          //   }
-          // }),
         };
       })
       .addCase(updateMatchOddRates.fulfilled, (state, action) => {
@@ -485,22 +336,22 @@ const matchListSlice = createSlice({
 
           const updatedProfitLossDataSession = isBetIdPresent
             ? state.matchDetails?.profitLossDataSession?.map((item: any) =>
-              item?.betId === betId
-                ? {
-                  ...item,
+                item?.betId === betId
+                  ? {
+                      ...item,
+                      maxLoss: JSON.parse(profitLoss)?.maxLoss,
+                      totalBet: JSON.parse(profitLoss)?.totalBet,
+                    }
+                  : item
+              )
+            : [
+                ...state.matchDetails?.profitLossDataSession,
+                {
+                  betId: betId,
                   maxLoss: JSON.parse(profitLoss)?.maxLoss,
                   totalBet: JSON.parse(profitLoss)?.totalBet,
-                }
-                : item
-            )
-            : [
-              ...state.matchDetails?.profitLossDataSession,
-              {
-                betId: betId,
-                maxLoss: JSON.parse(profitLoss)?.maxLoss,
-                totalBet: JSON.parse(profitLoss)?.totalBet,
-              },
-            ];
+                },
+              ];
 
           state.matchDetails = {
             ...state.matchDetails,
