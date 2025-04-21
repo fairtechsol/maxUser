@@ -32,7 +32,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any) => {
         return (
-          <div>
+          <div key={item?.code}>
             <div
               className={item?.gstatus === "SUSPENDED" ? "suspended" : ""}
               style={{
@@ -44,7 +44,6 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
               onClick={() =>
                 item?.gstatus != "SUSPENDED" ? handleBet(item) : null
               }
-              key={item?.code}
             >
               {" "}
               <img src={item?.imgSrc} width={"40px"} />

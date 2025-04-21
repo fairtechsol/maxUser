@@ -50,9 +50,11 @@ const HorseRacingListTabsDesktop = ({ matchType }: any) => {
             title={item?.countryCode}
             style={{ padding: "0px" }}
           >
-            {Object.entries(racingList)?.map(([matchName, item]: any) => (
-              <RaceListItems matchName={matchName} item={item} />
-            ))}
+            {Object.entries(racingList)?.map(
+              ([matchName, item]: any, index: number) => (
+                <RaceListItems matchName={matchName} item={item} key={index} />
+              )
+            )}
           </Tab>
         ))}
       </CommonTabs>

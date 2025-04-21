@@ -92,8 +92,8 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
             </div>
             {data?.section?.map((item: any, index: any) => {
               return (
-                <div className="w-100 d-flex flex-column">
-                  <div className="sessionOddEvenRateContainer" key={index}>
+                <div className="w-100 d-flex flex-column" key={index}>
+                  <div className="sessionOddEvenRateContainer">
                     <div
                       className="sessionRateName"
                       style={{ width: "60%", overflow: "hidden" }}

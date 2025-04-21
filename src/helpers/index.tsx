@@ -149,3 +149,13 @@ export const calculateRequiredStack = (
   let result = (initialTeamB - initialTeamA) / (1 + perc / 100);
   return parseFloat(result.toFixed(2)) ?? 0;
 };
+
+export const tryCatchWrapper = (fn: Function) => {
+  return (...args: any[]) => {
+    try {
+      return fn(...args);
+    } catch (error) {
+      console.error(`Error in ${fn.name || "anonymous function"}:`, error);
+    }
+  };
+};

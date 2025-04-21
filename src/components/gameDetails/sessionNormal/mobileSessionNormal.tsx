@@ -128,8 +128,8 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
             </div>
             {marketArr?.map((item: any, index: any) => {
               return (
-                <div className="w-100 d-flex flex-column">
-                  <div className="sessionRateContainer" key={index}>
+                <div className="w-100 d-flex flex-column" key={index}>
+                  <div className="sessionRateContainer">
                     <div
                       className="sessionRateName"
                       style={{ width: "60%", overflow: "hidden" }}

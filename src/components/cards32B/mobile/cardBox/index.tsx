@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
+import React from "react";
 
 const CardBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -57,19 +58,26 @@ const CardBox = ({ odds, data }: any) => {
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
           <div className="cardNumberTitle">
             {" "}
-            <div style={{ width: "47%", textAlign: "start" }}>
-            </div>
+            <div style={{ width: "47%", textAlign: "start" }}></div>
             <div style={{ width: "53%", textAlign: "start" }}>11.2</div>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
           {odds?.slice(0, 5)?.map((item: any, index: number) => {
-            return <>{renderItem(item, index)}</>;
+            return (
+              <React.Fragment key={index}>
+                {renderItem(item, index)}
+              </React.Fragment>
+            );
           })}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
           {odds?.slice(5, 10)?.map((item: any, index: number) => {
-            return <>{renderItem(item, index + 5)}</>;
+            return (
+              <React.Fragment key={index}>
+                {renderItem(item, index + 5)}
+              </React.Fragment>
+            );
           })}
         </div>
       </div>

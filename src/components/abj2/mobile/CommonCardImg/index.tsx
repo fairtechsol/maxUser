@@ -28,9 +28,8 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any) => {
         return (
-          <div>
+          <div key={item?.code}>
             <div
-              key={item?.code}
               className={item?.gstatus === "0" ? "suspended" : ""}
               style={{
                 display: "flex",

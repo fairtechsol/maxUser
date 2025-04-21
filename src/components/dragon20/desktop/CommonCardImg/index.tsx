@@ -15,7 +15,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
 
   return (
     <div className="commonCardImgContainerd20">
-      {cardImg?.map((item: any,index:number) => (
+      {cardImg?.map((item: any, index: number) => (
         <div key={index}>
           <div
             key={item?.code}

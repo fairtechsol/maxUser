@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Form, Row, Stack } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -635,7 +635,7 @@ const UnsettledBetComponent = () => {
                 {ReportBetList?.count > 0 &&
                   ReportBetList?.rows?.map((item: any, index: number) => {
                     return (
-                      <>
+                      <React.Fragment key={index}>
                         {gameType === "sports" ? (
                           <tr
                             className={`w-100 d-flex align-items-center ${
@@ -649,7 +649,6 @@ const UnsettledBetComponent = () => {
                               height: "46px",
                               borderBottom: "1px solid #c7c8ca",
                             }}
-                            key={index}
                           >
                             <td
                               className="ps-2 justify-content-start h-100 d-flex align-items-center"
@@ -743,7 +742,6 @@ const UnsettledBetComponent = () => {
                               backgroundColor: "red",
                               borderBottom: "1px solid #c7c8ca",
                             }}
-                            key={index}
                           >
                             <td
                               className="ps-2 justify-content-start h-100 d-flex align-items-center"
@@ -814,7 +812,7 @@ const UnsettledBetComponent = () => {
                             </td>
                           </tr>
                         )}
-                      </>
+                      </React.Fragment>
                     );
                   })}
               </tbody>

@@ -110,9 +110,10 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
                     {elementsAndar &&
                       elementsAndar?.map((item: any, index: any) => {
                         return (
-                          <React.Fragment key={index}>
-                            <HandleCards card={item !== "1" ? item : ""} />
-                          </React.Fragment>
+                          <HandleCards
+                            card={item !== "1" ? item : ""}
+                            key={index}
+                          />
                         );
                       })}
                   </Row>
@@ -158,9 +159,10 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
                     {elementsBahar &&
                       elementsBahar?.map((item: any, index: any) => {
                         return (
-                          <React.Fragment key={index}>
-                            <HandleCards card={item !== "1" ? item : ""} />
-                          </React.Fragment>
+                          <HandleCards
+                            card={item !== "1" ? item : ""}
+                            key={index}
+                          />
                         );
                       })}
                   </Row>

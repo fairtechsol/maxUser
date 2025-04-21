@@ -27,12 +27,14 @@ const DesktopMyBet = () => {
       <div className="betList " style={{ maxHeight: "60vh", overflow: "auto" }}>
         <Table className="w-full lh-1">
           <thead>
-            <tr >
+            <tr>
               {placeBetHeader?.map((item) => (
                 <th
-                style={{backgroundColor: "#f7f7f7"}}
+                  style={{ backgroundColor: "#f7f7f7" }}
                   key={item?.id}
-                  className={`title-14 ${item?.id==="stake"?"text-end" :"text-start"} fbold lh-1`}
+                  className={`title-14 ${
+                    item?.id === "stake" ? "text-end" : "text-start"
+                  } fbold lh-1`}
                 >
                   {item?.name}
                 </th>

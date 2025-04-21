@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Dropdown, Modal, Navbar } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -341,50 +341,52 @@ const MobileHeader = () => {
                     <table
                       style={{ width: "100%", borderCollapse: "collapse" }}
                     >
-                      {sport.rules.map((rule, ruleIndex) => (
-                        <tbody key={ruleIndex}>
-                          <tr>
-                            <td
-                              colSpan={100}
-                              className="rule-popup-heading bg-secondary p-1 text-white title-18"
-                              style={{
-                                fontWeight: "bold",
-                                textAlign: "left",
-                                padding: "10px",
-                                borderBottom: "1px solid #ccc",
-                                marginBottom: "10px",
-                              }}
-                            >
-                              {rule.category}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style={{ height: "8px" }}></td>
-                          </tr>
-                          {rule.description.map((description, descIndex) => (
-                            <tr
-                              className="title-12 gap-2"
-                              style={{ backgroundColor: "#f2f2f2" }}
-                              key={descIndex}
-                            >
+                      <tbody>
+                        {sport.rules.map((rule, ruleIndex) => (
+                          <React.Fragment key={ruleIndex}>
+                            <tr>
                               <td
+                                colSpan={100}
+                                className="rule-popup-heading bg-secondary p-1 text-white title-18"
                                 style={{
-                                  padding: "6px 10px",
-                                  borderBottom: "1px solid #ddd",
+                                  fontWeight: "bold",
                                   textAlign: "left",
-                                  lineHeight: 1.5,
-                                  color: description?.color || "black",
+                                  padding: "10px",
+                                  borderBottom: "1px solid #ccc",
+                                  marginBottom: "10px",
                                 }}
                               >
-                                {description?.text}
+                                {rule.category}
                               </td>
                             </tr>
-                          ))}
-                          <tr>
-                            <td style={{ height: "8px" }}></td>
-                          </tr>
-                        </tbody>
-                      ))}
+                            <tr>
+                              <td style={{ height: "8px" }}></td>
+                            </tr>
+                            {rule.description.map((description, descIndex) => (
+                              <tr
+                                className="title-12 gap-2"
+                                style={{ backgroundColor: "#f2f2f2" }}
+                                key={descIndex}
+                              >
+                                <td
+                                  style={{
+                                    padding: "6px 10px",
+                                    borderBottom: "1px solid #ddd",
+                                    textAlign: "left",
+                                    lineHeight: 1.5,
+                                    color: description?.color || "black",
+                                  }}
+                                >
+                                  {description?.text}
+                                </td>
+                              </tr>
+                            ))}
+                            <tr>
+                              <td style={{ height: "8px" }}></td>
+                            </tr>
+                          </React.Fragment>
+                        ))}
+                      </tbody>
                     </table>
                   </div>
                 )}

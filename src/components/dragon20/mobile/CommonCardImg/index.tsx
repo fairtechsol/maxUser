@@ -16,9 +16,8 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any) => {
         return (
-          <div>
+          <div key={item?.sid}>
             <div
-              key={item?.sid}
               className={item?.gstatus === "0" ? "lock" : ""}
               style={{
                 display: "flex",

@@ -39,9 +39,9 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
 
   return (
     <div className="commonCardImgContainer">
-      {cardImg?.map((item: any) => {
+      {cardImg?.map((item: any, idx: number) => {
         return (
-          <div style={{ margin: "2px" }}>
+          <div style={{ margin: "2px" }} key={idx}>
             <div
               key={item?.code}
               className={handlock(item)}

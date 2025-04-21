@@ -65,8 +65,8 @@ const CricketMatch20Desktop = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -129,11 +129,14 @@ const CricketMatch20Desktop = () => {
   }, [dragonTigerDetail]);
 
   useEffect(() => {
-    if (leftBoard?.[0]?.gstatus === "SUSPENDED" || leftBoard?.[0]?.b1 ==="0.00") {
+    if (
+      leftBoard?.[0]?.gstatus === "SUSPENDED" ||
+      leftBoard?.[0]?.b1 === "0.00"
+    ) {
       dispatch(selectedBetAction(""));
     } else {
     }
-  }, [leftBoard?.[0]?.gstatus,leftBoard?.[0]?.b1]);
+  }, [leftBoard?.[0]?.gstatus, leftBoard?.[0]?.b1]);
 
   return (
     <>
@@ -205,7 +208,7 @@ const CricketMatch20Desktop = () => {
                       }}
                     >
                       {leftBoard?.map((item: any, index: any) => (
-                        <div>
+                        <div key={index}>
                           <ScoreBox
                             teamA="Team A"
                             teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}
@@ -239,7 +242,7 @@ const CricketMatch20Desktop = () => {
                     >
                       {rightBoard?.map((item: any, index: any) => {
                         return (
-                          <div>
+                          <div key={index}>
                             <ScoreBox
                               teamA="Team A"
                               teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}
