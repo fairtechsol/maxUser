@@ -28,9 +28,8 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
     <div className="commonCardImgContainerAbj">
       {cardImg?.map((item: any) => {
         return (
-          <div>
+          <div key={item?.code}>
             <div
-              key={item?.code}
               className={handlock(item)}
               style={{
                 display: "flex",

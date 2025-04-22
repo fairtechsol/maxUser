@@ -30,7 +30,6 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
         return (
           <div key={index}>
             <div
-              key={item?.code}
               className={handlock(item)}
               style={{
                 display: "flex",

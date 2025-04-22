@@ -104,8 +104,8 @@ const SessionOddEven = ({ title, data, detail }) => {
             </div>
             {evenIndexArray?.map((item: any, index: any) => {
               return (
-                <div className="w-100 d-flex flex-column">
-                  <div className="sessionOddEvenRateContainer" key={index}>
+                <div className="w-100 d-flex flex-column" key={index}>
+                  <div className="sessionOddEvenRateContainer">
                     <div
                       className="sessionRateName runnerWidthNormal"
                       style={{ overflow: "hidden" }}
@@ -265,8 +265,8 @@ const SessionOddEven = ({ title, data, detail }) => {
               </div>
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
-                  <div className="w-100 d-flex flex-column">
-                    <div className="sessionOddEvenRateContainer" key={index}>
+                  <div className="w-100 d-flex flex-column" key={index}>
+                    <div className="sessionOddEvenRateContainer">
                       <div
                         className="sessionRateName runnerWidthNormal"
                         style={{ overflow: "hidden" }}

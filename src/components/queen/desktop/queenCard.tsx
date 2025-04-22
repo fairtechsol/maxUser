@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
+import { Col, Container, Row } from "react-bootstrap";
 import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 
 interface Props {
   data: {
@@ -54,30 +54,26 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
   const total2 = handleCount(result?.[2], 2);
   const total3 = handleCount(result?.[3], 3);
 
-
   const maxSum = Math.max(total0, total1, total2, total3);
 
   return (
     data?.mid != "0" && (
-      <Container style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }} className={isMobile ? "title-12" : "title-16"}>
+      <Container
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+        className={isMobile ? "title-12" : "title-16"}
+      >
         {result?.[0]?.[0] !== "1" && (
           <Row>
             <Col>
               <span
                 style={{
-                  color:
-                  total0 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
+                  color: total0 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
                   fontWeight: "600",
-                 
                 }}
-                
               >
                 {total0 > 0 ? (
                   <>
-                    Total 0:{" "}
-                    <span style={{ color: "#FFC107" }}>
-                      {total0}
-                    </span>
+                    Total 0: <span style={{ color: "#FFC107" }}>{total0}</span>
                   </>
                 ) : (
                   ""
@@ -93,8 +89,10 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
                   justifyContent: "center",
                 }}
               >
-                {result?.[0]?.map((item: any) => {
-                  return <HandleCards card={item != "1" ? item : ""} />;
+                {result?.[0]?.map((item: any, index: number) => {
+                  return (
+                    <HandleCards card={item != "1" ? item : ""} key={index} />
+                  );
                 })}
               </div>
             </Col>
@@ -105,18 +103,13 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
             <Col>
               <span
                 style={{
-                  color:
-                  total1 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
+                  color: total1 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
                   fontWeight: "600",
-                 
                 }}
               >
                 {total1 > 0 ? (
                   <>
-                    Total 1:{" "}
-                    <span style={{ color: "#FFC107" }}>
-                      {total1}
-                    </span>
+                    Total 1: <span style={{ color: "#FFC107" }}>{total1}</span>
                   </>
                 ) : (
                   ""
@@ -132,8 +125,10 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
                   justifyContent: "center",
                 }}
               >
-                {result?.[1]?.map((item: any) => {
-                  return <HandleCards card={item != "1" ? item : ""} />;
+                {result?.[1]?.map((item: any, index: number) => {
+                  return (
+                    <HandleCards card={item != "1" ? item : ""} key={index} />
+                  );
                 })}
               </div>
             </Col>
@@ -144,18 +139,13 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
             <Col>
               <span
                 style={{
-                  color:
-                  total2 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
+                  color: total2 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
                   fontWeight: "600",
-                 
                 }}
               >
                 {total2 > 0 ? (
                   <>
-                    Total 2:{" "}
-                    <span style={{ color: "#FFC107" }}>
-                      {total2}
-                    </span>
+                    Total 2: <span style={{ color: "#FFC107" }}>{total2}</span>
                   </>
                 ) : (
                   ""
@@ -171,8 +161,10 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
                   justifyContent: "center",
                 }}
               >
-                {result?.[2]?.map((item: any) => {
-                  return <HandleCards card={item != "1" ? item : ""} />;
+                {result?.[2]?.map((item: any, index: number) => {
+                  return (
+                    <HandleCards card={item != "1" ? item : ""} key={index} />
+                  );
                 })}
               </div>
             </Col>
@@ -183,18 +175,13 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
             <Col>
               <span
                 style={{
-                  color:
-                  total3 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
+                  color: total3 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
                   fontWeight: "600",
-                 
                 }}
               >
                 {total2 > 0 ? (
                   <>
-                    Total 3:{" "}
-                    <span style={{ color: "#FFC107" }}>
-                      {total3}
-                    </span>
+                    Total 3: <span style={{ color: "#FFC107" }}>{total3}</span>
                   </>
                 ) : (
                   ""
@@ -210,8 +197,10 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
                   justifyContent: "center",
                 }}
               >
-                {result?.[3]?.map((item: any) => {
-                  return <HandleCards card={item != "1" ? item : ""} />;
+                {result?.[3]?.map((item: any, index: number) => {
+                  return (
+                    <HandleCards card={item != "1" ? item : ""} key={index} />
+                  );
                 })}
               </div>
             </Col>

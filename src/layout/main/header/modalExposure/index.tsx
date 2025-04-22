@@ -27,41 +27,40 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
           <tbody className={`w-100 ${isMobile ? "title-12" : "title-14"}`}>
             {myMarketList?.map((item: any, index: number) => {
               return (
-                <>
-                  <tr
-                    style={{
-                      height: "32px",
-                      backgroundColor: "#f2f2f2",
-                      borderBottom: "0.5px solid #c7c8ca",
-                    }}
-                  >
-                    <td className="d-flex justify-content-start align-items-center">
-                      {item?.eventType}
-                    </td>
-                    <td style={{ color: "#007bff" }}>
-                      <Link
-                        to={
-                          ["greyHound", "horseRacing"].includes(item.eventType)
-                            ? `/race/${item.matchId}`
-                            : [
-                                "football",
-                                "tennis",
-                                "cricket",
-                                "politics",
-                              ].includes(item.eventType)
-                            ? `/game-detail/${item.eventType}/${item.matchId}`
-                            : `/${navigateToGameDetail[item.eventType]}`
-                        }
-                        style={{ color: "#0d6efd" }}
-                        onClick={() => setShow(false)}
-                      >
-                        {item?.eventName}
-                      </Link>
-                    </td>
-                    <td>{item?.groupedmarkettype || item?.marketType}</td>
-                    <td>{item?.trade}</td>
-                  </tr>
-                </>
+                <tr
+                  style={{
+                    height: "32px",
+                    backgroundColor: "#f2f2f2",
+                    borderBottom: "0.5px solid #c7c8ca",
+                  }}
+                  key={index}
+                >
+                  <td className="d-flex justify-content-start align-items-center">
+                    {item?.eventType}
+                  </td>
+                  <td style={{ color: "#007bff" }}>
+                    <Link
+                      to={
+                        ["greyHound", "horseRacing"].includes(item.eventType)
+                          ? `/race/${item.matchId}`
+                          : [
+                              "football",
+                              "tennis",
+                              "cricket",
+                              "politics",
+                            ].includes(item.eventType)
+                          ? `/game-detail/${item.eventType}/${item.matchId}`
+                          : `/${navigateToGameDetail[item.eventType]}`
+                      }
+                      style={{ color: "#0d6efd" }}
+                      onClick={() => setShow(false)}
+                    >
+                      {item?.eventName}
+                    </Link>
+                  </td>
+                  <td>{item?.groupedmarkettype || item?.marketType}</td>
+                  <td>{item?.trade}</td>
+                </tr>
               );
             })}
           </tbody>

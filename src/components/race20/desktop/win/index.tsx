@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 
 const WinBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -15,8 +15,8 @@ const WinBox = ({ odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:parseFloat(item?.min),
-      max:parseFloat(item?.max)
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max),
     };
     dispatch(
       selectedBetAction({
@@ -34,54 +34,55 @@ const WinBox = ({ odds, data }: any) => {
   };
   return (
     <>
-      <div className="winContainer border-bottom-0" style={{ border: "1px solid #c7c8ca"}}>
+      <div
+        className="winContainer border-bottom-0"
+        style={{ border: "1px solid #c7c8ca" }}
+      >
         <div className="subwinContainer">
           {odds?.map((item: any, index: number) => {
             return (
-              <>
-                <div className="win-mainRateBox" key={index}>
-                  <div>
-                    <span className="f600">{item?.nat}</span>
-                  </div>
-                  <div
-                    className={`win-rateBox back-BackGround cursor-pointer flex-column ${
-                      handleLock(item) ? "suspended" : ""
-                    }`}
-                    onClick={() => (handleLock(item) ? null : handleBet(item))}
-                  >
-                    <span className="rate-box">{item?.b1}</span>{" "}
-                  </div>
-                  <span
-                    className={`casino-volume mt-0 f600 ${
-                      data?.profitLoss
-                        ? data?.profitLoss[
-                            `${data?.videoInfo?.mid}_${item?.sid}_card`
-                          ]
-                          ? data?.profitLoss[
-                              `${data?.videoInfo?.mid}_${item?.sid}_card`
-                            ] > 0 
-                            ? "color-green"
-                            : data?.profitLoss[
-                                `${data?.videoInfo?.mid}_${item?.sid}_card`
-                              ] < 0
-                            ? "color-red"
-                            : ""
-                          : ""
-                        : ""
-                    }`}
-                  >
-                    {data?.profitLoss
+              <div className="win-mainRateBox" key={index}>
+                <div>
+                  <span className="f600">{item?.nat}</span>
+                </div>
+                <div
+                  className={`win-rateBox back-BackGround cursor-pointer flex-column ${
+                    handleLock(item) ? "suspended" : ""
+                  }`}
+                  onClick={() => (handleLock(item) ? null : handleBet(item))}
+                >
+                  <span className="rate-box">{item?.b1}</span>{" "}
+                </div>
+                <span
+                  className={`casino-volume mt-0 f600 ${
+                    data?.profitLoss
                       ? data?.profitLoss[
                           `${data?.videoInfo?.mid}_${item?.sid}_card`
                         ]
                         ? data?.profitLoss[
                             `${data?.videoInfo?.mid}_${item?.sid}_card`
-                          ]
-                        : "\u00A0"
-                      : "\u00A0"}
-                  </span>
-                </div>
-              </>
+                          ] > 0
+                          ? "color-green"
+                          : data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.sid}_card`
+                            ] < 0
+                          ? "color-red"
+                          : ""
+                        : ""
+                      : ""
+                  }`}
+                >
+                  {data?.profitLoss
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ]
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${item?.sid}_card`
+                        ]
+                      : "\u00A0"
+                    : "\u00A0"}
+                </span>
+              </div>
             );
           })}
         </div>

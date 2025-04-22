@@ -34,7 +34,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
               "d-flex flex-row justify-content-center align-items-center"
             }
           >
-            {result?.[0]?.map((item: any) => {
+            {result?.[0]?.map((item: any, index: number) => {
               return (
                 item != "1" && (
                   <div
@@ -43,6 +43,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
                       borderRadius: "1px",
                       marginLeft: "5px",
                     }}
+                    key={index}
                   >
                     <HandleCards card={item} />
                   </div>
@@ -59,7 +60,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Player 9</span>
           <div className="d-flex flex-row justify-content-center align-items-center">
-            {result?.[1]?.map((item: any) => {
+            {result?.[1]?.map((item: any, index: number) => {
               return (
                 item != "1" && (
                   <div
@@ -68,6 +69,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
                       borderRadius: "1px",
                       marginLeft: "5px",
                     }}
+                    key={index}
                   >
                     <HandleCards card={item} />
                   </div>
@@ -86,10 +88,11 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
             Player 10
           </span>
           <div className="d-flex flex-row justify-content-center align-items-center">
-            {result?.[2]?.map((item: any) => {
+            {result?.[2]?.map((item: any, index: number) => {
               return (
                 item != "1" && (
                   <div
+                    key={index}
                     style={{
                       border: "1px solid #fdef34",
                       borderRadius: "1px",
@@ -113,10 +116,11 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
             Player 11
           </span>
           <div className="d-flex flex-row justify-content-center align-items-center">
-            {result?.[3]?.map((item: any) => {
+            {result?.[3]?.map((item: any, index: number) => {
               return (
                 item != "1" && (
                   <div
+                    key={index}
                     style={{
                       border: "1px solid #fdef34",
                       borderRadius: "1px",

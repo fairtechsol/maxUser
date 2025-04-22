@@ -126,7 +126,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
                               icon={"16px"}
                             />
                           ) : (
-                            <HandleCards key={index} card={item} />
+                            <HandleCards card={item} />
                           )}
                         </div>
                       )
@@ -151,6 +151,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
                         height={"60px"}
                         font={"24px"}
                         icon={"16px"}
+                        key={index}
                       />
                     ) : (
                       <HandleCards key={index} card={item} />
@@ -185,7 +186,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
                               icon={"16px"}
                             />
                           ) : (
-                            <HandleCards key={index} card={item} />
+                            <HandleCards card={item} />
                           )}
                         </div>
                       )
@@ -210,6 +211,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
                         height={"60px"}
                         font={"24px"}
                         icon={"16px"}
+                        key={index}
                       />
                     ) : (
                       <HandleCards key={index} card={item} />

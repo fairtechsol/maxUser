@@ -387,10 +387,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     if (data?.runnerId === id) {
       profit =
         parseFloat(stake) * (parseFloat(data?.rate) - 1) +
-        parseFloat(handleProfitLoss(data?.runners?.parentBetId || data?.runners?.id, id));
+        parseFloat(
+          handleProfitLoss(data?.runners?.parentBetId || data?.runners?.id, id)
+        );
     } else {
       profit =
-        parseFloat(handleProfitLoss(data?.runners?.parentBetId || data?.runners?.id, id)) - parseFloat(stake);
+        parseFloat(
+          handleProfitLoss(data?.runners?.parentBetId || data?.runners?.id, id)
+        ) - parseFloat(stake);
     }
 
     return profit ? profit : "";
@@ -595,69 +599,74 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               </div>
             </Col>
             {selectedBet?.team?.matchBetType === "tournament" ? (
-              selectedBet?.team?.runners?.runners?.map((item: any) => {
+              selectedBet?.team?.runners?.runners?.map((item: any, index: number) => {
                 return (
-                  <>
-                    <div className="container d-flex justify-content-between mt-2">
-                      <div className="row" style={{ width: "40%" }}>
-                        <div className="col-md-4 flex-start">
-                          <div className="row">
-                            <div className="col-md-12">
-                              <span className="f400 title-12">{item?.nat}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="row row5" style={{ width: "30%" }}>
-                        <div className="col-md-4">
-                          <div className="row">
-                            <div className="col-md-12 text-center">
-                              <span
-                                className={`f400 title-12 ${handleProfitLoss(
-                                  selectedBet?.team?.runners?.parentBetId || selectedBet?.team?.runners?.id,
-                                  item?.parentRunnerId || item?.id
-                                ) < 0
-                                  ? "color-red"
-                                  : "color-green"
-                                  }`}
-                              >
-                                {Number(handleProfitLoss(
-                                  selectedBet?.team?.runners?.parentBetId || selectedBet?.team?.runners?.id,
-                                  item?.parentRunnerId || item?.id
-                                )).toFixed(2)}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="row" style={{ width: "30%" }}>
-                        <div className="col-md-4">
-                          <div className="row">
-                            <div className="col-md-12 text-end">
-                              <span
-                                style={{ fontSize: "12px", fontWeight: "400" }}
-                                className={
-                                  Number(
-                                    handleTounamentProLoss(
-                                      selectedBet?.team,
-                                      item?.parentRunnerId || item?.id
-                                    )
-                                  ) > 0
-                                    ? "color-green"
-                                    : "color-red"
-                                }
-                              >
-                                {Number(handleTounamentProLoss(
-                                  selectedBet?.team,
-                                  item?.parentRunnerId || item?.id
-                                )).toFixed(2)}
-                              </span>
-                            </div>
+                  <div className="container d-flex justify-content-between mt-2" key={index}>
+                    <div className="row" style={{ width: "40%" }}>
+                      <div className="col-md-4 flex-start">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span className="f400 title-12">{item?.nat}</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </>
+                    <div className="row row5" style={{ width: "30%" }}>
+                      <div className="col-md-4">
+                        <div className="row">
+                          <div className="col-md-12 text-center">
+                            <span
+                              className={`f400 title-12 ${
+                                handleProfitLoss(
+                                  selectedBet?.team?.runners?.parentBetId ||
+                                    selectedBet?.team?.runners?.id,
+                                  item?.parentRunnerId || item?.id
+                                ) < 0
+                                  ? "color-red"
+                                  : "color-green"
+                              }`}
+                            >
+                              {Number(
+                                handleProfitLoss(
+                                  selectedBet?.team?.runners?.parentBetId ||
+                                    selectedBet?.team?.runners?.id,
+                                  item?.parentRunnerId || item?.id
+                                )
+                              ).toFixed(2)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row" style={{ width: "30%" }}>
+                      <div className="col-md-4">
+                        <div className="row">
+                          <div className="col-md-12 text-end">
+                            <span
+                              style={{ fontSize: "12px", fontWeight: "400" }}
+                              className={
+                                Number(
+                                  handleTounamentProLoss(
+                                    selectedBet?.team,
+                                    item?.parentRunnerId || item?.id
+                                  )
+                                ) > 0
+                                  ? "color-green"
+                                  : "color-red"
+                              }
+                            >
+                              {Number(
+                                handleTounamentProLoss(
+                                  selectedBet?.team,
+                                  item?.parentRunnerId || item?.id
+                                )
+                              ).toFixed(2)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 );
               })
             ) : (

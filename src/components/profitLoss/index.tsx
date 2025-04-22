@@ -3,7 +3,7 @@ import { Col, Row, Stack } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
@@ -85,8 +85,6 @@ const ProfitLossComponent = () => {
 
   useEffect(() => {
     if (getProfile?.id && tableConfig) {
-    
-  
       dispatch(
         getProfitLossReport({
           userId: getProfile?.id,
@@ -98,9 +96,7 @@ const ProfitLossComponent = () => {
       );
     }
   }, [getProfile?.id, tableConfig, fromDate, toDate]);
-  
 
-  
   useEffect(() => {
     const date = Math.floor(new Date().getTime() / 1000);
     const timestamp = Math.floor(new Date(fromDate).getTime() / 1000);
@@ -109,7 +105,7 @@ const ProfitLossComponent = () => {
     }
   }, [fromDate]);
 
-    return (
+  return (
     <>
       {isMobile && (
         <div className="h-100">
@@ -184,7 +180,10 @@ const ProfitLossComponent = () => {
                   profitLossReport?.result?.map((item: any, index: number) => {
                     return (
                       <tr className={`${isMobile && "title-12"}`} key={index}>
-                        <td> {typeToTitle[item?.eventType] || item?.eventType}</td>
+                        <td>
+                          {" "}
+                          {typeToTitle[item?.eventType] || item?.eventType}
+                        </td>
                         <td>{item?.marketType}</td>
                         <td>{item?.aggregateAmount}</td>
                       </tr>

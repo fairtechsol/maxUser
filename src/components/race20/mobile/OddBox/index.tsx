@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import { HandleRaceCards } from "../../desktop/card";
 const OddBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -17,8 +17,8 @@ const OddBox = ({ odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:parseFloat(item?.min),
-      max:parseFloat(item?.max)
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max),
     };
     dispatch(
       selectedBetAction({
@@ -40,7 +40,7 @@ const OddBox = ({ odds, data }: any) => {
   };
   const handleLock = (item: any, type: string) => {
     if (type == "back") {
-      if (item?.gstatus != "ACTIVE" || item?.b1 === "0.00" ) {
+      if (item?.gstatus != "ACTIVE" || item?.b1 === "0.00") {
         return true;
       } else {
         return false;
@@ -67,11 +67,10 @@ const OddBox = ({ odds, data }: any) => {
   };
 
   useEffect(() => {
-    if (odds?.[0]?.gstatus !== "ACTIVE" ||odds?.[0]?.b1 === "0.00") {
+    if (odds?.[0]?.gstatus !== "ACTIVE" || odds?.[0]?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [odds?.[0]?.gstatus,odds?.[0]?.b1]);
+    }
+  }, [odds?.[0]?.gstatus, odds?.[0]?.b1]);
 
   return (
     <>
@@ -86,102 +85,80 @@ const OddBox = ({ odds, data }: any) => {
         <div className="oddBoxContainer-m" style={{ gap: "5px" }}>
           {odds?.map((item: any, index: number) => {
             return (
-              <>
+              <div
+                style={{
+                  width: "48%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                }}
+                key={index}
+              >
                 <div
                   style={{
-                    width: "48%",
+                    width: "100%",
                     display: "flex",
-                    flexDirection: "column",
-                    gap: "5px",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                  key={index}
+                >
+                  <HandleRaceCards card={handleCardRender(item?.nat)} />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-around",
+                    gap: "5px",
+                    lineHeight: 1,
+                  }}
                 >
                   <div
+                    className={`back-BackGround py-1 ${
+                      handleLock(item, "back") ? "suspended py-1" : ""
+                    }`}
                     style={{
-                      width: "100%",
+                      width: "45%",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
+                      flexDirection: "column",
+                      // paddingTop: "7px",
                     }}
+                    onClick={() =>
+                      handleLock(item, "back")
+                        ? null
+                        : handleBet(odds?.[index], "back")
+                    }
                   >
-                    <HandleRaceCards card={handleCardRender(item?.nat)} />
+                    <span className="rate-box">{item?.b1}</span>
+                    <span className="casino-volume f400">{item?.bs1}</span>
                   </div>
                   <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "space-around",
-                      gap: "5px",
-                      lineHeight: 1,
-                    }}
-                  >
-                    <div
-                      className={`back-BackGround py-1 ${
-                        handleLock(item, "back") ? "suspended py-1" : ""
-                      }`}
-                      style={{
-                        width: "45%",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flexDirection: "column",
-                        // paddingTop: "7px",
-                      }}
-                      onClick={() =>
-                        handleLock(item, "back")
-                          ? null
-                          : handleBet(odds?.[index], "back")
-                      }
-                    >
-                      <span className="rate-box">{item?.b1}</span>
-                      <span className="casino-volume f400">{item?.bs1}</span>
-                    </div>
-                    <div
-                      className={`lay-BackGround py-1 ${
-                        handleLock(item, "lay") ? "suspended py-1" : ""
-                      }`}
-                      style={{
-                        width: "50%",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flexDirection: "column",
-                        // paddingTop: "7px",
-                      }}
-                      onClick={() =>
-                        handleLock(item, "lay")
-                          ? null
-                          : handleBet(odds?.[index], "lay")
-                      }
-                    >
-                      <span className="rate-box">{item?.l1}</span>
-                      <span className="casino-volume f400">{item?.ls1}</span>
-                    </div>
-                  </div>
-                  <span
-                    className={`oddsBoxProfitLoss ${
-                      data?.profitLoss
-                        ? data?.profitLoss[
-                            `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
-                          ]
-                          ? JSON.parse(
-                              data?.profitLoss[
-                                `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
-                              ]
-                            )[hanleProfitLossForK(item?.nat)] > 0
-                            ? "color-green"
-                            : JSON.parse(
-                                data?.profitLoss[
-                                  `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
-                                ]
-                              )[hanleProfitLossForK(item?.nat)] < 0
-                            ? "color-red"
-                            : ""
-                          : ""
-                        : ""
+                    className={`lay-BackGround py-1 ${
+                      handleLock(item, "lay") ? "suspended py-1" : ""
                     }`}
+                    style={{
+                      width: "50%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column",
+                      // paddingTop: "7px",
+                    }}
+                    onClick={() =>
+                      handleLock(item, "lay")
+                        ? null
+                        : handleBet(odds?.[index], "lay")
+                    }
                   >
-                    {data?.profitLoss
+                    <span className="rate-box">{item?.l1}</span>
+                    <span className="casino-volume f400">{item?.ls1}</span>
+                  </div>
+                </div>
+                <span
+                  className={`oddsBoxProfitLoss ${
+                    data?.profitLoss
                       ? data?.profitLoss[
                           `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
                         ]
@@ -189,12 +166,36 @@ const OddBox = ({ odds, data }: any) => {
                             data?.profitLoss[
                               `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
                             ]
-                          )[hanleProfitLossForK(item?.nat)]
-                        :  <br></br>
-                      : 0}
-                  </span>
-                </div>
-              </>
+                          )[hanleProfitLossForK(item?.nat)] > 0
+                          ? "color-green"
+                          : JSON.parse(
+                              data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
+                              ]
+                            )[hanleProfitLossForK(item?.nat)] < 0
+                          ? "color-red"
+                          : ""
+                        : ""
+                      : ""
+                  }`}
+                >
+                  {data?.profitLoss ? (
+                    data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
+                    ] ? (
+                      JSON.parse(
+                        data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
+                        ]
+                      )[hanleProfitLossForK(item?.nat)]
+                    ) : (
+                      <br></br>
+                    )
+                  ) : (
+                    0
+                  )}
+                </span>
+              </div>
             );
           })}
         </div>

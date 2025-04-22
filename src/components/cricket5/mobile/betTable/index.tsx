@@ -63,7 +63,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
         </div>
         <div className="market-body-c" data-title="OPEN">
           {odds?.map((row: any, index: any) => (
-            <div className={`market-row-c`}>
+            <div className={`market-row-c`} key={index}>
               <div className="market-nation-detail-b" style={{ width: "58%" }}>
                 <span
                   className="market-nation-name-c"

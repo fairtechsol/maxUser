@@ -123,8 +123,8 @@ const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
 
         <div style={{ display: "flex", gap: "5px" }}>
           {/* <HandleCards card="9HH" /> */}
-          {spadeCard?.split(",")?.map((crd) => {
-            return <HandleCards card={crd} />;
+          {spadeCard?.split(",")?.map((crd, idx: number) => {
+            return <HandleCards card={crd} key={idx} />;
           })}
         </div>
       </div>

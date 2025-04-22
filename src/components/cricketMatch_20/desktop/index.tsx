@@ -205,7 +205,7 @@ const CricketMatch20Desktop = () => {
                       }}
                     >
                       {leftBoard?.map((item: any, index: any) => (
-                        <div>
+                        <div key={index}>
                           <ScoreBox
                             teamA="Team A"
                             teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}
@@ -238,7 +238,7 @@ const CricketMatch20Desktop = () => {
                     >
                       {rightBoard?.map((item: any, index: any) => {
                         return (
-                          <div>
+                          <div key={index}>
                             <ScoreBox
                               teamA="Team A"
                               teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}

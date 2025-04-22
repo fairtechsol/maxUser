@@ -388,10 +388,11 @@ const Tournament = ({ title, box, data, detail }) => {
                       {(item?.ex?.availableToBack?.length > 0
                         ? item?.ex?.availableToBack
                         : dummyArray
-                      )?.map((item2: any) => {
+                      )?.map((item2: any, index: number) => {
                         return (
                           <BetBox
                             data={item2}
+                            key={index}
                             type={"back"}
                             detail={detail}
                             runner={item}
@@ -402,10 +403,11 @@ const Tournament = ({ title, box, data, detail }) => {
                       {(item?.ex?.availableToLay?.length > 0
                         ? item?.ex?.availableToLay
                         : dummyArray
-                      )?.map((item2: any) => {
+                      )?.map((item2: any, index: number) => {
                         return (
                           <BetBox
                             data={item2}
+                            key={index}
                             type={"lay"}
                             detail={detail}
                             runner={item}

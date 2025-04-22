@@ -72,26 +72,26 @@ const Race20ResultComponent: React.FC<Props> = ({ data }: any) => {
           }}
         >
           <div className="result-card-container">
-            {hh?.map((item: any) => {
-              return <HandleCards card={item} />;
+            {hh?.map((item: any, index: number) => {
+              return <HandleCards card={item} key={index} />;
             })}{" "}
             {hh?.length < 5 ? <HandleCards card={"KHH"} /> : ""}{" "}
           </div>
           <div className="result-card-container">
-            {dd?.map((item: any) => {
-              return <HandleCards card={item} />;
+            {dd?.map((item: any, index: number) => {
+              return <HandleCards card={item} key={index} />;
             })}{" "}
             {dd?.length < 5 ? <HandleCards card={"KDD"} /> : ""}{" "}
           </div>
           <div className="result-card-container">
-            {cc?.map((item: any) => {
-              return <HandleCards card={item} />;
+            {cc?.map((item: any, index: number) => {
+              return <HandleCards card={item} key={index} />;
             })}{" "}
             {cc?.length < 5 ? <HandleCards card={"KCC"} /> : ""}{" "}
           </div>
           <div className="result-card-container">
-            {ss?.map((item: any) => {
-              return <HandleCards card={item} />;
+            {ss?.map((item: any, index: number) => {
+              return <HandleCards card={item} key={index} />;
             })}{" "}
             {ss?.length < 5 ? <HandleCards card={"KSS"} /> : ""}{" "}
           </div>
