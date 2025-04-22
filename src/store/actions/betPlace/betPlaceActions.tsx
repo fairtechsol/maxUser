@@ -7,7 +7,7 @@ export const placeBet = createAsyncThunk<any, any>(
   "/placeBet",
   async (requestData, thunkApi) => {
     try {
-      const resp = await service.post(`${requestData.url}`, requestData.data);
+      const resp = await service.post(requestData.url, requestData.data);
       if (resp) {
         return resp?.data;
       }
@@ -22,12 +22,12 @@ export const getPlacedBets = createAsyncThunk<any, any>(
   "placed/bet",
   async (id, thunkApi) => {
     try {
-      const resp = await service.get(
-        `${ApiConstants.BET.GETPLACEDBETS}?result=inArr${JSON.stringify([
-          "PENDING",
-          "UNDECLARE",
-        ])}&betPlaced.matchId=${id}&sort=betPlaced.createdAt:DESC`
-      );
+      const params = {
+        result: `inArr${JSON.stringify(["PENDING", "UNDECLARE"])}`,
+        "betPlaced.matchId": id,
+        sort: "betPlaced.createdAt:DESC",
+      };
+      const resp = await service.get(ApiConstants.BET.GETPLACEDBETS, { params });
       if (resp) {
         return resp?.data?.rows;
       }
@@ -43,22 +43,19 @@ export const getPlacedBetsForAccountStatement = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.BET.GETPLACEDBETS}?${
-          requestData.betId
-            ? `&betId=inArr${JSON.stringify(requestData.betId)}`
-            : requestData.runnerId
+        `${ApiConstants.BET.GETPLACEDBETS}?${requestData.betId
+          ? `&betId=inArr${JSON.stringify(requestData.betId)}`
+          : requestData.runnerId
             ? requestData.isCard
               ? `&betPlaced.runnerId=${requestData.runnerId}`
               : `runnerId=eq${requestData.runnerId}`
             : ""
-        }${
-          requestData.result
-            ? `&result=${requestData.result}`
-            : requestData.status
+        }${requestData.result
+          ? `&result=${requestData.result}`
+          : requestData.status
             ? `&status=${requestData.status}`
             : ""
-        }&createBy=eq${requestData.userId}&sort=betPlaced.createdAt:DESC${
-          requestData.isCard ? "" : "&isCurrentBets=true"
+        }&createBy=eq${requestData.userId}&sort=betPlaced.createdAt:DESC${requestData.isCard ? "" : "&isCurrentBets=true"
         }`
       );
       if (resp) {
@@ -115,7 +112,7 @@ export const getMyMarket = createAsyncThunk<any>(
   "/myMarket",
   async (_, thunkApi) => {
     try {
-      const resp = await service.get(`${ApiConstants.BET.MY_MARKET}`);
+      const resp = await service.get(ApiConstants.BET.MY_MARKET);
       if (resp) {
         return resp?.data;
       }

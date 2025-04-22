@@ -36,35 +36,6 @@ export const getDragonTigerDetail = createAsyncThunk<any, any>(
     }
   }
 );
-// export const deleteHorseRacingBets = createAsyncThunk<any, any>(
-//   "horseRacing/deleteBet",
-//   async (requestData, thunkApi) => {
-//     try {
-//       const resp = await service.post(
-//         `${ApiConstants.HORSERACING.MATCH.DELETE_BET}`,
-//         { requestData }
-//       );
-//       if (resp?.data) {
-//         return resp?.data;
-//       }
-//     } catch (error) {
-//       const err = error as AxiosError;
-//       return thunkApi.rejectWithValue(err.response?.status);
-//     }
-//   }
-// );
-// export const updateMatchRatesForHorseRacing = createAsyncThunk<any, any>(
-//   "horseRacing/matchRatesUpdate",
-//   async (data) => {
-//     return data;
-//   }
-// );
-// export const updateTeamRatesForHorseRacing = createAsyncThunk<any, any>(
-//   "horseRacing/teamRatesUpdate",
-//   async (data) => {
-//     return data;
-//   }
-// );
 export const resultDragonTiger = createAsyncThunk<any, any>(
   "result/placeBetDragonTiger",
   async (requestData, thunkApi) => {
@@ -152,7 +123,7 @@ export const liveCasinoList = createAsyncThunk<any, any>(
   "result/liveCasinoList",
   async (_, thunkApi) => {
     try {
-      const resp = await service.post(`${ApiConstants.LiveCasinoGame}`);
+      const resp = await service.post(ApiConstants.LiveCasinoGame);
       if (resp?.data) {
         const updateData = combineAllGames(resp?.data);
         const updateDataCasino = combineGameCasino(resp?.data);
@@ -168,10 +139,7 @@ export const liveCasinoLogin = createAsyncThunk<any, any>(
   "result/liveCasinoLogin",
   async (requestData, thunkApi) => {
     try {
-      const resp = await service.post(
-        `${ApiConstants.LiveCasinoGameLogin}`,
-        requestData
-      );
+      const resp = await service.post(ApiConstants.LiveCasinoGameLogin, requestData);
       if (resp?.data) {
         return resp?.data;
       }
@@ -185,7 +153,7 @@ export const transactionProviderName = createAsyncThunk<any, any>(
   "result/transactionProviderName",
   async (_, thunkApi) => {
     try {
-      const resp = await service.get(`${ApiConstants.LiveCasinoGameProvider}`);
+      const resp = await service.get(ApiConstants.LiveCasinoGameProvider);
       if (resp?.data) {
         return resp?.data;
       }
@@ -200,10 +168,8 @@ export const transactionProviderBets = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.LiveCasinoGameBets}/${
-          requestData?.id
-        }?sort=virtualCasinoBetPlaced.createdAt:ASC&providerName=eq${
-          requestData?.name
+        `${ApiConstants.LiveCasinoGameBets}/${requestData?.id
+        }?sort=virtualCasinoBetPlaced.createdAt:ASC&providerName=eq${requestData?.name
         }&createdAt=between${moment(new Date(requestData?.date))?.format(
           "YYYY-MM-DD"
         )}|${moment(
