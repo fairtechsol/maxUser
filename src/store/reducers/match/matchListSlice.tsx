@@ -247,35 +247,14 @@ const matchListSlice = createSlice({
         state.searchedMatchList = null;
       })
       .addCase(updateBalance.fulfilled, (state, action) => {
-        const {
-          newTeamRateData,
-          teamArateRedisKey,
-          teamBrateRedisKey,
-          teamCrateRedisKey,
-          betId,
-          matchBetType,
-          matchId,
-        } = action.payload;
-        if (matchBetType === "tournament") {
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails.profitLossDataMatch,
-              [betId + "_profitLoss_" + matchId]:
-                JSON.stringify(newTeamRateData),
-            },
-          };
-        } else {
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails.profitLossDataMatch,
-              [teamArateRedisKey]: newTeamRateData?.teamA,
-              [teamBrateRedisKey]: newTeamRateData?.teamB,
-              [teamCrateRedisKey]: newTeamRateData?.teamC,
-            },
-          };
-        }
+        const { newTeamRateData, betId, matchId } = action.payload;
+        state.matchDetails = {
+          ...state.matchDetails,
+          profitLossDataMatch: {
+            ...state.matchDetails.profitLossDataMatch,
+            [betId + "_profitLoss_" + matchId]: JSON.stringify(newTeamRateData),
+          },
+        };
       })
       .addCase(updateMaxLossForBet.fulfilled, (state, action) => {
         const { betPlaced, profitLossData } = action.payload;
@@ -360,36 +339,15 @@ const matchListSlice = createSlice({
         }
       })
       .addCase(updateTeamRatesOnDeleteMatch.fulfilled, (state, action) => {
-        const {
-          redisObject,
-          teamArateRedisKey,
-          teamBrateRedisKey,
-          teamCrateRedisKey,
-          teamRate,
-          betId,
-          matchId,
-          matchBetType,
-        } = action.payload;
+        const { teamRate, betId, matchId } = action.payload;
 
-        if (matchBetType === "tournament") {
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails.profitLossDataMatch,
-              [betId + "_profitLoss_" + matchId]: JSON.stringify(teamRate),
-            },
-          };
-        } else {
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails?.profitLossDataMatch,
-              [teamArateRedisKey]: redisObject[teamArateRedisKey],
-              [teamBrateRedisKey]: redisObject[teamBrateRedisKey],
-              [teamCrateRedisKey]: redisObject[teamCrateRedisKey],
-            },
-          };
-        }
+        state.matchDetails = {
+          ...state.matchDetails,
+          profitLossDataMatch: {
+            ...state.matchDetails.profitLossDataMatch,
+            [betId + "_profitLoss_" + matchId]: JSON.stringify(teamRate),
+          },
+        };
       })
       .addCase(updateProfitLossOnDeleteSession.fulfilled, (state, action) => {
         const { betId, profitLoss, matchId } = action.payload;
