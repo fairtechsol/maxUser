@@ -152,7 +152,7 @@ export const liveCasinoList = createAsyncThunk<any, any>(
   "result/liveCasinoList",
   async (_, thunkApi) => {
     try {
-      const resp = await service.post(`${ApiConstants.LiveCasinoGame}`);
+      const resp = await service.post(ApiConstants.LiveCasinoGame);
       if (resp?.data) {
         const updateData = combineAllGames(resp?.data);
         const updateDataCasino = combineGameCasino(resp?.data);
@@ -169,7 +169,7 @@ export const liveCasinoLogin = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.post(
-        `${ApiConstants.LiveCasinoGameLogin}`,
+        ApiConstants.LiveCasinoGameLogin,
         requestData
       );
       if (resp?.data) {
@@ -185,7 +185,7 @@ export const transactionProviderName = createAsyncThunk<any, any>(
   "result/transactionProviderName",
   async (_, thunkApi) => {
     try {
-      const resp = await service.get(`${ApiConstants.LiveCasinoGameProvider}`);
+      const resp = await service.get(ApiConstants.LiveCasinoGameProvider);
       if (resp?.data) {
         return resp?.data;
       }
@@ -200,17 +200,20 @@ export const transactionProviderBets = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.LiveCasinoGameBets}/${
-          requestData?.id
-        }?sort=virtualCasinoBetPlaced.createdAt:ASC&providerName=eq${
-          requestData?.name
-        }&createdAt=between${moment(new Date(requestData?.date))?.format(
-          "YYYY-MM-DD"
-        )}|${moment(
-          new Date(requestData?.date).setDate(
-            new Date(requestData?.date).getDate() + 1
-          )
-        )?.format("YYYY-MM-DD")}`
+        `${ApiConstants.LiveCasinoGameBets}/${requestData?.id}`,
+        {
+          params: {
+            sort: "virtualCasinoBetPlaced.createdAt:ASC",
+            providerName: `eq${requestData?.name}`,
+            createdAt: `between${moment(new Date(requestData?.date))?.format(
+              "YYYY-MM-DD"
+            )}|${moment(
+              new Date(requestData?.date).setDate(
+                new Date(requestData?.date).getDate() + 1
+              )
+            )?.format("YYYY-MM-DD")}`,
+          },
+        }
       );
       if (resp?.data) {
         return resp?.data;
