@@ -36,7 +36,7 @@ const betPlace = createSlice({
       })
       .addCase(placeBet.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(betDataFromSocket.fulfilled, (state, action) => {
         const betId = action.payload?.betPlaced?.placedBet?.betId;
@@ -58,7 +58,7 @@ const betPlace = createSlice({
         }
       })
       .addCase(betPlaceSuccessReset, (state) => {
-        return { ...state, success: false };
+        state.success = false;
       });
   },
 });
