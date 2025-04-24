@@ -39,6 +39,7 @@ import {
   updatePlacedbetsDeleteReason,
   updateProfitLossOnDeleteSession,
   updateRunAmountOnDeleteBet,
+  updateTeamRateOnUndeclare,
   updateTeamRatesOnDeleteMatch,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
@@ -180,6 +181,12 @@ const GameDetails = () => {
     }
   });
 
+  const handleMatchResultUndeclare = (event: any) => {
+    if (event?.matchId !== id) return;
+    dispatch(getProfileInMatchDetail());
+    dispatch(updateTeamRateOnUndeclare(event));
+  };
+
   const sessionResultDeclared = tryCatchWrapper((event: any) => {
     dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
   });
@@ -243,6 +250,9 @@ const GameDetails = () => {
           handleSessionResultUnDeclare
         );
         socketService.userBalance.updateDeleteReason(handleDeleteReasonUpdate);
+        socketService.userBalance.matchResultUnDeclared(
+          handleMatchResultUndeclare
+        );
       }
     } catch (error) {
       console.log(error);
