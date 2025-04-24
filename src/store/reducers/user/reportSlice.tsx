@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  getCardReport,
-  getCasinoReportGameList,
-  getLiveCasinoBets,
-  resetCardReport,
+    getCardReport,
+    getCasinoReportGameList,
+    getLiveCasinoBets,
+    resetCardReport,
 } from "../../actions/user/userAction";
 
 interface INITIALSTATE {
@@ -41,7 +41,7 @@ const reportSlice = createSlice({
       })
       .addCase(getCardReport.rejected, (state, action) => {
         state.loading = false;
-        state.error == action?.error?.message;
+        state.error == action.error?.message;
       })
       .addCase(resetCardReport, (state) => {
         state.cardReport = null;
@@ -58,7 +58,7 @@ const reportSlice = createSlice({
       })
       .addCase(getCasinoReportGameList.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getLiveCasinoBets.pending, (state) => {
         state.loading = true;
@@ -72,7 +72,7 @@ const reportSlice = createSlice({
       })
       .addCase(getLiveCasinoBets.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       });
   },
 });

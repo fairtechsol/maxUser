@@ -65,7 +65,7 @@ const placedBet = createSlice({
       })
       .addCase(getPlacedBets.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getPlacedBetsForAccountStatement.pending, (state) => {
         state.loading = true;
@@ -80,7 +80,7 @@ const placedBet = createSlice({
       })
       .addCase(getPlacedBetsForAccountStatement.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getRunAmount.pending, (state) => {
         state.loading = true;
@@ -142,7 +142,7 @@ const placedBet = createSlice({
       })
       .addCase(getRunAmount.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getRunAmountMeter.pending, (state) => {
         state.loading = true;
@@ -163,7 +163,7 @@ const placedBet = createSlice({
       })
       .addCase(getRunAmountMeter.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getMyMarket.pending, (state) => {
         state.loadingMyMarket = true;
@@ -178,10 +178,10 @@ const placedBet = createSlice({
       })
       .addCase(getMyMarket.rejected, (state, action) => {
         state.loadingMyMarket = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(updateBetsPlaced.fulfilled, (state, action) => {
-        const betId = action.payload?.betId;
+        const { betId } = action.payload;
 
         const isBetAlreadyPlaced = state.placedBets?.some(
           (item: any) => item?.id === betId
@@ -257,7 +257,6 @@ const placedBet = createSlice({
         state.runAmount = {};
       })
       .addCase(resetRunAmountModalKhado.fulfilled, (state, action) => {
-        // console.log('first',action.payload)
         const { id, showModal } = action.payload;
         if (showModal) {
           state.runAmountModalKhado = showModal;

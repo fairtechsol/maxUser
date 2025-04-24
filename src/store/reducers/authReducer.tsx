@@ -32,10 +32,11 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.loading = true;
     })
     .addCase(login.fulfilled, (state, action) => {
+      const { forceChangePassword, isAuthenticator } = action.payload;
       state.loading = false;
       state.success = true;
-      state.forceChangePassword = action?.payload?.forceChangePassword;
-      state.isAuthenticator = action?.payload?.isAuthenticator;
+      state.forceChangePassword = forceChangePassword;
+      state.isAuthenticator = isAuthenticator;
     })
     .addCase(login.rejected, (state) => {
       state.loading = false;
@@ -46,7 +47,7 @@ export const authReducer = createReducer(initialState, (builder) => {
     .addCase(loginWithDemo.fulfilled, (state, action) => {
       state.loadingDemo = false;
       state.success = true;
-      state.demoDetails = action?.payload;
+      state.demoDetails = action.payload;
     })
     .addCase(loginWithDemo.rejected, (state) => {
       state.loadingDemo = false;
