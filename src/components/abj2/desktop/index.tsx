@@ -13,11 +13,11 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import SBetBox from "./Sbox";
 import Abj2Result from "./abj2Card";
-import "./style.scss";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -107,10 +107,9 @@ const Abj2Desktop = () => {
                 <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                        dragonTigerDetail?.videoInfo?.max
-                      }`
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${dragonTigerDetail?.videoInfo?.max
+                    }`
                     : ""}
                 </span>
               </div>

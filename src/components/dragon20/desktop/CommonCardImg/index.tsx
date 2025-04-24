@@ -14,7 +14,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   }, [cardData]);
 
   return (
-    <div className="commonCardImgContainerd20">
+    <div className="commonCardImgContainerAbj">
       {cardImg?.map((item: any, index: number) => (
         <div key={index}>
           <div
@@ -36,21 +36,20 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
               display: "flex",
               justifyContent: "center",
             }}
-            className={`${
-              data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ] > 0
-                    ? "color-green"
-                    : data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] < 0
+            className={`${data?.profitLoss
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                ] > 0
+                  ? "color-green"
+                  : data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] < 0
                     ? "color-red"
                     : ""
-                  : ""
                 : ""
-            }`}
+              : ""
+              }`}
           >
             {data?.profitLoss
               ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]

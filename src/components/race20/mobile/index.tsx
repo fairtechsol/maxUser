@@ -5,18 +5,17 @@ import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Race20Result from "../desktop/race20Card";
-import OddBox from "./OddBox";
-import "./style.scss";
-import TotalsBox from "./TotalBox";
-import WinBox from "./win";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
+import Race20Result from "../desktop/race20Card";
+import OddBox from "./OddBox";
+import TotalsBox from "./TotalBox";
+import WinBox from "./win";
 
 const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -68,8 +67,8 @@ const Race20Mobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
         {!activeTab ? (
           <div className="horseRacingTab">
             <div style={{ width: "100%" }}>
@@ -105,7 +104,7 @@ const Race20Mobile = () => {
                     display: "flex",
                     flexDirection: "column",
                     gap: "8px",
-                   
+
                   }}
                 >
                   <TotalsBox

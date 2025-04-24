@@ -1,5 +1,4 @@
 import loader from "../../../assets/images/gameicons/loader.gif";
-// import "../../";
 
 const CustomLoader = () => {
   return (

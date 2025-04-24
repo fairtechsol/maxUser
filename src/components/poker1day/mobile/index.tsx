@@ -5,19 +5,18 @@ import { p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "../../horseRacing/mobile/betTable/style.scss";
-import DynamicTable from "../desktop/betTable";
-import PairBox from "../desktop/pairBox";
-import Poker1DayResult from "../desktop/poker1DayCard";
-import "./style.scss";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
+import "../../horseRacing/mobile/betTable/style.scss";
+import DynamicTable from "../desktop/betTable";
+import PairBox from "../desktop/pairBox";
+import Poker1DayResult from "../desktop/poker1DayCard";
 const Poker1dayMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
@@ -81,26 +80,6 @@ const Poker1dayMobile = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-  // const handleBet = (item: any) => {
-  //   let team = {
-  //     bettingType: "BACK",
-  //     matchId: dragonTigerDetail?.id,
-  //     odd: item?.rate,
-  //     stake: 0,
-  //     matchBetType: "matchOdd",
-  //     betOnTeam: item?.nat,
-  //     name: item?.nat,
-  //     bettingName: "Match odds",
-  //     selectionId: item?.sid,
-  //   };
-  //   dispatch(
-  //     selectedBetAction({
-  //       team,
-  //       dragonTigerDetail,
-  //     })
-  //   );
-  //   // console.log('team',team)
-  // };
 
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.poker1Day}`);
@@ -109,8 +88,8 @@ const Poker1dayMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
         {!activeTab ? (
           <div
@@ -163,13 +142,13 @@ const Poker1dayMobile = () => {
                     </span>
                   </div>
                 </div> */}
-                    <div className="mt-2" style={{ width: "100%" }}>
-                <PairBox
-                  odds={dragonTigerDetail?.playersBonusPair}
-                  data={dragonTigerDetail}
-                  min={dragonTigerDetail?.videoInfo?.min}
-                  max={dragonTigerDetail?.videoInfo?.max}
-                />
+                <div className="mt-2" style={{ width: "100%" }}>
+                  <PairBox
+                    odds={dragonTigerDetail?.playersBonusPair}
+                    data={dragonTigerDetail}
+                    min={dragonTigerDetail?.videoInfo?.min}
+                    max={dragonTigerDetail?.videoInfo?.max}
+                  />
                 </div>
                 <div style={{ marginTop: "10px" }}>
                   {" "}

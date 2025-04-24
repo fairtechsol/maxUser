@@ -97,9 +97,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     let profit;
     if (selectedBet?.team?.matchBetType === "session") {
       profit = 0;
-      // (selectedBet?.team?.type === "no" || selectedBet?.team?.type === "No")
-      //     ? value
-      //     : (value * selectedBet?.team?.percent) / 100;
     } else if (
       selectedBet?.data?.type === matchBettingType.matchOdd ||
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||

@@ -4,7 +4,7 @@ import { FaTrophy } from "react-icons/fa";
 import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
-import "./style.scss";
+import "../../commonStyle.scss";
 interface Props {
   data: {
     C1: string;
@@ -15,7 +15,6 @@ interface Props {
 const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const lastCards = resultCards?.slice(4, 9);
-  //  console.log(data,'first',resultCards)
   return (
     <Container
       style={{

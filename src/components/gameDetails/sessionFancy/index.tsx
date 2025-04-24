@@ -109,35 +109,34 @@ const SessionFancy = ({ title, data, detail }) => {
                         {item?.RunnerName}
                       </span>{" "}
                       <span
-                        className={`${
-                          calculateMaxLoss(
-                            detail?.profitLossDataSession,
-                            item?.id
-                          ) < 0
+                        className={`${calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
                             ? "color-red"
                             : "color-red"
-                        } title-14 fbold`}
+                          } title-14 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) !== 0
                           ? `-${calculateMaxLoss(
-                              detail?.profitLossDataSession,
-                              item?.id
-                            )}`
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
                           : ""}
                       </span>
                     </div>
                     <div className="sessionRateBoxContainer rateBoxWidthNormal">
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
-                        <div className="suspended-overlayRates">
-                          <span className={`suspendTextCmmn`}>
-                            {item?.GameStatus ?? "SUSPENDED"}
-                          </span>
-                        </div>
-                      )}
+                          <div className="suspended-overlayRates">
+                            <span className={`suspendTextCmmn`}>
+                              {item?.GameStatus ?? "SUSPENDED"}
+                            </span>
+                          </div>
+                        )}
                       <div
                         className={`sessionRateBox rateFont back1Background`}
                         style={{ cursor: "pointer" }}
@@ -181,9 +180,8 @@ const SessionFancy = ({ title, data, detail }) => {
                             "-"}
                         </span>
                         <span
-                          className={`${
-                            !isMobile ? "f-size12" : "f-size11"
-                          } sessionRate2Box`}
+                          className={`${!isMobile ? "f-size12" : "f-size11"
+                            } sessionRate2Box`}
                         >
                           {handleSize(item?.ex?.availableToLay?.[0]?.size)}
                         </span>
@@ -254,35 +252,34 @@ const SessionFancy = ({ title, data, detail }) => {
                           {item?.RunnerName}
                         </span>
                         <span
-                          className={`${
-                            calculateMaxLoss(
-                              detail?.profitLossDataSession,
-                              item?.id
-                            ) < 0
+                          className={`${calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) < 0
                               ? "color-red"
                               : "color-red"
-                          } title-14 fbold`}
+                            } title-14 fbold`}
                         >
                           {calculateMaxLoss(
                             detail?.profitLossDataSession,
                             item?.id
                           ) !== 0
                             ? `-${calculateMaxLoss(
-                                detail?.profitLossDataSession,
-                                item?.id
-                              )}`
+                              detail?.profitLossDataSession,
+                              item?.id
+                            )}`
                             : ""}
                         </span>
                       </div>
                       <div className="sessionRateBoxContainer rateBoxWidthNormal">
                         {(item?.activeStatus != "live" ||
                           item?.GameStatus != "") && (
-                          <div className="suspended-overlayRates">
-                            <span className={`suspendTextCmmn`}>
-                              {item?.GameStatus ?? "SUSPENDED"}
-                            </span>
-                          </div>
-                        )}
+                            <div className="suspended-overlayRates">
+                              <span className={`suspendTextCmmn`}>
+                                {item?.GameStatus ?? "SUSPENDED"}
+                              </span>
+                            </div>
+                          )}
                         <div
                           className={`sessionRateBox rateFont back1Background`}
                           style={{ cursor: "pointer" }}
@@ -304,9 +301,8 @@ const SessionFancy = ({ title, data, detail }) => {
                             ) ?? "-"}
                           </span>
                           <span
-                            className={`${
-                              !isMobile ? "f-size12" : "f-size11"
-                            } sessionRate2Box`}
+                            className={`${!isMobile ? "f-size12" : "f-size11"
+                              } sessionRate2Box`}
                           >
                             {handleSize(item?.ex?.availableToBack?.[0]?.size)}
                           </span>
@@ -332,9 +328,8 @@ const SessionFancy = ({ title, data, detail }) => {
                             ) ?? "-"}
                           </span>
                           <span
-                            className={`${
-                              !isMobile ? "f-size12" : "f-size11"
-                            } sessionRate2Box`}
+                            className={`${!isMobile ? "f-size12" : "f-size11"
+                              } sessionRate2Box`}
                           >
                             {handleSize(item?.ex?.availableToLay?.[0]?.size)}
                           </span>

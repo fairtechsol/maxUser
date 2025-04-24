@@ -7,7 +7,7 @@ import { ImClubs, ImDiamonds } from "react-icons/im";
 import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
-import "./style.scss";
+import "../../commonStyle.scss";
 interface Props {
   data: {
     C1: string;

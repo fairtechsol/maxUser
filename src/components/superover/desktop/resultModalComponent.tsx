@@ -7,10 +7,8 @@ interface Props {
     C2: string;
   };
 }
-// const head=["team1","1","2","3","4","5","6","Run/Over","Score"]
 
 const SuperOverResultComponent: React.FC<Props> = ({ data }: any) => {
-  // console.log('first',data)
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
@@ -32,8 +30,8 @@ const SuperOverResultComponent: React.FC<Props> = ({ data }: any) => {
           {data?.result?.win === "1"
             ? " ENG"
             : data?.result?.win === "0"
-            ? " TIE"
-            : " RSA"}
+              ? " TIE"
+              : " RSA"}
         </span>
       </div>
       {/* <div style={{width:"100%",display:"flex",flexDirection:"column"}}>

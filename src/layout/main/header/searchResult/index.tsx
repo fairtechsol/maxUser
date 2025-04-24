@@ -22,7 +22,7 @@ const SearchResult = ({ data, setOpen }: any) => {
             className="text-decoration-none"
             to={
               item?.matchType === "greyHound" ||
-              item?.matchType === "horseRacing"
+                item?.matchType === "horseRacing"
                 ? `/race/${item?.id}`
                 : `/game-detail/${item.matchType}/${item?.id}`
             }

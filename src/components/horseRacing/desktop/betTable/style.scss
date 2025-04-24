@@ -9,6 +9,7 @@
   // margin-bottom: 16px;
   border-radius: 0 0 2px 2px;
 }
+
 .featured-box-detail {
   max-width: 70% !important;
   -ms-flex: 0 0 70% !important;
@@ -17,26 +18,28 @@
 }
 
 .horse-banner {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: calc(100% - 8px);
-    margin-left: 4px;
-    margin-right: 4px;
-    margin-top: 0;
-    position: relative;
-    margin-top: 8px;
-    margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 8px);
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: 0;
+  position: relative;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .time-detail h5 {
   margin-bottom: 0;
 }
-.time-detail > div {
+
+.time-detail>div {
   font-size: 14px;
 }
+
 .horse-timer {
   font-size: 14px;
   color: #666;
@@ -49,6 +52,7 @@
   flex: 1;
   max-width: calc(100% - 8px);
 }
+
 .game-market {
   margin-top: 8px;
 }
@@ -63,7 +67,8 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.market-title > span:first-child {
+
+.market-title>span:first-child {
   display: inline-block;
   max-width: calc(100% - 30px);
   overflow: hidden;
@@ -129,9 +134,11 @@ input[type="radio"] {
   box-sizing: border-box;
   padding: 0;
 }
+
 .form-check-input {
   margin-top: 1px;
 }
+
 .form-check-input {
   position: absolute;
   margin-top: 0.3rem;
@@ -147,7 +154,8 @@ input[type="radio"] {
 .form-check-label {
   margin-bottom: 0;
 }
-.market-12 .market-nation-detail .form-check label > div:first-child {
+
+.market-12 .market-nation-detail .form-check label>div:first-child {
   text-align: center;
   line-height: normal;
   font-size: 12px;
@@ -155,7 +163,8 @@ input[type="radio"] {
   display: inline-block;
   width: 25px;
 }
-.market-12 .market-nation-detail .form-check label > div:last-child {
+
+.market-12 .market-nation-detail .form-check label>div:last-child {
   width: calc(100% - 10px);
   display: flex;
   flex-wrap: wrap;
@@ -165,6 +174,7 @@ input[type="radio"] {
   font-weight: bold;
   width: calc(100% - 10px);
 }
+
 .market-nation-detail .market-nation-name {
   font-weight: 400;
   max-width: 100%;
@@ -191,14 +201,17 @@ input[type="radio"] {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
 }
+
 span b {
   font-weight: normal;
 }
+
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
   .market-odd-box {
     width: 60px;
   }
 }
+
 .market-odd-box {
   width: 55px;
   padding: 2px 0;
@@ -211,6 +224,7 @@ span b {
   cursor: pointer;
   min-height: 48px;
 }
+
 .back2 {
   background-color: rgba(114, 187, 239, 0.5);
 }
@@ -220,6 +234,7 @@ span b {
     font-size: 16px;
   }
 }
+
 .market-odd-box .market-odd {
   font-size: 16px;
   // font-weight: bold;
@@ -232,6 +247,7 @@ span b {
   font-weight: 400;
   line-height: 1;
 }
+
 .back {
   background-color: #72bbef !important;
 }
@@ -243,12 +259,15 @@ span b {
 .lay {
   background-color: #faa9ba !important;
 }
+
 .lay1 {
   background-color: rgba(250, 169, 186, 0.75);
 }
+
 .lay2 {
   background-color: rgba(250, 169, 186, 0.5);
 }
+
 .market-row {
   background-color: #f2f2f2;
   display: flex;
@@ -258,6 +277,7 @@ span b {
 .market-12 .suspended-row.removed::after {
   color: #fff;
 }
+
 .suspended-row {
   position: relative;
 }
@@ -266,7 +286,7 @@ span b {
   content: attr(data-title);
   background-color: #373636d6;
   color: #ff0000;
-//   font-weight: bold;
+  //   font-weight: bold;
   font-size: 15px;
   text-transform: uppercase;
   position: absolute;
@@ -280,16 +300,19 @@ span b {
   align-items: center;
   pointer-events: none;
 }
-  
+
 .horse-status {
-    font-size: 20px;
-    font-weight: 500;
-    text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
 }
+
 .text-success {
-    color: #28a745 !important;
+  color: #28a745 !important;
 }
+
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
+
   .market-12 .suspended-row::after,
   .market-12 .suspended-table::after {
     width: 330px;

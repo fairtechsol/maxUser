@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Tabs } from "react-bootstrap";
-import "./style.scss";
 import { useNavigate } from "react-router-dom";
 import SportsFilterJson from "../../home/sportsFilters/sportsFilters.json";
+import "./style.scss";
 const CommonTabs = ({
   children,
   defaultActive,
@@ -43,9 +43,6 @@ const CommonTabs = ({
         if (sportsFilterIds.includes(k)) {
           navigate(`/${k}`);
         }
-        // if (k) {
-        //   navigate(`/${k}`);
-        // }
       }}
       id="uncontrolled-tab-example"
       className={`w-100 flex-nowrap ${customClass}`}

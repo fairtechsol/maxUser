@@ -74,40 +74,39 @@ const MobileGameDetail = () => {
           {
             id: "matchedBet",
             name: (
-              <div className="ps-5 border-end pe-2">{`MATCHED BET(${
-                Array.from(new Set(placedBets))?.length
-              })`}</div>
+              <div className="ps-5 border-end pe-2">{`MATCHED BET(${Array.from(new Set(placedBets))?.length
+                })`}</div>
             ),
           },
           matchDetails?.eventId &&
-            matchDetails?.matchType !== "politics" && {
-              name: (
-                <div
-                  onClick={() => {
-                    if (!showVideo) {
-                      getTvData(
-                        matchDetails?.eventId,
-                        setTvData,
-                        matchDetails?.matchType,
-                        true
-                      );
-                      setShowVideo(!showVideo);
-                    } else {
-                      setTvData((prev: any) => {
-                        return {
-                          ...prev,
-                          tvData: null,
-                        };
-                      });
-                    }
+          matchDetails?.matchType !== "politics" && {
+            name: (
+              <div
+                onClick={() => {
+                  if (!showVideo) {
+                    getTvData(
+                      matchDetails?.eventId,
+                      setTvData,
+                      matchDetails?.matchType,
+                      true
+                    );
                     setShowVideo(!showVideo);
-                  }}
-                  className="ps-5"
-                >
-                  <FaTv size={15} />
-                </div>
-              ),
-            },
+                  } else {
+                    setTvData((prev: any) => {
+                      return {
+                        ...prev,
+                        tvData: null,
+                      };
+                    });
+                  }
+                  setShowVideo(!showVideo);
+                }}
+                className="ps-5"
+              >
+                <FaTv size={15} />
+              </div>
+            ),
+          },
         ]
           ?.filter(Boolean)
           .map((item, index) => (
@@ -133,7 +132,7 @@ const MobileGameDetail = () => {
                                 <iframe
                                   src={
                                     import.meta.env.VITE_NODE_ENV ==
-                                    "production"
+                                      "production"
                                       ? tvData?.tvData?.iframeUrl
                                       : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
                                   }
@@ -228,50 +227,50 @@ const MobileGameDetail = () => {
                       {(matchDetails?.apiSession?.session?.section?.length >
                         0 ||
                         manualEntries?.length > 0) && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionNormal
-                            title={"Normal"}
-                            mtype={"session"}
-                            data={matchDetails?.apiSession?.session}
-                            detail={matchDetails}
-                            manual={manualEntries ? manualEntries : []}
-                          />
-                        </Col>
-                      )}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionNormal
+                              title={"Normal"}
+                              mtype={"session"}
+                              data={matchDetails?.apiSession?.session}
+                              detail={matchDetails}
+                              manual={manualEntries ? manualEntries : []}
+                            />
+                          </Col>
+                        )}
                       {matchDetails?.apiSession?.overByover?.section?.length >
                         0 && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionNormal
-                            title={"overByover"}
-                            mtype={"overByover"}
-                            data={matchDetails?.apiSession?.overByover}
-                            detail={matchDetails}
-                          />
-                        </Col>
-                      )}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionNormal
+                              title={"overByover"}
+                              mtype={"overByover"}
+                              data={matchDetails?.apiSession?.overByover}
+                              detail={matchDetails}
+                            />
+                          </Col>
+                        )}
                       {matchDetails?.apiSession?.ballByBall?.section?.length >
                         0 && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionNormal
-                            title={"Ballbyball"}
-                            mtype={"ballByBall"}
-                            data={matchDetails?.apiSession?.ballByBall}
-                            detail={matchDetails}
-                          />
-                        </Col>
-                      )}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionNormal
+                              title={"Ballbyball"}
+                              mtype={"ballByBall"}
+                              data={matchDetails?.apiSession?.ballByBall}
+                              detail={matchDetails}
+                            />
+                          </Col>
+                        )}
 
                       {matchDetails?.apiSession?.fancy1?.section?.length >
                         0 && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionFancy
-                            title={"fancy1"}
-                            data={matchDetails?.apiSession?.fancy1}
-                            detail={matchDetails}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionFancy
+                              title={"fancy1"}
+                              data={matchDetails?.apiSession?.fancy1}
+                              detail={matchDetails}
                             // data={matchDetails?.matchOdd}
-                          />
-                        </Col>
-                      )}
+                            />
+                          </Col>
+                        )}
 
                       {matchDetails?.apiSession?.khado?.section?.length > 0 && (
                         <Col className="g-0" md={12}>
@@ -294,16 +293,16 @@ const MobileGameDetail = () => {
                       )}
                       {matchDetails?.apiSession?.oddEven?.section?.length >
                         0 && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionOddEven
-                            title={"oddeven"}
-                            // type={"fancy"}
-                            data={matchDetails?.apiSession?.oddEven}
-                            detail={matchDetails}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionOddEven
+                              title={"oddeven"}
+                              // type={"fancy"}
+                              data={matchDetails?.apiSession?.oddEven}
+                              detail={matchDetails}
                             // data={matchDetails?.matchOdd}
-                          />
-                        </Col>
-                      )}
+                            />
+                          </Col>
+                        )}
                       {matchDetails?.apiSession?.cricketCasino?.section
                         ?.length > 0 &&
                         matchDetails?.apiSession?.cricketCasino?.section?.map(
@@ -348,7 +347,7 @@ const MobileGameDetail = () => {
                                     }
                                     data={item}
                                     detail={matchDetails}
-                                    // data={matchDetails?.matchOdd}
+                                  // data={matchDetails?.matchOdd}
                                   />
                                 </Col>
                               )}

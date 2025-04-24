@@ -12,9 +12,9 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Iframe from "../../iframe/iframe";
 import Bookmaker from "./bookmaker";
-import "./style.scss";
 import SuperoverResult from "./superOver";
 
 const SuperoverDesktop = () => {
@@ -107,7 +107,7 @@ const SuperoverDesktop = () => {
     };
   }, []);
 
-  
+
   return (
     <div>
       <Row>
@@ -240,7 +240,7 @@ const SuperoverDesktop = () => {
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
-                  //  overflowY: "auto", maxHeight: "400px" 
+                //  overflowY: "auto", maxHeight: "400px" 
               }}
             >
               <Col md={12}>

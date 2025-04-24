@@ -1,4 +1,4 @@
-import "./style.scss"; // Make sure to define your styles in this file
+import "../../commonStyle.scss";
 
 const Abj2Rules = () => {
   return (

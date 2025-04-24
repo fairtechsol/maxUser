@@ -1,13 +1,12 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const CardBox = ({ name, cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = cardData?.[0]?.min;
   const max = cardData?.[0]?.max;
-  // console.log('cardData',cardData)
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -29,7 +28,7 @@ const CardBox = ({ name, cardData, data }: any) => {
   };
   return (
     <>
-      <div className="cardContainer">
+      <div className="cardContainerNew">
         <div style={{ textAlign: "center" }}>
           <span style={{ fontSize: "1.5rem" }}>
             {name}{" "}

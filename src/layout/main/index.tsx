@@ -1,10 +1,8 @@
-// import { GiHamburgerMenu } from 'react-icons/gi';
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { socketService } from "../../socketManager";
-// import { getMatchList } from "../../store/actions/match/matchListAction";
 import ScrollToTop from "../../components/commonComponent/ScrollToTop";
+import { socketService } from "../../socketManager";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getProfile,

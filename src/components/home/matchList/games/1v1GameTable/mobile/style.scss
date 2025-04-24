@@ -1,8 +1,10 @@
 @import "/src/assets/variable.scss";
+
 .m-game-one-v-one {
   padding-top: 1.5px;
   border-bottom: 1px solid $darkGray !important;
 }
+
 .scrollable-container {
   flex: 1;
   max-height: 300px;
@@ -26,12 +28,7 @@
   overflow-y: auto;
   max-height: 100%;
 }
-// .tab-content>.active {
-//     display: block;
-// }
-// .end-of-scroll {
-//   overscroll-behavior-y: auto;
-// }
+
 .casino-tables {
   background-color: $light;
   display: flex !important;
@@ -52,14 +49,15 @@
   // border-radius: 4px;
   white-space: nowrap;
   margin-bottom: 6px;
-        margin-left: 3px;
-        margin-right: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
   // margin-right: 8px;
   cursor: pointer;
   width: calc(25% - 6px);
   position: relative;
   bottom: 0 !important;
 }
+
 .casinoiconsm img {
   width: 100%;
   height: auto;
@@ -77,29 +75,18 @@
   font-size: 8px;
   position: "absolute"
 }
-// .row.row5 {
-//     margin-left: -5px;
-//     margin-right: -5px;
-//     display: flex;
-// }
-
-// .row {
-//     display: flex;
-//     -ms-flex-wrap: wrap;
-//     flex-wrap: wrap;
-//     // margin-right: -15px;
-//     // margin-left: -15px;
-// }
 
 .casino-tables h4 {
   font-size: 16px;
   font-weight: bold;
 }
+
 @media only screen and (max-width: 767px) {
   body {
-      font-size: 14px;
+    font-size: 14px;
   }
 }
+
 .no-record-found {
   width: 100%;
   border-bottom: 1px solid #c7c8ca;

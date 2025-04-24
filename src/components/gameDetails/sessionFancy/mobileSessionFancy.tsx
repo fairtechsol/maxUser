@@ -100,23 +100,22 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                         {item?.RunnerName}
                       </span>
                       <span
-                        className={`${
-                          calculateMaxLoss(
-                            detail?.profitLossDataSession,
-                            item?.id
-                          ) < 0
+                        className={`${calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
                             ? "color-red"
                             : "color-red"
-                        } title-13 fbold`}
+                          } title-13 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) !== 0
                           ? `-${calculateMaxLoss(
-                              detail?.profitLossDataSession,
-                              item?.id
-                            )}`
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
                           : ""}
                       </span>
                     </div>
@@ -126,12 +125,12 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                     >
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
-                        <div className="suspended-overlayRates">
-                          <span className={`suspendTextCmmn`}>
-                            {item?.GameStatus ?? "SUSPENDED"}
-                          </span>
-                        </div>
-                      )}
+                          <div className="suspended-overlayRates">
+                            <span className={`suspendTextCmmn`}>
+                              {item?.GameStatus ?? "SUSPENDED"}
+                            </span>
+                          </div>
+                        )}
                       <div
                         className={`sessionRateBox back1Background`}
                         style={{ cursor: "pointer" }}

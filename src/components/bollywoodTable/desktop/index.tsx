@@ -13,12 +13,12 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import TiePairBox2 from "./TiePairBox2";
 import Lucky7Result from "./lucky7Card";
-import "./style.scss";
 
 const BollywoodTableDesktop = () => {
   const [show, setShow] = useState(false);
@@ -107,8 +107,8 @@ const BollywoodTableDesktop = () => {
                 <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}`
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}`
                     : ""}
                 </span>
               </div>

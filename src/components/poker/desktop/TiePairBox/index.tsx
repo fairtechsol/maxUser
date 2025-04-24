@@ -1,11 +1,10 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
 const TiePairBox = ({ handsData, data, width, title, cards }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  // console.log(data,'tiePair',tiePair)
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -24,7 +23,6 @@ const TiePairBox = ({ handsData, data, width, title, cards }: any) => {
         data,
       })
     );
-    // console.log("team", team);
   };
   const handleCard = (data: any, index: number, type: string) => {
     let card;

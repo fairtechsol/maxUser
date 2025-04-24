@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import "./style.scss";
+import "../../commonStyle.scss";
 
 const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
   const lowCards: string[] = [];
@@ -34,12 +34,12 @@ const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
         (firstChar == "1"
           ? 10
           : firstChar == "J"
-          ? 11
-          : firstChar == "Q"
-          ? 12
-          : firstChar == "K"
-          ? 13
-          : 0);
+            ? 11
+            : firstChar == "Q"
+              ? 12
+              : firstChar == "K"
+                ? 13
+                : 0);
     } else {
       lowCards.push(card);
       lowCardSum = lowCardSum + (firstChar == "A" ? 1 : Number(firstChar));

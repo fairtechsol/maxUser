@@ -13,9 +13,9 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import WorliResult from "./abj1Card";
 import CardBox from "./CardsBox";
-import "./style.scss";
 
 const WorliDesktop = () => {
   const [show, setShow] = useState(false);
@@ -93,10 +93,9 @@ const WorliDesktop = () => {
                 <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                        dragonTigerDetail?.videoInfo?.max
-                      }`
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${dragonTigerDetail?.videoInfo?.max
+                    }`
                     : ""}
                 </span>
               </div>
@@ -124,9 +123,8 @@ const WorliDesktop = () => {
                     display: "flex",
                     flexDirection: "column",
                   }}
-                  className={`${
-                    dragonTigerDetail?.worli?.gstatus == 0 ? "suspended" : ""
-                  }`}
+                  className={`${dragonTigerDetail?.worli?.gstatus == 0 ? "suspended" : ""
+                    }`}
                 >
                   <div className="parent-rate">
                     <div className="child-rate1">9</div>

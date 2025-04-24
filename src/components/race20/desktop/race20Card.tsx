@@ -4,7 +4,7 @@ import { BiSolidHeart } from "react-icons/bi";
 import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import "./style.scss";
+import "../../commonStyle.scss";
 interface Props {
   data: {
     C1: string;
@@ -15,7 +15,6 @@ interface Props {
 }
 
 const Race20Result: React.FC<Props> = ({ data }: any) => {
-  // console.log('data',data)
   const elements = data?.desc?.split(",");
 
   const ss: any = [];
@@ -37,16 +36,9 @@ const Race20Result: React.FC<Props> = ({ data }: any) => {
   return (
     (ss?.length > 0 || hh?.length > 0 || cc?.length > 0 || dd?.length > 0) && (
       <Container style={{ display: "flex", flexDirection: "column" }}>
-        <div
-          className="p-1"
-          style={{ width: "60px", height: "55px", backgroundColor: "#404040" }}
-        >
-          <div
-            className="w-100 h-100 d-flex flex-column align-items-center"
-            style={{ border: "1px solid #ffff00", color: "#fff" }}
-          >
-            <span> Cards</span>{" "}
-            <span>{elements?.filter((item: any) => item !== "1").length}</span>
+        <div className="p-1" style={{ width: "60px", height: "55px", backgroundColor: "#404040" }}>
+          <div className="w-100 h-100 d-flex flex-column align-items-center" style={{ border: "1px solid #ffff00", color: '#fff' }}>
+            <span> Cards</span> <span>{elements?.filter((item: any) => item !== "1").length}</span>
           </div>
         </div>
         <div
@@ -57,7 +49,7 @@ const Race20Result: React.FC<Props> = ({ data }: any) => {
             flexDirection: "row",
             justifyContent: "center",
             gap: "10px",
-            background: "#a9a9a996",
+            background: "#a9a9a996"
           }}
         >
           <div

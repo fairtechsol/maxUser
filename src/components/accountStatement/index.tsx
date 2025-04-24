@@ -124,9 +124,6 @@ const AccountStatementComponent = () => {
       } else if (to) {
         filter += `&createdAt=lte${moment(to)?.format("YYYY-MM-DD")}`;
       }
-      // if (type) {
-      //   filter += `&transaction.type=${type?.value}`;
-      // }
       if (type) {
         if (type?.value === "casino") {
           filter += `&transaction.type=game&betId=isNull`;
@@ -368,7 +365,7 @@ const AccountStatementComponent = () => {
                     <td className={isMobile ? "sr-as bg-grey" : ""}>
                       {index +
                         (tableConfig?.rowPerPage || 15) *
-                          (tableConfig?.page - 1 || 0) +
+                        (tableConfig?.page - 1 || 0) +
                         1}
                     </td>
                     <td
@@ -381,8 +378,8 @@ const AccountStatementComponent = () => {
                       <NotSet
                         item={
                           item?.transType == transType.add ||
-                          item?.transType == transType.creditRefer ||
-                          item?.transType == transType.win
+                            item?.transType == transType.creditRefer ||
+                            item?.transType == transType.win
                             ? item?.amount
                             : null
                         }
@@ -396,20 +393,19 @@ const AccountStatementComponent = () => {
                       <NotSet
                         item={
                           item?.transType == transType.loss ||
-                          item?.transType == transType.withDraw
+                            item?.transType == transType.withDraw
                             ? item?.amount
                             : null
                         }
                       />
                     </td>
                     <td
-                      className={` ${
-                        parseInt(item?.closingBalance) < 0
-                          ? "color-red"
-                          : parseInt(item?.closingBalance) > 0
+                      className={` ${parseInt(item?.closingBalance) < 0
+                        ? "color-red"
+                        : parseInt(item?.closingBalance) > 0
                           ? "color-green"
                           : ""
-                      } ${isMobile ? " pts-as bg-grey" : ""} `}
+                        } ${isMobile ? " pts-as bg-grey" : ""} `}
                     >
                       {" "}
                       <NotSet item={item?.closingBalance} />
@@ -534,104 +530,96 @@ const AccountStatementComponent = () => {
                         (item: any, index: number) => (
                           <tr key={item?.id}>
                             <td
-                              className={`${
-                                item?.betType === "BACK" ||
+                              className={`${item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                  ? "bg-blue3"
-                                  : "bg-red1"
-                              }`}
+                                ? "bg-blue3"
+                                : "bg-red1"
+                                }`}
                             >
                               {index + 1}
                             </td>
                             <td
-                              className={`${
-                                item?.betType === "BACK" ||
+                              className={`${item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                  ? "bg-blue3"
-                                  : "bg-red1"
-                              }`}
+                                ? "bg-blue3"
+                                : "bg-red1"
+                                }`}
                             >
                               {item?.teamName}
                             </td>
                             <td
-                              className={`${
-                                item?.betType === "BACK" ||
+                              className={`${item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                  ? "bg-blue3"
-                                  : "bg-red1"
-                              }`}
+                                ? "bg-blue3"
+                                : "bg-red1"
+                                }`}
                             >
                               {item?.betType}
                             </td>
                             <td
-                              className={`${
-                                item?.betType === "BACK" ||
+                              className={`${item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                  ? "bg-blue3"
-                                  : "bg-red1"
-                              }`}
+                                ? "bg-blue3"
+                                : "bg-red1"
+                                }`}
                             >
                               {item?.odds}
                             </td>
                             <td
-                              className={`${
-                                item?.betType === "BACK" ||
+                              className={`${item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                  ? "bg-blue3"
-                                  : "bg-red1"
-                              }`}
+                                ? "bg-blue3"
+                                : "bg-red1"
+                                }`}
                             >
                               {item?.amount}
                             </td>
                             <td
-                              className={`${
-                                item?.betType === "BACK" ||
+                              className={`${item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                  ? "bg-blue3"
-                                  : "bg-red1"
-                              }`}
+                                ? "bg-blue3"
+                                : "bg-red1"
+                                }`}
                               style={{
                                 color:
                                   item?.result === "LOSS"
                                     ? "#dc3545"
                                     : item?.result === "WIN"
-                                    ? "#28a745"
-                                    : "#000",
+                                      ? "#28a745"
+                                      : "#000",
                               }}
                             >
                               {item?.result === "LOSS"
                                 ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
                                 : item?.result === "WIN"
-                                ? parseFloat(item?.winAmount).toFixed(2)
-                                : 0}
+                                  ? parseFloat(item?.winAmount).toFixed(2)
+                                  : 0}
                             </td>
                             <td
-                              className={`${
-                                item?.betType === "BACK" ||
+                              className={`${item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                  ? "bg-blue3"
-                                  : "bg-red1"
-                              }`}
+                                ? "bg-blue3"
+                                : "bg-red1"
+                                }`}
                             >
                               {moment(item?.createdAt).format(
                                 "MM/DD/YYYY hh:mm:ss A"
                               )}
                             </td>
                             <td
-                              className={`${
-                                item?.betType === "BACK" ||
+                              className={`${item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                  ? "bg-blue3"
-                                  : "bg-red1"
-                              }`}
+                                ? "bg-blue3"
+                                : "bg-red1"
+                                }`}
                             >
                               {item?.racingMatch
                                 ? moment(item?.racingMatch?.startAt).format(
-                                    "MM/DD/YYYY hh:mm:ss A"
-                                  )
+                                  "MM/DD/YYYY hh:mm:ss A"
+                                )
                                 : moment(item?.match?.startAt).format(
-                                    "MM/DD/YYYY hh:mm:ss A"
-                                  )}
+                                  "MM/DD/YYYY hh:mm:ss A"
+                                )}
                             </td>
                           </tr>
                         )
@@ -645,11 +633,10 @@ const AccountStatementComponent = () => {
                       (item: any, index: number) => {
                         return (
                           <div
-                            className={`unsetteled-bet ${
-                              item.betType === "NO" || item.betType === "LAY"
-                                ? "bg-red1"
-                                : "bg-blue3"
-                            }`}
+                            className={`unsetteled-bet ${item.betType === "NO" || item.betType === "LAY"
+                              ? "bg-red1"
+                              : "bg-blue3"
+                              }`}
                             key={index}
                           >
                             <div className="row">
@@ -668,11 +655,11 @@ const AccountStatementComponent = () => {
                                   <span className="f600">Matched Date: </span>{" "}
                                   {item?.racingMatch
                                     ? moment(item?.racingMatch?.startAt).format(
-                                        "MM/DD/YYYY hh:mm:ss A"
-                                      )
+                                      "MM/DD/YYYY hh:mm:ss A"
+                                    )
                                     : moment(item?.match?.startAt).format(
-                                        "MM/DD/YYYY hh:mm:ss A"
-                                      )}
+                                      "MM/DD/YYYY hh:mm:ss A"
+                                    )}
                                 </div>
                               </div>
                               <Col className="col-2 reportBody-a" colspan={6}>
@@ -697,18 +684,18 @@ const AccountStatementComponent = () => {
                                       item?.result === "LOSS"
                                         ? "#dc3545"
                                         : item?.result === "WIN"
-                                        ? "#28a745"
-                                        : "#000",
+                                          ? "#28a745"
+                                          : "#000",
                                     overflowWrap: "anywhere",
                                   }}
                                 >
                                   {item?.result === "LOSS"
                                     ? `-${parseFloat(item?.lossAmount).toFixed(
-                                        2
-                                      )}`
+                                      2
+                                    )}`
                                     : item?.result === "WIN"
-                                    ? parseFloat(item?.winAmount).toFixed(2)
-                                    : 0}
+                                      ? parseFloat(item?.winAmount).toFixed(2)
+                                      : 0}
                                 </div>
                               </div>
                             </div>
@@ -736,9 +723,8 @@ const AccountStatementComponent = () => {
         show={liveCasinoModal}
         onHide={handleCloseLiveCasinoModal}
         // size="xl"
-        dialogClassName={`${
-          isMobile ? "provider-modal-m m-0" : "provider-modal custom-modal"
-        }`}
+        dialogClassName={`${isMobile ? "provider-modal-m m-0" : "provider-modal custom-modal"
+          }`}
       >
         <Modal.Header
           closeButton

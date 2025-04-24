@@ -11,8 +11,8 @@ import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Iframe from "../../iframe/iframe";
 import MarketComponent from "./betTable";
+import "./betTable/style.scss";
 import Crick5Result from "./cric5Card";
-import "./style.scss";
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [_, setShow] = useState(false);
@@ -110,7 +110,7 @@ const Cricket5Desktop = () => {
                   : ""}
               </span>
             </div>
-            {scoreBoardData?.balls?.length>0 && (
+            {scoreBoardData?.balls?.length > 0 && (
               <div style={{ marginBottom: "2px" }}>
                 <Iframe data={scoreBoardData} />
               </div>
@@ -156,7 +156,7 @@ const Cricket5Desktop = () => {
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
-                   overflowY: "auto", maxHeight: "500px" 
+                overflowY: "auto", maxHeight: "500px"
               }}
             >
               <Col md={12}>

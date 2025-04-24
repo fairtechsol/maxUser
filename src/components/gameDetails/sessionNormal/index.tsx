@@ -126,7 +126,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
             <div className="sessionYesNoBoxContainer">
               <div
                 className="sessionYesNoBox rateBoxWidthNormal"
-                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+              // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
               >
                 <div className="sessionYesBox lay1Background">
                   <span className={`f-size16 sessionBackTxt`}>No</span>
@@ -149,7 +149,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         className="teamFont cursor-pointer"
                         style={{ fontWeight: "400", lineHeight: 1 }}
                         onClick={() => {
-                          // console.log("first", item);
                           if (item.activeStatus === "save") {
                             return true;
                           } else if (
@@ -178,45 +177,44 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         {item?.RunnerName || item?.name}
                       </span>{" "}
                       <span
-                        className={`${
-                          calculateMaxLoss(
-                            detail?.profitLossDataSession,
-                            item?.id
-                          ) < 0
-                            ? "color-red"
-                            : "color-red"
-                        }  title-14 fbold`}
+                        className={`${calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
+                          ? "color-red"
+                          : "color-red"
+                          }  title-14 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) !== 0
                           ? `-${calculateMaxLoss(
-                              detail?.profitLossDataSession,
-                              item?.id
-                            )}`
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
                           : ""}
                       </span>
                     </div>
                     <div
                       className="sessionRateBoxContainer rateBoxWidthNormal"
-                      // style={{
-                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                      // }}
+                    // style={{
+                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    // }}
                     >
                       {handleStatus(
                         item?.activeStatus,
                         item?.GameStatus,
                         item?.status
                       ) && (
-                        <div className="suspended-overlayRates">
-                          <span className={`suspendTextCmmn`}>
-                            {(
-                              item?.GameStatus || item?.status
-                            )?.toUpperCase() ?? "SUSPENDED"}
-                          </span>
-                        </div>
-                      )}
+                          <div className="suspended-overlayRates">
+                            <span className={`suspendTextCmmn`}>
+                              {(
+                                item?.GameStatus || item?.status
+                              )?.toUpperCase() ?? "SUSPENDED"}
+                            </span>
+                          </div>
+                        )}
                       <div
                         style={{
                           width: "100%",
@@ -231,11 +229,11 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           onClick={() =>
                             handlePlaceBet(
                               item?.ex?.availableToLay?.[0]?.price ||
-                                item?.noRate,
+                              item?.noRate,
                               "no",
                               item?.RunnerName || item?.name,
                               item?.ex?.availableToLay?.[0]?.size ||
-                                item?.noPercent,
+                              item?.noPercent,
                               item,
                               item?.ex?.availableToLay?.[0]?.tno || 0
                             )
@@ -244,7 +242,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToLay?.[0]?.price ||
-                                item?.noRate
+                              item?.noRate
                             ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
@@ -316,11 +314,11 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           onClick={() =>
                             handlePlaceBet(
                               item?.ex?.availableToBack?.[0]?.price ||
-                                item?.yesRate,
+                              item?.yesRate,
                               "Yes",
                               item?.RunnerName || item?.name,
                               item?.ex?.availableToBack?.[0]?.size ||
-                                item?.yesPercent,
+                              item?.yesPercent,
                               item,
                               item?.ex?.availableToBack?.[0]?.tno || 0
                             )
@@ -329,7 +327,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToBack?.[0]?.price ||
-                                item?.yesRate
+                              item?.yesRate
                             ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
@@ -428,13 +426,13 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                 <div className="sessionYesNoBoxContainer">
                   <div
                     className="sessionEmptyBox"
-                    // style={{ width: "54%" }}
+                  // style={{ width: "54%" }}
                   ></div>
                   <div
                     className="sessionYesNoBox rateBoxWidthNormal"
-                    // style={{
-                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                    // }}
+                  // style={{
+                  //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                  // }}
                   >
                     <div className="sessionYesBox lay1Background">
                       <span className={`f-size16 sessionBackTxt`}>No</span>
@@ -491,45 +489,44 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           {item?.RunnerName || item?.name}
                         </span>{" "}
                         <span
-                          className={`${
-                            calculateMaxLoss(
-                              detail?.profitLossDataSession,
-                              item?.id
-                            ) < 0
-                              ? "color-red"
-                              : "color-red"
-                          }  title-14 fbold`}
+                          className={`${calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) < 0
+                            ? "color-red"
+                            : "color-red"
+                            }  title-14 fbold`}
                         >
                           {calculateMaxLoss(
                             detail?.profitLossDataSession,
                             item?.id
                           ) !== 0
                             ? `-${calculateMaxLoss(
-                                detail?.profitLossDataSession,
-                                item?.id
-                              )}`
+                              detail?.profitLossDataSession,
+                              item?.id
+                            )}`
                             : ""}
                         </span>
                       </div>
                       <div
                         className="sessionRateBoxContainer rateBoxWidthNormal"
-                        // style={{
-                        //   width: isLap ? "180px" : !isMobile ? "240px" : "",
-                        // }}
+                      // style={{
+                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                      // }}
                       >
                         {handleStatus(
                           item?.activeStatus,
                           item?.GameStatus,
                           item?.status
                         ) && (
-                          <div className="suspended-overlayRates">
-                            <span className={`suspendTextCmmn`}>
-                              {(
-                                item?.GameStatus || item?.status
-                              )?.toUpperCase() ?? "SUSPENDED"}
-                            </span>
-                          </div>
-                        )}
+                            <div className="suspended-overlayRates">
+                              <span className={`suspendTextCmmn`}>
+                                {(
+                                  item?.GameStatus || item?.status
+                                )?.toUpperCase() ?? "SUSPENDED"}
+                              </span>
+                            </div>
+                          )}
                         <div
                           style={{
                             width: "100%",
@@ -543,11 +540,11 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             onClick={() =>
                               handlePlaceBet(
                                 item?.ex?.availableToLay?.[0]?.price ||
-                                  item?.noRate,
+                                item?.noRate,
                                 "no",
                                 item?.RunnerName || item?.name,
                                 item?.ex?.availableToLay?.[0]?.size ||
-                                  item?.noPercent,
+                                item?.noPercent,
                                 item,
                                 item?.ex?.availableToLay?.[0]?.tno || 0
                               )
@@ -556,7 +553,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             <span className={`rateFont`}>
                               {handlePrice(
                                 item?.ex?.availableToLay?.[0]?.price ||
-                                  item?.noRate
+                                item?.noRate
                               ) ?? "-"}
                             </span>
                             <span className={`f-size12 sessionRate2Box`}>
@@ -633,11 +630,11 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             onClick={() =>
                               handlePlaceBet(
                                 item?.ex?.availableToBack?.[0]?.price ||
-                                  item?.yesRate,
+                                item?.yesRate,
                                 "Yes",
                                 item?.RunnerName || item?.name,
                                 item?.ex?.availableToBack?.[0]?.size ||
-                                  item?.yesPercent,
+                                item?.yesPercent,
                                 item,
                                 item?.ex?.availableToBack?.[0]?.tno
                               )
@@ -646,7 +643,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             <span className={`rateFont`}>
                               {handlePrice(
                                 item?.ex?.availableToBack?.[0]?.price ||
-                                  item?.yesRate
+                                item?.yesRate
                               ) ?? "-"}
                             </span>
                             <span className={`f-size12 sessionRate2Box`}>

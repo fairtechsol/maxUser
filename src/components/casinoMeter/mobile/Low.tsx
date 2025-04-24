@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
 import { dragonTigerCards } from "../../../utils/constants";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 
 const LowCards = ({ odds, data, placedLow }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -42,9 +41,8 @@ const LowCards = ({ odds, data, placedLow }: any) => {
   };
   return (
     <div
-      className={`LowCommonCardImgContainer ${
-        odds?.gstatus === "0" ? "suspended" : ""
-      }`}
+      className={`LowCommonCardImgContainer ${odds?.gstatus === "0" ? "suspended" : ""
+        }`}
       onClick={() =>
         odds?.gstatus === "1" && placedLow ? handleBet(odds) : null
       }
@@ -103,19 +101,18 @@ const LowCards = ({ odds, data, placedLow }: any) => {
             fontSize: "12px",
             display: "flex",
             justifyContent: "center",
-            zIndex:"999"
+            zIndex: "999"
           }}
-          className={`${
-            data?.profitLoss
-              ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] > 0
-                  ? "color-green"
-                  : data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] < 0
+          className={`${data?.profitLoss
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] > 0
+                ? "color-green"
+                : data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] < 0
                   ? "color-red"
                   : ""
-                : ""
               : ""
-          }`}
+            : ""
+            }`}
         >
           {data?.profitLoss ? (
             data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const OddEven = ({ name, data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -16,8 +16,8 @@ const OddEven = ({ name, data, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -28,9 +28,9 @@ const OddEven = ({ name, data, odds }: any) => {
   };
   return (
     <>
-      <div className="oddEvenContainer">
+      <div className="oddEvenContainerNew">
         <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "20px" ,fontWeight:"bold"}}>{name}</span>
+          <span style={{ fontSize: "20px", fontWeight: "bold" }}>{name}</span>
         </div>
         <div
           style={{
@@ -45,8 +45,8 @@ const OddEven = ({ name, data, odds }: any) => {
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                ]
                 : 0
             }
             width={"40%"}
@@ -60,8 +60,8 @@ const OddEven = ({ name, data, odds }: any) => {
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                ]
                 : 0
             }
             width={"40%"}
@@ -83,8 +83,8 @@ const OddEven = ({ name, data, odds }: any) => {
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                ]
                 : 0
             }
             width={"40%"}
@@ -98,8 +98,8 @@ const OddEven = ({ name, data, odds }: any) => {
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
+                ]
                 : 0
             }
             width={"40%"}

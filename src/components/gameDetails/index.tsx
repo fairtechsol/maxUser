@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { tryCatchWrapper } from "../../helpers";
 import {
   expertSocketService,
@@ -51,7 +52,7 @@ const GameDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
-  const { matchList } = useSelector(
+  const { matchList, matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -223,6 +224,13 @@ const GameDetails = () => {
   }, [id]);
 
   useEffect(() => {
+    if (matchDetails && matchDetails?.stopAt) {
+      toast.error("Match has been over.");
+      navigate("/home");
+    }
+  }, [matchDetails]);
+
+  useEffect(() => {
     try {
       if (socket) {
         expertSocketService.match.getMatchRatesOff(id);
@@ -324,5 +332,4 @@ const GameDetails = () => {
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };
-
 export default GameDetails;

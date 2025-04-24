@@ -163,23 +163,22 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         {item?.RunnerName || item?.name}
                       </span>
                       <span
-                        className={`${
-                          calculateMaxLoss(
-                            detail?.profitLossDataSession,
-                            item?.id
-                          ) < 0
+                        className={`${calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
                             ? "color-red"
                             : "color-red"
-                        } title-13 fbold`}
+                          } title-13 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) !== 0
                           ? `-${calculateMaxLoss(
-                              detail?.profitLossDataSession,
-                              item?.id
-                            )}`
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
                           : ""}
                       </span>
                     </div>
@@ -192,14 +191,14 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         item?.GameStatus,
                         item?.status
                       ) && (
-                        <div className="suspended-overlayRates">
-                          <span className={`suspendTextCmmn`}>
-                            {(
-                              item?.GameStatus || item?.status
-                            )?.toUpperCase() ?? "SUSPENDED"}
-                          </span>
-                        </div>
-                      )}
+                          <div className="suspended-overlayRates">
+                            <span className={`suspendTextCmmn`}>
+                              {(
+                                item?.GameStatus || item?.status
+                              )?.toUpperCase() ?? "SUSPENDED"}
+                            </span>
+                          </div>
+                        )}
                       <div
                         style={{
                           width: "100%",
@@ -213,12 +212,12 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                           onClick={() =>
                             handlePlaceBet(
                               item?.ex?.availableToLay?.[0]?.price ||
-                                item?.noRate,
+                              item?.noRate,
                               "no",
                               item?.RunnerName || item?.name,
                               item?.activeStatus,
                               item?.ex?.availableToLay?.[0]?.size ||
-                                item?.noPercent,
+                              item?.noPercent,
                               item,
                               item?.ex?.availableToLay?.[0]?.tno || 0
                             )
@@ -227,13 +226,13 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                           <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToLay?.[0]?.price ||
-                                item?.noRate
+                              item?.noRate
                             ) ?? "-"}
                           </span>
                           <span className={`f-size11 sessionRate2Box`}>
                             {handleSize(
                               item?.ex?.availableToLay?.[0]?.size ||
-                                item?.noPercent
+                              item?.noPercent
                             )}
                           </span>
                         </div>
@@ -303,12 +302,12 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                           onClick={() =>
                             handlePlaceBet(
                               item?.ex?.availableToBack?.[0]?.price ||
-                                item?.yesRate,
+                              item?.yesRate,
                               "Yes",
                               item?.RunnerName || item?.name,
                               item?.activeStatus,
                               item?.ex?.availableToBack?.[0]?.size ||
-                                item?.yesPercent,
+                              item?.yesPercent,
                               item,
                               item?.ex?.availableToBack?.[0]?.tno || 0
                             )
@@ -317,13 +316,13 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                           <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToBack?.[0]?.price ||
-                                item?.yesRate
+                              item?.yesRate
                             ) ?? "-"}
                           </span>
                           <span className={`f-size11 sessionRate2Box`}>
                             {handleSize(
                               item?.ex?.availableToBack?.[0]?.size ||
-                                item?.yesPercent
+                              item?.yesPercent
                             )}
                           </span>
                         </div>

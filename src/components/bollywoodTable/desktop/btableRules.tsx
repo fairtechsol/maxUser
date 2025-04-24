@@ -1,4 +1,7 @@
-import "./style.scss";
+import React from "react";
+
+//import { cmeterrules } from "../../../assets/images";
+import "../../commonStyle.scss";
 const BTableRules = () => {
   return (
     <div className="rules-section">

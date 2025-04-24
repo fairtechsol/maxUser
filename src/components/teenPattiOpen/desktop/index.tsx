@@ -14,10 +14,9 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
+import "../../commonStyle.scss";
 import TeenPattiTableRow from "./tableRow";
 import TeenOpenResult from "./teenCard";
-
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -69,7 +68,7 @@ const TeenPattiDesktop = () => {
       bettingName: "Match odds",
       selectionId: item?.sid,
       min: item?.min,
-      max: item?.max,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -169,8 +168,8 @@ const TeenPattiDesktop = () => {
                 <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}`
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}`
                     : ""}
                 </span>
               </div>

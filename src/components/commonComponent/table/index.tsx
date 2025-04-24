@@ -83,7 +83,6 @@ const CustomTable: React.FC<CustomTableProps> = ({
         rowPerPage: rowPerPage,
       };
     });
-    // alert(tHeadTheme);
   }, [currentPage, sortConfig, rowPerPage]);
 
   useEffect(() => {
@@ -119,11 +118,10 @@ const CustomTable: React.FC<CustomTableProps> = ({
               {/* Table header with sorting icons */}
               {columns.map((column, index) => (
                 <th
-                  className={`${tHeadTheme} bg-[#f7f7f7] text-[#333333] text-start ${
-                    isMobile
+                  className={`${tHeadTheme} bg-[#f7f7f7] text-[#333333] text-start ${isMobile
                       ? "bg-secondary title-12 f800 p-1 text-white"
                       : "f600 title-16"
-                  }`}
+                    }`}
                   key={index}
                   style={{ background: "#f7f7f7" }}
                 >

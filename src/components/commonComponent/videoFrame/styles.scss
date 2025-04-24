@@ -1,28 +1,25 @@
-// .tick-flip {
-//     color: red; /* Change this to the color you want */
-//   }
-
 .flip-clock-label {
     font-size: .75em;
-  }
-  
-  // clearfix IE8 and up
-  
-  .clearfix::before,
-  .clearfix::after {
+}
+
+// clearfix IE8 and up
+
+.clearfix::before,
+.clearfix::after {
     content: " ";
     display: table;
-  }
-  
-  .clearfix::after {
+}
+
+.clearfix::after {
     clear: both;
-  }
-  
+}
+
 
 
 .tick-flip-panel {
-  background-color:#FFC742
+    background-color: #FFC742
 }
+
 .tick-flip-card {
     position: absolute;
     z-index: 1;
@@ -34,7 +31,7 @@
 }
 
 .tick-flip * {
-    
+
     white-space: pre;
     letter-spacing: inherit;
     text-indent: inherit;
@@ -44,9 +41,12 @@
     box-sizing: inherit;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
+
 .tick span[data-view] {
     display: inline-block;
 }
@@ -71,9 +71,12 @@
 }
 
 /* Global box-sizing for better layout control */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
+
 /* flip.css */
 .tick-flip * {
     // border-radius: inherit;

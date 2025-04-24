@@ -15,8 +15,8 @@ import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesComponent from "../../commonComponent/rulesComponent";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import ScoreBox from "../mobile/scoreBox";
-import "./style.scss";
 import Teen20Result from "./teenCard";
 const CricketMatch20Desktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -66,7 +66,7 @@ const CricketMatch20Desktop = () => {
       bettingName: "Match odds",
       selectionId: item?.sid,
       min: item?.min,
-      max: item?.max,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -116,12 +116,12 @@ const CricketMatch20Desktop = () => {
   useEffect(() => {
     if (
       dragonTigerDetail?.profitLoss?.[
-        `${dragonTigerDetail?.videoInfo?.mid}_1_card`
+      `${dragonTigerDetail?.videoInfo?.mid}_1_card`
       ]
     ) {
       const parsedData = JSON.parse(
         dragonTigerDetail.profitLoss[
-          `${dragonTigerDetail.videoInfo.mid}_1_card`
+        `${dragonTigerDetail.videoInfo.mid}_1_card`
         ]
       );
       setProfitLossData(parsedData);
@@ -129,10 +129,7 @@ const CricketMatch20Desktop = () => {
   }, [dragonTigerDetail]);
 
   useEffect(() => {
-    if (
-      leftBoard?.[0]?.gstatus === "SUSPENDED" ||
-      leftBoard?.[0]?.b1 === "0.00"
-    ) {
+    if (leftBoard?.[0]?.gstatus === "SUSPENDED" || leftBoard?.[0]?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
     } else {
     }
@@ -164,8 +161,8 @@ const CricketMatch20Desktop = () => {
                 <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}
                      
                       `
                     : ""}
@@ -216,9 +213,8 @@ const CricketMatch20Desktop = () => {
                             teamB="Team B"
                             teamBScore={`${dragonTigerDetail?.videoInfo?.C5}/${dragonTigerDetail?.videoInfo?.C6}`}
                             teamBOver={dragonTigerDetail?.videoInfo?.C7}
-                            ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                              2 + index
-                            }.png`}
+                            ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${2 + index
+                              }.png`}
                             backOdds={item.b1}
                             layOdds={item.l1}
                             handleBet={handleBet}
@@ -250,9 +246,8 @@ const CricketMatch20Desktop = () => {
                               teamB="Team B"
                               teamBScore={`${dragonTigerDetail?.videoInfo?.C5}/${dragonTigerDetail?.videoInfo?.C6}`}
                               teamBOver={dragonTigerDetail?.videoInfo?.C7}
-                              ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                                7 + index
-                              }.png`}
+                              ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${7 + index
+                                }.png`}
                               backOdds={item.b1}
                               layOdds={item.l1}
                               handleBet={handleBet}

@@ -11,9 +11,9 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Abj1Result from "../desktop/abj1Card";
 import CardBox from "./CardsBox";
-import "./style.scss";
 
 const Abj1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -66,11 +66,7 @@ const Abj1Mobile = () => {
     <>
       <div>
         <MobilePlacedBet show={show1} setShow={setShow1} />
-        <CasinoHead
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          setShow={setShow}
-        />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
         {!activeTab ? (
           <div className="horseRacingTab">

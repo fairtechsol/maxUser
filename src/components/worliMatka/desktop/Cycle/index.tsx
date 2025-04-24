@@ -65,9 +65,8 @@ const Cycle = ({ data, odds }: any) => {
   const renderBox = (value: string, index: number) => (
     <div
       key={index}
-      className={`worli-odd-box back ${
-        betTeam.includes(value) ? "selected" : ""
-      }`}
+      className={`worli-odd-box back ${betTeam.includes(value) ? "selected" : ""
+        }`}
       onClick={() => {
         setBetTeam((p) => {
           if (p && p.length == 2) return p;

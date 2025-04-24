@@ -9,9 +9,9 @@ import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Card3Result from "../desktop/abj1Card";
 import CardBox from "./CardsBox";
-import "./style.scss";
 
 const CardJMobile = () => {
   const [activeTab, setActiveTab] = useState(false);

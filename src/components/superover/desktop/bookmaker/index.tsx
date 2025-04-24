@@ -1,10 +1,10 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { formatNumber } from "../../../../helpers";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import { isMobile } from "../../../../utils/screenDimension";
-import "../style.scss"
+import "../../../commonStyle.scss";
 const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any, type: any) => {
@@ -18,8 +18,8 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: (item?.sid).toString(),
-      min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -83,42 +83,41 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
           {team1?.nat}
           <div>
             <span
-              className={`${
-                data?.profitLoss
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${team1?.sid}_card`
+              className={`${data?.profitLoss
+                ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${team1?.sid}_card`
+                ]
+                  ? JSON.parse(
+                    data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${team1?.sid}_card`
                     ]
-                    ? JSON.parse(
-                        data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${team1?.sid}_card`
-                        ]
-                      )["eng"] > 0
-                      ? "color-green"
-                      : JSON.parse(
-                          data?.profitLoss[
-                            `${data?.videoInfo?.mid}_${team1?.sid}_card`
-                          ]
-                        )["eng"] < 0
+                  )["eng"] > 0
+                    ? "color-green"
+                    : JSON.parse(
+                      data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${team1?.sid}_card`
+                      ]
+                    )["eng"] < 0
                       ? "color-red"
                       : ""
-                    : ""
                   : ""
-              }`}
+                : ""
+                }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${team1?.sid}_card`]
                   ? JSON.parse(
-                      data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${team1?.sid}_card`
-                      ]
-                    )["eng"]
+                    data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${team1?.sid}_card`
+                    ]
+                  )["eng"]
                   : ""
                 : ""}
             </span>
           </div>
         </span>
         <div
-        className={`
+          className={`
           ${isMobile ? "box-mob" : "blboxessp1"} 
           ${handleLock(team1?.status, team1?.b1) ? " suspended-row1" : ""}
         `}
@@ -164,42 +163,41 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
           {team2?.nat}
           <div>
             <span
-              className={`${
-                data?.profitLoss
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${team1?.sid}_card`
+              className={`${data?.profitLoss
+                ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${team1?.sid}_card`
+                ]
+                  ? JSON.parse(
+                    data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${team1?.sid}_card`
                     ]
-                    ? JSON.parse(
-                        data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${team1?.sid}_card`
-                        ]
-                      )["rsa"] > 0
-                      ? "color-green"
-                      : JSON.parse(
-                          data?.profitLoss[
-                            `${data?.videoInfo?.mid}_${team1?.sid}_card`
-                          ]
-                        )["rsa"] < 0
+                  )["rsa"] > 0
+                    ? "color-green"
+                    : JSON.parse(
+                      data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${team1?.sid}_card`
+                      ]
+                    )["rsa"] < 0
                       ? "color-red"
                       : ""
-                    : ""
                   : ""
-              }`}
+                : ""
+                }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${team1?.sid}_card`]
                   ? JSON.parse(
-                      data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${team1?.sid}_card`
-                      ]
-                    )["rsa"]
+                    data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${team1?.sid}_card`
+                    ]
+                  )["rsa"]
                   : ""
                 : ""}
             </span>
           </div>
         </span>
         <div
-       className={`
+          className={`
         ${isMobile ? "box-mob" : "blboxessp2"} 
         ${handleLock(team2?.status, team2?.b1) ? " suspended-row2" : ""}
       `}

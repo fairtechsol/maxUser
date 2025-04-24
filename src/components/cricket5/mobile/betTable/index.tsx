@@ -39,7 +39,6 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
     }
   }, [odds?.[0]?.status, odds?.[0]?.team1?.b1]);
 
-  // console.log("data",data)
   return (
     <div className="casino-detail detail-page-container-c position-relative">
       <div className="game-market w-100">
@@ -74,35 +73,33 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                 </span>
                 <div className="market-nation-book-c"></div>
                 <span
-                  className={`${
-                    data?.profitLoss
-                      ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        ? JSON.parse(
-                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                          )[row?.nat?.toLowerCase()] > 0
-                          ? "color-green"
-                          : JSON.parse(
-                              data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                            )[row?.nat?.toLowerCase()] < 0
+                  className={`${data?.profitLoss
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )[row?.nat?.toLowerCase()] > 0
+                        ? "color-green"
+                        : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )[row?.nat?.toLowerCase()] < 0
                           ? "color-red"
                           : ""
-                        : ""
                       : ""
-                  }`}
+                    : ""
+                    }`}
                 >
                   {data?.profitLoss
                     ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                       ? JSON.parse(
-                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        )[row?.nat?.toLowerCase()]
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )[row?.nat?.toLowerCase()]
                       : ""
                     : ""}
                 </span>
               </div>
               <div
-                className={`market-row-c ${
-                  row?.status === "SUSPENDED" ? "suspended-row" : ""
-                }`}
+                className={`market-row-c ${row?.status === "SUSPENDED" ? "suspended-row" : ""
+                  }`}
                 data-title={
                   row?.status === "SUSPENDED" ? "SUSPENDED" : "ACTIVE"
                 }
@@ -122,8 +119,8 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                   >
                     {" "}
                     {row?.status === "SUSPENDED" ||
-                    row?.status === "CLOSED" ||
-                    row?.b1 == "0"
+                      row?.status === "CLOSED" ||
+                      row?.b1 == "0"
                       ? "-"
                       : row?.b1}
                   </span>

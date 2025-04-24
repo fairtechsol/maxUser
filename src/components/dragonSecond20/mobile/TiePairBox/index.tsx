@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { useEffect } from "react";
 const TiePairBox = ({ tiePair, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any) => {
@@ -16,8 +16,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -28,22 +28,22 @@ const TiePairBox = ({ tiePair, data }: any) => {
   };
 
   useEffect(() => {
-    if (tiePair?.[0]?.gstatus === "0" ||tiePair?.[0]?.rate === "0.00") {
+    if (tiePair?.[0]?.gstatus === "0" || tiePair?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [tiePair?.[0]?.gstatus,tiePair?.[0]?.rate]);
+    }
+
+  }, [tiePair?.[0]?.gstatus, tiePair?.[0]?.rate]);
   return (
     <div className="tiePairContainer-d2">
-      <div className="tiePairRateBoxMain">
+      <div className="tiePairRateBoxMainNew">
         <CommonButtonBox
           value1={tiePair?.[0]?.rate}
           value2={"Dragon"}
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[0]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${tiePair?.[0]?.sid}_card`
+              ]
               : 0
           }
           width={"28%"}
@@ -57,8 +57,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[2]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${tiePair?.[2]?.sid}_card`
+              ]
               : 0
           }
           width={"14%"}
@@ -72,8 +72,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[1]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${tiePair?.[1]?.sid}_card`
+              ]
               : 0
           }
           width={"28%"}
@@ -81,15 +81,15 @@ const TiePairBox = ({ tiePair, data }: any) => {
           lock={tiePair?.[1]?.gstatus === "0" ? true : false}
           data={tiePair?.[1]}
         />
-        <div style={{ width: "30%",borderLeft:"5px solid #ffc742",display:"flex",justifyContent:"center", height: "70px" }}>
+        <div style={{ width: "30%", borderLeft: "5px solid #ffc742", display: "flex", justifyContent: "center", height: "70px" }}>
           <CommonButtonBox
             value1={tiePair?.[3]?.rate}
             value2={"Pair"}
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${tiePair?.[3]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${tiePair?.[3]?.sid}_card`
+                ]
                 : 0
             }
             width={"80%"}

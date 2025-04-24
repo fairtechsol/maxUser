@@ -27,7 +27,7 @@ export const getMatchList = createAsyncThunk<any, any>(
 
 export const getTabList = createAsyncThunk<any, any>(
   "/tab/list",
-  async ({}, thunkApi) => {
+  async ({ }, thunkApi) => {
     try {
       const resp = await service.get(ApiConstants.MATCH.TABLIST);
       if (resp) {
@@ -75,20 +75,7 @@ export const SearchList = createAsyncThunk<any, any>(
   }
 );
 
-// export const userChangePassword = createAsyncThunk<any, any>(
-//   "user/changePassword",
-//   async (requestData) => {
-//     try {
-//       const resp = await service.post("/user/changePassword", requestData);
-//       if (resp) {
-//         return resp?.data;
-//       }
-//     } catch (error: any) {
-//       const err = error as AxiosError;
-//       throw err;
-//     }
-//   }
-// );
+
 
 export const matchDetailAction = createAsyncThunk<any, any>(
   "/match/details",

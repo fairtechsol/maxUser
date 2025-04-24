@@ -11,9 +11,9 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Abj1Result from "../desktop/abj1Card";
 import CardBox from "./CardsBox";
-import "./style.scss";
 
 const WorliMobile = () => {
   const [activeTab, setActiveTab] = useState(false);

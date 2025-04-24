@@ -25,7 +25,7 @@ const SBetBox = ({ type, odds, data }: any) => {
     );
   };
   return (
-    <div className="sBoxContainer-m">
+    <div className="sBoxContainer-m-abj">
       <div className="sBoxMainlucky-m">
         <div style={{ width: "5%", paddingBottom: "20px", textAlign: "end" }}>
           <span
@@ -55,31 +55,30 @@ const SBetBox = ({ type, odds, data }: any) => {
           />
           <span
             style={{ fontSize: "14px" }}
-            className={`${
-              data?.profitLoss
+            className={`${data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                  ]
+                  `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                ]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                    ] > 0
+                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                  ] > 0
                     ? "color-green"
                     : data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                      ] < 0
-                    ? "color-red"
-                    : ""
+                      `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                    ] < 0
+                      ? "color-red"
+                      : ""
                   : ""
                 : ""
-            }`}
+              }`}
           >
             {data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                ]
+                `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+              ]
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                ]
                 : 0
               : 0}
           </span>
@@ -100,31 +99,30 @@ const SBetBox = ({ type, odds, data }: any) => {
           />
           <span
             style={{ fontSize: "14px" }}
-            className={`${
-              data?.profitLoss
+            className={`${data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                  ]
+                  `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                ]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                    ] > 0
+                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                  ] > 0
                     ? "color-green"
                     : data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                      ] < 0
-                    ? "color-red"
-                    : ""
+                      `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                    ] < 0
+                      ? "color-red"
+                      : ""
                   : ""
                 : ""
-            }`}
+              }`}
           >
             {data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                ]
+                `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+              ]
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                ]
                 : 0
               : 0}
           </span>
@@ -146,31 +144,30 @@ const SBetBox = ({ type, odds, data }: any) => {
           />
           <span
             style={{ fontSize: "14px" }}
-            className={`${
-              data?.profitLoss
+            className={`${data?.profitLoss
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                  ]
+                  `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                ]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                    ] > 0
+                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                  ] > 0
                     ? "color-green"
                     : data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                      ] < 0
-                    ? "color-red"
-                    : ""
+                      `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                    ] < 0
+                      ? "color-red"
+                      : ""
                   : ""
                 : ""
-            }`}
+              }`}
           >
             {data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                ]
+                `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+              ]
                 ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                  ]
+                `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                ]
                 : 0
               : 0}
           </span>

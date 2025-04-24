@@ -1,11 +1,9 @@
 import { Table } from "react-bootstrap";
 
-import "./style.scss";
-// import { RootState } from "../../../../store/store";
 import { useSelector } from "react-redux";
-// import DeleteBetOverlay from "../../../commonComponent/betComponents/deleteBetRow";
 import { RootState } from "../../../../../store/store";
 import DeleteBetOverlay from "../../../betComponents/deleteBetRow";
+import "./style.scss";
 
 
 const placeBetHeader = [
@@ -43,23 +41,20 @@ const MobileMyBet = () => {
             return (
               <tr key={bet?.id} className={`position-relative bg-`}>
                 <th
-                  className={`title-12 text-start ${
-                    bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                  }`}
+                  className={`title-12 text-start ${bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                    }`}
                 >
                   {bet?.teamName}
                 </th>
                 <th
-                  className={`title-12 text-start ${
-                        bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
+                  className={`title-12 text-start ${bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                    }`}
                 >
                   {bet?.odds}
                 </th>
                 <th
-                  className={`title-12 text-start ${
-                        bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
+                  className={`title-12 text-start ${bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                    }`}
                 >
                   {bet?.amount}
                 </th>

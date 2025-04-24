@@ -13,7 +13,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
     setCardImg(mergedArray);
   }, [cardData]);
   return (
-    <div className="commonCardImgContainer">
+    <div className="commonCardImgContainerDg">
       {cardImg?.map((item: any) => {
         return (
           <div key={item?.sid}>
@@ -35,29 +35,28 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              className={`${
-                data?.profitLoss
+              className={`${data?.profitLoss
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
+                      `${data?.videoInfo?.mid}_${item?.sid}_card`
+                    ] > 0
                       ? "color-green"
                       : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
-                      ? "color-red"
-                      : ""
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ] < 0
+                        ? "color-red"
+                        : ""
                     : ""
                   : ""
-              }`}
+                }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                   : "\u00A0"
                 : "\u00A0"}
             </div>

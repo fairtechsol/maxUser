@@ -1,4 +1,5 @@
-import "./style.scss"; // Ensure you define the styles in this file
+import React from "react";
+import "../../commonStyle.scss";
 
 const AmarAkbarAnthonyRules = () => {
   return (
