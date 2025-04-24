@@ -2,7 +2,7 @@ name: Deploy fairgame
 on:
   push:
     branches:
-      - live-casino
+      - live-casino1
 jobs:
   deploy:
     runs-on: ubuntu-latest
