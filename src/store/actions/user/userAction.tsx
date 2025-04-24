@@ -212,6 +212,12 @@ export const updateBalance = createAsyncThunk<any, any>(
     return balance;
   }
 );
+export const updateTeamRateOnUndeclare = createAsyncThunk<any, any>(
+  "/user/updateTeamRateOnUndeclare",
+  async (balance) => {
+    return balance;
+  }
+);
 
 export const updateBalanceOnSessionBet = createAsyncThunk<any, any>(
   "/user/balanceOnSessionBetUpdate",

@@ -41,7 +41,7 @@ const currentBetListSlice = createSlice({
       })
       .addCase(betReportList.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(settleUnsettleMatch.pending, (state) => {
         state.loading = false;
@@ -55,7 +55,7 @@ const currentBetListSlice = createSlice({
       })
       .addCase(settleUnsettleMatch.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getProfitLossReport.pending, (state) => {
         state.loading = false;
@@ -69,10 +69,11 @@ const currentBetListSlice = createSlice({
       })
       .addCase(getProfitLossReport.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(resetDataUnsettledMatch, (state) => {
-        return { ...state, ReportBetList: [], success: false };
+        state.success = false;
+        state.ReportBetList = [];
       })
       .addCase(resetReportBetListData, (state) => {
         state.ReportBetList = [];
