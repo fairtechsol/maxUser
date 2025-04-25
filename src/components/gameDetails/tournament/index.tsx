@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
-    calculateRequiredStack,
-    dummyArray,
-    formatNumber,
-    manualProfitLoss,
+  calculateRequiredStack,
+  dummyArray,
+  formatNumber,
+  manualProfitLoss,
 } from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -182,32 +182,6 @@ const Tournament = ({ title, box, data, detail }) => {
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
   const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
-
-  const ProfitLossDisplay = ({ item }) => {
-    const runnerId = item.parentRunnerId || item.id;
-    const profitLossValue = parseFloat(profitLossObj?.[runnerId]) || 0;
-    const manualValue = manualProfitLoss(
-      selectedBet,
-      item?.nat || item?.runnerName,
-      data?.type,
-      data?.gtype
-    );
-    const totalValue = selectedBet?.team?.betId === data?.parentBetId
-      ? profitLossValue + manualValue
-      : profitLossValue || manualValue;
-    const displayValue = totalValue === 0 ? "" : totalValue.toFixed(2);
-
-    return (
-      <span
-        className="title-12 f-400"
-        style={{
-          color: totalValue > 0 ? "#086f3f" : totalValue < 0 ? "#bd1828" : "inherit",
-        }}
-      >
-        {displayValue}
-      </span>
-    );
-  };
 
   return (
     <>
