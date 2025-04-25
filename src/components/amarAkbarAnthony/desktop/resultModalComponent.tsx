@@ -13,7 +13,6 @@ interface Props {
 const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.desc?.split("|");
   const pair = resultCards?.[0]?.split(" ");
-  // const card = resultCards?.[3]?.split(" ");
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>

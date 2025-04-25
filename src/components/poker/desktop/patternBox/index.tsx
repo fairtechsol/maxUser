@@ -1,9 +1,6 @@
-// import { useDispatch } from "react-redux";
-// import { AppDispatch } from "../../../../store/store";
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
+import { GiSpades } from "react-icons/gi";
+import { ImClubs, ImDiamonds } from "react-icons/im";
 
 const CommonPatternBox = ({
   value1,
@@ -14,12 +11,11 @@ const CommonPatternBox = ({
   lock,
   data,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
 
   return (
     <div className="commonButtonBoxContainer" style={{ width: width }}>
       <div>
-        
+
       </div>
       {/* <div className="tiePairbtn-theme suspended" onClick={handleBet}> */}
       <div
@@ -48,29 +44,27 @@ const CommonPatternBox = ({
       <div className="d-flex justify-content-between">
         <span
           style={{ fontSize: "16px" }}
-          className={`${
-            isNaN(value3)
-              ? ""
-              : value3 > 0
+          className={`${isNaN(value3)
+            ? ""
+            : value3 > 0
               ? "color-green"
               : value3 < 0
-              ? "color-red"
-              : ""
-          }`}
+                ? "color-red"
+                : ""
+            }`}
         >
           {isNaN(value3) ? 0 : value3}
         </span>
         <span
           style={{ fontSize: "16px" }}
-          className={`${
-            isNaN(value3)
-              ? ""
-              : value3 > 0
+          className={`${isNaN(value3)
+            ? ""
+            : value3 > 0
               ? "color-green"
               : value3 < 0
-              ? "color-red"
-              : ""
-          }`}
+                ? "color-red"
+                : ""
+            }`}
         >
           {isNaN(value3) ? 0 : value3}
         </span>

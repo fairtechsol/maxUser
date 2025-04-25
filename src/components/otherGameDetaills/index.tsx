@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   expertSocketService,
   matchService,
@@ -38,7 +39,7 @@ import FootballMobileGameDetail from "./mobile";
 
 const FootballGameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { success } = useSelector((state: RootState) => state.match.matchList);
+  const { success, matchDetails } = useSelector((state: RootState) => state.match.matchList);
   const navigate = useNavigate();
   const { id, type } = useParams();
 
@@ -75,29 +76,6 @@ const FootballGameDetails = () => {
       console.log(e);
     }
   };
-  // const betDeleted = (event: any) => {
-  //   try {
-  //     dispatch(updateUserBalanceOnPlaceBet(event));
-  //     if (event?.matchId === id) {
-  //       dispatch(
-  //         otherMatchDetailAction({ matchId: id, matchType: "football" })
-  //       );
-  //       dispatch(getPlacedBets(id));
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  // const resultDeclared = (event: any) => {
-  //   try {
-  //     if (event?.matchId === id) {
-  //       navigate("/game-list/football");
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   const sessionResultDeclared = (event: any) => {
     try {
@@ -188,6 +166,13 @@ const FootballGameDetails = () => {
       console.log(e);
     }
   }, [id]);
+
+  useEffect(() => {
+    if (matchDetails && matchDetails?.stopAt) {
+      toast.error("Match has been over.");
+      navigate(`/game-list/${type}`);
+    }
+  }, [matchDetails]);
 
   useEffect(() => {
     try {

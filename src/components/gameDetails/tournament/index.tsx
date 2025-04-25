@@ -12,10 +12,6 @@ const Tournament = ({ title, box, data, detail }) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  // const startAtTime = new Date(detail.startAt);
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000);
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -181,7 +177,7 @@ const Tournament = ({ title, box, data, detail }) => {
               //   selectedBet?.team?.stake == 0 ? true : false
               // }
               disabled={
-                Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? true : false
+                Object.keys(profitLossObj).length <= 0 ? true : false
               }
               className="submit-buttonn cursor-pointer"
               onClick={handleCashoutBet}

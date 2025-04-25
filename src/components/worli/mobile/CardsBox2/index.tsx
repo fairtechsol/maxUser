@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-//import "./style.scss";
 
 const CardBox2 = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();

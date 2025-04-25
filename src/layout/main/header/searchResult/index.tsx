@@ -4,25 +4,10 @@ import { Link } from "react-router-dom";
 import { searchListReset } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
-// import { useEffect } from "react";
 
 const SearchResult = ({ data, setOpen }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const handleKeyDown = (event: KeyboardEvent) => {
-  //     if (event.key === 'Backspace') {
-  //       // Close the search result
-  //       setOpen(false);
-  //     }
-  //   };
-
-  //   document.addEventListener('keydown', handleKeyDown);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', handleKeyDown);
-  //   };
-  // }, [setOpen]);
   return (
     <div className="position-absolute bg-white text-black p-1 search-result" >
       {data?.length == 0 ? (
@@ -35,7 +20,7 @@ const SearchResult = ({ data, setOpen }: any) => {
               setOpen(false);
             }}
             className="text-decoration-none"
-            to={item?.matchType==="greyHound" || item?.matchType==="horseRacing"?`/race/${item?.id}`:`/game-detail/${item.matchType}/${item?.id}`}
+            to={item?.matchType === "greyHound" || item?.matchType === "horseRacing" ? `/race/${item?.id}` : `/game-detail/${item.matchType}/${item?.id}`}
             key={index}
           >
             <div className="d-flex flex-column w-100 border-bottom">

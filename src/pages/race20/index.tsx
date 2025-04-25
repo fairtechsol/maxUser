@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Race20ComponentList from "../../components/race20";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -22,7 +23,6 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import Race20ComponentList from "../../components/race20";
 
 const Race20 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -106,8 +106,7 @@ const Race20 = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
-     
-        // dispatch(getDragonTigerDetailHorseRacing(cardGamesType.race20));
+
         socketService.card.joinMatchRoom(cardGamesType.race20);
         socketService.card.getCardRates(
           cardGamesType.race20,

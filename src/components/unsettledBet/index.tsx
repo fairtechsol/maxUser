@@ -1,18 +1,17 @@
+import _ from "lodash";
+import moment from "moment";
+import { useEffect, useState } from "react";
 import { Col, Form, Row, Stack } from "react-bootstrap";
-import { isMobile } from "../../utils/screenDimension";
-import ReportContainer from "../containers/reportContainer";
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
 import {
   resetReportBetListData,
   settleUnsettleMatch,
 } from "../../store/actions/match/matchListAction";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import moment from "moment";
-import _ from "lodash";
+import { AppDispatch, RootState } from "../../store/store";
+import { isMobile } from "../../utils/screenDimension";
 import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
+import ReportContainer from "../containers/reportContainer";
 
 interface Column {
   id: string;
@@ -95,11 +94,10 @@ const UnsettledBetComponent = () => {
     }
     const params = new URLSearchParams();
     if (e.target.id != "") {
-      const betType = `inArr${
-        e.target.id === "back"
-          ? JSON.stringify(["BACK", "YES"])
-          : JSON.stringify(["LAY", "NO"])
-      }`;
+      const betType = `inArr${e.target.id === "back"
+        ? JSON.stringify(["BACK", "YES"])
+        : JSON.stringify(["LAY", "NO"])
+        }`;
       params.append("betType", betType);
     }
 
@@ -112,22 +110,8 @@ const UnsettledBetComponent = () => {
       params.append("result", "eqPENDING");
     }
     dispatch(settleUnsettleMatch(params.toString()));
-    // if (e.target.id) {
-    // } else {
-    //   dispatch(resetDataUnsettledMatch());
-    // }
   };
 
-  // useEffect(() => {
-  //   dispatch(
-  //     settleUnsettleMatch({
-  //       status: selectedOption,
-  //       page: tableConfig?.page,
-  //       limit: tableConfig?.rowPerPage,
-  //       keyword: tableConfig?.keyword,
-  //     })
-  //   );
-  // }, [tableConfig]);
 
   const handleGame = () => {
     if (!type) {
@@ -136,11 +120,10 @@ const UnsettledBetComponent = () => {
     setGameType(type?.value === "sports" ? "sports" : "casino");
     const params: any = new URLSearchParams();
     if (selectedOption != "") {
-      const betType = `inArr${
-        selectedOption === "back"
-          ? JSON.stringify(["BACK", "YES"])
-          : JSON.stringify(["LAY", "NO"])
-      }`;
+      const betType = `inArr${selectedOption === "back"
+        ? JSON.stringify(["BACK", "YES"])
+        : JSON.stringify(["LAY", "NO"])
+        }`;
       params.append("betType", betType);
     }
     // if (selectedOption) params.append("betType", selectedOption);
@@ -160,11 +143,10 @@ const UnsettledBetComponent = () => {
     // if (e.target.value?.length > 2) {
     const params: any = new URLSearchParams();
     if (selectedOption != "") {
-      const betType = `inArr${
-        selectedOption === "back"
-          ? JSON.stringify(["BACK", "YES"])
-          : JSON.stringify(["LAY", "NO"])
-      }`;
+      const betType = `inArr${selectedOption === "back"
+        ? JSON.stringify(["BACK", "YES"])
+        : JSON.stringify(["LAY", "NO"])
+        }`;
       params.append("betType", betType);
     }
     // if (selectedOption) params.append("betType", selectedOption);
@@ -192,11 +174,10 @@ const UnsettledBetComponent = () => {
     const params = new URLSearchParams();
 
     if (selectedOption) {
-      const betType = `inArr${
-        selectedOption === "back"
-          ? JSON.stringify(["BACK", "YES"])
-          : JSON.stringify(["LAY", "NO"])
-      }`;
+      const betType = `inArr${selectedOption === "back"
+        ? JSON.stringify(["BACK", "YES"])
+        : JSON.stringify(["LAY", "NO"])
+        }`;
       params.append("betType", betType);
     }
 
@@ -220,11 +201,10 @@ const UnsettledBetComponent = () => {
     }
     const params: any = new URLSearchParams();
     if (selectedOption != "") {
-      const betType = `inArr${
-        selectedOption === "back"
-          ? JSON.stringify(["BACK", "YES"])
-          : JSON.stringify(["LAY", "NO"])
-      }`;
+      const betType = `inArr${selectedOption === "back"
+        ? JSON.stringify(["BACK", "YES"])
+        : JSON.stringify(["LAY", "NO"])
+        }`;
       params.append("betType", betType);
     }
     if (currentPage) params.append("page", 1);
@@ -241,8 +221,8 @@ const UnsettledBetComponent = () => {
     setSelectedCheckedBet((prevSelected: any) =>
       prevSelected.includes(item)
         ? prevSelected.filter(
-            (selectedItem: any) => selectedItem?.id !== item?.id
-          )
+          (selectedItem: any) => selectedItem?.id !== item?.id
+        )
         : [...prevSelected, item]
     );
   };
@@ -281,9 +261,8 @@ const UnsettledBetComponent = () => {
                   <CustomButton
                     style={{ paddingLeft: "6rem", paddingRight: "6rem" }}
                     size={isMobile ? "sm" : "lg"}
-                    className={`${
-                      isMobile ? "w-100" : "w-100 bg-primary"
-                    } border-0 fs-6`}
+                    className={`${isMobile ? "w-100" : "w-100 bg-primary"
+                      } border-0 fs-6`}
                     onClick={() => handleGame()}
                   >
                     Submit
@@ -291,36 +270,7 @@ const UnsettledBetComponent = () => {
                 </Col>
               </Row>
               <div className="g-2 mt-1 d-flex flex-row justify-content-between">
-                {/* <Col md={2} xs={4}>
-                <Form.Check
-                  label="Matched"
-                  name="matched"
-                  type="radio"
-                  id={"PENDING"}
-                  onChange={(e) => handleCheckboxChange(e)}
-                  defaultChecked={selectedOption === "PENDING"}
-                />
-              </Col>
-              <Col md={2} xs={4}>
-                <Form.Check
-                  label="Un-Matched"
-                  name="matched"
-                  type="radio"
-                  id={"UNMATCHED"}
-                  onChange={(e) => handleCheckboxChange(e)}
-                  defaultChecked={selectedOption === "UNMATCHED"}
-                />
-              </Col>
-              <Col md={2} xs={4}>
-                <Form.Check
-                  label="Deleted"
-                  name="matched"
-                  type="radio"
-                  id={"DELETED"}
-                  onChange={(e) => handleCheckboxChange(e)}
-                  defaultChecked={selectedOption === "DELETED"}
-                />
-              </Col> */}
+
                 <div className="w-25">
                   <div className="w-100 d-flex flex-row justify-content-start align-items-center">
                     <span className="me-1">Show</span>
@@ -419,9 +369,8 @@ const UnsettledBetComponent = () => {
                 <CustomButton
                   style={{ paddingLeft: "6rem", paddingRight: "6rem" }}
                   size={isMobile ? "sm" : "lg"}
-                  className={`${
-                    isMobile ? "w-100" : "w-100 bg-primary"
-                  } border-0 fs-6`}
+                  className={`${isMobile ? "w-100" : "w-100 bg-primary"
+                    } border-0 fs-6`}
                   onClick={() => handleGame()}
                 >
                   Submit
@@ -740,13 +689,11 @@ const UnsettledBetComponent = () => {
                       <>
                         {gameType === "sports" ? (
                           <tr
-                            className={`w-100 d-flex align-items-center ${
-                              isMobile ? "title-12" : "title-14"
-                            } ${
-                              item.betType === "NO" || item.betType === "LAY"
+                            className={`w-100 d-flex align-items-center ${isMobile ? "title-12" : "title-14"
+                              } ${item.betType === "NO" || item.betType === "LAY"
                                 ? "bg-red4"
                                 : "bg-blue5"
-                            }`}
+                              }`}
                             style={{
                               height: "46px",
                               borderBottom: "1px solid #c7c8ca",
@@ -833,13 +780,11 @@ const UnsettledBetComponent = () => {
                           </tr>
                         ) : (
                           <tr
-                            className={`w-100 d-flex align-items-center ${
-                              isMobile ? "title-12" : "title-14"
-                            } ${
-                              item.betType === "NO" || item.betType === "LAY"
+                            className={`w-100 d-flex align-items-center ${isMobile ? "title-12" : "title-14"
+                              } ${item.betType === "NO" || item.betType === "LAY"
                                 ? "bg-red4"
                                 : "bg-blue5"
-                            }`}
+                              }`}
                             style={{
                               height: "46px",
                               backgroundColor: "red",
@@ -964,7 +909,7 @@ const UnsettledBetComponent = () => {
                     }}
                     onClick={() => {
                       currentPage <
-                      Math.floor((ReportBetList?.count || 0) / limit)
+                        Math.floor((ReportBetList?.count || 0) / limit)
                         ? handlePageChange(currentPage + 1)
                         : null;
                       setSelectedCheckedBet([]);

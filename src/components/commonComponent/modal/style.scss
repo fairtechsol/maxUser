@@ -18,26 +18,13 @@ $btn-close-bg: 11;
   .modal-header {
     border: 0 !important;
     padding: 8px 12px;
+
     .modal-title {
       font-size: 20px !important;
     }
-    // .btn-close {
-    //     opacity: 1;
-    //     margin-right: 0;
-    //     color: $white !important;
-    //     background: none !important;
-    //     &:after {
-    //         content: "x";
-    //         position: relative;
-    //         left: -0px;
-    //         top: -5px;
-    //         // width: 44rem !important;
-    //         // font-weight: 900;
-    //         font-size: 1.2rem;
-    //     }
-    // }
   }
 }
+
 .modalLogin-root {
   .modal-dialog {
     max-width: 90%;
@@ -53,6 +40,7 @@ $btn-close-bg: 11;
   .modal-header {
     border: 0 !important;
     padding: 8px 12px;
+
     .modal-title {
       font-size: 20px !important;
     }
@@ -71,7 +59,8 @@ $btn-close-bg: 11;
   transition: 0.5s;
   display: inline-flex;
   align-items: center;
-  padding: 0.375rem 1rem; /* Adjusted for space around text */
+  padding: 0.375rem 1rem;
+  /* Adjusted for space around text */
   font-weight: 400;
   line-height: 1;
   color: #212529;
@@ -109,7 +98,6 @@ $btn-close-bg: 11;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
   right: 0;
-  // transform: translate(1052px, 0px);
 }
 
 .dropdown-item-1 {

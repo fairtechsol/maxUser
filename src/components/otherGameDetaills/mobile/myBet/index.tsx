@@ -1,8 +1,6 @@
 import { Table } from "react-bootstrap";
-
-// import "./style.scss";
-import { RootState } from "../../../../store/store";
 import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import DeleteBetOverlay from "../../../commonComponent/betComponents/deleteBetRow";
 const placeBetHeader = [
   {
@@ -38,38 +36,34 @@ const MyBet = () => {
             return (
               <tr
                 key={bet?.id}
-                className={`position-relative ${
-                  bet?.betType === "NO" || bet?.betType === "LAY"
+                className={`position-relative ${bet?.betType === "NO" || bet?.betType === "LAY"
                     ? "bg-red1"
                     : "bg-blue3"
-                }`}
+                  }`}
               >
                 <th
-                  className={`title-12 text-start ${
-                    bet?.betType === "NO" || bet?.betType === "LAY"
+                  className={`title-12 text-start ${bet?.betType === "NO" || bet?.betType === "LAY"
                       ? "bg-red1"
                       : "bg-blue3"
-                  }`}
+                    }`}
                 >
                   {bet?.marketBetType === "SESSION"
                     ? bet?.eventName
                     : bet?.bettingName}
                 </th>
                 <th
-                  className={`title-12 text-start ${
-                    bet?.betType === "NO" || bet?.betType === "LAY"
+                  className={`title-12 text-start ${bet?.betType === "NO" || bet?.betType === "LAY"
                       ? "bg-red1"
                       : "bg-blue3"
-                  }`}
+                    }`}
                 >
                   {bet?.odds}
                 </th>
                 <th
-                  className={`title-12 text-start ${
-                    bet?.betType === "NO" || bet?.betType === "LAY"
+                  className={`title-12 text-start ${bet?.betType === "NO" || bet?.betType === "LAY"
                       ? "bg-red1"
                       : "bg-blue3"
-                  }`}
+                    }`}
                 >
                   {bet?.amount}
                 </th>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 
 interface Props {
@@ -23,7 +23,6 @@ const Crick5Result: React.FC<Props> = ({ data }: any) => {
       result[targetArray].push(item);
     });
   }
-  // console.log(result,"sjhn")
   return (
     data?.mid != "0" && (
       <Container className="mt-2">

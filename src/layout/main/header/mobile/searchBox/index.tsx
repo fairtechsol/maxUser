@@ -9,7 +9,7 @@ import "./style.scss";
 
 const SearchBox = () => {
   const [searchIco, setSearchIco] = useState(false);
-  const [searchValue,setSearchValue] = useState("")
+  const [searchValue, setSearchValue] = useState("")
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -18,13 +18,10 @@ const SearchBox = () => {
     setSearchIco(!searchIco);
   };
 
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearchQuery(e.target.value); // Update search query state
-  // };
   const dispatch: AppDispatch = useDispatch();
 
   const debouncedInputValue = useMemo(() => {
-    return debounce((value:any) => {
+    return debounce((value: any) => {
       dispatch(
         getMatchListSearch({
           type: "search",
@@ -33,36 +30,36 @@ const SearchBox = () => {
       );
     }, 500);
   }, []);
-  
+
   return (
     <div className={`search-box  ${searchIco ? "searchIcoActive" : ""} `}>
-   <div className={`search-input-container ${searchIco ? "active" : ""}`}>
-   {searchIco && searchedMatchList && searchValue?.length>0 && (
-        <SearchResult setOpen={setSearchIco} data={searchedMatchList} />
-      )}
-    <input
-      type="text"
-      placeholder="Search here"
-      className="form-control search-input-show br-0 ms-1"
-      onChange={(e: any) => {
-        setSearchValue(e.target.value);
-        if (e.target.value?.length > 2) {
-          debouncedInputValue(e.target.value);
-        }
-      }}
-    />
-  </div>
-  <div className="search-icon" onClick={searchIcoHandle}>
-    <FaSearchPlus />
-  </div>
+      <div className={`search-input-container ${searchIco ? "active" : ""}`}>
+        {searchIco && searchedMatchList && searchValue?.length > 0 && (
+          <SearchResult setOpen={setSearchIco} data={searchedMatchList} />
+        )}
+        <input
+          type="text"
+          placeholder="Search here"
+          className="form-control search-input-show br-0 ms-1"
+          onChange={(e: any) => {
+            setSearchValue(e.target.value);
+            if (e.target.value?.length > 2) {
+              debouncedInputValue(e.target.value);
+            }
+          }}
+        />
+      </div>
+      <div className="search-icon" onClick={searchIcoHandle}>
+        <FaSearchPlus />
+      </div>
 
-        {/* <div className="search-icon" onClick={searchIcoHandle}>
+      {/* <div className="search-icon" onClick={searchIcoHandle}>
         {searchIco ? <IoClose style={{color: "black"}} /> : <FaSearchPlus/>}
       </div> */}
-        {/* </div> */}
+      {/* </div> */}
 
-        {/* <div className="search-icon" onClick={searchIcoHandle}></div> */}
-      </div>
+      {/* <div className="search-icon" onClick={searchIcoHandle}></div> */}
+    </div>
   );
 };
 

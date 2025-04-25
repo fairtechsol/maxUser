@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { isMobile } from "../../../../utils/screenDimension";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
-import {isMobile} from "../../../../utils/screenDimension";
-import { useLocation, useParams } from "react-router-dom";
 interface props {
   bgColor?: string;
   rate: any;
@@ -72,31 +72,18 @@ function BackLayBox({
         e.stopPropagation();
         onClick();
       }}
-      className={`backLay ${overlay ? "overlay" : ""}  ${
-        customClass ? customClass : ""
-      } bg-${isYellow ? "secondary" : bgColor}`}
+      className={`backLay ${overlay ? "overlay" : ""}  ${customClass ? customClass : ""
+        } bg-${isYellow ? "secondary" : bgColor}`}
       style={{ ...inlineStyle }}
     >
       {location.pathname == "/home" ? (
-        <div
-          // onClick={() => onClick()}
-          // className={` text-center d-flex cursor-pointer ${
-          //   isMobile ? "boxheight-m" : "boxheight"
-          // }`}
-        >
-          {/* <h5 className="backLay-rate f500 title-15 m-0 pt-1">
-            {parseFloat(rate || 0) <= 0 || active
-              ? isMobile
-                ? "0"
-                : "-"
-              : rate}{" "}
-          </h5> */}
+        <div>
           <span
-          className={
-            isMobile
-              ? `backLay-rate fbold title-14 ${params?.type ? "fbold" : "fbold"}`
-              : "backLay-rate fbold title-14 "
-          }
+            className={
+              isMobile
+                ? `backLay-rate fbold title-14 ${params?.type ? "fbold" : "fbold"}`
+                : "backLay-rate fbold title-14 "
+            }
           >
             {parseFloat(rate || 0) <= 0 || active
               ? isMobile

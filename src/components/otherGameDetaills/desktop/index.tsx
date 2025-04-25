@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import BetTableHeader from "../../commonComponent/betTableHeader";
-// import "./style.scss";
 import { customSortOnName } from "../../../helpers";
+import { RootState } from "../../../store/store";
+import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
+import { getTvData } from "../../../utils/tvUrlGet";
+import BetTableHeader from "../../commonComponent/betTableHeader";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import CustomModal from "../../commonComponent/modal";
 import NewLoader from "../../commonComponent/newLoader";
@@ -18,19 +19,12 @@ import MatchOdd from "../../gameDetails/matchOdd";
 import Tournament from "../../gameDetails/tournament";
 import BetTable from "../../otherGameDetaills/betTable/index";
 import HtFt from "../htft";
-// import service from "../../../service";
-import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
-import { getTvData } from "../../../utils/tvUrlGet";
-// import Iframe from "../../iframe/iframe";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
   const [showScoreboard, setShowScoreboard] = useState<boolean>(false);
-  // const [_, setChannelId] = useState<string>("");
-  // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
-  // const [errorCount, setErrorCount] = useState<number>(0);
   const [tvData, setTvData] = useState<any>(null);
 
   const { matchDetails, loading } = useSelector(
@@ -170,7 +164,6 @@ const FootballDesktopGameDetail = () => {
                         }
                         data={matchDetails?.bookmaker}
                         detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
@@ -187,7 +180,7 @@ const FootballDesktopGameDetail = () => {
                         }
                         data={matchDetails?.bookmaker2}
                         detail={matchDetails}
-                        // data={matchDetails?.matchOdd}
+                      // data={matchDetails?.matchOdd}
                       />
                     </Col>
                   )}
@@ -224,7 +217,7 @@ const FootballDesktopGameDetail = () => {
                               }
                               data={item}
                               detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
+                            // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         ) : (
@@ -239,7 +232,6 @@ const FootballDesktopGameDetail = () => {
                               }
                               data={item}
                               detail={matchDetails}
-                              // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         ))}
@@ -325,29 +317,7 @@ const FootballDesktopGameDetail = () => {
                   : "100%",
               }}
             >
-              {/* <Col md={12}>
-                <div
-                  //onClick={() => setShowContactAdmin(true)}
-                  style={{
-                    display: "flex",
-                    margin: "10px 0",
-                    marginBottom: "0",
-                    alignItems: "center",
-                  }}
-                  className="fs-4"
-                >
-                  <IoInformationCircle />
-                  <h6
-                    style={{ margin: "0px 0px 0px 5px", color: "#ff0000" }}
-                    className="fs-5 text-decoration-underline cursor-pointer blinking-text"
-                  >
-                    <Link className="text-danger" to={"/ballbyball"}>
-                      {" "}
-                      Ball By Ball
-                    </Link>
-                  </h6>
-                </div>
-              </Col> */}
+
               {matchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent

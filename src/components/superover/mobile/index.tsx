@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { supoerrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
-import Bookmaker from "../desktop/bookmaker";
-import { Table } from "react-bootstrap";
-import SuperoverResult from "../desktop/superOver";
+import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
-import Iframe from "../../iframe/iframe";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Iframe from "../../iframe/iframe";
+import Bookmaker from "../desktop/bookmaker";
+import SuperoverResult from "../desktop/superOver";
+import "./style.scss";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -92,11 +91,11 @@ const SuperoverMobile = () => {
                     backgroundColor: "#000",
                   }}
                 ></div>
-                 {scoreBoardData?.balls?.length>0 && (
-              <div style={{marginBottom:"2px"}}>
-                <Iframe data={scoreBoardData} />
-              </div>
-            )}
+                {scoreBoardData?.balls?.length > 0 && (
+                  <div style={{ marginBottom: "2px" }}>
+                    <Iframe data={scoreBoardData} />
+                  </div>
+                )}
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={

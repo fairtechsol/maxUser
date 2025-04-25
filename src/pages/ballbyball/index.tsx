@@ -6,13 +6,13 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  ballbyballMatchRates,
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  ballbyballMatchRates,
-  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
   getCasinoButtonValue,
@@ -101,24 +101,6 @@ const BallByBall = () => {
       console.log(e);
     }
   }, []);
-
-  // useEffect(() => {
-  //   const handleVisibilityChange = () => {
-  //     if (document.visibilityState === "visible") {
-  //       dispatch(selectedBetAction(null));
-  //       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
-  //     } else if (document.visibilityState === "hidden") {
-  //       dispatch(dragonTigerReset());
-  //       socketService.card.leaveMatchRoom(cardGamesType.ballbyball);
-  //       socketService.card.getCardRatesOff(cardGamesType.ballbyball);
-  //     }
-  //   };
-
-  //   document.addEventListener("visibilitychange", handleVisibilityChange);
-  //   return () => {
-  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
-  //   };
-  // }, []);
 
   return <BallbyballComponentList />;
 };

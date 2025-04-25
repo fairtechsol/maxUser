@@ -1,28 +1,25 @@
 import { debounce } from "lodash";
 import { useEffect, useMemo, useState } from "react";
-import { Col, Collapse, Dropdown, Navbar, Row, Modal } from "react-bootstrap";
+import { Col, Collapse, Dropdown, Modal, Navbar, Row } from "react-bootstrap";
 import { FaSearchPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import CustomInput from "../../../../components/commonComponent/input";
 import LogoSection from "../../../../components/commonComponent/logoSection";
 import MarqueeHeader from "../../../../components/commonComponent/marquee";
+import CustomModal from "../../../../components/commonComponent/modal";
+import ButtonValues from "../../../../components/gameDetails/mobile/buttonValues";
+import Drules from "../../../../components/rules/desktop";
+import Mobile from "../../../../components/rules/mobile";
 import { logout } from "../../../../store/actions/authAction";
-import { getMatchListSearch } from "../../../../store/actions/match/matchListAction";
+import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
+import { getMatchListSearch, SearchListReset } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
 import SearchResult from "../searchResult";
 import CustomDropDown from "./dropdown/customDropdown";
 import "./style.scss";
-// import SearchInput from "../../../../components/commonComponent/mainSearch";
-import { SearchListReset } from "../../../../store/actions/match/matchListAction";
-import CustomModal from "../../../../components/commonComponent/modal";
-import Drules from "../../../../components/rules/desktop";
-import Mobile from "../../../../components/rules/mobile";
-// import { isMobile } from "../../../../utils/screenDimension";
-import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
-import ButtonValues from "../../../../components/gameDetails/mobile/buttonValues";
 
 const DesktopHeader = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -51,9 +48,6 @@ const DesktopHeader = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  // const { getMatchListBySearch } = useSelector(
-  //   (state: RootState) => state.match.matchList
-  // );
 
   const handleClickOpen = () => {
     if (open === false) {
@@ -92,7 +86,7 @@ const DesktopHeader = () => {
       );
     }, 500);
   }, []);
-  const handleClick = (e: any, isModal: any,link:any) => {
+  const handleClick = (e: any, isModal: any, link: any) => {
     if (isModal) {
       e.stopPropagation();
       setShow1(true);
@@ -167,8 +161,8 @@ const DesktopHeader = () => {
                       {parseInt(getProfile?.userBal?.exposure) === 0
                         ? 0
                         : -parseFloat(
-                            getProfile?.userBal?.exposure || 0
-                          ).toFixed(2)}
+                          getProfile?.userBal?.exposure || 0
+                        ).toFixed(2)}
                     </b>
                   </span>
                   <ExposureModal
@@ -203,7 +197,7 @@ const DesktopHeader = () => {
                       return (
                         <Dropdown.Item
                           className="title-14 px-2 py-1"
-                          onClick={(e) => handleClick(e,item?.isModal,item?.link)
+                          onClick={(e) => handleClick(e, item?.isModal, item?.link)
                           }
                           key={item?.id}
                           eventKey={item?.id}

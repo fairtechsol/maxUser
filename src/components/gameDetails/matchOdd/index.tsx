@@ -12,10 +12,6 @@ const MatchOdd = ({ title, data, detail }) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  // const startAtTime = new Date(detail.startAt); 
-  // const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
-  // const shouldShowInfoIcon = new Date() < hideTime;
-  // const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -49,10 +45,9 @@ const MatchOdd = ({ title, data, detail }) => {
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       gameType: detail?.matchType === "cricket" ? "cricket" : "other",
-      min:data?.minBet ,
-      max:data?.maxBet ,
+      min: data?.minBet,
+      max: data?.maxBet,
     };
-    // console.log('team',team)
     dispatch(
       selectedBetAction({
         team,
@@ -78,8 +73,8 @@ const MatchOdd = ({ title, data, detail }) => {
               {data?.minBet === data?.maxBet
                 ? `Max:${formatNumber(data?.maxBet)}`
                 : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
-                    data?.maxBet
-                  )}`}
+                  data?.maxBet
+                )}`}
             </span>
           </div>
           <div className="matchOddBackLayBoxContainer backLayBoxWidth">
@@ -101,56 +96,55 @@ const MatchOdd = ({ title, data, detail }) => {
             <span className={`teamFont matchOddTeamTxt`}>
               {(data?.runners?.[0]?.nat || detail?.teamA)?.length > 20
                 ? `${(data?.runners?.[0]?.nat || detail?.teamA)?.slice(
-                    0,
-                    25
-                  )}...`
+                  0,
+                  25
+                )}...`
                 : data?.runners?.[0]?.nat || detail?.teamA}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
-                className={`${
-                  parseFloat(
-                    detail?.profitLossDataMatch?.[
+                className={`${parseFloat(
+                  detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A +
+                  "_" +
+                  detail?.id
+                  ]
+                ) +
+                  manualProfitLoss(
+                    selectedBet,
+                    detail?.teamA,
+                    data?.type,
+                    data?.gtype
+                  ) >
+                  0
+                  ? "color-green"
+                  : "color-red"
+                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A +
+                  "_" +
+                  detail?.id
+                ]
+                  ? detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.A +
+                    "_" +
+                    detail?.id
+                  ] === "0"
+                    ? ""
+                    : parseFloat(
+                      detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.A +
-                        "_" +
-                        detail?.id
-                    ]
-                  ) +
+                      "_" +
+                      detail?.id
+                      ]
+                    ) +
                     manualProfitLoss(
                       selectedBet,
                       detail?.teamA,
                       data?.type,
                       data?.gtype
-                    ) >
-                  0
-                    ? "color-green"
-                    : "color-red"
-                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-              >
-                {detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A +
-                    "_" +
-                    detail?.id
-                ]
-                  ? detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A +
-                        "_" +
-                        detail?.id
-                    ] === "0"
-                    ? ""
-                    : parseFloat(
-                        detail?.profitLossDataMatch?.[
-                          profitLossDataForMatchConstants[data?.type]?.A +
-                            "_" +
-                            detail?.id
-                        ]
-                      ) +
-                      manualProfitLoss(
-                        selectedBet,
-                        detail?.teamA,
-                        data?.type,
-                        data?.gtype
-                      )
+                    )
                   : ""}
               </span>
               <span
@@ -175,11 +169,11 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) === 0
                   ? ""
                   : manualProfitLoss(
-                      selectedBet,
-                      detail?.teamA,
-                      data?.type,
-                      data?.gtype
-                    )?.toFixed(2)}
+                    selectedBet,
+                    detail?.teamA,
+                    data?.type,
+                    data?.gtype
+                  )?.toFixed(2)}
               </span>
             </div>
           </div>
@@ -187,15 +181,15 @@ const MatchOdd = ({ title, data, detail }) => {
             {(data?.runners?.[0]?.status !== "OPEN" &&
               data?.runners?.[0]?.status !== "ACTIVE" &&
               data?.runners?.[0]?.status !== "") && (
-              <div className="suspended-overlayRatesMatchOdd">
-                <span
-                  className={`suspendTextCmmn`}
-                  style={{ textTransform: "uppercase" }}
-                >
-                  {data?.runners?.[0]?.status}
-                </span>
-              </div>
-            )}
+                <div className="suspended-overlayRatesMatchOdd">
+                  <span
+                    className={`suspendTextCmmn`}
+                    style={{ textTransform: "uppercase" }}
+                  >
+                    {data?.runners?.[0]?.status}
+                  </span>
+                </div>
+              )}
             {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
               ? data?.runners?.[0]?.ex?.availableToBack
               : dummyArray
@@ -235,56 +229,55 @@ const MatchOdd = ({ title, data, detail }) => {
             <span className={`teamFont matchOddTeamTxt`}>
               {(data?.runners?.[1]?.nat || detail?.teamB)?.length > 25
                 ? `${(data?.runners?.[1]?.nat || detail?.teamB)?.slice(
-                    0,
-                    25
-                  )}...`
+                  0,
+                  25
+                )}...`
                 : data?.runners?.[1]?.nat || detail?.teamB}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
-                className={`${
-                  parseFloat(
-                    detail?.profitLossDataMatch?.[
+                className={`${parseFloat(
+                  detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B +
+                  "_" +
+                  detail?.id
+                  ]
+                ) +
+                  manualProfitLoss(
+                    selectedBet,
+                    detail?.teamB,
+                    data?.type,
+                    data?.gtype
+                  ) >
+                  0
+                  ? "color-green"
+                  : "color-red"
+                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B +
+                  "_" +
+                  detail?.id
+                ]
+                  ? detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.B +
+                    "_" +
+                    detail?.id
+                  ] === "0"
+                    ? ""
+                    : parseFloat(
+                      detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.B +
-                        "_" +
-                        detail?.id
-                    ]
-                  ) +
+                      "_" +
+                      detail?.id
+                      ]
+                    ) +
                     manualProfitLoss(
                       selectedBet,
                       detail?.teamB,
                       data?.type,
                       data?.gtype
-                    ) >
-                  0
-                    ? "color-green"
-                    : "color-red"
-                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-              >
-                {detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B +
-                    "_" +
-                    detail?.id
-                ]
-                  ? detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B +
-                        "_" +
-                        detail?.id
-                    ] === "0"
-                    ? ""
-                    : parseFloat(
-                        detail?.profitLossDataMatch?.[
-                          profitLossDataForMatchConstants[data?.type]?.B +
-                            "_" +
-                            detail?.id
-                        ]
-                      ) +
-                      manualProfitLoss(
-                        selectedBet,
-                        detail?.teamB,
-                        data?.type,
-                        data?.gtype
-                      )
+                    )
                   : ""}
               </span>
               <span
@@ -309,11 +302,11 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) === 0
                   ? ""
                   : manualProfitLoss(
-                      selectedBet,
-                      detail?.teamB,
-                      data?.type,
-                      data?.gtype
-                    )?.toFixed(2)}
+                    selectedBet,
+                    detail?.teamB,
+                    data?.type,
+                    data?.gtype
+                  )?.toFixed(2)}
               </span>
             </div>
           </div>
@@ -321,15 +314,15 @@ const MatchOdd = ({ title, data, detail }) => {
             {(data?.runners?.[1]?.status !== "OPEN" &&
               data?.runners?.[1]?.status !== "ACTIVE" &&
               data?.runners?.[1]?.status !== "") && (
-              <div className="suspended-overlayRatesMatchOdd">
-                <span
-                  className={`suspendTextCmmn`}
-                  style={{ textTransform: "uppercase" }}
-                >
-                  {data?.runners?.[1]?.status}
-                </span>
-              </div>
-            )}
+                <div className="suspended-overlayRatesMatchOdd">
+                  <span
+                    className={`suspendTextCmmn`}
+                    style={{ textTransform: "uppercase" }}
+                  >
+                    {data?.runners?.[1]?.status}
+                  </span>
+                </div>
+              )}
             {(data?.runners?.[1]?.ex?.availableToBack?.length > 0
               ? data?.runners?.[1]?.ex?.availableToBack
               : dummyArray
@@ -370,56 +363,55 @@ const MatchOdd = ({ title, data, detail }) => {
               <span className={`teamFont matchOddTeamTxt`}>
                 {(data?.runners?.[2]?.nat || detail?.teamC)?.length > 25
                   ? `${(data?.runners?.[2]?.nat || detail?.teamC)?.slice(
-                      0,
-                      25
-                    )}...`
+                    0,
+                    25
+                  )}...`
                   : data?.runners?.[2]?.nat || detail?.teamC}
               </span>
               <div className="d-flex flex-row justify-content-between w-100">
                 <span
-                  className={`${
-                    parseFloat(
-                      detail?.profitLossDataMatch?.[
+                  className={`${parseFloat(
+                    detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.C +
+                    "_" +
+                    detail?.id
+                    ]
+                  ) +
+                    manualProfitLoss(
+                      selectedBet,
+                      detail?.teamC,
+                      data?.type,
+                      data?.gtype
+                    ) >
+                    0
+                    ? "color-green"
+                    : "color-red"
+                    } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                >
+                  {detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.C +
+                    "_" +
+                    detail?.id
+                  ]
+                    ? detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.C +
+                      "_" +
+                      detail?.id
+                    ] === "0"
+                      ? ""
+                      : parseFloat(
+                        detail?.profitLossDataMatch?.[
                         profitLossDataForMatchConstants[data?.type]?.C +
-                          "_" +
-                          detail?.id
-                      ]
-                    ) +
+                        "_" +
+                        detail?.id
+                        ]
+                      ) +
                       manualProfitLoss(
                         selectedBet,
                         detail?.teamC,
                         data?.type,
                         data?.gtype
-                      ) >
-                    0
-                      ? "color-green"
-                      : "color-red"
-                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-                >
-                  {detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.C +
-                      "_" +
-                      detail?.id
-                  ]
-                    ? detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C +
-                          "_" +
-                          detail?.id
-                      ] === "0"
-                      ? ""
-                      : parseFloat(
-                          detail?.profitLossDataMatch?.[
-                            profitLossDataForMatchConstants[data?.type]?.C +
-                              "_" +
-                              detail?.id
-                          ]
-                        ) +
-                        manualProfitLoss(
-                          selectedBet,
-                          detail?.teamC,
-                          data?.type,
-                          data?.gtype
-                        )
+                      )
                     : ""}
                 </span>
                 <span
@@ -444,27 +436,27 @@ const MatchOdd = ({ title, data, detail }) => {
                   ) === 0
                     ? ""
                     : manualProfitLoss(
-                        selectedBet,
-                        detail?.teamC,
-                        data?.type,
-                        data?.gtype
-                      )?.toFixed(2)}
+                      selectedBet,
+                      detail?.teamC,
+                      data?.type,
+                      data?.gtype
+                    )?.toFixed(2)}
                 </span>
               </div>
             </div>
             <div className="matchOddRateBox rateBoxWidth">
               {(data?.runners?.[2]?.status !== "OPEN" &&
-              data?.runners?.[2]?.status !== "ACTIVE" &&
-              data?.runners?.[2]?.status !== "") && (
-                <div className="suspended-overlayRatesMatchOdd">
-                  <span
-                    className={`suspendTextCmmn`}
-                    style={{ textTransform: "uppercase" }}
-                  >
-                    {data?.runners?.[2]?.status}
-                  </span>
-                </div>
-              )}
+                data?.runners?.[2]?.status !== "ACTIVE" &&
+                data?.runners?.[2]?.status !== "") && (
+                  <div className="suspended-overlayRatesMatchOdd">
+                    <span
+                      className={`suspendTextCmmn`}
+                      style={{ textTransform: "uppercase" }}
+                    >
+                      {data?.runners?.[2]?.status}
+                    </span>
+                  </div>
+                )}
               {(data?.runners?.[2]?.ex?.availableToBack?.length > 0
                 ? data?.runners?.[2]?.ex?.availableToBack
                 : dummyArray

@@ -8,36 +8,46 @@
     border: 1px solid $white;
     border-right: 0;
 }
+
 .gameTable table td {
     background-color: $lightGray;
 }
+
 .gameTable table th {
     // background-color: transparent;
     border-top: 0;
 }
+
 .gameTable table td:first-child {
     border-left: 0;
 }
+
 .gameTable table th nav ol {
     margin: 0 !important;
 }
+
 .gameTable table th.boxLayTitle {
     display: flex;
 }
+
 .backLayRunner span {
     line-height: 0.8;
 }
+
 .backLayRunner {
     width: max-content;
+
     .backLayRunner-country {
         line-height: 1.8;
     }
 }
 
-.htfttable{
+.htfttable {
     background-color: $lightGray;
 }
-.market-4-o, .market-13-o {
+
+.market-4-o,
+.market-13-o {
     min-width: calc(100% - 8px);
     // margin-left: 4px;
     // margin-right: 4px;
@@ -50,12 +60,15 @@
     color: #333;
 }
 
-.market-header, .market-row {
+.market-header,
+.market-row {
     border-bottom: 0.01em solid #c7c8ca;
 }
-.market-body-o{
+
+.market-body-o {
     width: 100%;
 }
+
 .market-nation-detail-o {
     width: calc(100% - 200px);
     display: flex;
@@ -64,6 +77,7 @@
     padding: 0 5px;
     font-size: 14px;
 }
+
 .market-odd-box-o {
     width: 80px;
     padding: 2px 0;
@@ -77,38 +91,47 @@
     min-height: 44px;
     font-size: 14px;
 }
+
 .market-odd-box-o .market-odd-o {
     font-size: 15px;
     font-weight: bold;
     margin-bottom: 3px;
     line-height: 1;
 }
+
 .market-odd-box-o .market-volume-o {
     font-size: 10px;
     font-weight: 400;
     line-height: 1;
 }
+
 .market-row-o {
     background-color: #f2f2f2;
     display: flex;
     // flex-wrap: wrap;
 }
 
-.market-header-o, .market-row-o {
+.market-header-o,
+.market-row-o {
     border-bottom: 0.01em solid #c7c8ca;
 }
+
 .lay1 {
     background-color: #faa9babf !important;
 }
+
 .lay2 {
     background-color: #faa9babf !important;
 }
+
 .back2 {
     background-color: #72bbefbf !important;
 }
+
 .back1 {
     background-color: #72bbefbf !important;
 }
+
 .market-title-o {
     background-color: #ffc742d9;
     color: #ffffff;
@@ -119,6 +142,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 .market-nation-detail-o {
     width: calc(100% - 480px);
     display: flex;
@@ -127,9 +151,12 @@
     padding: 0 5px;
     font-size: 14px;
 }
-.market-4-o .market-nation-detail-o .market-nation-name-o, .market-13 .market-nation-detail-o .market-nation-name-o {
+
+.market-4-o .market-nation-detail-o .market-nation-name-o,
+.market-13 .market-nation-detail-o .market-nation-name-o {
     font-weight: bold;
 }
+
 .market-nation-detai-ol .market-nation-name-o {
     font-weight: 400;
     max-width: 100%;
@@ -139,12 +166,14 @@
     overflow: hidden;
     display: inline-block;
 }
+
 .market-nation-book-o {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     justify-content: space-between;
 }
+
 .market-header-o .market-odd-box-o {
     min-height: 28px;
 }
@@ -154,9 +183,11 @@
     color: #000;
     font-weight: bold;
 }
-.suspended-table-o{
+
+.suspended-table-o {
     position: relative;
 }
+
 .suspended-table-o::after {
     content: attr(data-title);
     background-color: #373636d6;
@@ -179,9 +210,9 @@
 
 .suspended-o {
     position: relative;
-  }
-  
-  .suspended-o::after {
+}
+
+.suspended-o::after {
     content: "";
     background-color: #373636d6;
     color: #ff0000;
@@ -199,45 +230,54 @@
     align-items: center;
     pointer-events: none !important;
     font-family: Arial, Verdana, Helvetica, sans-serif;
-    z-index: 1; /* Make sure overlay is beneath the title */
-  }
-  
-  .overlay-title {
+    z-index: 1;
+    /* Make sure overlay is beneath the title */
+}
+
+.overlay-title {
     color: #ff0000;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
-    z-index: 2; /* Ensure title is above the overlay */
+    z-index: 2;
+    /* Ensure title is above the overlay */
     pointer-events: none;
-  }
-  
-  
-  @media only screen and (max-width: 991px) {
-    .market-4-o .market-odd-box-o {
-      display: flex;
-    //   width: 72%;
-    }
-  }
-  
-  @media only screen and (max-width: 991px) {
-    .market-odd-box-o {
-      display: flex;
-      width: 40%;
-    }
-  }
+}
+
 
 @media only screen and (max-width: 991px) {
-    .market-4-o .suspended-row-o::after, .market-4-o .suspended-table-o::after {
+    .market-4-o .market-odd-box-o {
+        display: flex;
+        //   width: 72%;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .market-odd-box-o {
+        display: flex;
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+
+    .market-4-o .suspended-row-o::after,
+    .market-4-o .suspended-table-o::after {
         width: 100%;
     }
 }
-.market-4-o .suspended-row-o:after, .market-4-o .suspended-table-o:after {
+
+.market-4-o .suspended-row-o:after,
+.market-4-o .suspended-table-o:after {
     width: 100%;
 }
+
 @media only screen and (max-width: 991px) {
-    .suspended-row-o::after, .suspended-table-o::after {
+
+    .suspended-row-o::after,
+    .suspended-table-o::after {
         font-weight: 600;
         font-family: roboto condensed, sans-serif;
         font-size: 16px;
@@ -248,7 +288,9 @@
 
 
 @media only screen and (max-width: 767px) {
-    .market-4-o .market-odd-box-o, .market-13-o .market-odd-box-o {
+
+    .market-4-o .market-odd-box-o,
+    .market-13-o .market-odd-box-o {
         width: 12%;
     }
 }
@@ -260,21 +302,12 @@
         padding: 2px 0;
     }
 }
-// @media only screen and (min-width: 320px) and (max-width: 767px) {
-//     .market-nation-detail-o {
-//         width: calc(100% - 280px);
-//     }
-// }
+
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
     .market-nation-detail-o {
         width: calc(100% - 480px);
     }
 }
-// @media only screen and (min-width: 768px) and (max-width: 1199px) {
-//     .market-nation-detail-o {
-//         width: calc(100% - -10%);
-//     }
-// }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
     .market-nation-detail-o {
@@ -284,29 +317,31 @@
 
 
 @media (min-width: 481px) and (max-width: 767px) {
-  
+
     .market-nation-detail-o {
         width: 28%;
     }
-    
-  }
+
+}
 
 
-  @media (min-width: 320px) and (max-width: 480px) {
-  
+@media (min-width: 320px) and (max-width: 480px) {
+
     .market-nation-detail-o {
         width: 28%;
     }
-    
-  }
+
+}
 
 
 @media screen and (max-width: 768px) {
+
     .gameTable table th,
     .gameTable table td {
         border: 1px solid $gray500 !important;
     }
 }
+
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
     .market-odd-box-o {
         width: 90px;
@@ -324,6 +359,7 @@
         width: calc(100% - 72%);
     }
 }
+
 @media only screen and (max-width: 767px) {
     .market-nation-detail-o {
         width: calc(100% - 210px);

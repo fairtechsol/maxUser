@@ -15,7 +15,6 @@ interface Props {
 const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const lastCards = resultCards?.slice(4, 9);
-  //  console.log(data,'first',resultCards)
   return (
     <Container
       style={{

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   expertSocketService,
+  matchService,
   matchSocket,
   socket,
   socketService,
-  matchService,
 } from "../../socketManager";
 import {
   // getMatchList,
@@ -51,7 +52,7 @@ const GameDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
-  const { matchList } = useSelector(
+  const { matchList, matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -60,7 +61,7 @@ const GameDetails = () => {
       matchService.connect([id]);
     }
     return () => {
-      matchService.disconnect(); 
+      matchService.disconnect();
     };
   }, [id]);
 
@@ -260,6 +261,13 @@ const GameDetails = () => {
   }, [id]);
 
   useEffect(() => {
+    if (matchDetails && matchDetails?.stopAt) {
+      toast.error("Match has been over.");
+      navigate("/home");
+    }
+  }, [matchDetails]);
+
+  useEffect(() => {
     try {
       if (socket) {
         expertSocketService.match.getMatchRatesOff(id);
@@ -332,9 +340,6 @@ const GameDetails = () => {
     try {
       const handleVisibilityChange = () => {
         if (document.visibilityState === "visible") {
-          // if (!socket.connected) {
-          //   socketService.connect();
-          // }
           if (id) {
             dispatch(selectedBetAction(null));
             // dispatch(matchDetailAction(id));
@@ -360,7 +365,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, id,matchSocket]);
+  }, [socket, id, matchSocket]);
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };

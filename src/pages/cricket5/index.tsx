@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Cricket5ComponentList from "../../components/cricket5";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -23,7 +24,6 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import Cricket5ComponentList from "../../components/cricket5";
 
 const Cricket5 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -38,14 +38,7 @@ const Cricket5 = () => {
           type: cardGamesType.cricketv3,
         })
       );
-      // const response: any = await service.get(
-      //   `https://casinoserviceapi.fairgame.club/api/tunnel/casino/sport-score/${marketId}?gameName=${cardGamesType.cricketv3}`
-      //   // `https://scoreboard.fairgame7.com/score/getMatchScore/${marketId}`
-      // );
       setErrorCount(0);
-      // if (response) {
-      //   setLiveScoreBoardData(response);
-      // }
     } catch (e: any) {
       console.log("Error:", e?.message);
       setErrorCount((prevCount: number) => prevCount + 1);

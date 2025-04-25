@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ball from "../../../assets/images/ball-blank.png";
+import { formatNumber } from "../../../helpers";
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
@@ -11,10 +14,7 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import "./style.scss";
-import { formatNumber } from "../../../helpers";
-import ball from "../../../assets/images/ball-blank.png";
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -155,10 +155,6 @@ const TeenPattiMobile = () => {
                   <div className="elem">
                     <img
                       src={ball}
-                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
-                      // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                      //   curR?.result?.desc.split(" ")[0]
-                      // }.png`}
                       style={{
                         width: "30px",
                         height: "30px",
@@ -306,32 +302,31 @@ const TeenPattiMobile = () => {
                           {item.nat}
                         </div>
                         <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
+                          className={`f10-b ${dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                ]
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                  ] > 0
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
                               : ""
-                          }`}
+                            }`}
                           style={{ zIndex: "100" }}
                         >
                           {(dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                              ]
                               : ""
                             : "") || "\u00A0"}
                         </span>
@@ -348,13 +343,13 @@ const TeenPattiMobile = () => {
                         }}
                         className={
                           runs?.[0]?.gstatus === "SUSPENDED" &&
-                          runs?.[0]?.b === 0
+                            runs?.[0]?.b === 0
                             ? "suspended"
                             : "teenPatti-table-item"
                         }
                         onClick={() =>
                           runs?.[0]?.gstatus === "SUSPENDED" &&
-                          runs?.[0]?.b === 0
+                            runs?.[0]?.b === 0
                             ? ""
                             : handleBet(item)
                         }

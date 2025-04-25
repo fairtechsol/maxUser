@@ -1,6 +1,5 @@
 import { Table } from "react-bootstrap";
 
-// import "./style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import RightPanelContainer from "../../../gameDetails/desktop/rightPanelContainer";
@@ -42,36 +41,32 @@ const MyBetFootball = () => {
                 return (
                   <tr
                     key={bet?.id}
-                    className={` ${
-                      bet?.betType === "NO" || bet?.betType === "LAY"
+                    className={` ${bet?.betType === "NO" || bet?.betType === "LAY"
                         ? "bg-red1"
                         : "bg-blue3"
-                    }`}
+                      }`}
                   >
                     <th
-                      className={`title-12 text-start ${
-                        bet?.betType === "NO" || bet?.betType === "LAY"
+                      className={`title-12 text-start ${bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
-                      }`}
+                        }`}
                     >
                       {bet?.teamName}
                     </th>
                     <th
-                      className={`title-12 text-start ${
-                        bet?.betType === "NO" || bet?.betType === "LAY"
+                      className={`title-12 text-start ${bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
-                      }`}
+                        }`}
                     >
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-12 text-start ${
-                        bet?.betType === "NO" || bet?.betType === "LAY"
+                      className={`title-12 text-start ${bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
-                      }`}
+                        }`}
                     >
                       {bet?.amount}
                     </th>

@@ -1,8 +1,7 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { useEffect } from "react";
-// import CommonCardImg from "../CommonCardImg";
+import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
 
 const CardBox = ({ data, odds }: any) => {
@@ -19,8 +18,8 @@ const CardBox = ({ data, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -29,8 +28,6 @@ const CardBox = ({ data, odds }: any) => {
       })
     );
   };
-  // const arCards = cards?.ar?.split(",");
-  // const brCards = cards?.br?.split(",");
 
   useEffect(() => {
     if (data?.worli?.gstatus === "0") {
@@ -41,11 +38,8 @@ const CardBox = ({ data, odds }: any) => {
   return (
     <>
       <div
-        // className={`${
-        //   data?.worli?.gstatus == 0 ? "suspended" : ""
-        // } abjcardContainer`}
         className="abjcardContainer"
-        style={{ backgroundColor: "#72bbef",borderBottom:"2px solid #fff" }}
+        style={{ backgroundColor: "#72bbef", borderBottom: "2px solid #fff" }}
       >
         <div
           style={{

@@ -1,22 +1,27 @@
 @import "/src/assets/variable.scss";
+
 .one-v-one-row td {
     padding: 0px;
     width: 100px;
 }
+
 .one-v-one-title:hover {
     text-decoration: underline;
     cursor: pointer;
 }
+
 .casinoicons {
     position: relative;
 }
-.casinoicons{
+
+.casinoicons {
 
     // box-shadow: 0 12px 8px -8px;
     border-radius: 4px;
     margin-bottom: 5px;
     cursor: pointer;
 }
+
 .casino-list {
     display: flex;
     flex-wrap: wrap;
@@ -29,14 +34,15 @@
     margin-left: 2px;
     margin-right: 2px;
 }
+
 a {
-    color:$primaryBlue;
+    color: $primaryBlue;
     text-decoration: none;
     background-color: transparent;
 }
 
 
-.casinoicons img{
+.casinoicons img {
     // width: calc(10% - 0px);
     height: auto;
 }
@@ -53,14 +59,7 @@ a {
     font-size: 9px;
     white-space: nowrap;
 }
+
 .d-inline-block {
-    display: inline-block!important;
+    display: inline-block !important;
 }
-
-
-// @media only screen and (max-width: 1699px) {
-//     .casino-list-item {
-//         width: calc(9.5% - 10px);
-//          margin-right: -10px;
-//     }
-// }

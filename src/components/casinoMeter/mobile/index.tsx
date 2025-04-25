@@ -4,19 +4,18 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import CasinoWarResult from "../desktop/teenCard";
-import "./style.scss";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import HighCards from "../desktop/High";
 import LowCards from "../desktop/Low";
 import Meter from "../desktop/meter";
+import CasinoWarResult from "../desktop/teenCard";
+import "./style.scss";
 
 const CasinoMeterMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -84,14 +83,14 @@ const CasinoMeterMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%"}}>
+            <div style={{ width: "100%" }}>
               <div
                 style={{
                   width: "100%",
@@ -116,7 +115,7 @@ const CasinoMeterMobile = () => {
                     data={dragonTigerDetail?.videoInfo?.cards}
                     runPosition={
                       dragonTigerDetail?.videoInfo?.mid ==
-                      placedBets?.[0]?.runnerId
+                        placedBets?.[0]?.runnerId
                         ? placedBets?.[0]?.teamName == "Low"
                           ? "Low"
                           : "High"
@@ -130,11 +129,11 @@ const CasinoMeterMobile = () => {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-around",
-                    alignItems:"center",
+                    alignItems: "center",
                     gap: "10px",
                     paddingTop: "10px",
-                    paddingLeft:"7px",
-                    
+                    paddingLeft: "7px",
+
                   }}
                 >
                   <LowCards
@@ -142,7 +141,7 @@ const CasinoMeterMobile = () => {
                     data={dragonTigerDetail}
                     placedLow={
                       dragonTigerDetail?.videoInfo?.mid ==
-                      placedBets?.[0]?.runnerId
+                        placedBets?.[0]?.runnerId
                         ? placedBets?.[0]?.teamName == "Low"
                           ? true
                           : false
@@ -154,7 +153,7 @@ const CasinoMeterMobile = () => {
                     data={dragonTigerDetail}
                     placedHigh={
                       dragonTigerDetail?.videoInfo?.mid ==
-                      placedBets?.[0]?.runnerId
+                        placedBets?.[0]?.runnerId
                         ? placedBets?.[0]?.teamName == "High"
                           ? true
                           : false
@@ -178,7 +177,7 @@ const CasinoMeterMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow}  type={"imageWithContent"} gameType="cmeter"/>
+      <RulesModal show={show} setShow={setShow} type={"imageWithContent"} gameType="cmeter" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
