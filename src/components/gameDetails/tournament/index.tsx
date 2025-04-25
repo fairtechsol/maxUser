@@ -326,7 +326,7 @@ const Tournament = ({ title, box, data, detail }) => {
                         style={{
                           color:
                             (parseFloat(
-                              (profitLossObj?.[item.parentRunnerId || item.id])
+                              (profitLossObj?.[item.parentRunnerId || item.id]) || 0
                             ) + manualProfitLoss(
                               selectedBet,
                               item?.nat || item?.runnerName,
@@ -363,7 +363,17 @@ const Tournament = ({ title, box, data, detail }) => {
                                 data?.gtype
                               )).toFixed(2)
                             : profitLossObj?.[item.parentRunnerId || item.id]
-                          : ""}
+                          : manualProfitLoss(
+                            selectedBet,
+                            item?.nat || item?.runnerName,
+                            data?.type,
+                            data?.gtype
+                          ) == 0 ? "" : manualProfitLoss(
+                            selectedBet,
+                            item?.nat || item?.runnerName,
+                            data?.type,
+                            data?.gtype
+                          ).toFixed(2)}
                       </span>
                     ) : (
                       ""
