@@ -155,6 +155,7 @@ const PlacedBet = () => {
         betOnTeam: selectedBet?.team?.betOnTeam,
         placeIndex: selectedBet?.team?.placeIndex,
         bettingName: selectedBet?.team?.bettingName,
+        mid: selectedBet?.team?.mid,
         selectionId: selectedBet?.team?.selectionId,
         runnerId: selectedBet?.team?.runnerId,
       };
