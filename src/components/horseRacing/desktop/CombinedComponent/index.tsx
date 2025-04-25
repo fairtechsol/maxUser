@@ -1,7 +1,6 @@
 import RatesBox from "../ratesBox";
 
 const CombinedComponent = () => {
-
   return (
     <div className="game-market market-12">
       <div className="market-title mt-1">COMBINED</div>
@@ -28,7 +27,7 @@ const CombinedComponent = () => {
           <RatesBox
             bgColor="bg-blue3"
             onClick={
-              () => { }
+              () => {}
               // const rate = parseFloat(
               //   race?.ex?.availableToBack[0]?.price
               // );
@@ -56,7 +55,7 @@ const CombinedComponent = () => {
           <RatesBox
             bgColor="bg-red1"
             onClick={
-              () => { }
+              () => {}
               // const rate = parseFloat(
               //   race?.ex?.availableToLay[0]?.price
               // );

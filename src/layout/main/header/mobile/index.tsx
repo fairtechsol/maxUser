@@ -360,7 +360,7 @@ const MobileHeader = () => {
                               </td>
                             </tr>
                             <tr>
-                              <td style={{ height: "8px" }}></td>
+                              <td style={{ height: "8px" }} />
                             </tr>
                             {rule.description.map((description, descIndex) => (
                               <tr
@@ -382,7 +382,7 @@ const MobileHeader = () => {
                               </tr>
                             ))}
                             <tr>
-                              <td style={{ height: "8px" }}></td>
+                              <td style={{ height: "8px" }} />
                             </tr>
                           </React.Fragment>
                         ))}

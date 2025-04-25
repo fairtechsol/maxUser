@@ -123,38 +123,38 @@ const DesktopGameDetail = () => {
                 </Col>
                 {["cricket", "politics"].includes(matchDetails?.matchType)
                   ? liveScoreBoardData && (
-                    <Iframe data={liveScoreBoardData} width="100%" />
-                  )
+                      <Iframe data={liveScoreBoardData} width="100%" />
+                    )
                   : showScoreboard && (
-                    <div
-                      style={{
-                        height: "250px",
-                        backgroundPosition: "center",
-                        backgroundSize: "cover",
-                        position: "relative",
-                        marginLeft: "4px",
-                        marginRight: "4px",
-                        width: "calc(100%-8px)",
-                      }}
-                    >
-                      <iframe
+                      <div
                         style={{
-                          height: "100%",
-                          position: "absolute",
-                          width: "100%",
-                          left: 0,
-                          top: 0,
+                          height: "250px",
+                          backgroundPosition: "center",
+                          backgroundSize: "cover",
+                          position: "relative",
+                          marginLeft: "4px",
+                          marginRight: "4px",
+                          width: "calc(100%-8px)",
                         }}
-                        src={
-                          import.meta.env.VITE_NODE_ENV == "production"
-                            ? tvData?.scoreData?.iframeUrl
-                            : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`
-                        }
-                        title="Live Stream"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                      />
-                    </div>
-                  )}
+                      >
+                        <iframe
+                          style={{
+                            height: "100%",
+                            position: "absolute",
+                            width: "100%",
+                            left: 0,
+                            top: 0,
+                          }}
+                          src={
+                            import.meta.env.VITE_NODE_ENV == "production"
+                              ? tvData?.scoreData?.iframeUrl
+                              : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`
+                          }
+                          title="Live Stream"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                        />
+                      </div>
+                    )}
                 {matchDetails?.tournament?.length > 0 &&
                   matchDetails?.tournament
                     ?.filter(
@@ -200,21 +200,21 @@ const DesktopGameDetail = () => {
                     ))}
                 {(matchDetails?.apiSession?.session?.section?.length > 0 ||
                   manualEntries?.length > 0) && (
-                    <Col md={12}>
-                      <SessionNormal
-                        title={"Normal"}
-                        mtype={"session"}
-                        data={matchDetails?.apiSession?.session}
-                        detail={matchDetails}
-                        manual={manualEntries ? manualEntries : []}
-                      />
-                    </Col>
-                  )}
+                  <Col md={12}>
+                    <SessionNormal
+                      title="Normal"
+                      mtype="session"
+                      data={matchDetails?.apiSession?.session}
+                      detail={matchDetails}
+                      manual={manualEntries ? manualEntries : []}
+                    />
+                  </Col>
+                )}
                 {matchDetails?.apiSession?.overByover?.section?.length > 0 && (
                   <Col md={12}>
                     <SessionNormal
-                      title={"overByover"}
-                      mtype={"overByover"}
+                      title="overByover"
+                      mtype="overByover"
                       data={matchDetails?.apiSession?.overByover}
                       detail={matchDetails}
                     />
@@ -223,8 +223,8 @@ const DesktopGameDetail = () => {
                 {matchDetails?.apiSession?.ballByBall?.section?.length > 0 && (
                   <Col md={12}>
                     <SessionNormal
-                      title={"Ballbyball"}
-                      mtype={"ballByBall"}
+                      title="Ballbyball"
+                      mtype="ballByBall"
                       data={matchDetails?.apiSession?.ballByBall}
                       detail={matchDetails}
                     />
@@ -233,7 +233,7 @@ const DesktopGameDetail = () => {
                 {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
                   <Col md={12}>
                     <SessionFancy
-                      title={"fancy1"}
+                      title="fancy1"
                       data={matchDetails?.apiSession?.fancy1}
                       detail={matchDetails}
                     />
@@ -242,7 +242,7 @@ const DesktopGameDetail = () => {
                 {matchDetails?.apiSession?.khado?.section?.length > 0 && (
                   <Col md={12}>
                     <SessionKhado
-                      title={"khado"}
+                      title="khado"
                       data={matchDetails?.apiSession?.khado}
                       detail={matchDetails}
                     />
@@ -251,8 +251,8 @@ const DesktopGameDetail = () => {
                 {matchDetails?.apiSession?.meter?.section?.length > 0 && (
                   <Col md={12}>
                     <SessionNormal
-                      title={"meter"}
-                      mtype={"meter"}
+                      title="meter"
+                      mtype="meter"
                       data={matchDetails?.apiSession?.meter}
                       detail={matchDetails}
                     />
@@ -261,7 +261,7 @@ const DesktopGameDetail = () => {
                 {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
                   <Col md={12}>
                     <SessionOddEven
-                      title={"oddeven"}
+                      title="oddeven"
                       data={matchDetails?.apiSession?.oddEven}
                       detail={matchDetails}
                     />
@@ -291,8 +291,8 @@ const DesktopGameDetail = () => {
                                 length % 2 === 0
                                   ? "49.5%"
                                   : index === length - 1
-                                    ? "100%"
-                                    : "49.5%",
+                                  ? "100%"
+                                  : "49.5%",
                             }}
                           >
                             {item?.activeStatus === "live" && (

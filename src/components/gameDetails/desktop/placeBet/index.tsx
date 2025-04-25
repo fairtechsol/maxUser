@@ -182,14 +182,14 @@ const PlacedBet = () => {
               placeBet({
                 url:
                   selectedBet?.team?.matchBetType === "session" ||
-                    selectedBet?.data?.SelectionId
+                  selectedBet?.data?.SelectionId
                     ? ApiConstants.BET.PLACEBETSESSION
                     : selectedBet?.team?.gameType === "other"
-                      ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
-                      : ApiConstants.BET.PLACEBETMATCHBETTING,
+                    ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
+                    : ApiConstants.BET.PLACEBETMATCHBETTING,
                 data:
                   selectedBet?.team?.matchBetType === "session" ||
-                    selectedBet?.data?.SelectionId
+                  selectedBet?.data?.SelectionId
                     ? JSON.stringify(payloadForSession)
                     : JSON.stringify(payloadForBettings),
               })
@@ -220,14 +220,14 @@ const PlacedBet = () => {
           placeBet({
             url:
               selectedBet?.team?.matchBetType === "session" ||
-                selectedBet?.data?.SelectionId
+              selectedBet?.data?.SelectionId
                 ? ApiConstants.BET.PLACEBETSESSION
                 : selectedBet?.team?.gameType === "other"
-                  ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
-                  : ApiConstants.BET.PLACEBETMATCHBETTING,
+                ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
+                : ApiConstants.BET.PLACEBETMATCHBETTING,
             data:
               selectedBet?.team?.matchBetType === "session" ||
-                selectedBet?.data?.SelectionId
+              selectedBet?.data?.SelectionId
                 ? JSON.stringify(payloadForSession)
                 : JSON.stringify(payloadForBettings),
           })
@@ -374,8 +374,8 @@ const PlacedBet = () => {
                 <tr
                   className={
                     selectedBet?.team?.type == "lay" ||
-                      selectedBet?.team?.type === "LAY" ||
-                      selectedBet?.team?.type == "no"
+                    selectedBet?.team?.type === "LAY" ||
+                    selectedBet?.team?.type == "no"
                       ? "place-bet-table-red"
                       : "place-bet-table-blue"
                   }
@@ -457,7 +457,7 @@ const PlacedBet = () => {
                   <td width={"18%"} style={{ textAlign: "end" }}>
                     <span className="f500" style={{ textAlign: "end" }}>
                       {selectedBet?.team?.eventType === "horseRacing" ||
-                        selectedBet?.team?.eventType === "greyHound"
+                      selectedBet?.team?.eventType === "greyHound"
                         ? 0
                         : handleProfit(stake)}
                     </span>
@@ -466,8 +466,8 @@ const PlacedBet = () => {
                 <tr
                   className={
                     selectedBet?.team?.type == "lay" ||
-                      selectedBet?.team?.type === "LAY" ||
-                      selectedBet?.team?.type == "no"
+                    selectedBet?.team?.type === "LAY" ||
+                    selectedBet?.team?.type == "no"
                       ? "place-bet-table-red"
                       : "place-bet-table-blue"
                   }
@@ -578,7 +578,7 @@ const PlacedBet = () => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShow(false)}
-           />
+          />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <ButtonValues setShow={setShow} />

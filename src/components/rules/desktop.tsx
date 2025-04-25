@@ -5,25 +5,17 @@ import "./index.scss";
 
 const Desktop = () => {
   const [activeSport, setActiveSport] = useState<string>("Football");
-  // const [defaultSportRules, setDefaultSportRules] = useState<any>(null);
-  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
   useEffect(() => {
     if (sportsRules?.length > 0) {
       const firstSport = sportsRules[0];
       setActiveSport(firstSport.sportName);
-      // setDefaultSportRules(firstSport);
     }
   }, []);
 
   const handleSelect = (sportName: string | null) => {
-    // const selectedSport = sportsRules.find((sport) => sport.sportName === sportName);
     setActiveSport(sportName as string);
-    // setDefaultSportRules(selectedSport);
   };
-
-  
 
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey={activeSport}>
@@ -48,7 +40,6 @@ const Desktop = () => {
               ))}
             </Nav>
           </Col>
-
           <Col sm={10} className="ps-2">
             <Tab.Content>
               {sportsRules.map((sport, ruleIndex) => (
@@ -56,7 +47,6 @@ const Desktop = () => {
                   {sport.rules.map((rule, ruleIndex) => (
                     <table key={ruleIndex} style={{ width: "100%" }}>
                       <tbody>
-                        {/* Category Row */}
                         <tr>
                           <td
                             colSpan={100}
@@ -73,10 +63,8 @@ const Desktop = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ height: "8px" }}></td>
+                          <td style={{ height: "8px" }} />
                         </tr>
-
-                        {/* Description Rows */}
                         {rule.description.map((description, descIndex) => (
                           <tr
                             className="title-16 gap-2"
@@ -89,16 +77,15 @@ const Desktop = () => {
                                 borderBottom: "1px solid #ddd",
                                 textAlign: "left",
                                 lineHeight: 1.5,
-                                color: description?.color || "black"
+                                color: description?.color || "black",
                               }}
                             >
                               {description?.text}
                             </td>
                           </tr>
                         ))}
-
                         <tr>
-                          <td style={{ height: "8px" }}></td>
+                          <td style={{ height: "8px" }} />
                         </tr>
                       </tbody>
                     </table>

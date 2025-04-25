@@ -85,7 +85,7 @@ const MobileMatchList = ({ type, setMatchType, matchType }: any) => {
                       </span>
                     </div>
                   }
-                ></Tab>
+                 />
               );
             })}
         </CommonTabs>

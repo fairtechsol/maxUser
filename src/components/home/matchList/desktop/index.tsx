@@ -18,7 +18,6 @@ const DesktopMatchList = ({
   const location = useLocation();
 
   const isGameRoute = location.pathname.includes("game-list");
-  // const dispatch: AppDispatch = useDispatch();
   const { tabList } = useSelector((state: RootState) => state.match.matchList);
 
   useEffect(() => {
