@@ -81,7 +81,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="dtlTitle"></div>
+          <div className="dtlTitle" />
           <div className="dtlsubTitle back-BackGround ">Back</div>
           <div className="dtlsubTitle lay-BackGround ">Lay</div>
         </div>

@@ -258,7 +258,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "20%",
@@ -283,7 +283,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "12px",
                         fontWeight: "bold",
                       }}
-                    ></div>
+                     />
                   </div>
                   <div
                     style={{
@@ -300,7 +300,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "20%",
@@ -325,7 +325,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "12px",
                         fontWeight: "bold",
                       }}
-                    ></div>
+                     />
                   </div>
                   <div
                     style={{
@@ -342,7 +342,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "20%",
@@ -367,7 +367,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "12px",
                         fontWeight: "bold",
                       }}
-                    ></div>
+                     />
                   </div>
                 </div>
 

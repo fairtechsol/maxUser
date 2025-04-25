@@ -34,7 +34,7 @@ const FooterMain = () => {
 
           <p></p>
         </div>
-        <div className="social-icons-box"></div>
+        <div className="social-icons-box" />
       </div>
     </section>
   );

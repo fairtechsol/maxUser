@@ -3,8 +3,8 @@ import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, handleSize } from "../../../helpers";
 import {
-  getRunAmountMeter,
-  resetRunAmountModalKhado,
+    getRunAmountMeter,
+    resetRunAmountModalKhado,
 } from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -224,7 +224,7 @@ const MobileSessionKhado = ({ title, data, detail }) => {
               className="btn-close btn-close-white"
               aria-label="Close"
               onClick={() => handleModal(false)}
-            ></button>
+             />
           </Modal.Header>
           <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
             <div

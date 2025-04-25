@@ -1,4 +1,4 @@
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Row, Table } from "react-bootstrap";
 import { ImCross } from "react-icons/im";
 
 import axios from "axios";
@@ -196,14 +196,15 @@ const DesktopPlacedBet = ({ type }: any) => {
                 <tbody>
                   <tr
                     className={`
-                    ${type === cardGamesType.andarBahar1
+                    ${
+                      type === cardGamesType.andarBahar1
                         ? selectedBet?.team?.name?.includes("Andar")
                           ? "game-type-andar"
                           : "game-type-bahar"
                         : selectedBet?.team?.bettingType === "LAY"
-                          ? "place-bet-table-red"
-                          : "place-bet-table-blue"
-                      }
+                        ? "place-bet-table-red"
+                        : "place-bet-table-blue"
+                    }
                   `}
                   >
                     {/* <td width={"8%"}>
@@ -289,22 +290,20 @@ const DesktopPlacedBet = ({ type }: any) => {
                       </div>
                     </td>
                     <td width={"18%"} style={{ textAlign: "end" }}>
-                      <span
-                        className="f500"
-                        style={{ textAlign: "end" }}
-                      ></span>
+                      <span className="f500" style={{ textAlign: "end" }} />
                     </td>
                   </tr>
                   <tr
                     className={`
-                  ${type === cardGamesType.andarBahar1
-                        ? selectedBet?.team?.bettingType === "BACK"
-                          ? "game-type-andar"
-                          : "game-type-bahar"
-                        : selectedBet?.team?.bettingType === "LAY"
-                          ? "place-bet-table-red"
-                          : "place-bet-table-blue"
-                      }
+                  ${
+                    type === cardGamesType.andarBahar1
+                      ? selectedBet?.team?.bettingType === "BACK"
+                        ? "game-type-andar"
+                        : "game-type-bahar"
+                      : selectedBet?.team?.bettingType === "LAY"
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
+                  }
                 `}
                   >
                     <td colSpan={5}>
@@ -376,18 +375,18 @@ const DesktopPlacedBet = ({ type }: any) => {
                                 selectedBet?.team?.stake == 0
                                   ? true
                                   : false &&
-                                  (selectedBet?.team?.isActive != undefined
-                                    ? selectedBet?.team?.isActive
-                                    : true)
+                                    (selectedBet?.team?.isActive != undefined
+                                      ? selectedBet?.team?.isActive
+                                      : true)
                               }
                               className="submit-buttonn1"
                               onClick={handleSubmit}
                               style={{
                                 backgroundColor:
                                   selectedBet?.team?.stake == 0 ||
-                                    (selectedBet?.team?.isActive != undefined
-                                      ? !selectedBet?.team?.isActive
-                                      : false)
+                                  (selectedBet?.team?.isActive != undefined
+                                    ? !selectedBet?.team?.isActive
+                                    : false)
                                     ? "#198754"
                                     : "#086f3f",
                                 fontSize: "13px",
@@ -425,7 +424,7 @@ const DesktopPlacedBet = ({ type }: any) => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShow(false)}
-          ></button>
+          />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <ButtonValues />

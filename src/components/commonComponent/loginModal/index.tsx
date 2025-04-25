@@ -47,7 +47,7 @@ const ImageModal = ({ customClass, show, setShow }) => {
               type="button"
               className="btn-close btn-close-white p-2"
               aria-label="Close"
-            ></button>
+             />
           </div>
         )}
         <div
@@ -67,7 +67,7 @@ const ImageModal = ({ customClass, show, setShow }) => {
                 minHeight: "800px",
                 background: "#000",
               }}
-            ></div>
+             />
           )}
         </div>
       </div>
@@ -99,7 +99,7 @@ const ImageModal = ({ customClass, show, setShow }) => {
               className="btn-close btn-close-white"
               aria-label="Close"
               style={{ right: "1rem", top: "0.5rem" }}
-            ></button>
+             />
           </div>
           <div
             className="p-0 w-100 overflow-auto"
@@ -113,7 +113,7 @@ const ImageModal = ({ customClass, show, setShow }) => {
                 style={{ width: "100%", height: "auto" }}
               />
             ) : (
-              <div className="blackscreen"></div>
+              <div className="blackscreen" />
             )}
           </div>
         </div>

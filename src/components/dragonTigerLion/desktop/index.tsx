@@ -6,20 +6,20 @@ import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  A,
-  dtrules,
-  eight,
-  eleven,
-  five,
-  four,
-  nine,
-  seven,
-  six,
-  ten,
-  thirteen,
-  three,
-  twelve,
-  two,
+    A,
+    dtrules,
+    eight,
+    eleven,
+    five,
+    four,
+    nine,
+    seven,
+    six,
+    ten,
+    thirteen,
+    three,
+    twelve,
+    two,
 } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -365,7 +365,7 @@ const DragonTigerDesktop = () => {
                     className="w-100 d-sm-flex flex-row"
                     style={{ height: "30px" }}
                   >
-                    <div className="dtlTitleNew"></div>
+                    <div className="dtlTitleNew" />
                     <div className="dtlsubTitleNew back">Dragon</div>
                     <div className="dtlsubTitleNew back">Tiger</div>
                     <div className="dtlsubTitleNew back">Lion</div>

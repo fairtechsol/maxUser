@@ -599,76 +599,81 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               </div>
             </Col>
             {selectedBet?.team?.matchBetType === "tournament" ? (
-              selectedBet?.team?.runners?.runners?.map((item: any, index: number) => {
-                return (
-                  <div className="container d-flex justify-content-between mt-2" key={index}>
-                    <div className="row" style={{ width: "40%" }}>
-                      <div className="col-md-4 flex-start">
-                        <div className="row">
-                          <div className="col-md-12">
-                            <span className="f400 title-12">{item?.nat}</span>
+              selectedBet?.team?.runners?.runners?.map(
+                (item: any, index: number) => {
+                  return (
+                    <div
+                      className="container d-flex justify-content-between mt-2"
+                      key={index}
+                    >
+                      <div className="row" style={{ width: "40%" }}>
+                        <div className="col-md-4 flex-start">
+                          <div className="row">
+                            <div className="col-md-12">
+                              <span className="f400 title-12">{item?.nat}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="row row5" style={{ width: "30%" }}>
-                      <div className="col-md-4">
-                        <div className="row">
-                          <div className="col-md-12 text-center">
-                            <span
-                              className={`f400 title-12 ${
-                                handleProfitLoss(
-                                  selectedBet?.team?.runners?.parentBetId ||
-                                    selectedBet?.team?.runners?.id,
-                                  item?.parentRunnerId || item?.id
-                                ) < 0
-                                  ? "color-red"
-                                  : "color-green"
-                              }`}
-                            >
-                              {Number(
-                                handleProfitLoss(
-                                  selectedBet?.team?.runners?.parentBetId ||
-                                    selectedBet?.team?.runners?.id,
-                                  item?.parentRunnerId || item?.id
-                                )
-                              ).toFixed(2)}
-                            </span>
+                      <div className="row row5" style={{ width: "30%" }}>
+                        <div className="col-md-4">
+                          <div className="row">
+                            <div className="col-md-12 text-center">
+                              <span
+                                className={`f400 title-12 ${
+                                  handleProfitLoss(
+                                    selectedBet?.team?.runners?.parentBetId ||
+                                      selectedBet?.team?.runners?.id,
+                                    item?.parentRunnerId || item?.id
+                                  ) < 0
+                                    ? "color-red"
+                                    : "color-green"
+                                }`}
+                              >
+                                {Number(
+                                  handleProfitLoss(
+                                    selectedBet?.team?.runners?.parentBetId ||
+                                      selectedBet?.team?.runners?.id,
+                                    item?.parentRunnerId || item?.id
+                                  )
+                                ).toFixed(2)}
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="row" style={{ width: "30%" }}>
-                      <div className="col-md-4">
-                        <div className="row">
-                          <div className="col-md-12 text-end">
-                            <span
-                              style={{ fontSize: "12px", fontWeight: "400" }}
-                              className={
-                                Number(
+                      <div className="row" style={{ width: "30%" }}>
+                        <div className="col-md-4">
+                          <div className="row">
+                            <div className="col-md-12 text-end">
+                              <span
+                                style={{ fontSize: "12px", fontWeight: "400" }}
+                                className={
+                                  Number(
+                                    handleTounamentProLoss(
+                                      selectedBet?.team,
+                                      item?.parentRunnerId || item?.id
+                                    )
+                                  ) > 0
+                                    ? "color-green"
+                                    : "color-red"
+                                }
+                              >
+                                {Number(
                                   handleTounamentProLoss(
                                     selectedBet?.team,
                                     item?.parentRunnerId || item?.id
                                   )
-                                ) > 0
-                                  ? "color-green"
-                                  : "color-red"
-                              }
-                            >
-                              {Number(
-                                handleTounamentProLoss(
-                                  selectedBet?.team,
-                                  item?.parentRunnerId || item?.id
-                                )
-                              ).toFixed(2)}
-                            </span>
+                                ).toFixed(2)}
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })
+                  );
+                }
+              )
             ) : (
               <div className="container d-flex justify-content-between mt-2">
                 {selectedBet?.data?.type &&
@@ -757,12 +762,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                                 {selectedBet?.team?.stake > 0
                                   ? handleProLoss(selectedBet?.team, "A")
                                   : ""}
-                                {/* {selectedBet?.team?.betOnTeam ===
-                             selectedBet?.team?.teamA
-                               ? selectedBet?.team?.stake ? (Number(handleProfit(stake)) + Number(matchDetails?.profitLossDataMatch?.teamARate)).toFixed(2) : 0
-                               : selectedBet?.team?.type === "back"
-                               ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
-                               : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
                               </span>
                             </div>
                           </div>
@@ -781,12 +780,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                                 {selectedBet?.team?.stake > 0
                                   ? handleProLoss(selectedBet?.team, "B")
                                   : ""}
-                                {/* {selectedBet?.team?.betOnTeam ===
-                             selectedBet?.team?.teamB
-                               ? selectedBet?.team?.stake ? (Number(handleProfit(stake)) + Number(matchDetails?.profitLossDataMatch?.teamBRate)).toFixed(2) : 0
-                               : selectedBet?.team?.type === "back"
-                               ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
-                               : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
                               </span>
                             </div>
                           </div>
@@ -810,12 +803,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                                   {selectedBet?.team?.stake > 0
                                     ? handleProLoss(selectedBet?.team, "C")
                                     : ""}
-                                  {/* {selectedBet?.team?.betOnTeam ===
-                               selectedBet?.team?.teamC
-                                 ? selectedBet?.team?.stake ? (Number(handleProfit(stake)) + Number(matchDetails?.profitLossDataMatch?.teamCRate)).toFixed(2) : 0
-                                 : selectedBet?.team?.type === "back"
-                                 ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
-                                 : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
                                 </span>
                               </div>
                             </div>
@@ -846,12 +833,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShow(false)}
-          ></button>
+           />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <ButtonValues setShow={setShow} />
         </Modal.Body>
-        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
       </Modal>
       {(loading || matchOddLoading) && <Loader />}
     </>

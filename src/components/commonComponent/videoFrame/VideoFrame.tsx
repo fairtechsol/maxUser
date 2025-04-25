@@ -77,7 +77,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                 src={id}
                 referrerPolicy={"strict-origin-when-cross-origin"}
                 allowFullScreen
-              ></iframe>
+               />
               <ol
                 style={{
                   background: "black",

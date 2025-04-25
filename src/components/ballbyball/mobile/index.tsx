@@ -227,7 +227,7 @@ const TeenPattiMobile = () => {
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "20%",
@@ -252,7 +252,7 @@ const TeenPattiMobile = () => {
                         fontSize: "12px",
                         fontWeight: "bold",
                       }}
-                    ></div>
+                     />
                   </div>
                 </div>
 

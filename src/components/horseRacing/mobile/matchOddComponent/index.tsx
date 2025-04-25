@@ -1,8 +1,8 @@
+import moment from "moment";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import RatesBoxMobile from "../ratesBox";
-import moment from "moment";
-import { useState } from "react";
 
 const MatchOddCompnentMobile = ({ handleClick }: any) => {
   const { matchDetail } = useSelector(
@@ -30,7 +30,7 @@ const MatchOddCompnentMobile = ({ handleClick }: any) => {
       </div>
       <div className="main-market">
         <div className="table-header">
-          <div className="float-left country-name box-4 min-max"></div>
+          <div className="float-left country-name box-4 min-max" />
           <div className="bg-blue1 box-1 float-left text-center">
             <b>Back</b>
           </div>

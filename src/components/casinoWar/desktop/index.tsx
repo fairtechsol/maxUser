@@ -176,7 +176,7 @@ const TeenPattiDesktop = () => {
                       marginTop: "2px",
                     }}
                   >
-                    <div style={{ width: "40%" }}></div>
+                    <div style={{ width: "40%" }} />
                     <div
                       style={{
                         width: "60%",
@@ -230,7 +230,7 @@ const TeenPattiDesktop = () => {
                   >
                     <div
                       style={{ width: "40%", border: "0.1px solid #fff" }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "60%",

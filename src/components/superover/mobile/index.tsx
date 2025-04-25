@@ -90,7 +90,7 @@ const SuperoverMobile = () => {
                     height: "90%",
                     backgroundColor: "#000",
                   }}
-                ></div>
+                 />
                 {scoreBoardData?.balls?.length > 0 && (
                   <div style={{ marginBottom: "2px" }}>
                     <Iframe data={scoreBoardData} />

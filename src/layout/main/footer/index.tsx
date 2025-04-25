@@ -33,7 +33,7 @@ const Footer = () => {
           {isMobile ? <h5>24X7 Support</h5> : <h2>24X7 Support</h2>}
           <p></p>
         </div>
-        <div className="social-icons-box"></div>
+        <div className="social-icons-box" />
       </div>
     </section>
   );

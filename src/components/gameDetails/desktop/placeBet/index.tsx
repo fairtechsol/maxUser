@@ -578,7 +578,7 @@ const PlacedBet = () => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShow(false)}
-          ></button>
+           />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <ButtonValues setShow={setShow} />

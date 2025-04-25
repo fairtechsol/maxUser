@@ -184,7 +184,7 @@ const LiveCasinoDesktop = () => {
   //           referrerPolicy={"strict-origin-when-cross-origin"}
   //           width={"100%"}
   //           height={"100%"}
-  //         ></iframe>
+  //          />
   //       </div>
   //     </div>
   //   );
@@ -281,7 +281,7 @@ const LiveCasinoDesktop = () => {
               referrerPolicy={"strict-origin-when-cross-origin"}
               width={"100%"}
               height={"100%"}
-            ></iframe>
+             />
           </div>
         </Modal.Body>
       </Modal>

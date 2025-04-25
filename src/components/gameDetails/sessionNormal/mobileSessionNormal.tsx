@@ -3,9 +3,9 @@ import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, handleSize } from "../../../helpers";
 import {
-  getRunAmount,
-  getRunAmountMeter,
-  resetRunAmountModal,
+    getRunAmount,
+    getRunAmountMeter,
+    resetRunAmountModal,
 } from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -422,7 +422,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => handleModal(false)}
-          ></button>
+           />
         </Modal.Header>
         <Modal.Body className="p-0 rounded-0">
           <div style={{ width: "100%", height: "auto", overflowY: "auto" }}>

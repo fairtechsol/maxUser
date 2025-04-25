@@ -110,7 +110,7 @@ const SessionKhado = ({ title, data, detail }) => {
                   <span className={`f-size16 sessionBackTxt`}>Back</span>
                 </div>
 
-                <div className="sessionEmptyBox"></div>
+                <div className="sessionEmptyBox" />
               </div>
             </div>
             {data?.section?.map((item: any, index: any) => {
@@ -246,7 +246,7 @@ const SessionKhado = ({ title, data, detail }) => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => handleModal(false)}
-          ></button>
+           />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <div

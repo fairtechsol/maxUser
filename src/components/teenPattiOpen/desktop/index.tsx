@@ -205,7 +205,7 @@ const TeenPattiDesktop = () => {
                       style={{
                         width: "40%",
                       }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "60%",

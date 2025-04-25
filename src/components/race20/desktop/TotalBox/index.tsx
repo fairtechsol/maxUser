@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 
 const TotalsBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -45,7 +45,7 @@ const TotalsBox = ({ odds, data }: any) => {
       <div className="totalContainer border-bottom-0" style={{ border: "1px solid #c7c8ca"}}>
         <div className="total-mainRateBox">
           <div style={{ width: "30%" }}>
-            <span></span>
+            <span />
           </div>
           <div className="total-rateBox">
             <span className="f600">No</span>
@@ -86,7 +86,7 @@ const TotalsBox = ({ odds, data }: any) => {
 
         <div className="total-mainRateBox">
           <div style={{ width: "33%" }}>
-            <span></span>
+            <span />
           </div>
           <div
             className="justify-content-center align-items-center"
@@ -133,7 +133,7 @@ const TotalsBox = ({ odds, data }: any) => {
 
         <div className="total-mainRateBox">
           <div style={{ width: "30%" }}>
-            <span></span>
+            <span />
           </div>
           <div className="total-rateBox">
             <span className="f600">No</span>
@@ -173,7 +173,7 @@ const TotalsBox = ({ odds, data }: any) => {
         </div>
         <div className="total-mainRateBox">
           <div style={{ width: "33%" }}>
-            <span></span>
+            <span />
           </div>
           <div
             className="justify-content-center align-items-center"

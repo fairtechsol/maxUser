@@ -467,7 +467,7 @@ const TeenPattiMobile = () => {
                                 {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                  ]) && <span className="f400 title-14"></span>}
+                                  ]) && <span className="f400 title-14" />}
                               </div>
 
                               <div
@@ -571,7 +571,7 @@ const TeenPattiMobile = () => {
                                 {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                  ]) && <span className="f400 title-14"></span>}
+                                  ]) && <span className="f400 title-14" />}
                               </div>
 
                               <div

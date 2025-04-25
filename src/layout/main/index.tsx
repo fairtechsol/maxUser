@@ -5,10 +5,10 @@ import ScrollToTop from "../../components/commonComponent/ScrollToTop";
 import { socketService } from "../../socketManager";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getProfile,
-  marqueeNotification,
-  updateBalanceFromSocket,
-  updateBalanceOnSessionResult,
+    getProfile,
+    marqueeNotification,
+    updateBalanceFromSocket,
+    updateBalanceOnSessionResult,
 } from "../../store/actions/user/userAction";
 import { AppDispatch } from "../../store/store";
 import { isMobile } from "../../utils/screenDimension";
@@ -159,7 +159,7 @@ const MainLayout = () => {
             <Sidebar />
           </div>
         )}
-        {/* <div><CasinoNav items={casinoItems}  /></div> */}
+        {/* <div><CasinoNav items={casinoItems}  / /> */}
         <main className="w-100 overflow-hidden">
           <Outlet />
         </main>

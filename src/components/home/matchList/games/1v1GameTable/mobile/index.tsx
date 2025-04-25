@@ -12,15 +12,15 @@ import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
 import LiveCasino from "../../../../../../pages/casinoSubTab";
 import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
 import {
-  liveCasinoList,
-  liveCasinoLogin,
+    liveCasinoList,
+    liveCasinoLogin,
 } from "../../../../../../store/actions/cards/cardDetail";
 import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
-  availableGameType,
-  casinoIcons,
-  homeCasinoListIcons,
-  liveCasinoGameList,
+    availableGameType,
+    casinoIcons,
+    homeCasinoListIcons,
+    liveCasinoGameList,
 } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
@@ -254,7 +254,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                 >
                                   {item?.inPlay === "True" ||
                                     item?.iplay === true ? (
-                                    <span className="liveDot"></span>
+                                    <span className="liveDot" />
                                   ) : (
                                     <span style={{ width: "10px" }}>&nbsp;</span>
                                   )}
@@ -506,7 +506,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               referrerPolicy={"strict-origin-when-cross-origin"}
               width={"100%"}
               height={"100%"}
-            ></iframe>
+             />
           </div>
         </Modal.Body>
       </Modal>

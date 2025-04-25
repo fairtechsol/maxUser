@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
-  calculateRequiredStack,
-  dummyArray,
-  formatNumber,
-  manualProfitLoss,
+    calculateRequiredStack,
+    dummyArray,
+    formatNumber,
+    manualProfitLoss,
 } from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -261,7 +261,7 @@ const Tournament = ({ title, box, data, detail }) => {
             >
               <span className={`f-size16 tournamentBackTxt`}>Lay</span>
             </div>
-            {box === 6 && <div className="tournamentEmptyBox"></div>}
+            {box === 6 && <div className="tournamentEmptyBox" />}
           </div>
         </div>
         {(!data?.isActive ||

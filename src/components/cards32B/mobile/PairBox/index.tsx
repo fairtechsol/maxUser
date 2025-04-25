@@ -72,7 +72,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitle"></div>
+          <div className="dtlTitle" />
           <div className="dtlsubTitle back-BackGround title-12">Back</div>
           <div className="dtlsubTitle lay-BackGround title-12">Lay</div>
         </div>

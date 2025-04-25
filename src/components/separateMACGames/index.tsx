@@ -158,7 +158,7 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
               referrerPolicy={"strict-origin-when-cross-origin"}
               width={"100%"}
               height={"100%"}
-            ></iframe>
+             />
           </div>
         </Modal.Body>
       </Modal>
