@@ -99,7 +99,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                 <div className="sessionYesBox back1Background">
                   <span className={`f-size16 sessionBackTxt`}>Even</span>
                 </div>
-                <div className="sessionEmptyBox"></div>
+                <div className="sessionEmptyBox" />
               </div>
             </div>
             {evenIndexArray?.map((item: any, index: any) => {
@@ -260,7 +260,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                   <div className="sessionYesBox back1Background">
                     <span className={`f-size16 sessionBackTxt`}>Even</span>
                   </div>
-                  <div className="sessionEmptyBox"></div>
+                  <div className="sessionEmptyBox" />
                 </div>
               </div>
               {oddIndexArray?.map((item: any, index: any) => {

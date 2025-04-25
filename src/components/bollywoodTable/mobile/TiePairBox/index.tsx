@@ -72,7 +72,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           fontWeight: "600",
           paddingLeft: "4px",
         }}
-      ></div>
+       />
 
       {lowHigh &&
         lowHigh?.map((item: any, index: number) => (

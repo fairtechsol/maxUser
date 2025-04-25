@@ -15,8 +15,8 @@ const OddEven = ({ data, odds }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:parseFloat(item?.min),
-      max:parseFloat(item?.max)
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max),
     };
     dispatch(
       selectedBetAction({
@@ -88,9 +88,9 @@ const OddEven = ({ data, odds }: any) => {
       >
         <div
           className="w-100 d-sm-flex flex-row "
-          style={{ display: "flex", lineHeight: "2", }}
+          style={{ display: "flex", lineHeight: "2" }}
         >
-          <div className="dtlTitle lh-lg"></div>
+          <div className="dtlTitle lh-lg" />
           <div className="dtlsubTitle back-BackGround lh-lg ">
             <span style={{ fontSize: "12px" }}>Even</span>
           </div>

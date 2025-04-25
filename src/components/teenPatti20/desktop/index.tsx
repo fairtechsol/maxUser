@@ -173,7 +173,7 @@ const TeenPattiDesktop = () => {
                   >
                     <div
                       style={{ width: "50%", border: "0.1px solid #fff" }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "50%",
@@ -191,7 +191,7 @@ const TeenPattiDesktop = () => {
                       <div
                         className="teenPatti-table-item"
                         style={{ width: "60%" }}
-                      ></div>
+                       />
                     </div>
                   </div>
                   <div

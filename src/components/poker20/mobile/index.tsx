@@ -99,7 +99,7 @@ const Poker20Mobile = () => {
                     data={dragonTigerDetail}
                     playerNum={[0, 10]}
                   />
-                  <div style={{ width: "10px" }}></div>
+                  <div style={{ width: "10px" }} />
                   <PlayerTable
                     title={"PlayerB"}
                     odds={dragonTigerDetail?.PlayerB}

@@ -125,7 +125,7 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
-      <div></div>
+      <div />
       {data?.bets?.count > 0 && (
         <div className="w-100">
           <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />

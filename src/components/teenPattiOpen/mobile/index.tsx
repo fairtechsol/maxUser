@@ -169,7 +169,7 @@ const TeenPattiMobile = () => {
                           borderBottom: "0.1px solid #c7c8ca",
                           textAlign: "left",
                         }}
-                      ></div>
+                       />
                       <div
                         style={{
                           width: "60%",

@@ -362,7 +362,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
               referrerPolicy={"strict-origin-when-cross-origin"}
               width={"100%"}
               height={"100%"}
-            ></iframe>
+             />
           </div>
         </Modal.Body>
       </Modal>
@@ -402,16 +402,16 @@ const MatchListRow = ({ item, matchType }: any) => {
           <div className="d-flex align-items-center gap-2">
             {/* Live Dot */}
             {item?.inPlay === "True" || item?.iplay === true ? (
-              <span className="liveDot"></span>
+              <span className="liveDot" />
             ) : (
-              <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
+              <span style={{ width: "16px", height: "16px" }} /> // Placeholder space
             )}
 
             {/* TV Icon */}
             {item?.tv === "True" || item?.tv === true ? (
               <FiMonitor />
             ) : (
-              <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
+              <span style={{ width: "16px", height: "16px" }} /> // Placeholder space
             )}
 
             {/* Fancy Icon */}
@@ -420,7 +420,7 @@ const MatchListRow = ({ item, matchType }: any) => {
                 <img src="/ic_fancy.png" alt={"fancy"} />
               </span>
             ) : (
-              <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
+              <span style={{ width: "16px", height: "16px" }} /> // Placeholder space
             )}
             {/* Bookmaker Icon */}
             {item?.bm == "True" ||
@@ -430,7 +430,7 @@ const MatchListRow = ({ item, matchType }: any) => {
                 <img src="/ic_bm.png" alt={"bookmaker"} />
               </span>
             ) : (
-              <span style={{ width: "18px", height: "16px" }}></span> // Placeholder space
+              <span style={{ width: "18px", height: "16px" }} /> // Placeholder space
             )}
           </div>
         </div>

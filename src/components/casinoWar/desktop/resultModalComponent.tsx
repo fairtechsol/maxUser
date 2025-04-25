@@ -134,7 +134,7 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
         }
       })}
       {data?.result?.win === "0" && (
-        <div className="d-sm-flex flex-row justify-content-center align-items-center"></div>
+        <div className="d-sm-flex flex-row justify-content-center align-items-center" />
       )}
     </div>
   );
@@ -206,7 +206,7 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
             marginLeft: "5px",
             position: "relative",
           }}
-        ></div>
+         />
       )}
 
       {players && !isMobile && (

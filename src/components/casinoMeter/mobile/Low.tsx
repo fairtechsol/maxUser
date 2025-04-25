@@ -92,7 +92,7 @@ const LowCards = ({ odds, data, placedLow }: any) => {
                   display: "flex",
                   justifyContent: "center",
                 }}
-              ></span>
+               />
             </div>
           ))}
         </div>

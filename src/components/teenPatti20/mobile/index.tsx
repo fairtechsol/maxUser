@@ -141,7 +141,7 @@ const TeenPattiMobile = () => {
                           border: "0.1px solid #dee2e6",
                           textAlign: "left",
                         }}
-                      ></div>
+                       />
                       <div className="teen-back-m">BACK</div>
                     </div>
                     <div className="teenPatti-table-row">

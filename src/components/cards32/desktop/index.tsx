@@ -130,7 +130,7 @@ const Cards32Desktop = () => {
                   data={dragonTigerDetail}
                   playerNum={[8, 9]}
                 />
-                <div style={{ width: "10px" }}></div>
+                <div style={{ width: "10px" }} />
                 <DynamicTable
                   odds={dragonTigerDetail?.set2}
                   data={dragonTigerDetail}

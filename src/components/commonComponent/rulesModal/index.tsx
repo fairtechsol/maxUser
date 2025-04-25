@@ -1,14 +1,14 @@
 import Modal from "react-bootstrap/Modal";
 import { isMobile } from "../../../utils/screenDimension";
-import CmeterRules from "../../casinoMeter/desktop/cmeterRules";
-import Teen1dRules from "../../teenPatti1D/desktop/teen1dRules";
-import Teen20Rules from "../../teenPatti20/desktop/teen20Rules";
-import Baccarat2Rules from "../../baccarat2/desktop/baccarat2Rules";
-import Card32Rules from "../../cards32/desktop/card32Rules";
-import BTableRules from "../../bollywoodTable/desktop/btableRules";
 import Abj2Rules from "../../abj2/desktop/abj2Rules";
 import AmarAkbarAnthonyRules from "../../amarAkbarAnthony/desktop/AmrAkbrAnthny";
 import Baccarat1Rules from "../../baccarat1/desktop/baccarat1Rules";
+import Baccarat2Rules from "../../baccarat2/desktop/baccarat2Rules";
+import BTableRules from "../../bollywoodTable/desktop/btableRules";
+import Card32Rules from "../../cards32/desktop/card32Rules";
+import CmeterRules from "../../casinoMeter/desktop/cmeterRules";
+import Teen1dRules from "../../teenPatti1D/desktop/teen1dRules";
+import Teen20Rules from "../../teenPatti20/desktop/teen20Rules";
 import "./style.scss";
 
 const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
@@ -32,7 +32,7 @@ const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
           }}
         >
           <div className="go685806154">
-            <div className="go1858758034"></div>
+            <div className="go1858758034" />
             <div className="go1579819456">
               <div className="go2534082608" onClick={handleClose}>
                 X
@@ -59,7 +59,7 @@ const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShow(false)}
-          ></button>
+           />
         </Modal.Header>
         <Modal.Body style={{ padding: "0px", cursor: "pointer" }}>
           {type === "rules" ? (

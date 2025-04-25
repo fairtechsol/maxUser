@@ -6,17 +6,17 @@ const CombinedComponent = () => {
     <div className="game-market market-12">
       <div className="market-title mt-1">COMBINED</div>
       <div className="market-header">
-        <div className="market-nation-detail"></div>
-        <div className="market-odd-box no-border d-none d-md-flex"></div>
-        <div className="market-odd-box no-border d-none d-md-flex"></div>
+        <div className="market-nation-detail" />
+        <div className="market-odd-box no-border d-none d-md-flex" />
+        <div className="market-odd-box no-border d-none d-md-flex" />
         <div className="market-odd-box back">
           <b>Back</b>
         </div>
         <div className="market-odd-box lay">
           <b>Lay</b>
         </div>
-        <div className="market-odd-box d-none d-md-flex"></div>
-        <div className="market-odd-box no-border d-none d-md-flex"></div>
+        <div className="market-odd-box d-none d-md-flex" />
+        <div className="market-odd-box no-border d-none d-md-flex" />
       </div>
       <div className="market-body">
         <div className="market-row removed">
