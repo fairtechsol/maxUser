@@ -93,7 +93,7 @@ const otherMatchDetail = createSlice({
           marketCompleteMatch: marketCompleteMatch,
           matchOdd: matchOdd,
           quickBookmaker: quickbookmaker,
-          tournament: tournament?.sort((a: any, b: any) => {
+          tournament: [...(tournament || [])].sort((a: any, b: any) => {
             // Primary sort by sno (ascending)
             if (a.sno !== b.sno) {
               return a.sno - b.sno;

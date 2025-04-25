@@ -280,7 +280,7 @@ const matchListSlice = createSlice({
           bookmaker: bookmaker,
           bookmaker2: bookmaker2,
           other,
-          tournament: tournament?.sort((a: any, b: any) => {
+          tournament: [...(tournament || [])].sort((a: any, b: any) => {
             // Primary sort by sno (ascending)
             if (a.sno !== b.sno) {
               return a.sno - b.sno;
