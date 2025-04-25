@@ -173,7 +173,7 @@ const otherMatchDetail = createSlice({
           state.otherMatchDetails = {
             ...state.otherMatchDetails,
             profitLossDataMatch: {
-              ...state.otherMatchDetails.profitLossDataMatch,
+              ...state.otherMatchDetails?.profitLossDataMatch,
               [betId + "_profitLoss_" + matchId]: JSON.stringify(
                 newTeamRateData
               ),
@@ -184,7 +184,7 @@ const otherMatchDetail = createSlice({
             state.otherMatchDetails = {
               ...state.otherMatchDetails,
               profitLossDataMatch: {
-                ...state.otherMatchDetails.profitLossDataMatch,
+                ...state.otherMatchDetails?.profitLossDataMatch,
                 [teamArateRedisKey]: newTeamRateData?.teamA,
                 [teamBrateRedisKey]: newTeamRateData?.teamB,
                 [teamCrateRedisKey]: newTeamRateData?.teamC,
@@ -194,7 +194,7 @@ const otherMatchDetail = createSlice({
             state.otherMatchDetails = {
               ...state.otherMatchDetails,
               profitLossDataMatch: {
-                ...state.otherMatchDetails.profitLossDataMatch,
+                ...state.otherMatchDetails?.profitLossDataMatch,
                 [teamArateRedisKey]: newTeamRateData?.teamA,
                 [teamBrateRedisKey]: newTeamRateData?.teamB,
               },
@@ -217,7 +217,7 @@ const otherMatchDetail = createSlice({
           state.otherMatchDetails = {
             ...state.otherMatchDetails,
             profitLossDataMatch: {
-              ...state.otherMatchDetails.profitLossDataMatch,
+              ...state.otherMatchDetails?.profitLossDataMatch,
               [betId + "_profitLoss_" + matchId]: JSON.stringify(teamRate),
             },
           };
@@ -246,7 +246,7 @@ const otherMatchDetail = createSlice({
         } = action?.payload;
 
         state.otherMatchDetails.profitLossDataMatch = {
-          ...state.otherMatchDetails.profitLossDataMatch,
+          ...state.otherMatchDetails?.profitLossDataMatch,
           [profitLossDataForMatchConstants[betType].A]:
             profitLossData[teamArateRedisKey],
           [profitLossDataForMatchConstants[betType].B]:
