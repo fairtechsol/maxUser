@@ -209,7 +209,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
     return parseFloat(rate) || 0;
   };
   const handleProfitLoss = (id: any, r_id: any) => {
-    const key = `${id}_profitLoss_${otherMatchDetails.id}`;
+    const key = `${id}_profitLoss_${otherMatchDetails?.id}`;
 
     const profitLossJson = otherMatchDetails?.profitLossDataMatch?.[key];
 

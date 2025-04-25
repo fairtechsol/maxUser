@@ -125,7 +125,7 @@ const matchListSlice = createSlice({
         state.success = true;
         state.matchDetails = {
           ...state.matchDetails,
-          isBookmaker: action.payload.isBookmaker,
+          isBookmaker: action.payload?.isBookmaker,
           marketId: action.payload?.marketId,
           rateThan100: action.payload?.rateThan100,
           title: action.payload?.title,
@@ -238,7 +238,7 @@ const matchListSlice = createSlice({
           .map((item: any) => item?.id);
         apiParsedSessionBettings.forEach((apiItem: any) => {
           const index = parsedSessionBettings.findIndex(
-            (parsedItem: any) => parsedItem.id === apiItem.id
+            (parsedItem: any) => parsedItem?.id === apiItem?.id
           );
           if (index !== -1) {
             parsedSessionBettings[index] = {
@@ -255,7 +255,7 @@ const matchListSlice = createSlice({
         );
         const updatedOther = state.matchDetails?.other?.map((item: any) => {
           const updatedItem = other.find(
-            (newItem: any) => newItem.id === item.id
+            (newItem: any) => newItem?.id === item?.id
           );
 
           if (updatedItem) {
