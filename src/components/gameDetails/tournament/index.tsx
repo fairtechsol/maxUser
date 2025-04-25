@@ -58,16 +58,12 @@ const Tournament = ({ title, box, data, detail }) => {
   };
 
   const handleCashoutBet = () => {
-    const [teamAId, teamBId] = data?.runners?.map(
-      (team) => team.parentRunnerId || team.id
-    );
+    const [teamAId, teamBId] = data?.runners?.map((team) => team.parentRunnerId || team.id);
 
     const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
     const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
     if (profitA === profitB) {
-      toast.error("You are not eligible for cashout!", {
-        style: { backgroundColor: "#ffffff", color: "#000000" },
-      });
+      showCashoutError();
       return;
     }
     // profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
@@ -136,16 +132,9 @@ const Tournament = ({ title, box, data, detail }) => {
       const key = getKeyByValue(teamB, odds);
       type = key === "lay1" ? "lay" : "back";
     }
-    if (odds < 1) {
-      toast.error("You are not eligible for cashout!", {
-        style: { backgroundColor: "#ffffff", color: "#000000" },
-      });
-      return;
-    }
-    if (!isFinite(stake) || stake <= 0) {
-      toast.error("You are not eligible for cashout!", {
-        style: { backgroundColor: "#ffffff", color: "#000000" },
-      });
+
+    if (odds < 1 || !isFinite(stake) || stake <= 0) {
+      showCashoutError();
       return;
     }
 
@@ -153,9 +142,7 @@ const Tournament = ({ title, box, data, detail }) => {
       (team) => team.status
     );
     if (teamAStatus == "SUSPENDED" || teamBStatus == "SUSPENDED") {
-      toast.error("You are not eligible for cashout!", {
-        style: { backgroundColor: "#ffffff", color: "#000000" },
-      });
+      showCashoutError();
       return;
     }
 
@@ -185,10 +172,43 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
+  const showCashoutError = () => {
+    toast.error("You are not eligible for cashout!", {
+      style: { backgroundColor: "#ffffff", color: "#000000" },
+    });
+  };
+
   const key = `${data.parentBetId || data.id}_profitLoss_${detail.id}`;
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
   const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
+
+  const ProfitLossDisplay = ({ item }) => {
+    const runnerId = item.parentRunnerId || item.id;
+    const profitLossValue = parseFloat(profitLossObj?.[runnerId]) || 0;
+    const manualValue = manualProfitLoss(
+      selectedBet,
+      item?.nat || item?.runnerName,
+      data?.type,
+      data?.gtype
+    );
+    const totalValue = selectedBet?.team?.betId === data?.parentBetId
+      ? profitLossValue + manualValue
+      : profitLossValue || manualValue;
+    const displayValue = totalValue === 0 ? "" : totalValue.toFixed(2);
+
+    return (
+      <span
+        className="title-12 f-400"
+        style={{
+          color: totalValue > 0 ? "#086f3f" : totalValue < 0 ? "#bd1828" : "inherit",
+        }}
+      >
+        {displayValue}
+      </span>
+    );
+  };
+
   return (
     <>
       <div className="tournamentContainer">
@@ -306,14 +326,7 @@ const Tournament = ({ title, box, data, detail }) => {
                         : "color-red"
                         } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
-                      {profitLossObj?.[item?.parentRunnerId || item?.id]
-                        ? selectedBet?.team?.parentBetId ===
-                          (data.parentBetId || data?.id)
-                          ? parseFloat(
-                            profitLossObj?.[item?.parentRunnerId || item?.id]
-                          )
-                          : profitLossObj?.[item?.parentRunnerId || item?.id]
-                        : ""}
+                      {profitLossObj?.[item?.parentRunnerId || item?.id] || ""}
                     </span>
                     {selectedBet?.team?.parentBetId ||
                       selectedBet?.team?.betId ===
@@ -321,39 +334,38 @@ const Tournament = ({ title, box, data, detail }) => {
                       <span
                         className="title-12 f-400"
                         style={{
-                          color:
-                            parseFloat(
-                              profitLossObj?.[item?.parentRunnerId || item?.id]
-                            ) +
-                              manualProfitLoss(
-                                selectedBet,
-                                item?.nat || item?.runnerName,
-                                data?.type,
-                                data?.gtype
-                              ) >
-                              0
-                              ? "#086f3f"
-                              : "#bd1828",
+                          color: (() => {
+                            const basePL = parseFloat(profitLossObj?.[item?.parentRunnerId || item?.id] || 0);
+                            const manualPL = manualProfitLoss(
+                              selectedBet,
+                              item?.nat || item?.runnerName,
+                              data?.type,
+                              data?.gtype
+                            );
+                            return basePL + manualPL > 0 ? "#086f3f" : "#bd1828";
+                          })(),
                         }}
                       >
-                        {profitLossObj?.[item?.parentRunnerId || item?.id]
-                          ? selectedBet?.team?.parentBetId ===
-                            (data.parentBetId || data?.id)
-                            ? (
-                              parseFloat(
-                                profitLossObj?.[
-                                item?.parentRunnerId || item?.id
-                                ]
-                              ) +
-                              manualProfitLoss(
-                                selectedBet,
-                                item?.nat || item?.runnerName,
-                                data?.type,
-                                data?.gtype
-                              )
-                            ).toFixed(2)
-                            : profitLossObj?.[item?.parentRunnerId || item?.id]
-                          : ""}
+                        {(() => {
+                          const betKey = item.parentRunnerId || item.id;
+                          const basePL = parseFloat(profitLossObj?.[betKey] || 0);
+                          const manualPL = manualProfitLoss(
+                            selectedBet,
+                            item?.nat || item?.runnerName,
+                            data?.type,
+                            data?.gtype
+                          );
+
+                          const isSelected = selectedBet?.team?.betId === (data.parentBetId || data?.id);
+
+                          if (profitLossObj?.[betKey]) {
+                            return isSelected
+                              ? (basePL + manualPL).toFixed(2)
+                              : basePL.toFixed(2);
+                          } else {
+                            return manualPL === 0 ? "" : manualPL.toFixed(2);
+                          }
+                        })()}
                       </span>
                     ) : (
                       ""
