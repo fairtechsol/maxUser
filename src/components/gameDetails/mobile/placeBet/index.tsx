@@ -184,11 +184,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   };
   const handleProfitLoss = (id: any, r_id: any) => {
     const key = `${id}_profitLoss_${matchDetails.id}`;
-
     const profitLossJson = matchDetails?.profitLossDataMatch?.[key];
 
-    const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : 0;
-    return profitLossObj?.[r_id];
+    const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
+    return profitLossObj?.[r_id] ?? 0;
   };
   const handleKeyDown = (e: any) => {
     if (e.key === "e" || e.key === "E") {

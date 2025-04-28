@@ -41,7 +41,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       percent: value,
       matchBetType: "session",
       betPlaceIndex: tno,
-      mid: item?.mid?.toString(),
+      mid: data?.mid?.toString(),
       teamName: index + " Number",
       min: item?.min,
       max: item?.max,
@@ -134,20 +134,20 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                       </span>
                       <span
                         className={`${detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.filter(
+                            (a: any) => a?.betId === data?.id
+                          )
                             ? detail?.profitLossDataSession?.filter(
                               (a: any) => a?.betId === data?.id
-                            )
-                              ? detail?.profitLossDataSession?.filter(
+                            )[0]?.profitLoss?.[index] > 0
+                              ? "color-green"
+                              : detail?.profitLossDataSession?.filter(
                                 (a: any) => a?.betId === data?.id
-                              )[0]?.profitLoss?.[index] > 0
-                                ? "color-green"
-                                : detail?.profitLossDataSession?.filter(
-                                  (a: any) => a?.betId === data?.id
-                                )[0]?.profitLoss?.[index] < 0
-                                  ? "color-red"
-                                  : "color-red"
-                              : 0
+                              )[0]?.profitLoss?.[index] < 0
+                                ? "color-red"
+                                : "color-red"
                             : 0
+                          : 0
                           }`}
                       >
                         {detail?.profitLossDataSession
