@@ -12,7 +12,6 @@ const HtFt = ({ title, box, data, detail }) => {
   const handlePlaceBet = (
     odds: any,
     type: any,
-    betTeam: any,
     status: any,
     index: any,
     runner: any
@@ -36,7 +35,7 @@ const HtFt = ({ title, box, data, detail }) => {
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       runnerId: runner?.id?.toString(),
-      runners:data
+      runners: data,
     };
     dispatch(
       selectedBetAction({
@@ -65,59 +64,63 @@ const HtFt = ({ title, box, data, detail }) => {
           </span>
         </div>
 
-      <div className="d-flex flex-row flex-wrap" style={{position:"relative"}}>
-      {(data?.status !== "OPEN" && data?.status !== "ACTIVE") && (<div className="suspended-overlayRatestournament">
-                      <span className={`suspendTextCmmn`}>SUSPENDED</span>
-                    </div> )}
-      {data?.runners?.length > 0 &&
-          data?.runners?.map((item: any, index: any) => {
-            return (
-              <div className="htftTeamTab" key={index} style={{width:isMobile?"50%":"33.33%"}}>
+        <div
+          className="d-flex flex-row flex-wrap"
+          style={{ position: "relative" }}
+        >
+          {data?.status !== "OPEN" && data?.status !== "ACTIVE" && (
+            <div className="suspended-overlayRatestournament">
+              <span className={`suspendTextCmmn`}>SUSPENDED</span>
+            </div>
+          )}
+          {data?.runners?.length > 0 &&
+            data?.runners?.map((item: any, index: any) => {
+              return (
                 <div
-                  className="htftTeam"
-                  style={box === 6 ? { width: "28%" } : {}}
+                  className="htftTeamTab"
+                  key={index}
+                  style={{ width: isMobile ? "50%" : "33.33%" }}
                 >
-                   {((item?.status !== "OPEN" && item?.status !== "ACTIVE") && (data?.status==="OPEN" || data?.status === "ACTIVE")) && (
-                    <div className="suspended-overlayRatestournament">
-                      <FaLock color="#fff" />
-                    </div>
-                  )}
-                  <span className={`teamFont tournamentTeamTxt ms-1`}>
-                    {item?.nat || item?.runnerName}
-                  </span>
-                  <span
-                    className={` ms-1 mt-1 ${
-                      profitLossObj?.[item.id] > 0
-                        ? "color-green"
-                        : profitLossObj?.[item.id] < 0
-                        ? "color-red"
-                        : ""
-                    } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                  <div
+                    className="htftTeam"
+                    style={box === 6 ? { width: "28%" } : {}}
                   >
-                    {profitLossObj?.[item.id]}
-                  </span>
+                    {item?.status !== "OPEN" &&
+                      item?.status !== "ACTIVE" &&
+                      (data?.status === "OPEN" ||
+                        data?.status === "ACTIVE") && (
+                        <div className="suspended-overlayRatestournament">
+                          <FaLock color="#fff" />
+                        </div>
+                      )}
+                    <span className={`teamFont tournamentTeamTxt ms-1`}>
+                      {item?.nat || item?.runnerName}
+                    </span>
+                    <span
+                      className={` ms-1 mt-1 ${
+                        profitLossObj?.[item.id] > 0
+                          ? "color-green"
+                          : profitLossObj?.[item.id] < 0
+                          ? "color-red"
+                          : ""
+                      } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                    >
+                      {profitLossObj?.[item.id]}
+                    </span>
+                  </div>
+                  <div className={"tournament2RateBox rateBoxWidth3"}>
+                    <BetBox
+                      data={item?.ex?.availableToBack?.[0]}
+                      type={"back"}
+                      detail={detail}
+                      runner={item}
+                      handlePlaceBet={handlePlaceBet}
+                    />
+                  </div>
                 </div>
-                <div
-                  className={"tournament2RateBox rateBoxWidth3"}
-                >
-                  {/* {(item?.status !== "OPEN" && item?.status !== "ACTIVE") && (
-                    <div className="suspended-overlayRatestournament">
-                      <FaLock color="#fff" />
-                    </div>
-                  )} */}
-                  <BetBox
-                        data={item?.ex?.availableToBack?.[0]}
-                        type={"back"}
-                        detail={detail}
-                        runner={item}
-                        handlePlaceBet={handlePlaceBet}
-                      />
-                </div>
-              </div>
-            );
-          })}
-      </div>
-       
+              );
+            })}
+        </div>
 
         {data?.rem && (
           <div className="tournamentRemarkTab">
