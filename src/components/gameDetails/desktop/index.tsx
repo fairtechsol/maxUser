@@ -477,36 +477,36 @@ const DesktopGameDetail = () => {
                   : "100%",
               }}
             >
-              <div
+              {/* <div
                 className="scrollable-content"
                 style={{
                   maxHeight: "100vh",
                   overflowY: "auto",
                   paddingBottom: "20px",
                 }}
-              >
-                {matchDetails?.eventId &&
-                  matchDetails?.matchType !== "politics" && (
-                    <div className="px-1 pt-1">
-                      <LiveStreamComponent
-                        url={
-                          import.meta.env.VITE_NODE_ENV == "production"
-                            ? tvData?.tvData?.iframeUrl
-                            : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
-                        }
-                        eventId={matchDetails?.eventId}
-                        matchType={matchDetails?.matchType}
-                        setTvData={setTvData}
-                      />
-                    </div>
-                  )}
-                <div className="px-1 pt-1">
-                  <PlacedBet />
-                </div>
-                <div className="px-1 pt-1">
-                  <MyBet />
-                </div>{" "}
+              > */}
+              {matchDetails?.eventId &&
+                matchDetails?.matchType !== "politics" && (
+                  <div className="px-1 pt-1">
+                    <LiveStreamComponent
+                      url={
+                        import.meta.env.VITE_NODE_ENV == "production"
+                          ? tvData?.tvData?.iframeUrl
+                          : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
+                      }
+                      eventId={matchDetails?.eventId}
+                      matchType={matchDetails?.matchType}
+                      setTvData={setTvData}
+                    />
+                  </div>
+                )}
+              <div className="px-1 pt-1">
+                <PlacedBet />
               </div>
+              <div className="px-1 pt-1">
+                <MyBet />
+              </div>
+              {/* </div> */}
             </Row>
           </Container>
         </Col>
