@@ -15,7 +15,7 @@ const BetBox = ({ data, type, handlePlaceBet, detail, runner }: any) => {
     }
   }, [data?.price]);
 
-  const handleBackground = (index: any) => {
+  const handleBackground = (index: number) => {
     if (type === "back") {
       if (index === 2) {
         return isYellow ? "bg-secondary" : "back3Background";
