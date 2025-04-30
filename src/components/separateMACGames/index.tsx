@@ -15,9 +15,7 @@ interface SeperateMACGamesInterface {
 const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
   const dispatch: AppDispatch = useDispatch();
   const { liveCasinoGame } = useSelector((state: RootState) => state.card);
-
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
-
   const [game, setGame] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isShow, setIsShow] = useState(false);
@@ -150,7 +148,6 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">
-          {" "}
           <div className="w-100 h-100">
             <iframe
               src={liveCasinoGame?.url}

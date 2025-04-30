@@ -498,7 +498,6 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">
-          {" "}
           <div className="w-100 h-100">
             <iframe
               src={liveCasinoGame?.url}
