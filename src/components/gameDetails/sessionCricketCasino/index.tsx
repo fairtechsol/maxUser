@@ -79,155 +79,155 @@ const SessionCricketCasino = ({ title, data, detail }) => {
   };
 
   return (
-    <>
+    <div
+      className="sessionNormalContainer"
+      style={{ marginTop: isMobile ? "" : "10px" }}
+    >
+      <div className="sessionNormalTitle">
+        <span
+          className="sessionNormalTitleTxt"
+          style={{ fontSize: isMobile ? "13px" : "15px" }}
+        >
+          {title}
+        </span>
+      </div>
       <div
-        className="sessionNormalContainer"
-        style={{ marginTop: isMobile ? "" : "10px" }}
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          gap: "10px",
+        }}
       >
-        <div className="sessionNormalTitle">
-          <span
-            className="sessionNormalTitleTxt"
-            style={{ fontSize: isMobile ? "13px" : "15px" }}
-          >
-            {title}
-          </span>
-        </div>
         <div
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "row",
-            gap: "10px",
-          }}
+          style={{ width: "100%", display: "flex", flexDirection: "column" }}
         >
           <div
-            style={{ width: "100%", display: "flex", flexDirection: "column" }}
+            className="sessionCasinoMinMax"
+            style={{ borderBottom: "1px solid #c7c8ca" }}
           >
-            <div
-              className="sessionCasinoMinMax"
-              style={{ borderBottom: "1px solid #c7c8ca" }}
-            >
-              <div style={{ backgroundColor: "#f2f2f2", flexGrow: 1 }}>
-                <span
-                  className={`sessionMinBox sessionMinMaxFont`}
-                  style={{ marginLeft: "1%" }}
-                >
-                  Min:{formatNumber(marketArr?.min)} Max:
-                  {formatNumber(marketArr?.max)}
-                </span>
-              </div>
-              <div
-                className="sessionRateBox back1Background"
-                style={{ width: isLap ? "61px" : !isMobile ? "81px" : "20%" }}
+            <div style={{ backgroundColor: "#f2f2f2", flexGrow: 1 }}>
+              <span
+                className={`sessionMinBox sessionMinMaxFont`}
+                style={{ marginLeft: "1%" }}
               >
-                <span className={`f-size16 sessionBackTxt`}>Back</span>
-              </div>
+                Min:{formatNumber(marketArr?.min)} Max:
+                {formatNumber(marketArr?.max)}
+              </span>
             </div>
-            {marketArr?.section?.map((item: any, index: any) => {
-              return (
-                <div className="w-100 d-flex flex-column" key={index}>
-                  <div className="sessionRateContainer">
-                    <div className="sessionRateName" style={{ flexGrow: 1 }}>
-                      <span className="teamFont" style={{ fontWeight: "400" }}>
-                        {index} Number
-                      </span>
-                      <span
-                        className={`${detail?.profitLossDataSession
+            <div
+              className="sessionRateBox back1Background"
+              style={{ width: isLap ? "61px" : !isMobile ? "81px" : "20%" }}
+            >
+              <span className={`f-size16 sessionBackTxt`}>Back</span>
+            </div>
+          </div>
+          {marketArr?.section?.map((item: any, index: any) => {
+            return (
+              <div className="w-100 d-flex flex-column" key={index}>
+                <div className="sessionRateContainer">
+                  <div className="sessionRateName" style={{ flexGrow: 1 }}>
+                    <span className="teamFont" style={{ fontWeight: "400" }}>
+                      {index} Number
+                    </span>
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
                           ? detail?.profitLossDataSession?.filter(
-                            (a: any) => a?.betId === data?.id
-                          )
-                            ? detail?.profitLossDataSession?.filter(
                               (a: any) => a?.betId === data?.id
-                            )[0]?.profitLoss?.[index] > 0
+                            )
+                            ? detail?.profitLossDataSession?.filter(
+                                (a: any) => a?.betId === data?.id
+                              )[0]?.profitLoss?.[index] > 0
                               ? "color-green"
                               : detail?.profitLossDataSession?.filter(
-                                (a: any) => a?.betId === data?.id
-                              )[0]?.profitLoss?.[index] < 0
-                                ? "color-red"
-                                : "color-red"
+                                  (a: any) => a?.betId === data?.id
+                                )[0]?.profitLoss?.[index] < 0
+                              ? "color-red"
+                              : "color-red"
                             : 0
                           : 0
-                          }`}
-                      >
-                        {detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.filter(
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.filter(
                             (a: any) => a?.betId === data?.id
                           )
-                            ? detail?.profitLossDataSession?.filter(
+                          ? detail?.profitLossDataSession?.filter(
                               (a: any) => a?.betId === data?.id
                             )[0]?.profitLoss?.[index]
-                            : ""
-                          : ""}
-                      </span>
-                    </div>
+                          : ""
+                        : ""}
+                    </span>
+                  </div>
+                  <div
+                    className="sessionCCRateBoxContainer"
+                    style={{
+                      width: isLap ? "61px" : !isMobile ? "81px" : "",
+                    }}
+                  >
+                    {item?.gstatus !== "" && (
+                      <div className="suspended-overlayRates">
+                        <FaLock color="#fff" />
+                      </div>
+                    )}
                     <div
-                      className="sessionCCRateBoxContainer"
                       style={{
-                        width: isLap ? "61px" : !isMobile ? "81px" : "",
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        borderRight: "1px solid #c7c8ca",
                       }}
                     >
-                      {item?.gstatus !== "" && (
-                        <div className="suspended-overlayRates">
-                          <FaLock color="#fff" />
-                        </div>
-                      )}
                       <div
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          flexDirection: "column",
-                          borderRight: "1px solid #c7c8ca",
-                        }}
+                        className={`sessionRateBox back1Background`}
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>
+                          handlePlaceBet(
+                            item?.odds?.[0]?.odds,
+                            "Back",
+                            `${index} Number`,
+                            item?.gstatus,
+                            item?.odds?.[0]?.odds,
+                            item,
+                            item?.odds?.[0]?.tno,
+                            index
+                          )
+                        }
                       >
-                        <div
-                          className={`sessionRateBox back1Background`}
-                          style={{ cursor: "pointer" }}
-                          onClick={() =>
-                            handlePlaceBet(
-                              item?.odds?.[0]?.odds,
-                              "Back",
-                              `${index} Number`,
-                              item?.gstatus,
-                              item?.odds?.[0]?.odds,
-                              item,
-                              item?.odds?.[0]?.tno,
-                              index
-                            )
-                          }
+                        <span className={`rateFont`}>
+                          {handlePrice(item?.odds?.[0]?.odds) ?? "-"}
+                        </span>
+                        <span
+                          className={`${
+                            !isMobile ? "f-size12" : "f-size11"
+                          } sessionRate2Box`}
                         >
-                          <span className={`rateFont`}>
-                            {handlePrice(item?.odds?.[0]?.odds) ?? "-"}
-                          </span>
-                          <span
-                            className={`${!isMobile ? "f-size12" : "f-size11"
-                              } sessionRate2Box`}
-                          >
-                            {handleSize(item?.odds?.[0]?.size)}
-                          </span>
-                        </div>
+                          {handleSize(item?.odds?.[0]?.size)}
+                        </span>
                       </div>
                     </div>
                   </div>
-                  {item?.rem && (
-                    <div
-                      className="w-100 text-start"
-                      style={{
-                        fontSize: "11px",
-                        color: "#097c93",
-                        backgroundColor: "#f2f2f2",
-                        borderBottom: "1px solid #c7c8ca",
-                      }}
-                    >
-                      {item?.rem}
-                    </div>
-                  )}
                 </div>
-              );
-            })}
-          </div>
+                {item?.rem && (
+                  <div
+                    className="w-100 text-start"
+                    style={{
+                      fontSize: "11px",
+                      color: "#097c93",
+                      backgroundColor: "#f2f2f2",
+                      borderBottom: "1px solid #c7c8ca",
+                    }}
+                  >
+                    {item?.rem}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default SessionCricketCasino;
