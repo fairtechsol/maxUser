@@ -1,4 +1,5 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
+
 .place-bet-table-red {
   td {
     background-color: $red1 !important;
@@ -32,13 +33,15 @@
   align-items: "center";
   font-size: "1.5rem";
 }
-.reset1-submit1-btn-container{
+
+.reset1-submit1-btn-container {
   // width: 40%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.reset-buttonn1{
+
+.reset-buttonn1 {
   width: 80px;
   height: 38px;
   display: flex;
@@ -50,7 +53,8 @@
   border: 0;
   margin-right: 4px;
 }
-.submit-buttonn1{
+
+.submit-buttonn1 {
   width: 80px;
   height: 38px;
   display: flex;
@@ -62,9 +66,10 @@
   border: 0;
 }
 
-.game-type-andar{
+.game-type-andar {
   background-color: #ffa07a !important;
 }
-.game-type-bahar{
- background-color: #90ee90 !important;
+
+.game-type-bahar {
+  background-color: #90ee90 !important;
 }

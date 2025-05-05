@@ -1,5 +1,5 @@
 // Import your variables
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
 
 // Define your styles using variables
 .topbar-link {
@@ -19,16 +19,18 @@
     transition: left 0.3s ease-out, right 0.3s ease-out;
   }
 
-  &:hover:not(.active) { 
+  &:hover:not(.active) {
     color: none;
+
     &::before {
-      left: 0; 
+      left: 0;
       right: 0;
     }
   }
 
   &.active {
-    color: none; 
+    color: none;
+
     &::before {
       content: none;
     }
