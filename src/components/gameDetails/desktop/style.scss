@@ -1,4 +1,5 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
+
 .place-bet-table-red {
   td {
     background-color: $red1;
@@ -13,13 +14,13 @@
 
 .place-bet-table-redm {
 
-    background-color: $red1;
+  background-color: $red1;
 
 }
 
 .place-bet-table-bluem {
 
-    background-color: $blue3;
+  background-color: $blue3;
 
 }
 

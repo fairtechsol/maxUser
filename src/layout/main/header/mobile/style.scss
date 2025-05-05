@@ -1,56 +1,60 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
 
 .dropdown-custom-components {
   padding: 0px !important;
 }
+
 .dropdown-menu-nav {
   background-color: $light !important;
   right: 0px !important;
   left: auto !important;
+
   .dropdown-item {
     color: $black !important;
   }
 }
+
 .logodiv {
   position: absolute;
   top: 4px;
   left: 6px;
   align-self: center;
 }
+
 .custom-checkbox23 {
-  appearance: none; 
-  -webkit-appearance: none;  
-  -moz-appearance: none; 
-  width: 18px;  
-  height: 18px; 
-  border: 2px solid #ccc;  
-  border-radius: 4px;  
-  background-color: #fff;  
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
   cursor: pointer;
   position: relative;
   transition: background-color 0.3s, border-color 0.3s;
 }
 
 .custom-checkbox23:checked {
-  background-color: #FFC742;  
-  border-color: #FFC742;  
+  background-color: #FFC742;
+  border-color: #FFC742;
 }
 
 
 .custom-checkbox23:checked::after {
-  content: ''; 
+  content: '';
   position: absolute;
-  left: 5px;  
-  top: 2px;  
+  left: 5px;
+  top: 2px;
   width: 6px;
   height: 10px;
   border: solid white;
   border-width: 0 3px 3px 0;
-  transform: rotate(45deg);  
+  transform: rotate(45deg);
 }
 
 .custom-checkbox23:hover {
-  border-color: #999;  
+  border-color: #999;
 }
 
 .nav-itemmm a {
