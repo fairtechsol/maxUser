@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <LogoutTimer />
-      <RouterProvider router={routes()} />
+      <RouterProvider router={routes()} future={{ v7_startTransition: true }} />
       <ToastContainer
         toastClassName={(context) =>
           contextClass[context?.type || "default"] +
