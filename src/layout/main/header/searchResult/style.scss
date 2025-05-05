@@ -1,4 +1,4 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
 
 .search-result {
     width: 500px;

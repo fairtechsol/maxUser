@@ -1,4 +1,4 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
 
 .m-game-one-v-one {
   padding-top: 1.5px;

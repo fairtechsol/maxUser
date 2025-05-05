@@ -1,5 +1,6 @@
-@import "/src/assets/variable.scss";
-.tableHeader{
+@use "/src/assets/variable" as *;
+
+.tableHeader {
     align-items: center;
     justify-content: space-between;
     background-color: $secondary;
