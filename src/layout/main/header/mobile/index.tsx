@@ -154,6 +154,7 @@ const MobileHeader = () => {
                                 };
                               });
                             }}
+                            onChange={() => {}}
                             checked={show[item.id]}
                             style={
                               show[item.id]
@@ -209,7 +210,7 @@ const MobileHeader = () => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShowButtonValues(false)}
-           />
+          />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <ButtonValues setShow={setShowButtonValues} />
@@ -279,7 +280,7 @@ const MobileHeader = () => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShowRules(false)}
-           />
+          />
         </Modal.Header>
         <Modal.Body className="p-0 mt-1 rounded-0">
           <div className="rules-left-sidebar">

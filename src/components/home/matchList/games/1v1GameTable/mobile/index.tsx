@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import { LiaFacebookF } from "react-icons/lia";
@@ -12,15 +12,15 @@ import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
 import LiveCasino from "../../../../../../pages/casinoSubTab";
 import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
 import {
-    liveCasinoList,
-    liveCasinoLogin,
+  liveCasinoList,
+  liveCasinoLogin,
 } from "../../../../../../store/actions/cards/cardDetail";
 import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
-    availableGameType,
-    casinoIcons,
-    homeCasinoListIcons,
-    liveCasinoGameList,
+  availableGameType,
+  casinoIcons,
+  homeCasinoListIcons,
+  liveCasinoGameList,
 } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
@@ -30,7 +30,7 @@ import "./style.scss";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   const navigate = useNavigate();
-  const [dataList, setDataList] = useState(casinoIcons);
+  // const [_, setDataList] = useState(casinoIcons);
   const [show, setShow] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
@@ -40,87 +40,85 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
     (state: RootState) => state.horseRacing.matchList
   );
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
-  const { liveCasinoData, liveCasinoGame } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { liveCasinoGame } = useSelector((state: RootState) => state.card);
   const { id } = useParams();
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const location = useLocation();
   const isSportsRoute = location.pathname === "/sports";
 
-  const [isAtBottom, setIsAtBottom] = useState(false);
+  // const [isAtBottom, setIsAtBottom] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null); // Specify the type of useRef
 
-  const handleScroll = useCallback(() => {
-    const box = boxRef.current;
-    if (box) {
-      setIsAtBottom(box.scrollTop + box.clientHeight >= box.scrollHeight);
-    }
-  }, []);
+  // const handleScroll = useCallback(() => {
+  //   const box = boxRef.current;
+  //   if (box) {
+  //     setIsAtBottom(box.scrollTop + box.clientHeight >= box.scrollHeight);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    const box = boxRef.current;
-    if (box) {
-      box.addEventListener("scroll", handleScroll);
-    }
-    return () => {
-      if (box) {
-        box.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, [handleScroll]);
+  // useEffect(() => {
+  //   const box = boxRef.current;
+  //   if (box) {
+  //     box.addEventListener("scroll", handleScroll);
+  //   }
+  //   return () => {
+  //     if (box) {
+  //       box.removeEventListener("scroll", handleScroll);
+  //     }
+  //   };
+  // }, [handleScroll]);
 
-  useEffect(() => {
-    if (isAtBottom) {
-      // window.scrollTo({
-      //   top: document.body.scrollHeight/100,
-      //   behavior: "smooth",
-      // });
-    }
-  }, [isAtBottom]);
+  // useEffect(() => {
+  //   if (isAtBottom) {
+  // window.scrollTo({
+  //   top: document.body.scrollHeight/100,
+  //   behavior: "smooth",
+  // });
+  // }
+  // }, [isAtBottom]);
 
   useEffect(() => {
     dispatch(liveCasinoList(""));
   }, []);
 
-  useEffect(() => {
-    if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
-      const combinedArray = Object.values(liveCasinoData)
-        .flatMap((set) => Object.values(set))
-        .flat();
-      const arr = [...combinedArray, ...casinoIcons];
+  // useEffect(() => {
+  //   if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
+  //     const combinedArray = Object.values(liveCasinoData)
+  //       .flatMap((set) => Object.values(set))
+  //       .flat();
+  //     const arr = [...combinedArray, ...casinoIcons];
 
-      const sortedArr = arr.sort((a, b) => {
-        const gameA = a.game_id || a.name || "";
-        const gameB = b.game_id || b.name || "";
+  //     const sortedArr = arr.sort((a, b) => {
+  //       const gameA = a.game_id || a.name || "";
+  //       const gameB = b.game_id || b.name || "";
 
-        // Find the corresponding objects in liveCasinoGameList
-        const gameObjA = liveCasinoGameList.find(
-          (game) => game.game_id === gameA
-        );
-        const gameObjB = liveCasinoGameList.find(
-          (game) => game.game_id === gameB
-        );
+  //       // Find the corresponding objects in liveCasinoGameList
+  //       const gameObjA = liveCasinoGameList.find(
+  //         (game) => game.game_id === gameA
+  //       );
+  //       const gameObjB = liveCasinoGameList.find(
+  //         (game) => game.game_id === gameB
+  //       );
 
-        // Handle cases where games are not found in the list
-        if (!gameObjA) return 1; // If A is not found, push it to the end
-        if (!gameObjB) return -1; // If B is not found, push it to the end
+  //       // Handle cases where games are not found in the list
+  //       if (!gameObjA) return 1; // If A is not found, push it to the end
+  //       if (!gameObjB) return -1; // If B is not found, push it to the end
 
-        // Compare by indices in the list
-        const indexA = liveCasinoGameList.indexOf(gameObjA);
-        const indexB = liveCasinoGameList.indexOf(gameObjB);
+  //       // Compare by indices in the list
+  //       const indexA = liveCasinoGameList.indexOf(gameObjA);
+  //       const indexB = liveCasinoGameList.indexOf(gameObjB);
 
-        if (indexA !== indexB) {
-          return indexA - indexB;
-        }
+  //       if (indexA !== indexB) {
+  //         return indexA - indexB;
+  //       }
 
-        // If indices are the same, sort by game ID
-        return gameObjA.game_id - gameObjB.game_id;
-      });
+  //       // If indices are the same, sort by game ID
+  //       return gameObjA.game_id - gameObjB.game_id;
+  //     });
 
-      setDataList(sortedArr);
-    }
-  }, [liveCasinoData, liveCasinoGameList]);
+  //     setDataList(sortedArr);
+  //   }
+  // }, [liveCasinoData, liveCasinoGameList]);
 
   const handleModal = (data: any) => {
     if (data?.game_id) {
@@ -137,11 +135,13 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   const isScrollable = location.pathname === "/casino-slot";
   return (
     <div
-      className={`bg-lightGray match-list-container ${isSportsRoute ? "match-list-containerm" : ""
-        } ${location.pathname === "/home" || location.pathname === "/inPlay"
+      className={`bg-lightGray match-list-container ${
+        isSportsRoute ? "match-list-containerm" : ""
+      } ${
+        location.pathname === "/home" || location.pathname === "/inPlay"
           ? ""
           : "match-list-h"
-        }`}
+      }`}
     >
       {![
         "/casino-slot",
@@ -151,219 +151,220 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
         "/slot",
         "/fantasy",
       ].includes(location.pathname) && (
-          <div
-            className={`scrollable-container ${isSportsRoute ? "match-list-containerm" : ""
-              }`}
-            ref={boxRef}
-            style={{
-              minHeight:
-                location.pathname === "/home" || location.pathname === "/inPlay"
-                  ? ""
-                  : "",
-              maxHeight:
-                location.pathname === "/home" || location.pathname === "/inPlay"
-                  ? ""
-                  : "",
-            }}
-          >
-            {availableGameType[mTypeid || id] ? (
-              <>
-                {availableGameType[mTypeid] === "horseRacing" ||
-                  availableGameType[mTypeid] === "greyHound" ? (
-                  <>
-                    {!countryWiseList || countryWiseList?.length === 0 ? (
-                      <div className="text-center">
-                        <ContactAdmin />
-                      </div>
-                    ) : (
-                      <HorseRacingComponentList matchType={mTypeid} />
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {!matchList || matchList.length === 0 ? (
-                      <div className="text-center">
-                        <ContactAdmin />
-                      </div>
-                    ) : (
-                      <>
-                        {mTypeid === "cricket" && (
-                          <div className="px-1 lh-1 m-game-one-v-one">
-                            {/* <Link
+        <div
+          className={`scrollable-container ${
+            isSportsRoute ? "match-list-containerm" : ""
+          }`}
+          ref={boxRef}
+          style={{
+            minHeight:
+              location.pathname === "/home" || location.pathname === "/inPlay"
+                ? ""
+                : "",
+            maxHeight:
+              location.pathname === "/home" || location.pathname === "/inPlay"
+                ? ""
+                : "",
+          }}
+        >
+          {availableGameType[mTypeid || id] ? (
+            <>
+              {availableGameType[mTypeid] === "horseRacing" ||
+              availableGameType[mTypeid] === "greyHound" ? (
+                <>
+                  {!countryWiseList || countryWiseList?.length === 0 ? (
+                    <div className="text-center">
+                      <ContactAdmin />
+                    </div>
+                  ) : (
+                    <HorseRacingComponentList matchType={mTypeid} />
+                  )}
+                </>
+              ) : (
+                <>
+                  {!matchList || matchList.length === 0 ? (
+                    <div className="text-center">
+                      <ContactAdmin />
+                    </div>
+                  ) : (
+                    <>
+                      {mTypeid === "cricket" && (
+                        <div className="px-1 lh-1 m-game-one-v-one">
+                          {/* <Link
                             className="text-decoration-none text-black f600 title-12 lh-1"
                             to={"/ballbyball"}
                           >
                             Ball By Ball
                           </Link> */}
+                          <div className="d-flex w-100">
+                            <React.Fragment>
+                              <BackLayComponent
+                                suspend={false}
+                                heading=""
+                                backRate={"0"}
+                                layRate={"0"}
+                                active={false}
+                              />
+                              <BackLayComponent
+                                suspend={false}
+                                heading=""
+                                backRate={"0"}
+                                layRate={"0"}
+                                active={false}
+                              />
+                              <BackLayComponent
+                                suspend={false}
+                                heading=""
+                                backRate={"0"}
+                                layRate={"0"}
+                                active={false}
+                              />
+                            </React.Fragment>
+                          </div>
+                        </div>
+                      )}
+                      {matchList.map((item: any, index: number) => {
+                        return (
+                          <div key={index} className="px-1 m-game-one-v-one">
+                            <div className="d-flex justify-content-between">
+                              <div className="d-flex flex-column">
+                                <Link
+                                  className="text-decoration-none text-black lh-1"
+                                  to={`/game-detail/${mTypeid}/${item?.id}`}
+                                >
+                                  <b
+                                    className="title-14 f600"
+                                    style={{ color: "#333" }}
+                                  >
+                                    {item?.title}
+                                  </b>
+                                  <div className="title-12">
+                                    {moment(item?.startAt)
+                                      .tz(timezone)
+                                      .format("MMM DD YYYY h:mmA")}
+                                  </div>
+                                </Link>
+                              </div>
+                              <div
+                                className="d-flex align-items-center gap-2"
+                                style={{
+                                  display: "flex",
+                                  width: "120px",
+                                  justifyContent: "center",
+                                }}
+                              >
+                                {item?.inPlay === "True" ||
+                                item?.iplay === true ? (
+                                  <span className="liveDot" />
+                                ) : (
+                                  <span style={{ width: "10px" }}>&nbsp;</span>
+                                )}
+
+                                {item?.tv === "True" || item?.tv === true ? (
+                                  <TbDeviceTvOld />
+                                ) : (
+                                  <span style={{ width: "20px" }}>&nbsp;</span>
+                                )}
+
+                                {/* Facebook Icon */}
+                                {item?.f === "True" || item?.f === true ? (
+                                  <LiaFacebookF size={11} />
+                                ) : (
+                                  <span style={{ width: "15px" }}>&nbsp;</span>
+                                )}
+
+                                {/* Bookmaker */}
+                                {item?.bm === "True" ||
+                                item?.bm === true ||
+                                item?.isBookmaker.length > 0 ? (
+                                  <span className="bookmaker">
+                                    <img src={bm} alt="fancy" />
+                                  </span>
+                                ) : (
+                                  <span style={{ width: "20px" }}>&nbsp;</span>
+                                )}
+                              </div>
+                            </div>
                             <div className="d-flex w-100">
-                              <React.Fragment>
-                                <BackLayComponent
-                                  suspend={false}
-                                  heading=""
-                                  backRate={"0"}
-                                  layRate={"0"}
-                                  active={false}
-                                />
-                                <BackLayComponent
-                                  suspend={false}
-                                  heading=""
-                                  backRate={"0"}
-                                  layRate={"0"}
-                                  active={false}
-                                />
-                                <BackLayComponent
-                                  suspend={false}
-                                  heading=""
-                                  backRate={"0"}
-                                  layRate={"0"}
-                                  active={false}
-                                />
-                              </React.Fragment>
+                              <BackLayComponent
+                                heading="1"
+                                suspend={
+                                  mTypeid === "politics"
+                                    ? true
+                                    : item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                    ? true
+                                    : false
+                                }
+                                backRate={
+                                  item?.back1 ||
+                                  item?.section?.[0]?.odds?.[0]?.odds ||
+                                  0
+                                }
+                                layRate={
+                                  item?.lay1 ||
+                                  item?.section?.[0]?.odds?.[1]?.odds ||
+                                  0
+                                }
+                                active={false}
+                              />
+                              <BackLayComponent
+                                heading="X"
+                                suspend={
+                                  item?.matchOdds?.[0]?.status === "SUSPENDED"
+                                    ? true
+                                    : false
+                                }
+                                backRate={
+                                  item?.back12 ||
+                                  item?.section?.[2]?.odds?.[0]?.odds ||
+                                  0
+                                }
+                                layRate={
+                                  item?.lay12 ||
+                                  item?.section?.[2]?.odds?.[1]?.odds ||
+                                  0
+                                }
+                                active={false}
+                              />
+                              <BackLayComponent
+                                heading="2"
+                                suspend={
+                                  mTypeid === "politics"
+                                    ? true
+                                    : item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                    ? true
+                                    : false
+                                }
+                                backRate={
+                                  item?.back11 ||
+                                  item?.section?.[1]?.odds?.[0]?.odds ||
+                                  0
+                                }
+                                layRate={
+                                  item?.lay11 ||
+                                  item?.section?.[1]?.odds?.[1]?.odds ||
+                                  0
+                                }
+                                active={false}
+                              />
                             </div>
                           </div>
-                        )}
-                        {matchList.map((item: any, index: number) => {
-                          return (
-                            <div key={index} className="px-1 m-game-one-v-one">
-                              <div className="d-flex justify-content-between">
-                                <div className="d-flex flex-column">
-                                  <Link
-                                    className="text-decoration-none text-black lh-1"
-                                    to={`/game-detail/${mTypeid}/${item?.id}`}
-                                  >
-                                    <b
-                                      className="title-14 f600"
-                                      style={{ color: "#333" }}
-                                    >
-                                      {item?.title}
-                                    </b>
-                                    <div className="title-12">
-                                      {moment(item?.startAt)
-                                        .tz(timezone)
-                                        .format("MMM DD YYYY h:mmA")}
-                                    </div>
-                                  </Link>
-                                </div>
-                                <div
-                                  className="d-flex align-items-center gap-2"
-                                  style={{
-                                    display: "flex",
-                                    width: "120px",
-                                    justifyContent: "center",
-                                  }}
-                                >
-                                  {item?.inPlay === "True" ||
-                                    item?.iplay === true ? (
-                                    <span className="liveDot" />
-                                  ) : (
-                                    <span style={{ width: "10px" }}>&nbsp;</span>
-                                  )}
-
-                                  {item?.tv === "True" || item?.tv === true ? (
-                                    <TbDeviceTvOld />
-                                  ) : (
-                                    <span style={{ width: "20px" }}>&nbsp;</span>
-                                  )}
-
-                                  {/* Facebook Icon */}
-                                  {item?.f === "True" || item?.f === true ? (
-                                    <LiaFacebookF size={11} />
-                                  ) : (
-                                    <span style={{ width: "15px" }}>&nbsp;</span>
-                                  )}
-
-                                  {/* Bookmaker */}
-                                  {item?.bm === "True" ||
-                                    item?.bm === true ||
-                                    item?.isBookmaker.length > 0 ? (
-                                    <span className="bookmaker">
-                                      <img src={bm} alt="fancy" />
-                                    </span>
-                                  ) : (
-                                    <span style={{ width: "20px" }}>&nbsp;</span>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="d-flex w-100">
-                                <BackLayComponent
-                                  heading="1"
-                                  suspend={
-                                    mTypeid === "politics"
-                                      ? true
-                                      : item?.matchOdds?.[0]?.status ===
-                                        "SUSPENDED"
-                                        ? true
-                                        : false
-                                  }
-                                  backRate={
-                                    item?.back1 ||
-                                    item?.section?.[0]?.odds?.[0]?.odds ||
-                                    0
-                                  }
-                                  layRate={
-                                    item?.lay1 ||
-                                    item?.section?.[0]?.odds?.[1]?.odds ||
-                                    0
-                                  }
-                                  active={false}
-                                />
-                                <BackLayComponent
-                                  heading="X"
-                                  suspend={
-                                    item?.matchOdds?.[0]?.status === "SUSPENDED"
-                                      ? true
-                                      : false
-                                  }
-                                  backRate={
-                                    item?.back12 ||
-                                    item?.section?.[2]?.odds?.[0]?.odds ||
-                                    0
-                                  }
-                                  layRate={
-                                    item?.lay12 ||
-                                    item?.section?.[2]?.odds?.[1]?.odds ||
-                                    0
-                                  }
-                                  active={false}
-                                />
-                                <BackLayComponent
-                                  heading="2"
-                                  suspend={
-                                    mTypeid === "politics"
-                                      ? true
-                                      : item?.matchOdds?.[0]?.status ===
-                                        "SUSPENDED"
-                                        ? true
-                                        : false
-                                  }
-                                  backRate={
-                                    item?.back11 ||
-                                    item?.section?.[1]?.odds?.[0]?.odds ||
-                                    0
-                                  }
-                                  layRate={
-                                    item?.lay11 ||
-                                    item?.section?.[1]?.odds?.[1]?.odds ||
-                                    0
-                                  }
-                                  active={false}
-                                />
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </>
-                    )}
-                  </>
-                )}
-              </>
-            ) : (
-              <div className="text-center">
-                <ContactAdmin />
-              </div>
-            )}
-          </div>
-        )}
+                        );
+                      })}
+                    </>
+                  )}
+                </>
+              )}
+            </>
+          ) : (
+            <div className="text-center">
+              <ContactAdmin />
+            </div>
+          )}
+        </div>
+      )}
       {["/home", "/inPlay", "/casino-slot"].includes(location.pathname) ? (
         <div className="tab-pane active casino-tables d-flex">
           <div>
@@ -488,8 +489,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                       {parseInt(getProfile?.userBal?.exposure) === 0
                         ? 0
                         : -parseFloat(
-                          getProfile?.userBal?.exposure || 0
-                        ).toFixed(2)}
+                            getProfile?.userBal?.exposure || 0
+                          ).toFixed(2)}
                     </b>
                   </span>
                 </div>
@@ -505,7 +506,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               referrerPolicy={"strict-origin-when-cross-origin"}
               width={"100%"}
               height={"100%"}
-             />
+            />
           </div>
         </Modal.Body>
       </Modal>
