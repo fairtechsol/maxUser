@@ -153,34 +153,7 @@ const matchListSlice = createSlice({
 
         state.loading = false;
         state.liveScoreBoardData = scoreBoard?.data;
-        let parsedSessionBettings =
-          state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
-        const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];
-        parsedSessionBettings = apiParsedSessionBettings
-          ?.filter(
-            (item2: any) =>
-              !parsedSessionBettings?.some(
-                (item1: any) => item1?.id === item2?.id
-              )
-          )
-          .map((item: any) => item?.id);
-        apiParsedSessionBettings.forEach((apiItem: any) => {
-          const index = parsedSessionBettings.findIndex(
-            (parsedItem: any) => parsedItem.id === apiItem.id
-          );
-          if (index !== -1) {
-            parsedSessionBettings[index] = {
-              ...parsedSessionBettings[index],
-              ...apiItem,
-            };
-          } else {
-            parsedSessionBettings.push(apiItem);
-          }
-        });
 
-        const stringifiedSessionBetting = parsedSessionBettings.map(
-          JSON.stringify
-        );
         state.matchDetails = {
           ...state.matchDetails,
           gmid: action.payload?.gmid,
@@ -197,7 +170,7 @@ const matchListSlice = createSlice({
             if (a.parentBetId !== null && b.parentBetId === null) return 1;
             return 0;
           }),
-          sessionBettings: stringifiedSessionBetting,
+          sessionBettings: sessionBettings,
         };
       })
       .addCase(updateMatchOddRates.fulfilled, (state, action) => {
