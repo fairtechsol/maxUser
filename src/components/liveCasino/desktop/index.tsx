@@ -192,7 +192,12 @@ const LiveCasinoDesktop = () => {
 
   return (
     <>
-      <div className="w-100 d-flex flex-column mt-1 gap-2">
+      <div
+        className="w-100 d-flex flex-column mt-1 gap-2"
+        style={{
+          paddingLeft: 3,
+        }}
+      >
         <div className="d-flex bg-tab">
           {Object.keys(list)?.map((key, index) => {
             const isActive = type === key;
@@ -264,8 +269,8 @@ const LiveCasinoDesktop = () => {
                       {parseInt(getProfile?.userBal?.exposure) === 0
                         ? 0
                         : -parseFloat(
-                          getProfile?.userBal?.exposure || 0
-                        ).toFixed(2)}
+                            getProfile?.userBal?.exposure || 0
+                          ).toFixed(2)}
                     </b>
                   </span>
                 </div>
@@ -281,7 +286,7 @@ const LiveCasinoDesktop = () => {
               referrerPolicy={"strict-origin-when-cross-origin"}
               width={"100%"}
               height={"100%"}
-             />
+            />
           </div>
         </Modal.Body>
       </Modal>
