@@ -111,6 +111,74 @@ const AccountStatementComponent = () => {
     }
   };
 
+  const handleLiveCasinoSubmitClick = () => {
+    if (type2?.value === "") {
+      return false;
+    }
+    let payload: any = {
+      id: selected?.user?.id,
+      name: type2?.value,
+      date: selected?.createdAt,
+    };
+    dispatch(transactionProviderBets(payload));
+  };
+
+  const handleDescriptionClick = (
+    containsKeywords: any,
+    item: any,
+    isCasinoGame: boolean,
+    firstPart: any
+  ) => {
+    const match = containsKeywords
+      ? item?.description.match(/Rno\. (\d+)/)
+      : item?.description.match(/Rno\. (\d+\.\d+)/);
+    if (type?.value === "3") {
+      setLiveCasinoModal(true);
+      setSelected(item);
+    } else {
+      if (isCasinoGame && match && match[1]) {
+        setShow({
+          status: true,
+          betId: [],
+          runnerId: "",
+          casinoType: firstPart,
+        });
+        dispatch(resultDragonTiger(match[1]));
+      } else {
+        if (item?.betId?.length > 0) {
+          setShow({
+            status: true,
+            betId: item?.betId,
+            runnerId: "",
+            casinoType: "",
+          });
+          dispatch(
+            getPlacedBetsForAccountStatement({
+              betId: item?.betId,
+              status: "MATCHED",
+              userId: getProfile?.id,
+            })
+          );
+        } else if (match && match[1]) {
+          setShow({
+            status: true,
+            betId: [],
+            runnerId: match[1],
+            casinoType: "",
+          });
+          dispatch(
+            getPlacedBetsForAccountStatement({
+              runnerId: match[1],
+              isCard: true,
+              result: `inArr${JSON.stringify(["WIN", "LOSS", "TIE"])}`,
+              userId: getProfile?.id,
+            })
+          );
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     if ((sessionStorage.getItem("key") || getProfile?.id) && tableConfig) {
       let filter = "";
@@ -159,17 +227,6 @@ const AccountStatementComponent = () => {
   useEffect(() => {
     dispatch(transactionProviderName(""));
   }, []);
-  const handleLiveCasinoSubmitClick = () => {
-    if (type2?.value === "") {
-      return false;
-    }
-    let payload: any = {
-      id: selected?.user?.id,
-      name: type2?.value,
-      date: selected?.createdAt,
-    };
-    dispatch(transactionProviderBets(payload));
-  };
 
   useEffect(() => {
     if (liveCasinoProviderBets?.bets) {
@@ -302,60 +359,14 @@ const AccountStatementComponent = () => {
                   <tr
                     className={`${isMobile && "title-12 lh-1"} cursor-pointer`}
                     key={index}
-                    onClick={() => {
-                      const match = containsKeywords
-                        ? item?.description.match(/Rno\. (\d+)/)
-                        : item?.description.match(/Rno\. (\d+\.\d+)/);
-                      if (type?.value === "3") {
-                        setLiveCasinoModal(true);
-                        setSelected(item);
-                      } else {
-                        if (isCasinoGame && match && match[1]) {
-                          setShow({
-                            status: true,
-                            betId: [],
-                            runnerId: "",
-                            casinoType: firstPart,
-                          });
-                          dispatch(resultDragonTiger(match[1]));
-                        } else {
-                          if (item?.betId?.length > 0) {
-                            setShow({
-                              status: true,
-                              betId: item?.betId,
-                              runnerId: "",
-                              casinoType: "",
-                            });
-                            dispatch(
-                              getPlacedBetsForAccountStatement({
-                                betId: item?.betId,
-                                status: "MATCHED",
-                                userId: getProfile?.id,
-                              })
-                            );
-                          } else if (match && match[1]) {
-                            setShow({
-                              status: true,
-                              betId: [],
-                              runnerId: match[1],
-                              casinoType: "",
-                            });
-                            dispatch(
-                              getPlacedBetsForAccountStatement({
-                                runnerId: match[1],
-                                isCard: true,
-                                result: `inArr${JSON.stringify([
-                                  "WIN",
-                                  "LOSS",
-                                  "TIE",
-                                ])}`,
-                                userId: getProfile?.id,
-                              })
-                            );
-                          }
-                        }
-                      }
-                    }}
+                    onClick={() =>
+                      handleDescriptionClick(
+                        containsKeywords,
+                        item,
+                        isCasinoGame,
+                        firstPart
+                      )
+                    }
                   >
                     <td className={isMobile ? "date-as bg-grey" : ""}>
                       {moment(new Date(item?.createdAt)).format(
