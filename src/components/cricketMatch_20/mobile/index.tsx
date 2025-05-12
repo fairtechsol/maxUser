@@ -12,10 +12,10 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Teen20Result from "../desktop/teenCard";
 import MyBet from "./myBet";
 import ScoreBox from "./scoreBox";
-import "./style.scss";
 const CricketMatch20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -42,8 +42,8 @@ const CricketMatch20Mobile = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -97,12 +97,12 @@ const CricketMatch20Mobile = () => {
   useEffect(() => {
     if (
       dragonTigerDetail?.profitLoss?.[
-        `${dragonTigerDetail?.videoInfo?.mid}_1_card`
+      `${dragonTigerDetail?.videoInfo?.mid}_1_card`
       ]
     ) {
       const parsedData = JSON.parse(
         dragonTigerDetail.profitLoss[
-          `${dragonTigerDetail.videoInfo.mid}_1_card`
+        `${dragonTigerDetail.videoInfo.mid}_1_card`
         ]
       );
       setProfitLossData(parsedData);
@@ -110,23 +110,23 @@ const CricketMatch20Mobile = () => {
   }, [dragonTigerDetail]);
 
   useEffect(() => {
-    if (leftBoard?.[0]?.gstatus === "SUSPENDED" || leftBoard?.[0]?.b1 ==="0.00") {
+    if (leftBoard?.[0]?.gstatus === "SUSPENDED" || leftBoard?.[0]?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
     } else {
     }
-  }, [leftBoard?.[0]?.gstatus,leftBoard?.[0]?.b1]);
+  }, [leftBoard?.[0]?.gstatus, leftBoard?.[0]?.b1]);
 
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%"}}>
+            <div style={{ width: "100%" }}>
               <div
                 style={{
                   width: "100%",
@@ -165,7 +165,7 @@ const CricketMatch20Mobile = () => {
                           rightBoard &&
                           [...leftBoard, ...rightBoard]?.map(
                             (item: any, index: any) => (
-                              <div style={{marginBottom:"60px"}}>
+                              <div style={{ marginBottom: "60px" }}>
                                 <ScoreBox
                                   teamA="Team A"
                                   teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}
@@ -173,9 +173,8 @@ const CricketMatch20Mobile = () => {
                                   teamB="Team B"
                                   teamBScore={`${dragonTigerDetail?.videoInfo?.C5}/${dragonTigerDetail?.videoInfo?.C6}`}
                                   teamBOver={dragonTigerDetail?.videoInfo?.C7}
-                                  ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                                    2 + index
-                                  }.png`}
+                                  ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${2 + index
+                                    }.png`}
                                   backOdds={item.b1}
                                   layOdds={item.l1}
                                   handleBet={handleBet}
@@ -183,7 +182,7 @@ const CricketMatch20Mobile = () => {
                                   runs={
                                     Object.keys(profitLossData).length > 0
                                       ? profitLossData[String(2 + index)]
-                                          ?.run ?? 0
+                                        ?.run ?? 0
                                       : 0
                                   }
                                 />

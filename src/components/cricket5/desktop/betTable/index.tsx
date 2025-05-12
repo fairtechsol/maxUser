@@ -84,7 +84,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
               >
                 {team1?.nat}
               </span>
-              <div className="market-nation-book-c"></div>
+              <div className="market-nation-book-c" />
               <span
                 className={`${
                   data?.profitLoss
@@ -184,7 +184,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
               >
                 {team2?.nat}
               </span>
-              <div className="market-nation-book-c"></div>
+              <div className="market-nation-book-c" />
               <span
                 className={`${
                   data?.profitLoss
@@ -301,7 +301,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
             <div
               className="market-nation-detail-c"
               style={{ width: "55%" }}
-            ></div>
+             />
             <div style={{ width: "45%", display: "flex" }}>
               <div className="market-odd-box-cd lay">
                 <b>No</b>
@@ -326,7 +326,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                       <span className="market-nation-name-c pointer">
                         {row.nation}
                       </span>
-                      <div className="market-nation-book-c"></div>
+                      <div className="market-nation-book-c" />
                     </div>
                     <div
                       className={`market-row- ${

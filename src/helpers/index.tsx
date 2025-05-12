@@ -98,7 +98,10 @@ export const manualProfitLoss = (
         }
       } else {
         if (team === selectedBet?.team?.betOnTeam) {
-          let loss = -(selectedBet?.team?.stake * (selectedBet?.team?.rate - 1));
+          let loss = -(
+            selectedBet?.team?.stake *
+            (selectedBet?.team?.rate - 1)
+          );
           return parseFloat(loss.toFixed(2)) ?? 0;
         } else {
           let profit = selectedBet?.team?.stake;
@@ -120,7 +123,10 @@ export const manualProfitLoss = (
         }
       } else {
         if (team === selectedBet?.team?.betOnTeam) {
-          let loss = -((selectedBet?.team?.stake * selectedBet?.team?.rate) / 100);
+          let loss = -(
+            (selectedBet?.team?.stake * selectedBet?.team?.rate) /
+            100
+          );
           return parseFloat(loss.toFixed(2)) ?? 0;
         } else {
           let profit = selectedBet?.team?.stake;
@@ -142,4 +148,14 @@ export const calculateRequiredStack = (
 
   let result = (initialTeamB - initialTeamA) / (1 + perc / 100);
   return parseFloat(result.toFixed(2)) ?? 0;
+};
+
+export const tryCatchWrapper = (fn: Function) => {
+  return (...args: any[]) => {
+    try {
+      return fn(...args);
+    } catch (error) {
+      console.error(`Error in ${fn.name || "anonymous function"}:`, error);
+    }
+  };
 };

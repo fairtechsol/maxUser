@@ -31,7 +31,7 @@ const betPlacedSlice = createSlice({
       })
       .addCase(deleteHorseRacingBets.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       });
   },
 });

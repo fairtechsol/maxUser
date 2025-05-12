@@ -30,7 +30,7 @@ export const deleteHorseRacingBets = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.post(
-        `${ApiConstants.HORSERACING.MATCH.DELETE_BET}`,
+        ApiConstants.HORSERACING.MATCH.DELETE_BET,
         { requestData }
       );
       if (resp?.data) {

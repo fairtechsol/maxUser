@@ -9,7 +9,6 @@ const toastOptions = {
   pauseOnHover: true,
 };
 
-
 const service = axios.create({
   baseURL: serviceUrl,
   headers: {
@@ -35,7 +34,6 @@ service.interceptors.request.use(
     config.cancelToken = source.token;
     cancelTokenSources[requestUrl!] = source;
 
-
     config.headers["Content-Type"] = "application/json";
     const authToken = sessionStorage.getItem("jwtMaxUser");
     config.headers.Authorization = `Bearer ${authToken}`;
@@ -48,7 +46,6 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
-
     const isGetRequest = response.config.method === "get";
 
     const requestUrl = response.config.url;

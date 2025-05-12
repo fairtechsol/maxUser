@@ -6,7 +6,7 @@ import ReportContainer from "../containers/reportContainer";
 
 import { useFormik } from "formik";
 import { debounce } from "lodash";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changePassword,
@@ -37,9 +37,10 @@ const ChangePasswordComponent = () => {
   const { handleSubmit, touched, errors } = formik;
 
   const debouncedInputValue = useMemo(() => {
-    return debounce((value) => {
+    const debouncedFn = debounce((value) => {
       dispatch(checkOldPassword({ oldPassword: value }));
     }, 500);
+    return debouncedFn;
   }, []);
 
   const handleOldPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +48,18 @@ const ChangePasswordComponent = () => {
     formik.handleChange(e);
     debouncedInputValue(query);
   };
+
+  useEffect(() => {
+    return () => {
+      debouncedInputValue.cancel();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (formik.values.oldPassword) {
+      formik.validateForm();
+    }
+  }, [oldPasswordMatched]);
 
   return (
     <ReportContainer title="Change Password">

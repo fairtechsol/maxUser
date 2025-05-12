@@ -63,7 +63,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
         </div>
         <div className="market-body-c" data-title="OPEN">
           {odds?.map((row: any, index: any) => (
-            <div className={`market-row-c`}>
+            <div className={`market-row-c`} key={index}>
               <div className="market-nation-detail-b" style={{ width: "58%" }}>
                 <span
                   className="market-nation-name-c"
@@ -71,21 +71,21 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                 >
                   {row?.nat}
                 </span>
-                <div className="market-nation-book-c"></div>
+                <div className="market-nation-book-c" />
                 <span
                   className={`${data?.profitLoss
-                      ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        ? JSON.parse(
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )[row?.nat?.toLowerCase()] > 0
+                        ? "color-green"
+                        : JSON.parse(
                           data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        )[row?.nat?.toLowerCase()] > 0
-                          ? "color-green"
-                          : JSON.parse(
-                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                          )[row?.nat?.toLowerCase()] < 0
-                            ? "color-red"
-                            : ""
-                        : ""
+                        )[row?.nat?.toLowerCase()] < 0
+                          ? "color-red"
+                          : ""
                       : ""
+                    : ""
                     }`}
                 >
                   {data?.profitLoss
@@ -166,7 +166,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
             <span>Fancy</span>
           </div>
           <div className="market-header-c" style={{width:"100%"}}>
-            <div className="market-nation-detail-c" style={{width:"58%"}}></div>
+            <div className="market-nation-detail-c" style={{width:"58%"}} />
             <div className="market-odd-box-c lay" style={{width:"21%"}}>
               <b>No</b>
             </div>
@@ -183,7 +183,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                     <span className="market-nation-name-c pointer">
                       {row.nation}
                     </span>
-                    <div className="market-nation-book-c"></div>
+                    <div className="market-nation-book-c" />
                   </div>
                   <div
                     className={`market-row- ${

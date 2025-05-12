@@ -1,4 +1,4 @@
-const PieChart = ({ data}: any) => {
+const PieChart = ({ data }: any) => {
   return (
     <div
       style={{
@@ -29,13 +29,15 @@ const PieChart = ({ data}: any) => {
         >
           <div className="sliceText">
             <span>{data?.[1]}%</span>
-            <span style={{
-              position:"absolute",
-              top:10,
-              left:35
-            }}>
+            <span
+              style={{
+                position: "absolute",
+                top: 10,
+                left: 35,
+              }}
+            >
               {data?.[2]}%
-              </span>
+            </span>
             <span>{data?.[0]}%</span>
           </div>
         </div>
@@ -46,28 +48,28 @@ const PieChart = ({ data}: any) => {
               data?.[0] - 1
             }% ${data?.[0] + data?.[1]}%, #0b6714 ${100 - data?.[2]}% 100%)`,
           }}
-        ></div>
+         />
       </div>
       <div className="legend-Container">
         <div className="d-flex flex-row gap-1 align-items-center">
           <div
             className="legend-circle"
             style={{ backgroundColor: "#086cb8" }}
-          ></div>
+           />
           <span style={{ fontSize: "12px", textAlign: "left" }}>Player</span>
         </div>
         <div className="d-flex flex-row gap-1 align-items-center">
           <div
             className="legend-circle"
             style={{ backgroundColor: "#ae2130" }}
-          ></div>
+           />
           <span style={{ fontSize: "12px", textAlign: "left" }}>Banker</span>
         </div>
         <div className="d-flex flex-row gap-1 align-items-center">
           <div
             className="legend-circle"
             style={{ backgroundColor: "#279532" }}
-          ></div>
+           />
           <span style={{ fontSize: "12px", textAlign: "right" }}>Tie</span>
         </div>
       </div>

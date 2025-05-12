@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
@@ -15,8 +16,8 @@ const CardBox = ({ odds, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:parseFloat(item?.min),
-      max:parseFloat(item?.max)
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max),
     };
     dispatch(
       selectedBetAction({
@@ -34,7 +35,6 @@ const CardBox = ({ odds, data }: any) => {
   };
   const renderItem = (item: any, index: number) => (
     <div
-      key={index}
       className={`dtlsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
       }`}
@@ -57,7 +57,8 @@ const CardBox = ({ odds, data }: any) => {
                 : ""
               : ""
             : ""
-        }`} style={{zIndex:'100'}}
+        }`}
+        style={{ zIndex: "100" }}
       >
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
@@ -84,9 +85,7 @@ const CardBox = ({ odds, data }: any) => {
           <div className="cardNumberTitle">
             {" "}
             <div style={{ width: "47%", textAlign: "start" }}>
-              <div style={{ width: "20%", textAlign: "start" }}>
-              </div>
-              
+              <div style={{ width: "20%", textAlign: "start" }} />
             </div>
             <div style={{ width: "53%", textAlign: "start" }}>
               {odds?.[0]?.b1}
@@ -95,12 +94,20 @@ const CardBox = ({ odds, data }: any) => {
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
           {odds?.slice(0, 5)?.map((item: any, index: number) => {
-            return <>{renderItem(item, index)}</>;
+            return (
+              <React.Fragment key={index}>
+                {renderItem(item, index)}
+              </React.Fragment>
+            );
           })}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
           {odds?.slice(5, 10)?.map((item: any, index: number) => {
-            return <>{renderItem(item, index + 5)}</>;
+            return (
+              <React.Fragment key={index}>
+                {renderItem(item, index + 5)}
+              </React.Fragment>
+            );
           })}
         </div>
       </div>

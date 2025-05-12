@@ -19,18 +19,15 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
     setCardImg(mergedArray);
   }, [cardData]);
 
-
   const handlock = (item: any) => {
-    if (item?.gstatus === "0" && cardInfo?.[0] === "" ) {
-      return 'suspended';
-    }else if(item?.gstatus === "0" && cardInfo?.[0] != "" ){
-      return "stop"
-    }else{
-      return ""
+    if (item?.gstatus === "0" && cardInfo?.[0] === "") {
+      return "suspended";
+    } else if (item?.gstatus === "0" && cardInfo?.[0] != "") {
+      return "stop";
+    } else {
+      return "";
     }
   };
-
-
 
   useEffect(() => {
     if (cardData?.[0]?.gstatus === "0") {
@@ -40,10 +37,10 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
   }, [cardData?.[0]?.gstatus]);
 
   return (
-    <div className="commonCardImgContainer" >
-      {cardImg?.map((item: any,index:number) => {
+    <div className="commonCardImgContainer">
+      {cardImg?.map((item: any, index: number) => {
         return (
-          <div key={index} style={{margin:"2px"}}>
+          <div key={index} style={{ margin: "2px" }}>
             <div
               key={item?.code}
               className={handlock(item)}
@@ -53,11 +50,13 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-              onClick={() => (handlock(item) !="" ? null : handleBet(item))}
+              onClick={() => (handlock(item) != "" ? null : handleBet(item))}
             >
-              {
-              item?.show ? <img src={item?.imgSrc} height={"45px"} width={"31px"} /> : <img src={back} height={"45px"} width={"31px"} />
-            } 
+              {item?.show ? (
+                <img src={item?.imgSrc} height={"45px"} width={"31px"} alt="lock" />
+              ) : (
+                <img src={back} height={"45px"} width={"31px"} alt="lock" />
+              )}
             </div>
             <span
               style={{
@@ -65,30 +64,28 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              className={`${
-                data?.profitLoss
+              className={`${data?.profitLoss
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
+                      `${data?.videoInfo?.mid}_${item?.sid}_card`
+                    ] > 0
                       ? "color-green"
                       : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
-                      ? "color-red"
-                      : ""
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ] < 0
+                        ? "color-red"
+                        : ""
                     : ""
                   : ""
-              }`}
+                }`}
             >
-              {" "}
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                   : ""
                 : ""}
             </span>

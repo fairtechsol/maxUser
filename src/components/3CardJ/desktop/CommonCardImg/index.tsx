@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { back } from "../../../../assets/images";
 import { RootState } from "../../../../store/store";
 import { dragonTigerCards } from "../../../../utils/constants";
+
 const CommonCardImg = ({
   cardData,
   handleBet,
@@ -86,24 +87,24 @@ const CommonCardImg = ({
                 handlock(item) !== "" || clickedItems[item.code]
                   ? null
                   : (() => {
-                      (clickedCards < 3 &&
-                        selectedBet?.team?.name?.[0] == title?.[0]) ||
+                    (clickedCards < 3 &&
+                      selectedBet?.team?.name?.[0] == title?.[0]) ||
                       selectedBet == null
-                        ? handleItemClick(item)
-                        : "";
-                      selectedBet?.team?.name?.[0] == title?.[0] ||
+                      ? handleItemClick(item)
+                      : "";
+                    selectedBet?.team?.name?.[0] == title?.[0] ||
                       selectedBet == null
-                        ? setNat((p: any) => {
-                            return p.length < 3 ? p + item[0] : p;
-                          })
-                        : "";
-                    })()
+                      ? setNat((p: any) => {
+                        return p.length < 3 ? p + item[0] : p;
+                      })
+                      : "";
+                  })()
               }
             >
               {item?.show ? (
-                <img src={item?.imgSrc} width={"30px"} />
+                <img src={item?.imgSrc} width={"30px"} alt="lock" />
               ) : (
-                <img src={back} width={"30px"} />
+                <img src={back} width={"30px"} alt="lock" />
               )}
             </div>
           </div>

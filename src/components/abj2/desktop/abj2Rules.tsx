@@ -1,5 +1,4 @@
-import React from "react";
-import "./style.scss"; // Make sure to define your styles in this file
+import "../../commonStyle.scss";
 
 const Abj2Rules = () => {
   return (
@@ -17,8 +16,8 @@ const Abj2Rules = () => {
         </li>
         <li>
           Before the dealer starts dealing/opening cards from the deck, they
-          also offer a side bet to the players who have time to bet if the card/joker
-          will be dealt as the 1st card.
+          also offer a side bet to the players who have time to bet if the
+          card/joker will be dealt as the 1st card.
         </li>
         <li>
           If the 1st placed card doesn't match the Joker's card, the game
@@ -46,7 +45,7 @@ const Abj2Rules = () => {
       <div className="payout-section">
         <h6 className="rules-highlight">Payout</h6>
         <div className="table-responsive">
-          <table className="table" style={{background:"#f2f2f2"}}>
+          <table className="table" style={{ background: "#f2f2f2" }}>
             <thead>
               <tr>
                 <th>Bet</th>

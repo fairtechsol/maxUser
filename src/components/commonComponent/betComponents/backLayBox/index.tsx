@@ -1,42 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { isMobile } from "../../../../utils/screenDimension";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
 interface props {
-  bgColor?: string;
+  bgColor: string;
   rate: any;
-  percent?: any;
-  customClass?: string;
-  overlay?: boolean;
-  onClick?: any;
-  style?: React.CSSProperties;
-  active?: boolean;
-  indexs?: number;
-  type?: string | any;
-  box?: string;
-  // onClick?: () => void;
+  active: boolean;
 }
-function BackLayBox({
-  customClass,
-  bgColor,
-  rate,
-  percent,
-  overlay,
-  onClick,
-  style,
-  active,
-  indexs,
-  type,
-  box,
-}: props) {
-  const inlineStyle: React.CSSProperties = {
-    ...style,
-  };
+function BackLayBox({ bgColor, rate, active }: props) {
   const location = useLocation();
   const [tempRate, setTempRate] = useState("0");
   const [isYellow, setIsYellow] = useState(false);
   const params = useParams();
+
   useEffect(() => {
     if (parseFloat(rate) != parseFloat(tempRate)) {
       setTimeout(() => {
@@ -47,41 +24,18 @@ function BackLayBox({
     }
   }, [rate]);
   const handleRate = (rate: any) => {
-    let value;
-    if (
-      [
-        "quickbookmaker1",
-        "quickbookmaker2",
-        "quickbookmaker3",
-        "tiedMatch2",
-      ].includes(type) &&
-      !isMobile
-    ) {
-      value =
-        indexs !== undefined && (box == "lay" ? indexs > 0 : indexs < 2)
-          ? Math.trunc(rate)
-          : rate;
-    } else {
-      value = rate;
-    }
-    return value;
+    return rate;
   };
   return (
-    <div
-      onClick={(e: any) => {
-        e.stopPropagation();
-        onClick();
-      }}
-      className={`backLay ${overlay ? "overlay" : ""}  ${customClass ? customClass : ""
-        } bg-${isYellow ? "secondary" : bgColor}`}
-      style={{ ...inlineStyle }}
-    >
+    <div className={`backLay bg-${isYellow ? "secondary" : bgColor}`}>
       {location.pathname == "/home" ? (
         <div>
           <span
             className={
               isMobile
-                ? `backLay-rate fbold title-14 ${params?.type ? "fbold" : "fbold"}`
+                ? `backLay-rate fbold title-14 ${
+                    params?.type ? "fbold" : "fbold"
+                  }`
                 : "backLay-rate fbold title-14 "
             }
           >
@@ -94,14 +48,13 @@ function BackLayBox({
         </div>
       ) : (
         <BetStatusOverlay>
-          <div
-            // onClick={() => onClick()}
-            className={` text-center d-flex cursor-pointer `}
-          >
+          <div className="text-center d-flex cursor-pointer">
             <span
               className={
                 isMobile
-                  ? `backLay-rate fbold title-14 ${params?.type ? "fbold" : "fbold"}`
+                  ? `backLay-rate fbold title-14 ${
+                      params?.type ? "fbold" : "fbold"
+                    }`
                   : "backLay-rate fbold title-16 "
               }
             >
@@ -111,14 +64,6 @@ function BackLayBox({
                   : "-"
                 : handleRate(rate)}{" "}
             </span>
-
-            {+percent > 0 && parseFloat(rate) > 0 && (
-              <span className="backLay-percent title-10">
-                {percent >= 1000
-                  ? (percent / 1000)?.toFixed(1) + "k"
-                  : percent?.toString()}
-              </span>
-            )}
           </div>
         </BetStatusOverlay>
       )}

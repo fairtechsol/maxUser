@@ -1,8 +1,9 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
 
-.icc-wc{
+.icc-wc {
     background-color: $wc;
 }
-.election{
+
+.election {
     background-color: $election;
 }

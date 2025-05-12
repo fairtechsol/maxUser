@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { dragonTigerCards } from "../../../../utils/constants";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
+import { dragonTigerCards } from "../../../../utils/constants";
 
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
@@ -31,9 +31,8 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any) => {
         return (
-          <div>
+          <div key={item?.code}>
             <div
-              key={item?.code}
               className={
                 item?.gstatus === "0" || item?.b1 === "0.00" ? "suspended" : ""
               }
@@ -47,8 +46,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 item?.gstatus != "SUSPENDED" ? handleBet(item) : null
               }
             >
-              {" "}
-              <img src={item?.imgSrc} width={"30px"} />
+              <img src={item?.imgSrc} width={"30px"} alt="bet" />
             </div>
             <span
               style={{
@@ -56,29 +54,28 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              className={`${
-                data?.profitLoss
+              className={`${data?.profitLoss
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
+                      `${data?.videoInfo?.mid}_${item?.sid}_card`
+                    ] > 0
                       ? "color-green"
                       : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
-                      ? "color-red"
-                      : ""
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ] < 0
+                        ? "color-red"
+                        : ""
                     : ""
                   : ""
-              }`}
+                }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ]
                   : ""
                 : ""}
             </span>

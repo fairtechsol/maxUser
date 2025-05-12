@@ -66,7 +66,7 @@ const FlipClock = ({ value }) => {
     }
   }, [value]);
 
-  return <div ref={divRef}></div>;
+  return <div ref={divRef} />;
 };
 
 export default FlipClock;

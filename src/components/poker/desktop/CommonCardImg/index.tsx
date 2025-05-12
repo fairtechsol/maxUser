@@ -14,11 +14,10 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   }, [cardData]);
 
   return (
-    <div className="commonCardImgContainer">
+    <div className="commonCardImgContainerAbj">
       {cardImg?.map((item: any) => (
-        <div>
+        <div key={item?.code}>
           <div
-            key={item?.code}
             className={item?.gstatus === "0" ? "suspended" : ""}
             style={{
               display: "flex",
@@ -28,7 +27,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
             }}
             onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
           >
-            <img src={item?.imgSrc} width={"40px"} />
+            <img src={item?.imgSrc} width={"40px"} alt="bet" />
           </div>
           <span
             style={{
@@ -36,21 +35,20 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
               display: "flex",
               justifyContent: "center",
             }}
-            className={`${
-              data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ] > 0
-                    ? "color-green"
-                    : data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] < 0
+            className={`${data?.profitLoss
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${item?.sid}_card`
+                ] > 0
+                  ? "color-green"
+                  : data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] < 0
                     ? "color-red"
                     : ""
-                  : ""
                 : ""
-            }`}
+              : ""
+              }`}
           >
             {data?.profitLoss
               ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]

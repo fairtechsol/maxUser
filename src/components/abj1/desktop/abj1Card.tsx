@@ -1,11 +1,11 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
-import "./style.scss";
+import { Col, Row } from "react-bootstrap";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {isMobile} from "../../../utils/screenDimension";
+import "slick-carousel/slick/slick.css";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
+import "../../commonStyle.scss";
 interface Props {
   data: {
     C1: string;
@@ -67,7 +67,6 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
             <div
               style={{
                 width: isMobile ? "70px" : "110px",
-                // margin: "0px 10px 0px 10px",
               }}
             >
               {elementsAndar?.length > 0 && (
@@ -111,9 +110,10 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
                     {elementsAndar &&
                       elementsAndar?.map((item: any, index: any) => {
                         return (
-                          <React.Fragment key={index}>
-                            <HandleCards card={item !== "1" ? item : ""} />
-                          </React.Fragment>
+                          <HandleCards
+                            card={item !== "1" ? item : ""}
+                            key={index}
+                          />
                         );
                       })}
                   </Row>
@@ -159,9 +159,10 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
                     {elementsBahar &&
                       elementsBahar?.map((item: any, index: any) => {
                         return (
-                          <React.Fragment key={index}>
-                            <HandleCards card={item !== "1" ? item : ""} />
-                          </React.Fragment>
+                          <HandleCards
+                            card={item !== "1" ? item : ""}
+                            key={index}
+                          />
                         );
                       })}
                   </Row>

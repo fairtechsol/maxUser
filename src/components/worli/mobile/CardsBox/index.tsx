@@ -4,7 +4,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
 
-const CardBox = ({  data, odds }: any) => {
+const CardBox = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any) => {
@@ -18,8 +18,8 @@ const CardBox = ({  data, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({

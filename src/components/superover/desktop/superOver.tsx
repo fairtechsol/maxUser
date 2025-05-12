@@ -33,12 +33,12 @@ const SuperoverResult: React.FC<Props> = ({ data }: any) => {
       <Row>
         <Col className="mt-3">
           <div style={{ display: "flex", flexDirection: "column", gap: "10px", width: isMobile ? "22px" : "32px" }}>
-            {data?.C1 != "1" ? <img src={handleBall(data?.C1)} /> : null}
-            {data?.C2 != "1" ? <img src={handleBall(data?.C2)} /> : null}
-            {data?.C3 != "1" ? <img src={handleBall(data?.C3)} /> : null}
-            {data?.C4 != "1" ? <img src={handleBall(data?.C4)} /> : null}
-            {data?.C5 != "1" ? <img src={handleBall(data?.C5)} /> : null}
-            {data?.C6 != "1" ? <img src={handleBall(data?.C6)} /> : null}
+            {data?.C1 != "1" ? <img src={handleBall(data?.C1)} alt="ball" /> : null}
+            {data?.C2 != "1" ? <img src={handleBall(data?.C2)} alt="ball" /> : null}
+            {data?.C3 != "1" ? <img src={handleBall(data?.C3)} alt="ball" /> : null}
+            {data?.C4 != "1" ? <img src={handleBall(data?.C4)} alt="ball" /> : null}
+            {data?.C5 != "1" ? <img src={handleBall(data?.C5)} alt="ball" /> : null}
+            {data?.C6 != "1" ? <img src={handleBall(data?.C6)} alt="ball" /> : null}
           </div>
         </Col>
       </Row>

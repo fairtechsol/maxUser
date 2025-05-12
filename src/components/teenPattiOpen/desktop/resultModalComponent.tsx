@@ -4,7 +4,7 @@ import { FaTrophy } from "react-icons/fa";
 import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
-import "./style.scss";
+import "../../commonStyle.scss";
 
 interface Props {
   data: {
@@ -21,15 +21,12 @@ interface Props {
 const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards: any = data?.result?.cards?.split(",");
 
-  // Initialize an array for 9 players
   const players: any = Array.from({ length: 9 }, () => []);
 
-  // Distribute cards in a round-robin manner
   resultCards?.forEach((card: any, index: any) => {
     players[index % 9].push(card);
   });
 
-  // Define the layout for rendering
   const layout = [
     { index: 0, label: "Player 1" },
     { index: 8, label: "Dealer" },
@@ -162,9 +159,9 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
         renderColumn()
       ) : (
         <div style={{ width: "100%" }}>
-          {renderRow(layout.slice(0, 3))} {/* Players 1, Dealer, Player 8 */}
-          {renderRow(layout.slice(3, 6))} {/* Player 2, gap, Player 7 */}
-          {renderRow(layout.slice(6, 10))} {/* Players 3, 4, 5, 6 */}
+          {renderRow(layout.slice(0, 3))}
+          {renderRow(layout.slice(3, 6))}
+          {renderRow(layout.slice(6, 10))}
         </div>
       )}
       {data?.bets?.count > 0 && (

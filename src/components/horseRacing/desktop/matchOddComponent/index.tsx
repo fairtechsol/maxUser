@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import RatesBox from "../ratesBox";
+import { AppDispatch } from "../../../../store/store";
 import BetStatusOverlayHorseRacing from "../../../commonComponent/betComponents/betStatusOverlayHorseRacing";
+import RatesBox from "../ratesBox";
 
 const MatchOddComponent = ({ data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -19,21 +19,21 @@ const MatchOddComponent = ({ data }: any) => {
   return (
     <div className="game-market market-12">
       <div className="market-title mt-1">
-        {"MATCH ODDS"}
+        MATCH ODDS
         <span className="float-right">Max : {data?.matchOdd?.maxBet}</span>
       </div>
       <div className="market-header">
-        <div className="market-nation-detail"></div>
-        <div className="market-odd-box no-border d-none d-md-flex"></div>
-        <div className="market-odd-box no-border d-none d-md-flex"></div>
+        <div className="market-nation-detail" />
+        <div className="market-odd-box no-border d-none d-md-flex" />
+        <div className="market-odd-box no-border d-none d-md-flex" />
         <div className="market-odd-box back">
           <b>Back</b>
         </div>
         <div className="market-odd-box lay">
           <b>Lay</b>
         </div>
-        <div className="market-odd-box d-none d-md-flex"></div>
-        <div className="market-odd-box no-border d-none d-md-flex"></div>
+        <div className="market-odd-box d-none d-md-flex" />
+        <div className="market-odd-box no-border d-none d-md-flex" />
       </div>
       <div className="market-body">
         {data?.matchOdd?.runners
@@ -84,7 +84,6 @@ const MatchOddComponent = ({ data }: any) => {
                         <br />({race?.metadata?.STALL_DRAW})
                       </div>
                       <div>
-                        {/* <img src={race.imageUrl} alt={race.name} /> */}
                       </div>
                       <div>
                         <div className="d-flex justify-content-between w-100">

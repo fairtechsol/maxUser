@@ -1,26 +1,32 @@
-@import "/src/assets/variable.scss";
-.balance-cont{
+@use "/src/assets/variable" as *;
+
+.balance-cont {
     line-height: 1;
 }
-.dropdown-menu-nav{
+
+.dropdown-menu-nav {
     background-color: $white !important;
     right: 0px !important;
     left: auto !important;
-    .dropdown-item{
+
+    .dropdown-item {
         color: $black !important;
     }
-    
+
 }
-.navbar .dropdown-menu :hover{
+
+.navbar .dropdown-menu :hover {
     text-decoration: underline !important;
     background-color: transparent;
 }
-.nav-marquee{
+
+.nav-marquee {
     width: 55%;
     position: absolute;
     bottom: 0px;
     right: 0;
 }
-.headerSearch{
+
+.headerSearch {
     width: 170px !important;
 }

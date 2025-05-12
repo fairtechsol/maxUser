@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Poker1DayComponentList from "../../components/poker1day";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -14,6 +15,7 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getCasinoButtonValue,
   getProfile,
@@ -21,8 +23,6 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import Poker1DayComponentList from "../../components/poker1day";
 
 const Poker1day = () => {
   const dispatch: AppDispatch = useDispatch();

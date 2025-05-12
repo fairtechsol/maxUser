@@ -144,7 +144,7 @@ const PairBox = ({ odds, data }: any) => {
           </div>
         </div>
       </div>
-      {!isMobile && <div className="casino-table-box-divider"></div>}
+      {!isMobile && <div className="casino-table-box-divider" />}
 
       <div className="" style={{ width: isMobile ? "100%" : "49%" }}>
         {isMobile ? <div className="title-15 f700 px-2 text-black">Player B</div> : ""}

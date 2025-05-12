@@ -85,7 +85,7 @@ const HighCards = ({ odds, data, placedHigh }: any) => {
                   display: "flex",
                   justifyContent: "center",
                 }}
-              ></span>
+               />
             </div>
           ))}
         </div>

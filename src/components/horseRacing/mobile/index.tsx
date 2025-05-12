@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/horseMatchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
-import "./style.scss";
+import "../../commonStyle.scss";
 
 const HorseRacingListTabsMobile = ({ matchType }: any) => {
   const { countryWiseList, racingList } = useSelector(

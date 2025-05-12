@@ -1,9 +1,9 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { seven } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -18,8 +18,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -30,11 +30,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   };
 
   useEffect(() => {
-    if (lowHigh?.[0]?.gstatus === "0" ||lowHigh?.[0]?.rate === "0.00") {
+    if (lowHigh?.[0]?.gstatus === "0" || lowHigh?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.rate]);
+    }
+
+  }, [lowHigh?.[0]?.gstatus, lowHigh?.[0]?.rate]);
 
   return (
     <div className="tiePairContainer-m">
@@ -45,8 +45,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
+              ]
               : 0
           }
           width={"40%"}
@@ -59,6 +59,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
             src={seven}
             width={"55px"}
             height={"70px"}
+            alt="bet"
           />
         </div>
 
@@ -68,8 +69,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
-                ]
+              `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
+              ]
               : 0
           }
           width={"40%"}

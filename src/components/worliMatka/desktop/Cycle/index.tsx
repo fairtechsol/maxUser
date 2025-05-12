@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { FaInfoCircle } from "react-icons/fa"; // Using an info icon from react-icons
 import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
@@ -10,7 +9,6 @@ import "../style.scss";
 
 const Cycle = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [selectedBoxes, setSelectedBoxes] = useState<number[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [betTeam, setBetTeam] = useState<string>("");
   const [mobileBox, setMobileBox] = useState(false);
@@ -57,7 +55,6 @@ const Cycle = ({ data, odds }: any) => {
     }
   }, [odds?.gstatus]);
 
-
   useEffect(() => {
     if (selectedBet == null) {
       setBetTeam("");
@@ -74,11 +71,8 @@ const Cycle = ({ data, odds }: any) => {
         setBetTeam((p) => {
           if (p && p.length == 2) return p;
           p = p == "0" ? value + p : p + value;
-          //p = p.split("").sort().join("");
-
           return p;
         });
-
       }}
     >
       <span className="worli-odd">{value}</span>
@@ -86,10 +80,9 @@ const Cycle = ({ data, odds }: any) => {
   );
 
   const handleClear = () => {
-
-    setBetTeam("")
-    setMobileBox(false)
-  }
+    setBetTeam("");
+    setMobileBox(false);
+  };
 
   return (
     <div className={`${odds?.gstatus == 0 ? "suspended-bo" : ""} worli-full`}>
@@ -107,16 +100,15 @@ const Cycle = ({ data, odds }: any) => {
         )}
       </div>
 
-      {/* Show the info icon when two boxes are selected */}
-      {selectedBoxes.length === 2 && (
-        <div className="info-icon" onClick={() => setShowModal(true)}>
-          <FaInfoCircle size={24} />
-        </div>
-      )}
-
-      {/* React Bootstrap Modal */}
-      {isMobile && (betTeam?.length > 0) && (
-        <WorliClearBox game="Cycle" team={betTeam} zeros={""} setBox={setMobileBox} handleClear={handleClear} disabled={betTeam?.length < 2} />
+      {isMobile && betTeam?.length > 0 && (
+        <WorliClearBox
+          game="Cycle"
+          team={betTeam}
+          zeros={""}
+          setBox={setMobileBox}
+          handleClear={handleClear}
+          disabled={betTeam?.length < 2}
+        />
       )}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>

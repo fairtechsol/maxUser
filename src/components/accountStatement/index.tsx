@@ -23,6 +23,8 @@ import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import "./style.scss";
 
+const keywords = ["ballbyball", "cricketv3", "superover"];
+
 const AccountStatementComponent = () => {
   const minDate = new Date();
   minDate.setMonth(minDate.getMonth() - 1);
@@ -109,6 +111,74 @@ const AccountStatementComponent = () => {
     }
   };
 
+  const handleLiveCasinoSubmitClick = () => {
+    if (type2?.value === "") {
+      return false;
+    }
+    let payload: any = {
+      id: selected?.user?.id,
+      name: type2?.value,
+      date: selected?.createdAt,
+    };
+    dispatch(transactionProviderBets(payload));
+  };
+
+  const handleDescriptionClick = (
+    containsKeywords: any,
+    item: any,
+    isCasinoGame: boolean,
+    firstPart: any
+  ) => {
+    const match = containsKeywords
+      ? item?.description.match(/Rno\. (\d+)/)
+      : item?.description.match(/Rno\. (\d+\.\d+)/);
+    if (type?.value === "3") {
+      setLiveCasinoModal(true);
+      setSelected(item);
+    } else {
+      if (isCasinoGame && match && match[1]) {
+        setShow({
+          status: true,
+          betId: [],
+          runnerId: "",
+          casinoType: firstPart,
+        });
+        dispatch(resultDragonTiger(match[1]));
+      } else {
+        if (item?.betId?.length > 0) {
+          setShow({
+            status: true,
+            betId: item?.betId,
+            runnerId: "",
+            casinoType: "",
+          });
+          dispatch(
+            getPlacedBetsForAccountStatement({
+              betId: item?.betId,
+              status: "MATCHED",
+              userId: getProfile?.id,
+            })
+          );
+        } else if (match && match[1]) {
+          setShow({
+            status: true,
+            betId: [],
+            runnerId: match[1],
+            casinoType: "",
+          });
+          dispatch(
+            getPlacedBetsForAccountStatement({
+              runnerId: match[1],
+              isCard: true,
+              result: `inArr${JSON.stringify(["WIN", "LOSS", "TIE"])}`,
+              userId: getProfile?.id,
+            })
+          );
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     if ((sessionStorage.getItem("key") || getProfile?.id) && tableConfig) {
       let filter = "";
@@ -157,17 +227,6 @@ const AccountStatementComponent = () => {
   useEffect(() => {
     dispatch(transactionProviderName(""));
   }, []);
-  const handleLiveCasinoSubmitClick = () => {
-    if (type2?.value === "") {
-      return false;
-    }
-    let payload: any = {
-      id: selected?.user?.id,
-      name: type2?.value,
-      date: selected?.createdAt,
-    };
-    dispatch(transactionProviderBets(payload));
-  };
 
   useEffect(() => {
     if (liveCasinoProviderBets?.bets) {
@@ -197,7 +256,6 @@ const AccountStatementComponent = () => {
                   minDate={minDate}
                   maxDate={new Date()}
                 />
-                {/* <CustomInput type="date" style={{ appearance: "textfield" }} /> */}
               </Col>
               <Col lg={2} md={3} xs={6}>
                 <DatePicker
@@ -210,15 +268,10 @@ const AccountStatementComponent = () => {
                   minDate={minDate2}
                   maxDate={new Date()}
                 />
-                {/* <CustomInput type="date" /> */}
               </Col>
               <Col md={2} xs={12}>
                 <SelectSearch
                   options={[
-                    // {
-                    //   value: "",
-                    //   label: "All",
-                    // },
                     {
                       value: "0",
                       label: "Deposit/Withdraw Reports",
@@ -255,8 +308,6 @@ const AccountStatementComponent = () => {
                 </CustomButton>
               </Col>
             </Row>
-
-            {/* http://localhost:5000/card/result/detail/9.241909153253 */}
             <CustomTable
               placeHolder={`${transactions?.count ?? 0} records...`}
               width={isMobile ? "1200px" : ""}
@@ -297,8 +348,6 @@ const AccountStatementComponent = () => {
               }}
             >
               {transactions?.transactions?.map((item: any, index: number) => {
-                const keywords = ["ballbyball", "cricketv3", "superover"];
-
                 const firstPart = item?.description?.split("/")?.[0];
                 const containsKeywords =
                   firstPart &&
@@ -310,60 +359,14 @@ const AccountStatementComponent = () => {
                   <tr
                     className={`${isMobile && "title-12 lh-1"} cursor-pointer`}
                     key={index}
-                    onClick={() => {
-                      const match = containsKeywords
-                        ? item?.description.match(/Rno\. (\d+)/)
-                        : item?.description.match(/Rno\. (\d+\.\d+)/);
-                      if (type?.value === "3") {
-                        setLiveCasinoModal(true);
-                        setSelected(item);
-                      } else {
-                        if (isCasinoGame && match && match[1]) {
-                          setShow({
-                            status: true,
-                            betId: [],
-                            runnerId: "",
-                            casinoType: firstPart,
-                          });
-                          dispatch(resultDragonTiger(match[1]));
-                        } else {
-                          if (item?.betId?.length > 0) {
-                            setShow({
-                              status: true,
-                              betId: item?.betId,
-                              runnerId: "",
-                              casinoType: "",
-                            });
-                            dispatch(
-                              getPlacedBetsForAccountStatement({
-                                betId: item?.betId,
-                                status: "MATCHED",
-                                userId: getProfile?.id,
-                              })
-                            );
-                          } else if (match && match[1]) {
-                            setShow({
-                              status: true,
-                              betId: [],
-                              runnerId: match[1],
-                              casinoType: "",
-                            });
-                            dispatch(
-                              getPlacedBetsForAccountStatement({
-                                runnerId: match[1],
-                                isCard: true,
-                                result: `inArr${JSON.stringify([
-                                  "WIN",
-                                  "LOSS",
-                                  "TIE",
-                                ])}`,
-                                userId: getProfile?.id,
-                              })
-                            );
-                          }
-                        }
-                      }
-                    }}
+                    onClick={() =>
+                      handleDescriptionClick(
+                        containsKeywords,
+                        item,
+                        isCasinoGame,
+                        firstPart
+                      )
+                    }
                   >
                     <td className={isMobile ? "date-as bg-grey" : ""}>
                       {moment(new Date(item?.createdAt)).format(
@@ -373,7 +376,7 @@ const AccountStatementComponent = () => {
                     <td className={isMobile ? "sr-as bg-grey" : ""}>
                       {index +
                         (tableConfig?.rowPerPage || 15) *
-                        (tableConfig?.page - 1 || 0) +
+                          (tableConfig?.page - 1 || 0) +
                         1}
                     </td>
                     <td
@@ -386,8 +389,8 @@ const AccountStatementComponent = () => {
                       <NotSet
                         item={
                           item?.transType == transType.add ||
-                            item?.transType == transType.creditRefer ||
-                            item?.transType == transType.win
+                          item?.transType == transType.creditRefer ||
+                          item?.transType == transType.win
                             ? item?.amount
                             : null
                         }
@@ -401,19 +404,20 @@ const AccountStatementComponent = () => {
                       <NotSet
                         item={
                           item?.transType == transType.loss ||
-                            item?.transType == transType.withDraw
+                          item?.transType == transType.withDraw
                             ? item?.amount
                             : null
                         }
                       />
                     </td>
                     <td
-                      className={` ${parseInt(item?.closingBalance) < 0
-                        ? "color-red"
-                        : parseInt(item?.closingBalance) > 0
+                      className={` ${
+                        parseInt(item?.closingBalance) < 0
+                          ? "color-red"
+                          : parseInt(item?.closingBalance) > 0
                           ? "color-green"
                           : ""
-                        } ${isMobile ? " pts-as bg-grey" : ""} `}
+                      } ${isMobile ? " pts-as bg-grey" : ""} `}
                     >
                       {" "}
                       <NotSet item={item?.closingBalance} />
@@ -538,96 +542,104 @@ const AccountStatementComponent = () => {
                         (item: any, index: number) => (
                           <tr key={item?.id}>
                             <td
-                              className={`${item?.betType === "BACK" ||
+                              className={`${
+                                item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                ? "bg-blue3"
-                                : "bg-red1"
-                                }`}
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
                             >
                               {index + 1}
                             </td>
                             <td
-                              className={`${item?.betType === "BACK" ||
+                              className={`${
+                                item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                ? "bg-blue3"
-                                : "bg-red1"
-                                }`}
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
                             >
                               {item?.teamName}
                             </td>
                             <td
-                              className={`${item?.betType === "BACK" ||
+                              className={`${
+                                item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                ? "bg-blue3"
-                                : "bg-red1"
-                                }`}
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
                             >
                               {item?.betType}
                             </td>
                             <td
-                              className={`${item?.betType === "BACK" ||
+                              className={`${
+                                item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                ? "bg-blue3"
-                                : "bg-red1"
-                                }`}
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
                             >
                               {item?.odds}
                             </td>
                             <td
-                              className={`${item?.betType === "BACK" ||
+                              className={`${
+                                item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                ? "bg-blue3"
-                                : "bg-red1"
-                                }`}
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
                             >
                               {item?.amount}
                             </td>
                             <td
-                              className={`${item?.betType === "BACK" ||
+                              className={`${
+                                item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                ? "bg-blue3"
-                                : "bg-red1"
-                                }`}
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
                               style={{
                                 color:
                                   item?.result === "LOSS"
                                     ? "#dc3545"
                                     : item?.result === "WIN"
-                                      ? "#28a745"
-                                      : "#000",
+                                    ? "#28a745"
+                                    : "#000",
                               }}
                             >
                               {item?.result === "LOSS"
                                 ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
                                 : item?.result === "WIN"
-                                  ? parseFloat(item?.winAmount).toFixed(2)
-                                  : 0}
+                                ? parseFloat(item?.winAmount).toFixed(2)
+                                : 0}
                             </td>
                             <td
-                              className={`${item?.betType === "BACK" ||
+                              className={`${
+                                item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                ? "bg-blue3"
-                                : "bg-red1"
-                                }`}
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
                             >
                               {moment(item?.createdAt).format(
                                 "MM/DD/YYYY hh:mm:ss A"
                               )}
                             </td>
                             <td
-                              className={`${item?.betType === "BACK" ||
+                              className={`${
+                                item?.betType === "BACK" ||
                                 item?.betType === "YES"
-                                ? "bg-blue3"
-                                : "bg-red1"
-                                }`}
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
                             >
                               {item?.racingMatch
                                 ? moment(item?.racingMatch?.startAt).format(
-                                  "MM/DD/YYYY hh:mm:ss A"
-                                )
+                                    "MM/DD/YYYY hh:mm:ss A"
+                                  )
                                 : moment(item?.match?.startAt).format(
-                                  "MM/DD/YYYY hh:mm:ss A"
-                                )}
+                                    "MM/DD/YYYY hh:mm:ss A"
+                                  )}
                             </td>
                           </tr>
                         )
@@ -641,10 +653,11 @@ const AccountStatementComponent = () => {
                       (item: any, index: number) => {
                         return (
                           <div
-                            className={`unsetteled-bet ${item.betType === "NO" || item.betType === "LAY"
-                              ? "bg-red1"
-                              : "bg-blue3"
-                              }`}
+                            className={`unsetteled-bet ${
+                              item.betType === "NO" || item.betType === "LAY"
+                                ? "bg-red1"
+                                : "bg-blue3"
+                            }`}
                             key={index}
                           >
                             <div className="row">
@@ -663,11 +676,11 @@ const AccountStatementComponent = () => {
                                   <span className="f600">Matched Date: </span>{" "}
                                   {item?.racingMatch
                                     ? moment(item?.racingMatch?.startAt).format(
-                                      "MM/DD/YYYY hh:mm:ss A"
-                                    )
+                                        "MM/DD/YYYY hh:mm:ss A"
+                                      )
                                     : moment(item?.match?.startAt).format(
-                                      "MM/DD/YYYY hh:mm:ss A"
-                                    )}
+                                        "MM/DD/YYYY hh:mm:ss A"
+                                      )}
                                 </div>
                               </div>
                               <Col className="col-2 reportBody-a" colspan={6}>
@@ -692,18 +705,18 @@ const AccountStatementComponent = () => {
                                       item?.result === "LOSS"
                                         ? "#dc3545"
                                         : item?.result === "WIN"
-                                          ? "#28a745"
-                                          : "#000",
+                                        ? "#28a745"
+                                        : "#000",
                                     overflowWrap: "anywhere",
                                   }}
                                 >
                                   {item?.result === "LOSS"
                                     ? `-${parseFloat(item?.lossAmount).toFixed(
-                                      2
-                                    )}`
+                                        2
+                                      )}`
                                     : item?.result === "WIN"
-                                      ? parseFloat(item?.winAmount).toFixed(2)
-                                      : 0}
+                                    ? parseFloat(item?.winAmount).toFixed(2)
+                                    : 0}
                                 </div>
                               </div>
                             </div>
@@ -731,8 +744,9 @@ const AccountStatementComponent = () => {
         show={liveCasinoModal}
         onHide={handleCloseLiveCasinoModal}
         // size="xl"
-        dialogClassName={`${isMobile ? "provider-modal-m m-0" : "provider-modal custom-modal"
-          }`}
+        dialogClassName={`${
+          isMobile ? "provider-modal-m m-0" : "provider-modal custom-modal"
+        }`}
       >
         <Modal.Header
           closeButton

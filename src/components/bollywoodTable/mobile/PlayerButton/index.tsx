@@ -8,7 +8,6 @@ const PlayerButton = ({
   lock,
   data,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
 
   return (
     <div
@@ -149,7 +148,9 @@ const PlayerButton = ({
         >
           <div
             className={
-              lock ? "teenPatti-table-item-b suspended" : "teenPatti-table-item-b"
+              lock
+                ? "teenPatti-table-item-b suspended"
+                : "teenPatti-table-item-b"
             }
             style={{ width: "50%" }}
             onClick={() =>
@@ -165,7 +166,9 @@ const PlayerButton = ({
           </div>
           <div
             className={
-              lock ? "teenPatti-table-item-b suspended" : "teenPatti-table-item-b"
+              lock
+                ? "teenPatti-table-item-b suspended"
+                : "teenPatti-table-item-b"
             }
             style={{ width: "50%", background: "#f9c9d4" }}
             onClick={() =>

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import OddButtonBox from "../OddButtonBox";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import OddButtonBox from "../OddButtonBox";
 
 const OddEven = ({ card, odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();

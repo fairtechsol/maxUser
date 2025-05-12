@@ -1,6 +1,7 @@
 import { Nav, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
+import { isMobile } from "../../../../utils/screenDimension";
 import Abr from "../Abr";
 import Card64 from "../Card64";
 import CardBox from "../CardBox";
@@ -15,11 +16,9 @@ import Cycle from "../Cycle";
 import MotorSp from "../MotorSp";
 import "../style.scss";
 import Trio from "../Trio";
-import { isMobile } from "../../../../utils/screenDimension";
 const MatkaNavTab = ({ data, odds, cards }: any) => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
-  
   return (
     <div className="">
       <Tab.Container defaultActiveKey="single">

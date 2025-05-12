@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { tryCatchWrapper } from "../../helpers";
 import {
   expertSocketService,
   matchService,
@@ -10,7 +11,13 @@ import {
   socketService,
 } from "../../socketManager";
 import {
-  // getMatchList,
+  betPlacedReset,
+  getPlacedBets,
+  resetRunAmount,
+  resetRunAmountModal,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
+import {
   matchDetailAction,
   matchDetailReset,
   resetMarketId,
@@ -33,17 +40,10 @@ import {
   updatePlacedbetsDeleteReason,
   updateProfitLossOnDeleteSession,
   updateRunAmountOnDeleteBet,
+  updateTeamRateOnUndeclare,
   updateTeamRatesOnDeleteMatch,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
-// import { isMobile } from "../../utils/screenDimension";
-import {
-  betPlacedReset,
-  getPlacedBets,
-  resetRunAmount,
-  resetRunAmountModal,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 
@@ -70,10 +70,8 @@ const GameDetails = () => {
       setIsMobile(window.innerWidth <= 1199);
     };
 
-    // Add event listener to update isMobile on window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -82,165 +80,130 @@ const GameDetails = () => {
     dispatch(getButtonValue());
   }, [dispatch]);
 
-  const setMatchRatesInRedux = (event: any) => {
-    try {
-      if (id === event?.id) {
-        dispatch(updateMatchRates(event));
-      }
-    } catch (e) {
-      console.log(e);
+  const setMatchRatesInRedux = tryCatchWrapper((event: any) => {
+    if (id === event?.id) {
+      dispatch(updateMatchRates(event));
     }
-  };
+  });
 
-  const setSessionBetsPlaced = (event: any) => {
-    try {
-      if (event?.betPlaced?.placedBet?.matchId === id) {
-        dispatch(updateBetsPlaced(event?.betPlaced?.placedBet));
-        dispatch(updateBalanceOnSessionBet(event));
-        dispatch(betDataFromSocket(event));
-        dispatch(updateMaxLossForBet(event));
-      }
-    } catch (e) {
-      console.log(e);
+  const setSessionBetsPlaced = tryCatchWrapper((event: any) => {
+    if (event?.betPlaced?.placedBet?.matchId === id) {
+      dispatch(updateBetsPlaced(event?.betPlaced?.placedBet));
+      dispatch(updateBalanceOnSessionBet(event));
+      dispatch(betDataFromSocket(event));
+      dispatch(updateMaxLossForBet(event));
     }
-  };
+  });
 
-  const setMatchBetsPlaced = (event: any) => {
-    try {
-      if (event?.jobData?.matchId === id) {
-        dispatch(updateBetsPlaced(event?.jobData?.newBet));
-        dispatch(updateBalance(event?.jobData));
-      }
-    } catch (e) {
-      console.log(e);
+  const setMatchBetsPlaced = tryCatchWrapper((event: any) => {
+    if (event?.jobData?.matchId === id) {
+      dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalance(event?.jobData));
     }
-  };
+  });
 
-  const resultDeclared = (event: any) => {
-    try {
-      if (event?.matchId === id) {
-        dispatch(getProfileInMatchDetail());
-        if (event?.betType === "quickbookmaker1" || event.isMatchDeclare) {
-          navigate(`/home`);
-        } else {
-          dispatch(getPlacedBets(id));
-        }
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleSessionResultDeclare = (event: any) => {
-    try {
-      dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
-      if (event?.matchId === id) {
-        dispatch(
-          updateBetDataOnDeclare({
-            betId: event?.betId,
-            matchId: event?.matchId,
-          })
-        );
+  const resultDeclared = tryCatchWrapper((event: any) => {
+    if (event?.matchId === id) {
+      dispatch(getProfileInMatchDetail());
+      if (event.isMatchDeclare) {
+        navigate(`/home`);
+      } else {
         dispatch(getPlacedBets(id));
-        dispatch(resetRunAmountModal({ showModal: false, id: event?.betId }));
-        dispatch(resetRunAmount({ id: event?.betId }));
       }
-    } catch (e) {
-      console.log(e);
     }
-  };
+  });
 
-  const handleSessionResultUnDeclare = (event: any) => {
-    try {
-      dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
-      if (event?.matchId === id) {
-        dispatch(
-          updateBetDataOnUndeclare({
-            betId: event?.betId,
-            profitLoss: event?.profitLossData,
-            matchId: event?.matchId,
-          })
-        );
-        setTimeout(() => {
-          dispatch(getPlacedBets(id));
-        }, 500);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleMatchbetDeleted = (event: any) => {
-    try {
+  const handleSessionResultDeclare = tryCatchWrapper((event: any) => {
+    dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
+    if (event?.matchId === id) {
       dispatch(
-        updateBalanceOnBetDelete({
-          exposure: event?.exposure,
-          currentBalance: event?.currentBalance,
+        updateBetDataOnDeclare({
+          betId: event?.betId,
+          matchId: event?.matchId,
         })
       );
-      if (event?.matchId === id) {
-        dispatch(updateTeamRatesOnDeleteMatch(event));
-        dispatch(updateDeleteReasonBet(event));
-      }
-    } catch (e) {
-      console.log(e);
+      dispatch(getPlacedBets(id));
+      dispatch(resetRunAmountModal({ showModal: false, id: event?.betId }));
+      dispatch(resetRunAmount({ id: event?.betId }));
     }
-  };
+  });
 
-  const handleSessionBetDeleted = (event: any) => {
-    try {
+  const handleSessionResultUnDeclare = tryCatchWrapper((event: any) => {
+    dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
+    if (event?.matchId === id) {
       dispatch(
-        updateBalanceOnBetDelete({
-          exposure: event?.exposure,
-          currentBalance: event?.currentBalance,
+        updateBetDataOnUndeclare({
+          betId: event?.betId,
+          profitLoss: event?.profitLossData,
+          matchId: event?.matchId,
         })
       );
-      if (event?.matchId === id) {
-        dispatch(
-          updateProfitLossOnDeleteSession({
-            betId: event?.betId,
-            profitLoss: event?.profitLoss,
-            matchId: event?.matchId,
-          })
-        );
-        dispatch(
-          updateRunAmountOnDeleteBet({
-            betId: event?.bets[0].betId,
-            profitLoss: event?.profitLoss,
-          })
-        );
-        dispatch(updateDeleteReasonBet(event));
-      }
-    } catch (e) {
-      console.log(e);
+      setTimeout(() => {
+        dispatch(getPlacedBets(id));
+      }, 500);
     }
+  });
+
+  const handleMatchbetDeleted = tryCatchWrapper((event: any) => {
+    dispatch(
+      updateBalanceOnBetDelete({
+        exposure: event?.exposure,
+        currentBalance: event?.currentBalance,
+      })
+    );
+    if (event?.matchId === id) {
+      dispatch(updateTeamRatesOnDeleteMatch(event));
+      dispatch(updateDeleteReasonBet(event));
+    }
+  });
+
+  const handleSessionBetDeleted = tryCatchWrapper((event: any) => {
+    dispatch(
+      updateBalanceOnBetDelete({
+        exposure: event?.exposure,
+        currentBalance: event?.currentBalance,
+      })
+    );
+    if (event?.matchId === id) {
+      dispatch(
+        updateProfitLossOnDeleteSession({
+          betId: event?.betId,
+          profitLoss: event?.profitLoss,
+          matchId: event?.matchId,
+        })
+      );
+      dispatch(
+        updateRunAmountOnDeleteBet({
+          betId: event?.bets[0].betId,
+          profitLoss: event?.profitLoss,
+        })
+      );
+      dispatch(updateDeleteReasonBet(event));
+    }
+  });
+
+  const handleMatchResultUndeclare = (event: any) => {
+    if (event?.matchId !== id) return;
+    dispatch(getProfileInMatchDetail());
+    dispatch(updateTeamRateOnUndeclare(event));
   };
 
-  const sessionResultDeclared = (event: any) => {
-    try {
-      dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  const sessionResultDeclared = tryCatchWrapper((event: any) => {
+    dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
+  });
 
   const handleMatchResult = () => {
-    // dispatch(getMatchList({}));
     dispatch(getProfileInMatchDetail());
   };
   const getUserProfile = () => {
     dispatch(getProfileInMatchDetail());
   };
 
-  const handleDeleteReasonUpdate = (event: any) => {
-    try {
-      if (event?.matchId === id) {
-        dispatch(updatePlacedbetsDeleteReason(event));
-      }
-    } catch (e) {
-      console.log(e);
+  const handleDeleteReasonUpdate = tryCatchWrapper((event: any) => {
+    if (event?.matchId === id) {
+      dispatch(updatePlacedbetsDeleteReason(event));
     }
-  };
+  });
 
   useEffect(() => {
     try {
@@ -295,6 +258,9 @@ const GameDetails = () => {
           handleSessionResultUnDeclare
         );
         socketService.userBalance.updateDeleteReason(handleDeleteReasonUpdate);
+        socketService.userBalance.matchResultUnDeclared(
+          handleMatchResultUndeclare
+        );
       }
     } catch (error) {
       console.log(error);
@@ -304,7 +270,6 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       return () => {
-        // expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
@@ -342,7 +307,6 @@ const GameDetails = () => {
         if (document.visibilityState === "visible") {
           if (id) {
             dispatch(selectedBetAction(null));
-            // dispatch(matchDetailAction(id));
             dispatch(getPlacedBets(id));
             setTimeout(() => {
               expertSocketService.match.joinMatchRoom(id);
@@ -350,7 +314,6 @@ const GameDetails = () => {
             }, 500);
           }
         } else if (document.visibilityState === "hidden") {
-          // expertSocketService.match.leaveMatchRoom(id);
           expertSocketService.match.getMatchRatesOff(id);
         }
       };
@@ -369,5 +332,4 @@ const GameDetails = () => {
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };
-
 export default GameDetails;

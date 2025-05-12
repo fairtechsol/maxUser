@@ -16,7 +16,7 @@ const CombinedComponentMobile = () => {
       </div>
       <div className="main-market">
         <div className="table-header">
-          <div className="float-left country-name box-4 min-max"></div>
+          <div className="float-left country-name box-4 min-max" />
           <div className="bg-blue1 box-1 float-left text-center">
             <b>Back</b>
           </div>

@@ -1,6 +1,6 @@
+import moment from "moment";
 import { ReactNode } from "react";
 import "./style.scss";
-import moment from "moment";
 
 interface Props {
   children?: ReactNode;
@@ -11,28 +11,24 @@ const BetStatusOverlayHorseRacing = ({ children, active, liveData }: Props) => {
   const { status, adjustmentFactor, removalDate } = liveData ?? {};
 
   return (
-    <>
-      {
-        <div className="box-height-h d-flex position-relative bet-overlay-horse">
-          {active && (
-            <div className="betStatusOverlay-h">
-              {!["ACTIVE", undefined, null].includes(status) && (
-                <h5 className="text-uppercase">
-                  {status === "active"
-                    ? ""
-                    : status === "REMOVED"
-                    ? `${status} - ${adjustmentFactor}%, ${moment(
-                        removalDate
-                      ).format("MM/DD/YYYY HH:mm:ss A ([IST])")}`
-                    : status}
-                </h5>
-              )}
-            </div>
+    <div className="box-height-h d-flex position-relative bet-overlay-horse">
+      {active && (
+        <div className="betStatusOverlay-h">
+          {!["ACTIVE", undefined, null].includes(status) && (
+            <h5 className="text-uppercase">
+              {status === "active"
+                ? ""
+                : status === "REMOVED"
+                ? `${status} - ${adjustmentFactor}%, ${moment(
+                    removalDate
+                  ).format("MM/DD/YYYY HH:mm:ss A ([IST])")}`
+                : status}
+            </h5>
           )}
-          {children}
         </div>
-      }
-    </>
+      )}
+      {children}
+    </div>
   );
 };
 

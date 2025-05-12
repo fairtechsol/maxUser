@@ -66,9 +66,7 @@ const GameList = () => {
   useEffect(() => {
     dispatch(getTabList({}));
     if (type) {
-      // setTimeout(() => {
       dispatch(getMatchList({ matchType: type }));
-      // }, 500);
     }
   }, [type]);
 

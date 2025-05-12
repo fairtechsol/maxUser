@@ -1,12 +1,11 @@
 import { Tab } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { liveCasinoList } from "../../../store/actions/cards/cardDetail";
 import { AppDispatch, RootState } from "../../../store/store";
 import CommonTabs from "../../commonComponent/tabs";
 import LatestEvent from "../latestEvents";
 import MobileMatchList from "../matchList/mobile";
 import SportsFilterJson from "./sportsFilters.json";
-import { useDispatch } from "react-redux";
-import { liveCasinoList } from "../../../store/actions/cards/cardDetail";
 
 const SportsFilters = ({ type, setMatchType, matchType }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -27,7 +26,6 @@ const SportsFilters = ({ type, setMatchType, matchType }: any) => {
             : location.pathname.split("/")[1]
         }
         fill={true}
-        // justify={true}
       >
         {SportsFilterJson()?.map((item) => {
           const tabTitleStyle = {
@@ -42,15 +40,19 @@ const SportsFilters = ({ type, setMatchType, matchType }: any) => {
               eventKey={item?.id}
               tabClassName="m-tab px-0"
               title={
-                <span>
-                  <span style={tabTitleStyle} onClick={()=> handleClick(item)}>{item?.name}</span>
+                <span style={tabTitleStyle} onClick={() => handleClick(item)}>
+                  {item?.name}
                 </span>
               }
-            ></Tab>
+             />
           );
         })}
       </CommonTabs>
-      <MobileMatchList setMatchType={setMatchType} type={type} matchType={matchType}/>
+      <MobileMatchList
+        setMatchType={setMatchType}
+        type={type}
+        matchType={matchType}
+      />
     </div>
   );
 };

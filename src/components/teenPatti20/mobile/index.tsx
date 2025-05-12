@@ -14,8 +14,8 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Teen20Result from "../desktop/teenCard";
-import "./style.scss";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -133,7 +133,7 @@ const TeenPattiMobile = () => {
             ) : (
               <div>
                 <div style={{ width: "100%" }}>
-                  <div className="teenPatti-table-container-20">
+                  <div className="teenPatti-table-container-c">
                     <div className="teenPatti-table-row">
                       <div
                         style={{
@@ -141,12 +141,7 @@ const TeenPattiMobile = () => {
                           border: "0.1px solid #dee2e6",
                           textAlign: "left",
                         }}
-                      >
-                        {/* <span className="f12-b">
-                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
-                          {dragonTigerDetail?.videoInfo?.max}
-                        </span> */}
-                      </div>
+                       />
                       <div className="teen-back-m">BACK</div>
                     </div>
                     <div className="teenPatti-table-row">
@@ -189,20 +184,20 @@ const TeenPattiMobile = () => {
                           <span className="f12-b">{playerA?.[0]?.rate}</span>
                           <span
                             className={`title-12 ${dragonTigerDetail?.profitLoss
+                              ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                ]
-                                  ? dragonTigerDetail?.profitLoss[
+                                ] > 0
+                                  ? "color-green"
+                                  : dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                  ] > 0
-                                    ? "color-green"
-                                    : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                    ] < 0
-                                      ? "color-red"
-                                      : ""
-                                  : ""
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
+                              : ""
                               }`}
                             style={{ zIndex: "100" }}
                           >
@@ -219,9 +214,9 @@ const TeenPattiMobile = () => {
                         </div>
                         <div
                           className={`teenPatti-table-item ${playerA?.[0]?.gstatus != "0" &&
-                              playerA?.[1]?.gstatus === "0"
-                              ? "suspended"
-                              : ""
+                            playerA?.[1]?.gstatus === "0"
+                            ? "suspended"
+                            : ""
                             }`}
                           style={{ width: "60%" }}
                           onClick={() =>
@@ -233,20 +228,20 @@ const TeenPattiMobile = () => {
                           <span className="f12-b">{playerA?.[1]?.nation}</span>
                           <span
                             className={`title-12 ${dragonTigerDetail?.profitLoss
+                              ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                ]
-                                  ? dragonTigerDetail?.profitLoss[
+                                ] > 0
+                                  ? "color-green"
+                                  : dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                  ] > 0
-                                    ? "color-green"
-                                    : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                    ] < 0
-                                      ? "color-red"
-                                      : ""
-                                  : ""
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
+                              : ""
                               }`}
                             style={{ zIndex: "100" }}
                           >
@@ -303,20 +298,20 @@ const TeenPattiMobile = () => {
                           <span className="f12-b">{playerB?.[0]?.rate}</span>
                           <span
                             className={`title-12 ${dragonTigerDetail?.profitLoss
+                              ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                ]
-                                  ? dragonTigerDetail?.profitLoss[
+                                ] > 0
+                                  ? "color-green"
+                                  : dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                  ] > 0
-                                    ? "color-green"
-                                    : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                    ] < 0
-                                      ? "color-red"
-                                      : ""
-                                  : ""
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
+                              : ""
                               }`}
                             style={{ zIndex: "100" }}
                           >
@@ -333,9 +328,9 @@ const TeenPattiMobile = () => {
                         </div>
                         <div
                           className={`teenPatti-table-item ${playerA?.[0]?.gstatus != "0" &&
-                              playerA?.[1]?.gstatus === "0"
-                              ? "suspended"
-                              : ""
+                            playerA?.[1]?.gstatus === "0"
+                            ? "suspended"
+                            : ""
                             }`}
                           style={{ width: "60%" }}
                           onClick={() =>
@@ -347,20 +342,20 @@ const TeenPattiMobile = () => {
                           <span className="f12-b">{playerB?.[1]?.nation}</span>
                           <span
                             className={`f10-b ${dragonTigerDetail?.profitLoss
+                              ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                ]
-                                  ? dragonTigerDetail?.profitLoss[
+                                ] > 0
+                                  ? "color-green"
+                                  : dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                  ] > 0
-                                    ? "color-green"
-                                    : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                    ] < 0
-                                      ? "color-red"
-                                      : ""
-                                  : ""
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
+                              : ""
                               }`}
                             style={{ zIndex: "100" }}
                           >

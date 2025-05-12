@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import ball from "../../../assets/images/ball-blank.png";
+import { formatNumber } from "../../../helpers";
 import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -13,9 +15,7 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
-import { formatNumber } from "../../../helpers";
-import ball from "../../../assets/images/ball-blank.png";
+import "../../commonStyle.scss";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -187,10 +187,6 @@ const TeenPattiDesktop = () => {
                   <div className="elemd">
                     <img
                       src={ball}
-                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
-                      // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                      //   curR?.result?.desc.split(" ")[0]
-                      // }.png`}
                       style={{
                         width: "30px",
                         height: "30px",
@@ -262,7 +258,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "20%",
@@ -287,7 +283,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "12px",
                         fontWeight: "bold",
                       }}
-                    ></div>
+                     />
                   </div>
                   <div
                     style={{
@@ -304,7 +300,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "20%",
@@ -329,7 +325,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "12px",
                         fontWeight: "bold",
                       }}
-                    ></div>
+                     />
                   </div>
                   <div
                     style={{
@@ -346,7 +342,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "20%",
@@ -371,7 +367,7 @@ const TeenPattiDesktop = () => {
                         fontSize: "12px",
                         fontWeight: "bold",
                       }}
-                    ></div>
+                     />
                   </div>
                 </div>
 
@@ -412,32 +408,31 @@ const TeenPattiDesktop = () => {
                           {item.nat}
                         </div>
                         <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
+                          className={`f10-b ${dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                              ] > 0
+                                ? "color-green"
+                                : dragonTigerDetail?.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                ]
-                                ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                  ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                    ] < 0
+                                ] < 0
                                   ? "color-red"
                                   : ""
-                                : ""
                               : ""
-                          }`}
+                            : ""
+                            }`}
                           style={{ zIndex: "100" }}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
-                                ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                              ]
                               : ""
                             : ""}
                         </span>
@@ -454,13 +449,13 @@ const TeenPattiDesktop = () => {
                         }}
                         className={
                           runs?.[0]?.gstatus === "SUSPENDED" &&
-                          runs?.[0]?.b === 0
+                            runs?.[0]?.b === 0
                             ? "suspended"
                             : "teenPatti-table-item"
                         }
                         onClick={() =>
                           runs?.[0]?.gstatus === "SUSPENDED" &&
-                          runs?.[0]?.b === 0
+                            runs?.[0]?.b === 0
                             ? ""
                             : handleBet(item)
                         }
@@ -520,7 +515,7 @@ const TeenPattiDesktop = () => {
                   </div>
 
                   <div
-                    className="ticker-container"
+                    className="ticker-container-New"
                     style={{
                       width: "90%",
 
@@ -530,11 +525,11 @@ const TeenPattiDesktop = () => {
                     }}
                   >
                     <div
-                      className="ticker-wrap"
+                      className="ticker-wrap-new"
                       style={{ border: "#086f3f", height: "100%" }}
                     >
                       <div
-                        className="ticker-move"
+                        className="ticker-move-new"
                         style={{
                           color: "#fff",
                           fontWeight: "bold",

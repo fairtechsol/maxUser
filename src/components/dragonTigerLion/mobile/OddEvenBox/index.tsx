@@ -148,8 +148,8 @@ const OddEven = ({ data, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -197,10 +197,7 @@ const OddEven = ({ data, odds }: any) => {
     ) {
       dispatch(selectedBetAction(""));
     }
-  }, [
-    data?.dragonData?.[0].gstatus,
-    data?.dragonData?.[0]?.b1,
-  ]);
+  }, [data?.dragonData?.[0].gstatus, data?.dragonData?.[0]?.b1]);
 
   return (
     <>
@@ -222,55 +219,51 @@ const OddEven = ({ data, odds }: any) => {
             marginLeft: "5px",
           }}
         >
-          {firstArr?.map((item: any) => {
+          {firstArr?.map((item: any, index: number) => {
             return (
-              <>
-                <div className="dlt-m-conatainer">
-                  <div className="dtlTitle-m">
-                    {item?.title}
-                  </div>
-                  <div
-                    className={`dtlsubTitle-m ${
-                      item?.data?.gstatus === "0" ? "lock" : ""
-                    }`}
-                    onClick={() =>
-                      item?.data?.gstatus === "1" ? handleBet(item?.data) : null
-                    }
-                  >
-                    {item?.data?.b1 || 0}
-                    <span
-                      style={{ fontSize: "12px",zIndex:"100" }}
-                      className={
-                        data?.profitLoss
-                          ? data?.profitLoss[
-                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
-                            ]
-                            ? data?.profitLoss[
-                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
-                              ] > 0
-                              ? "color-green"
-                              : data?.profitLoss[
-                                  `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
-                                ] < 0
-                              ? "color-red"
-                              : ""
-                            : ""
-                          : ""
-                      }
-                    >
-                      {data?.profitLoss
+              <div className="dlt-m-conatainer" key={index}>
+                <div className="dtlTitle-m">{item?.title}</div>
+                <div
+                  className={`dtlsubTitle-m ${
+                    item?.data?.gstatus === "0" ? "lock" : ""
+                  }`}
+                  onClick={() =>
+                    item?.data?.gstatus === "1" ? handleBet(item?.data) : null
+                  }
+                >
+                  {item?.data?.b1 || 0}
+                  <span
+                    style={{ fontSize: "12px", zIndex: "100" }}
+                    className={
+                      data?.profitLoss
                         ? data?.profitLoss[
                             `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
                           ]
                           ? data?.profitLoss[
                               `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
-                            ]
+                            ] > 0
+                            ? "color-green"
+                            : data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                              ] < 0
+                            ? "color-red"
+                            : ""
                           : ""
-                        : ""}
-                    </span>
-                  </div>
+                        : ""
+                    }
+                  >
+                    {data?.profitLoss
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                        ]
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                          ]
+                        : ""
+                      : ""}
+                  </span>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>
@@ -283,55 +276,51 @@ const OddEven = ({ data, odds }: any) => {
             border: "0.3px solid #c7c8ca",
           }}
         >
-          {secondArr?.map((item: any) => {
+          {secondArr?.map((item: any, index: number) => {
             return (
-              <>
-                <div className="dlt-m-conatainer">
-                  <div className="dtlTitle-m">
-                    {item?.title}
-                  </div>
-                  <div
-                    className={`dtlsubTitle-m ${
-                      item?.data?.gstatus === "0" ? "lock" : ""
-                    }`}
-                    onClick={() =>
-                      item?.data?.gstatus === "1" ? handleBet(item?.data) : null
-                    }
-                  >
-                    {item?.data?.b1 || 0}
-                    <span
-                      style={{ fontSize: "12px",zIndex:"100" }}
-                      className={
-                        data?.profitLoss
-                          ? data?.profitLoss[
-                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
-                            ]
-                            ? data?.profitLoss[
-                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
-                              ] > 0
-                              ? "color-green"
-                              : data?.profitLoss[
-                                  `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
-                                ] < 0
-                              ? "color-red"
-                              : ""
-                            : ""
-                          : ""
-                      }
-                    >
-                      {data?.profitLoss
+              <div className="dlt-m-conatainer" key={index}>
+                <div className="dtlTitle-m">{item?.title}</div>
+                <div
+                  className={`dtlsubTitle-m ${
+                    item?.data?.gstatus === "0" ? "lock" : ""
+                  }`}
+                  onClick={() =>
+                    item?.data?.gstatus === "1" ? handleBet(item?.data) : null
+                  }
+                >
+                  {item?.data?.b1 || 0}
+                  <span
+                    style={{ fontSize: "12px", zIndex: "100" }}
+                    className={
+                      data?.profitLoss
                         ? data?.profitLoss[
                             `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
                           ]
                           ? data?.profitLoss[
                               `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
-                            ]
+                            ] > 0
+                            ? "color-green"
+                            : data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                              ] < 0
+                            ? "color-red"
+                            : ""
                           : ""
-                        : ""}
-                    </span>
-                  </div>
+                        : ""
+                    }
+                  >
+                    {data?.profitLoss
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                        ]
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                          ]
+                        : ""
+                      : ""}
+                  </span>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>

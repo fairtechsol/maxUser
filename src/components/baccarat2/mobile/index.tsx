@@ -63,8 +63,12 @@ const Baccarat2Mobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <div className="horseRacingTab">
@@ -78,7 +82,6 @@ const Baccarat2Mobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  //   result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
@@ -102,7 +105,7 @@ const Baccarat2Mobile = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["P", "B","T"]}
+                    name={["P", "B", "T"]}
                     type={cardGamesType.baccarat2}
                   />
                 </div>
@@ -110,12 +113,16 @@ const Baccarat2Mobile = () => {
             )}
           </div>
         ) : (
-          <>
-            <MobileMyBet />
-          </>
+          <MobileMyBet />
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={b2rules} gameType="baccarat2" type="imageWithContent" />
+      <RulesModal
+        show={show}
+        setShow={setShow}
+        rule={b2rules}
+        gameType="baccarat2"
+        type="imageWithContent"
+      />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

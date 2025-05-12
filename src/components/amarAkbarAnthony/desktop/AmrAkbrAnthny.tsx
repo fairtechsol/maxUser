@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.scss"; // Ensure you define the styles in this file
+import "../../commonStyle.scss";
 
 const AmarAkbarAnthonyRules = () => {
   return (
@@ -62,7 +62,8 @@ const AmarAkbarAnthonyRules = () => {
         <p>
           <b>Note:</b>
           <span>
-            If the card is 7, bets on under 7 and over 7 will lose 50% of the bet amount.
+            If the card is 7, bets on under 7 and over 7 will lose 50% of the
+            bet amount.
           </span>
         </p>
 

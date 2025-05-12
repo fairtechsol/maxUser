@@ -137,8 +137,6 @@ const RaceDetail = () => {
   useEffect(() => {
     try {
       return () => {
-        // expertSocketService.match.leaveMatchRoom(id);
-        // expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
         socketService.userBalance.declaredMatchResultAllUserOff();
@@ -155,14 +153,11 @@ const RaceDetail = () => {
     }
   }, [id]);
 
-
   const fetchLiveData = useCallback(async () => {
     try {
-      const response = await axios.get(`${baseUrls.matchSocket}/getUserRateDetails/${id}`, {
-        // headers: {
-        //   Authorization: `Bearer ${sessionStorage.getItem("jwtExpert")}`,
-        // },
-      });
+      const response = await axios.get(
+        `${baseUrls.matchSocket}/getUserRateDetails/${id}`
+      );
       setMatchRatesInRedux(response.data);
     } catch (error) {
       console.error("Error fetching live data:", error);
@@ -172,8 +167,11 @@ const RaceDetail = () => {
   const handleVisibilityChange = useCallback(() => {
     if (document.visibilityState === "visible") {
       if (!intervalRef.current) {
-        fetchLiveData(); // Fetch once immediately
-        intervalRef.current = window.setInterval(fetchLiveData, 500) as unknown as number;
+        fetchLiveData();
+        intervalRef.current = window.setInterval(
+          fetchLiveData,
+          500
+        ) as unknown as number;
       }
     } else if (document.visibilityState === "hidden") {
       if (intervalRef.current) {

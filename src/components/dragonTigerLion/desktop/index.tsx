@@ -6,20 +6,20 @@ import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  A,
-  dtrules,
-  eight,
-  eleven,
-  five,
-  four,
-  nine,
-  seven,
-  six,
-  ten,
-  thirteen,
-  three,
-  twelve,
-  two,
+    A,
+    dtrules,
+    eight,
+    eleven,
+    five,
+    four,
+    nine,
+    seven,
+    six,
+    ten,
+    thirteen,
+    three,
+    twelve,
+    two,
 } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -32,8 +32,8 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Dragon20Result from "./dragonCard";
-import "./style.scss";
 
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
@@ -270,8 +270,8 @@ const DragonTigerDesktop = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max
     };
     dispatch(
       selectedBetAction({
@@ -325,8 +325,8 @@ const DragonTigerDesktop = () => {
               <span>
                 {dragonTigerDetail?.videoInfo
                   ? `Round ID:  ${handleRoundId(
-                      dragonTigerDetail?.videoInfo?.mid
-                    )}`
+                    dragonTigerDetail?.videoInfo?.mid
+                  )}`
                   : ""}
               </span>
             </div>
@@ -365,10 +365,10 @@ const DragonTigerDesktop = () => {
                     className="w-100 d-sm-flex flex-row"
                     style={{ height: "30px" }}
                   >
-                    <div className="dtlTitle"></div>
-                    <div className="dtlsubTitle back">Dragon</div>
-                    <div className="dtlsubTitle back">Tiger</div>
-                    <div className="dtlsubTitle back">Lion</div>
+                    <div className="dtlTitleNew" />
+                    <div className="dtlsubTitleNew back">Dragon</div>
+                    <div className="dtlsubTitleNew back">Tiger</div>
+                    <div className="dtlsubTitleNew back">Lion</div>
                   </div>
                   {firstArr?.map((item: any, index: number) => (
                     <div
@@ -376,7 +376,7 @@ const DragonTigerDesktop = () => {
                       style={{ height: "50px" }}
                       key={index}
                     >
-                      <div className="dtlTitle">
+                      <div className="dtlTitleNew">
                         {item?.title}
                         {/* <div style={{ width: "45%", textAlign: "end" }}>
                           <span className="minmaxi">
@@ -396,9 +396,8 @@ const DragonTigerDesktop = () => {
                         </div> */}
                       </div>
                       <div
-                        className={`dtlsubTitle back ${
-                          item?.dragon?.gstatus === "0" ? "lock" : ""
-                        }`}
+                        className={`dtlsubTitleNew back ${item?.dragon?.gstatus === "0" ? "lock" : ""
+                          }`}
                         onClick={() =>
                           item?.dragon?.gstatus === "1"
                             ? handleBet(item?.dragon)
@@ -407,40 +406,39 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.dragon?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px",zIndex:"100" }}
+                          style={{ fontSize: "12px", zIndex: "100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                                ]
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                                  ] > 0
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                                ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
                               : ""
                           }
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                                ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                              ]
                               : 0
                             : 0}
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle back ${
-                          item?.tiger?.gstatus === "0" ? "lock" : ""
-                        }`}
+                        className={`dtlsubTitleNew back ${item?.tiger?.gstatus === "0" ? "lock" : ""
+                          }`}
                         onClick={() =>
                           item?.tiger?.gstatus === "1"
                             ? handleBet(item?.tiger)
@@ -449,40 +447,39 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.tiger?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px",zIndex:"100" }}
+                          style={{ fontSize: "12px", zIndex: "100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                                ]
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                                  ] > 0
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                                ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
                               : ""
                           }
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                                ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                              ]
                               : 0
                             : 0}
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle back ${
-                          item?.lion?.gstatus === "0" ? "lock" : ""
-                        }`}
+                        className={`dtlsubTitleNew back ${item?.lion?.gstatus === "0" ? "lock" : ""
+                          }`}
                         onClick={() =>
                           item?.lion?.gstatus === "1"
                             ? handleBet(item?.lion)
@@ -491,32 +488,32 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.lion?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px",zIndex:"100" }}
+                          style={{ fontSize: "12px", zIndex: "100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                                ]
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                                  ] > 0
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                                ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
                               : ""
                           }
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                                ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                              ]
                               : 0
                             : 0}
                         </span>
@@ -536,10 +533,10 @@ const DragonTigerDesktop = () => {
                     className="w-100 d-sm-flex flex-row"
                     style={{ height: "30px" }}
                   >
-                    <div className="dtlTitle"> </div>
-                    <div className="dtlsubTitle back">Dragon</div>
-                    <div className="dtlsubTitle back">Tiger</div>
-                    <div className="dtlsubTitle back">Lion</div>
+                    <div className="dtlTitleNew"> </div>
+                    <div className="dtlsubTitleNew back">Dragon</div>
+                    <div className="dtlsubTitleNew back">Tiger</div>
+                    <div className="dtlsubTitleNew back">Lion</div>
                   </div>
                   {secondArr?.map((item: any, index: any) => (
                     <div
@@ -547,7 +544,7 @@ const DragonTigerDesktop = () => {
                       style={{ height: "50px" }}
                       key={index}
                     >
-                      <div className="dtlTitle">
+                      <div className="dtlTitleNew">
                         {item?.title}{" "}
                         {/* <div style={{ width: "45%", textAlign: "end" }}>
                           <span className="minmaxi">
@@ -567,9 +564,8 @@ const DragonTigerDesktop = () => {
                         </div> */}
                       </div>
                       <div
-                        className={`dtlsubTitle back ${
-                          item?.dragon?.gstatus === "0" ? "lock" : ""
-                        }`}
+                        className={`dtlsubTitleNew back ${item?.dragon?.gstatus === "0" ? "lock" : ""
+                          }`}
                         onClick={() =>
                           item?.dragon?.gstatus === "1"
                             ? handleBet(item?.dragon)
@@ -578,40 +574,39 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.dragon?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px",zIndex:"100" }}
+                          style={{ fontSize: "12px", zIndex: "100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                                ]
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                                  ] > 0
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                                ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
                               : ""
                           }
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
-                                ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                              ]
                               : 0
                             : 0}
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle back ${
-                          item?.tiger?.gstatus === "0" ? "lock" : ""
-                        }`}
+                        className={`dtlsubTitleNew back ${item?.tiger?.gstatus === "0" ? "lock" : ""
+                          }`}
                         onClick={() =>
                           item?.tiger?.gstatus === "1"
                             ? handleBet(item?.tiger)
@@ -620,21 +615,21 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.tiger?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px",zIndex:"100" }}
+                          style={{ fontSize: "12px", zIndex: "100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                                ]
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                                  ] > 0
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                                ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
                               : ""
                           }
@@ -642,19 +637,18 @@ const DragonTigerDesktop = () => {
                           {" "}
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
-                                ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                              ]
                               : 0
                             : 0}
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle back ${
-                          item?.lion?.gstatus === "0" ? "lock" : ""
-                        }`}
+                        className={`dtlsubTitleNew back ${item?.lion?.gstatus === "0" ? "lock" : ""
+                          }`}
                         onClick={() =>
                           item?.lion?.gstatus === "1"
                             ? handleBet(item?.lion)
@@ -663,21 +657,21 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.lion?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px",zIndex:"100" }}
+                          style={{ fontSize: "12px", zIndex: "100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                                ]
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                              ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                                  ] > 0
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                                ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                                  ] < 0
+                                    ? "color-red"
+                                    : ""
                                 : ""
                               : ""
                           }
@@ -685,11 +679,11 @@ const DragonTigerDesktop = () => {
                           {" "}
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                              ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                            ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
-                                ]
+                              `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                              ]
                               : 0
                             : 0}
                         </span>

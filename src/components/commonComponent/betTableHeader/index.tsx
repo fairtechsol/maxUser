@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
-import "./style.scss";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
 import { formatNumber } from "../../../helpers";
+import { RootState } from "../../../store/store";
+import "./style.scss";
 interface props {
   bgColor?: string;
   title?: string;
@@ -48,7 +48,9 @@ function BetTableHeader({
       </span>
 
       {rightComponent}
-      {selectedBet?.team?.min && selectedBet?.team?.max && title==="Place Bet" ? (
+      {selectedBet?.team?.min &&
+      selectedBet?.team?.max &&
+      title === "Place Bet" ? (
         <span className="title-14 text-white f400">
           Range: {formatNumber(selectedBet?.team?.min)} to{" "}
           {formatNumber(selectedBet?.team?.max)}

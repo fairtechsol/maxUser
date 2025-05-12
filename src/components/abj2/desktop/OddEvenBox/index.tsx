@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import OddButtonBox from "../OddButtonBox";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import OddButtonBox from "../OddButtonBox";
 
 const OddEven = ({ card, odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -16,8 +16,8 @@ const OddEven = ({ card, odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -28,7 +28,7 @@ const OddEven = ({ card, odds, data }: any) => {
   };
   return (
     <>
-      <div className="oddEvenContainer" style={{ border: "1px solid #c7c8ca"}}>
+      <div className="oddEvenContainer" style={{ border: "1px solid #c7c8ca" }}>
         {card ? (
           <>
             {" "}

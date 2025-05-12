@@ -11,9 +11,9 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Race20Result from "../desktop/race20Card";
 import OddBox from "./OddBox";
-import "./style.scss";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
 

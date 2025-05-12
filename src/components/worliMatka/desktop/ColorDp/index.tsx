@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { FaInfoCircle } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch } from "../../../../store/store";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import "../style.scss";
 
 const ColorDp = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [clicked, setClicked] = useState<string>("");
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  
 
   const handleBet = (betTeam: any) => {
     let team = {
@@ -43,15 +39,12 @@ const ColorDp = ({ odds, data }: any) => {
   useEffect(() => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
-      setSelectedBox(null);
       setClicked("");
     }
   }, [odds?.gstatus, dispatch]);
 
-  
   useEffect(() => {
     if (selectedBet == null) {
-      setSelectedBox(null);
       setClicked("");
     }
   }, [selectedBet]);

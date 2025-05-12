@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { HandleCards2 } from "../../../cardsComponent2";
 import { RootState } from "../../../../store/store";
+import { HandleCards2 } from "../../../cardsComponent2";
 
 const TeenPattiTableRow = ({
   player,
@@ -22,7 +22,7 @@ const TeenPattiTableRow = ({
           display: "flex",
           alignItems: "center",
           gap: "4px",
-          background:"#f2f2f2"
+          background: "#f2f2f2",
         }}
       >
         <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
@@ -45,11 +45,17 @@ const TeenPattiTableRow = ({
         }}
       >
         <div
-         className={player.gstatus === "0" ? "teenPatti-table-itemo suspended" : "teenPatti-table-itemo"}
+          className={
+            player.gstatus === "0"
+              ? "teenPatti-table-itemo suspended"
+              : "teenPatti-table-itemo"
+          }
           style={{ width: "50%" }}
           onClick={() => (player.gstatus === "0" ? null : handleBet(player))}
         >
-          <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>{player.rate}</span>
+          <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>
+            {player.rate}
+          </span>
           <span
             className={`title-12 ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss
@@ -68,7 +74,7 @@ const TeenPattiTableRow = ({
                   : ""
                 : ""
             }`}
-            style={{zIndex:"100"}}
+            style={{ zIndex: "100" }}
           >
             {dragonTigerDetail?.profitLoss
               ? dragonTigerDetail?.profitLoss[
@@ -81,13 +87,20 @@ const TeenPattiTableRow = ({
               : 0}
           </span>
         </div>
-        <div className={player.gstatus === "0" ? "teenPatti-table-itemo suspended " : "teenPatti-table-itemo"}
+        <div
+          className={
+            player.gstatus === "0"
+              ? "teenPatti-table-itemo suspended "
+              : "teenPatti-table-itemo"
+          }
           style={{ width: "50%" }}
           onClick={() =>
             pairPlus.gstatus === "0" ? null : handleBet(pairPlus)
           }
         >
-          <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>{pairPlus.nation}</span>
+          <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>
+            {pairPlus.nation}
+          </span>
           <span
             className={`title-12 ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss
@@ -106,7 +119,7 @@ const TeenPattiTableRow = ({
                   : ""
                 : ""
             }`}
-            style={{zIndex:"100"}}
+            style={{ zIndex: "100" }}
           >
             {dragonTigerDetail?.profitLoss
               ? dragonTigerDetail?.profitLoss[

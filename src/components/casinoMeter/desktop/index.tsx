@@ -13,10 +13,10 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import HighCards from "./High";
 import LowCards from "./Low";
 import Meter from "./meter";
-import "./style.scss";
 const CasinoMeterDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -96,7 +96,7 @@ const CasinoMeterDesktop = () => {
     dragonTigerDetail?.players?.[0]?.[0]?.b1,
   ]);
 
-  
+
   return (
     <>
       <Row>
@@ -123,8 +123,8 @@ const CasinoMeterDesktop = () => {
                 <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}`
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}`
                     : ""}
                 </span>
               </div>
@@ -151,7 +151,7 @@ const CasinoMeterDesktop = () => {
                     data={dragonTigerDetail?.videoInfo?.cards}
                     runPosition={
                       dragonTigerDetail?.videoInfo?.mid ==
-                      placedBets?.[0]?.runnerId
+                        placedBets?.[0]?.runnerId
                         ? placedBets?.[0]?.teamName == "Low"
                           ? "Low"
                           : "High"
@@ -174,7 +174,7 @@ const CasinoMeterDesktop = () => {
                     data={dragonTigerDetail}
                     placedLow={
                       dragonTigerDetail?.videoInfo?.mid ==
-                      placedBets?.[0]?.runnerId
+                        placedBets?.[0]?.runnerId
                         ? placedBets?.[0]?.teamName == "Low"
                           ? true
                           : false
@@ -186,7 +186,7 @@ const CasinoMeterDesktop = () => {
                     data={dragonTigerDetail}
                     placedHigh={
                       dragonTigerDetail?.videoInfo?.mid ==
-                      placedBets?.[0]?.runnerId
+                        placedBets?.[0]?.runnerId
                         ? placedBets?.[0]?.teamName == "High"
                           ? true
                           : false
@@ -222,7 +222,7 @@ const CasinoMeterDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-              <RulesModal show={show} setShow={setShow} type={modalType} gameType="cmeter"/>
+                <RulesModal show={show} setShow={setShow} type={modalType} gameType="cmeter" />
               </Col>
             </Row>
           </Container>

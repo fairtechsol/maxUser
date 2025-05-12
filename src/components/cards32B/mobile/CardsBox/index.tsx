@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
@@ -15,8 +16,8 @@ const CardBox = ({ odds, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:parseFloat(item?.min),
-      max:parseFloat(item?.max)
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max),
     };
     dispatch(
       selectedBetAction({
@@ -40,11 +41,11 @@ const CardBox = ({ odds, data }: any) => {
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
-      <span style={{ fontFamily: "auto", fontSize: "48px" ,color:"#333333"}}>
+      <span style={{ fontFamily: "auto", fontSize: "48px", color: "#333333" }}>
         {index + 1 === 10 ? "0" : index + 1}
       </span>
       <span
-        style={{ fontSize: "14px", fontWeight: "400",zIndex:"100" }}
+        style={{ fontSize: "14px", fontWeight: "400", zIndex: "100" }}
         className={`title-14 f400 ${
           data?.profitLoss
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
@@ -60,11 +61,15 @@ const CardBox = ({ odds, data }: any) => {
             : ""
         }`}
       >
-        {data?.profitLoss
-          ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : <br></br>
-          : 0}
+        {data?.profitLoss ? (
+          data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] ? (
+            data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+          ) : (
+            <br></br>
+          )
+        ) : (
+          0
+        )}
       </span>
     </div>
   );
@@ -81,26 +86,35 @@ const CardBox = ({ odds, data }: any) => {
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-         
-          <div style={{ width: "100%", textAlign: "center",fontWeight:"bold" }}>
-            {odds?.[0]?.b1 == "0.00"?0:odds?.[0]?.b1}
+          <div
+            style={{ width: "100%", textAlign: "center", fontWeight: "bold" }}
+          >
+            {odds?.[0]?.b1 == "0.00" ? 0 : odds?.[0]?.b1}
           </div>
         </div>
       </div>
       <div
         className="w-100 d-sm-flex flex-row"
-        style={{ height: "auto", display: "flex",color:"#333333" }}
+        style={{ height: "auto", display: "flex", color: "#333333" }}
       >
         {odds?.slice(0, 5)?.map((item: any, index: number) => {
-          return <>{renderItem(item, index)}</>;
+          return (
+            <React.Fragment key={index}>
+              {renderItem(item, index)}
+            </React.Fragment>
+          );
         })}
       </div>
       <div
         className="w-100 d-sm-flex flex-row"
-        style={{ height: "auto", display: "flex",color:"#333333" }}
+        style={{ height: "auto", display: "flex", color: "#333333" }}
       >
         {odds?.slice(5, 10)?.map((item: any, index: number) => {
-          return <>{renderItem(item, index + 5)}</>;
+          return (
+            <React.Fragment key={index}>
+              {renderItem(item, index + 5)}
+            </React.Fragment>
+          );
         })}
       </div>
     </div>

@@ -1,6 +1,5 @@
-
-import FooterMain from "../../../layout/main/footerMain";
 import FooterBottom from "../../../layout/main/footerBottom";
+import FooterMain from "../../../layout/main/footerMain";
 
 const Terms = () => {
   return (
@@ -9,7 +8,7 @@ const Terms = () => {
         <div className="about-us-container">
           <div className="container">
             <div className="text-center logo">
-              <img src="https://sitethemedata.com/sitethemes/jsk2468.com/front/logo.png" />
+              <img src="https://sitethemedata.com/sitethemes/jsk2468.com/front/logo.png" alt="logo" />
             </div>
             <div>
               <h2 className="page-title">Terms and Conditions</h2>
@@ -1148,8 +1147,8 @@ const Terms = () => {
           </div>
         </div>
       </div>
-      <FooterMain/>
-      <FooterBottom/>
+      <FooterMain />
+      <FooterBottom />
     </div>
   );
 };

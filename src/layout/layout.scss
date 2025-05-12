@@ -1,4 +1,4 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
 
 .page-content {
   background-color: $light;
@@ -19,11 +19,12 @@
   bottom: 0;
   padding: 6px 0px 0px 0px;
 }
+
 .footer {
   background-color: #004a25;
   color: #ffffff;
   bottom: 0;
-  
+
 }
 
 .footer-top {
@@ -86,6 +87,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .secure-logo {
   display: flex;
   flex-wrap: wrap;
@@ -93,127 +95,147 @@
   justify-content: center;
   line-height: normal;
 }
+
 .footer-bottom img {
   max-height: 30px;
   max-width: 100px;
   margin-right: 10px;
 }
+
 .footer-text {
   text-align: center;
 }
+
 .footer-bottom .secure-logo img {
   max-height: 50px;
 }
 
 @media only screen and (max-width: 767px) {
-  .secure-logo ~ div {
-      width: 100%;
-      text-align: center;
-      margin-top: 10px;
-      
+  .secure-logo~div {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+
   }
 }
 
 @media only screen and (max-width: 767px) {
   .secure-logo {
-      width: 100%;
-      font-size: 12px;
+    width: 100%;
+    font-size: 12px;
   }
 }
+
 @media only screen and (max-width: 767px) {
   .footer-text {
-      margin-top: 5px;
+    margin-top: 5px;
   }
 }
+
 @media only screen and (max-width: 767px) {
   .footer-text p {
-      font-size: 12px;
+    font-size: 12px;
   }
 }
+
 @media (min-width: 576px) {
   .navbar-expand-sm {
-      flex-wrap: nowrap;
-      justify-content: flex-start;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
   }
 }
 
 @media (min-width: 576px) {
   .navbar-expand-sm .navbar-nav {
-      flex-direction: row;
+    flex-direction: row;
   }
 }
 
 
 @media (min-width: 576px) {
   .navbar-expand-sm .navbar-nav .nav-link {
-      padding: 1.5rem;
+    padding: 1.5rem;
   }
 }
 
 @media (min-width: 1200px) {
-  .h2, h2 {
-      font-size: 1rem;
+
+  .h2,
+  h2 {
+    font-size: 1rem;
   }
 }
 
-.h2, h2 {
+.h2,
+h2 {
   font-size: calc(0.25rem + .9vw);
 }
 
 @media only screen and (max-width: 767px) {
   .footer-links {
-      width: 100%;
-      text-align: center;
+    width: 100%;
+    text-align: center;
   }
 }
+
 @media only screen and (max-width: 767px) {
-  .footer-links, .support-detail, .social-icons-box {
-      flex: unset;
+
+  .footer-links,
+  .support-detail,
+  .social-icons-box {
+    flex: unset;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .footer-links ul {
-      width: 100%;
-      flex-direction: row;
-      flex-wrap: wrap;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .footer-links ul li {
-      width: 50%;
+    width: 50%;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .footer-links .nav-link {
-      // padding: 3px;
-      text-decoration: underline;
-      font-size: 12px;
-  }
-}
-@media only screen and (max-width: 767px) {
-  .footer-links, .support-detail, .social-icons-box {
-      flex: unset;
-  }
-}
-@media only screen and (max-width: 767px) {
-  .support-detail {
-      width: 100%;
-      margin-top: 15px;
+    // padding: 3px;
+    text-decoration: underline;
+    font-size: 12px;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  h2, .h2 {
-      font-size: 20px;
+
+  .footer-links,
+  .support-detail,
+  .social-icons-box {
+    flex: unset;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .support-detail {
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+  h2,
+  .h2 {
+    font-size: 20px;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .footer-links {
-      width: 100%;
-      text-align: center;
+    width: 100%;
+    text-align: center;
   }
 }

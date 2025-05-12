@@ -33,7 +33,7 @@ const LiveStreamComponent = ({ url, eventId, marketType, setTvData }: any) => {
                     src={url}
                     title="Live Stream"
                     referrerPolicy={"strict-origin-when-cross-origin"}
-                  ></iframe>
+                   />
                 </Ratio>
               </Col>
             </Row>

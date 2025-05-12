@@ -11,11 +11,11 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Lucky7BResult from "../desktop/lucky7Card";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
-import "./style.scss";
 
 const Lucky7BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);

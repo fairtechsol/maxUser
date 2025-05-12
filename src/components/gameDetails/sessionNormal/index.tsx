@@ -3,9 +3,9 @@ import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, formatNumber, handleSize } from "../../../helpers";
 import {
-  getRunAmount,
-  getRunAmountMeter,
-  resetRunAmountModal,
+    getRunAmount,
+    getRunAmountMeter,
+    resetRunAmountModal,
 } from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
@@ -110,7 +110,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
       >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
+          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/ /></OverlayTrigger>} */}
         </div>
         <div
           style={{
@@ -134,7 +134,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                 <div className="sessionYesBox back1Background">
                   <span className={`f-size16 sessionBackTxt`}>Yes</span>
                 </div>
-                <div className="sessionEmptyBox"></div>
+                <div className="sessionEmptyBox" />
               </div>
             </div>
             {evenIndexArray?.map((item: any, index: any) => {
@@ -232,7 +232,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               item?.noRate,
                               "no",
                               item?.RunnerName || item?.name,
-                              item?.activeStatus,
                               item?.ex?.availableToLay?.[0]?.size ||
                               item?.noPercent,
                               item,
@@ -260,7 +259,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.ex?.availableToLay?.[1]?.price,
                                 "no",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToLay?.[1]?.size,
                                 item,
                                 item?.ex?.availableToLay?.[1]?.tno
@@ -286,7 +284,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.ex?.availableToLay?.[2]?.price,
                                 "no",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToLay?.[2]?.size,
                                 item,
                                 item?.ex?.availableToLay?.[2]?.tno
@@ -320,7 +317,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               item?.yesRate,
                               "Yes",
                               item?.RunnerName || item?.name,
-                              item?.activeStatus,
                               item?.ex?.availableToBack?.[0]?.size ||
                               item?.yesPercent,
                               item,
@@ -348,7 +344,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.ex?.availableToBack?.[1]?.price,
                                 "Yes",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToBack?.[1]?.size,
                                 item,
                                 item?.ex?.availableToBack?.[1]?.tno
@@ -374,7 +369,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.ex?.availableToBack?.[2]?.price,
                                 "Yes",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToBack?.[2]?.size,
                                 item,
                                 item?.ex?.availableToBack?.[2]?.tno
@@ -433,7 +427,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                   <div
                     className="sessionEmptyBox"
                   // style={{ width: "54%" }}
-                  ></div>
+                   />
                   <div
                     className="sessionYesNoBox rateBoxWidthNormal"
                   // style={{
@@ -446,7 +440,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     <div className="sessionYesBox back1Background">
                       <span className={`f-size16 sessionBackTxt`}>Yes</span>
                     </div>
-                    <div className="sessionEmptyBox"></div>
+                    <div className="sessionEmptyBox" />
                   </div>
                 </div>
               )}
@@ -549,7 +543,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.noRate,
                                 "no",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToLay?.[0]?.size ||
                                 item?.noPercent,
                                 item,
@@ -578,7 +571,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.ex?.availableToLay?.[1]?.price,
                                   "no",
                                   item?.RunnerName || item?.name,
-                                  item?.activeStatus,
                                   item?.ex?.availableToLay?.[1]?.size,
                                   item,
                                   item?.ex?.availableToLay?.[1]?.tno
@@ -606,7 +598,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.ex?.availableToLay?.[2]?.price,
                                   "no",
                                   item?.RunnerName || item?.name,
-                                  item?.activeStatus,
                                   item?.ex?.availableToLay?.[2]?.size,
                                   item,
                                   item?.ex?.availableToLay?.[2]?.tno
@@ -642,7 +633,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 item?.yesRate,
                                 "Yes",
                                 item?.RunnerName || item?.name,
-                                item?.activeStatus,
                                 item?.ex?.availableToBack?.[0]?.size ||
                                 item?.yesPercent,
                                 item,
@@ -671,7 +661,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.ex?.availableToBack?.[1]?.price,
                                   "Yes",
                                   item?.RunnerName || item?.name,
-                                  item?.activeStatus,
                                   title === "oddeven"
                                     ? item?.ex?.availableToBack?.[1]?.price
                                     : item?.ex?.availableToBack?.[1]?.size,
@@ -701,7 +690,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                   item?.ex?.availableToBack?.[2]?.price,
                                   "Yes",
                                   item?.RunnerName || item?.name,
-                                  item?.activeStatus,
                                   item?.ex?.availableToBack?.[2]?.size,
                                   item,
                                   item?.ex?.availableToBack?.[2]?.tno
@@ -772,7 +760,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => handleModal(false)}
-          ></button>
+           />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <div

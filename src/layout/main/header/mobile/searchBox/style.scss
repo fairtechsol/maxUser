@@ -1,4 +1,4 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
 
 .search-box {
   z-index: 999;
@@ -9,7 +9,7 @@
   top: 50%;
   left: 0;
   position: absolute;
-  transition: all 1s ease; 
+  transition: all 1s ease;
 
   .form-control {
     transition: width 1s ease;
@@ -28,7 +28,7 @@
 
   &.searchIcoActive {
     .form-control {
-      width: 150px; 
+      width: 150px;
       opacity: 1;
       padding: 0 10px;
     }
@@ -39,7 +39,7 @@
 .search-input-container {
   overflow: hidden;
   transition: width 0.4s ease-in-out;
-  width: 0; 
+  width: 0;
 }
 
 .search-input-container.active {
@@ -47,11 +47,11 @@
 }
 
 .search-input-show {
-  width: 100%; 
-  transition: opacity 0.4s ease-in-out; 
+  width: 100%;
+  transition: opacity 0.4s ease-in-out;
   opacity: 0;
 }
 
 .search-input-container.active .search-input-show {
-  opacity: 1; 
+  opacity: 1;
 }

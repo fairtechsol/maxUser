@@ -277,7 +277,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                 Edit
               </div>
             </Col>
-            <div className="container d-flex justify-content-between mt-2"></div>
+            <div className="container d-flex justify-content-between mt-2" />
           </Row>
         </Container>
       </CustomModal>
@@ -298,7 +298,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShow(false)}
-          ></button>
+           />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <ButtonValues />

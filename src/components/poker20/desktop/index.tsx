@@ -7,14 +7,14 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
-import Poker20Result from "./poker20";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import PlayerTable from "./playerBox";
-import NewLoader from "../../commonComponent/newLoader";
+import Poker20Result from "./poker20";
+import "./style.scss";
 const Poker20Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
@@ -135,7 +135,7 @@ const Poker20Desktop = () => {
                   data={dragonTigerDetail}
                   playerNum={[0, 10]}
                 />
-                <div style={{ width: "10px" }}></div>
+                <div style={{ width: "10px" }} />
                 <PlayerTable
                   title={"PlayerB"}
                   odds={dragonTigerDetail?.PlayerB}

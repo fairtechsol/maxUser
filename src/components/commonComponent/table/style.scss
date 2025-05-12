@@ -1,35 +1,44 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
+
 .sortIcon {
     float: right;
     cursor: pointer;
 }
+
 .sortIconGray svg {
     color: $gray;
 }
+
 .sortIconDark svg {
     color: $blue3;
 }
+
 .paginationBtn {
     margin: 0px 10px;
     height: 37px !important;
 }
+
 .pagination {
     margin-top: 10px;
     align-items: center;
     justify-content: center;
     background-color: $white;
     width: 100%;
+
     .paginationContainer {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+
         .page-item {
             .page-link {
                 background-color: $white;
+
                 &.active {
                     background-color: $primaryBlue;
                 }
             }
+
             &.active {
                 .page-link {
                     background-color: $primaryBlue;
@@ -49,6 +58,7 @@
             .page-link {
                 font-size: 12px !important;
             }
+
             &.active {
                 .page-link {
                     background-color: $secondary !important;

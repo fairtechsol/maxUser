@@ -1,18 +1,17 @@
 // import { } from "react";
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layout/main";
-import Loadable from "../utils/loadable";
 import Cards32 from "../pages/cards32";
-import Lucky7B from "../pages/lucky7B";
 import CasinoWar from "../pages/casinoWar";
+import Cricket5 from "../pages/cricket5";
+import Lucky7B from "../pages/lucky7B";
 import Poker1day from "../pages/poker1day";
 import Poker20 from "../pages/poker20";
-import Cricket5 from "../pages/cricket5";
+import Loadable from "../utils/loadable";
 
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(() => import("../pages/home"));
 const GameDetail = Loadable(() => import("../pages/gameDetails"));
-const FootballGameDetail = Loadable(() => import("../pages/otherGameDetails"));
 
 const AccountStatement = Loadable(() => import("../pages/accountStatement"));
 const ProfitLoss = Loadable(() => import("../pages/profitLoss"));
@@ -120,10 +119,6 @@ const MainRoutes = {
     {
       path: "game-detail/:type/:id",
       element: <GameDetail />,
-    },
-    {
-      path: "other-game-detail/:type/:id",
-      element: <FootballGameDetail />,
     },
     {
       path: "race/:id",

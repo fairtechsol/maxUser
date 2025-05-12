@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 // routes
 import config from "../../config";
 import AuthRoutes from "./authRoutes";
+import ExternalRoutes from "./externalRoutes";
 import MainRoutes from "./mainRoutes";
 import OtherRoutes from "./otherRoutes";
-import ExternalRoutes from "./externalRoutes";
 // ==============================|| ROUTING RENDER ||============================== //
 
 export default function routes() {

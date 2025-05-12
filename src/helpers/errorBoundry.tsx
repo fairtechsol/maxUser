@@ -35,7 +35,7 @@ class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       return (
         <div style={styles.container}>
-            <Loader/>
+          <Loader />
           <div>
             <p style={styles.message}>
               Website is updating please try again after refreshing the page.
@@ -60,7 +60,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     justifyContent: "center",
     alignItems: "center",
     position: "fixed",
-    height:"100vh"
+    height: "100vh",
   },
 
   message: {

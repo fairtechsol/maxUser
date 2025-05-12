@@ -3,7 +3,8 @@ import { Container } from "react-bootstrap";
 import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
-import "./style.scss";
+// import "./style.scss";
+import "../../commonStyle.scss";
 interface Props {
   data: {
     C1: string;
@@ -69,8 +70,8 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
                 >
                   {" "}
                   Result
-                  {elementsAndar?.map((item: any) => (
-                    <div style={{ color: "#000" }}>
+                  {elementsAndar?.map((item: any, idx: number) => (
+                    <div style={{ color: "#000" }} key={idx}>
                       {item[0] == "1" ? "10" : item[0]}
                     </div>
                   ))}

@@ -14,7 +14,7 @@ import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
+import "../../commonStyle.scss";
 import TeenPattiTableRow from "./tableRow";
 import TeenOpenResult from "./teenCard";
 const TeenPattiDesktop = () => {
@@ -204,9 +204,8 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "40%",
-                        //border: "0.1px solid #fff"
                       }}
-                    ></div>
+                     />
                     <div
                       style={{
                         width: "60%",
@@ -219,8 +218,6 @@ const TeenPattiDesktop = () => {
                         className="teenPatti-table-itemo f12-b"
                         style={{ width: "50%" }}
                       >
-                        {/* BACK(Min: {dragonTigerDetail?.players?.player1?.min}{" "}
-                        Max: {dragonTigerDetail?.players?.player1?.max}) */}
                         Odds
                       </div>
                       <div
@@ -228,8 +225,6 @@ const TeenPattiDesktop = () => {
                         style={{ width: "50%" }}
                       >
                         Pair Plus
-                        {/* (Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min}{" "}
-                        Max: {dragonTigerDetail?.pairsPlus?.pairPlus1?.max}) */}
                       </div>
                     </div>
                   </div>

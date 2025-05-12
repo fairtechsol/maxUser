@@ -1,4 +1,5 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
+
 .place-bet-table-red {
   td {
     background-color: $red1;
@@ -32,13 +33,15 @@
   align-items: "center";
   font-size: "1.5rem";
 }
-.reset-submit-btn-container{
+
+.reset-submit-btn-container {
   // width: 40%;
   display: flex;
   // justify-content: space-around;
   align-items: center;
 }
-.reset-buttonn{
+
+.reset-buttonn {
   width: 75px;
   height: 38px;
   display: flex;
@@ -49,7 +52,8 @@
   border-radius: 3px;
   border: 0;
 }
-.submit-buttonn{
+
+.submit-buttonn {
   width: 75px;
   height: 38px;
   display: flex;

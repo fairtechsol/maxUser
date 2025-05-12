@@ -7,7 +7,7 @@ export const marqueeNotification = createAsyncThunk<any>(
   "user/notification",
   async () => {
     try {
-      const resp = await service.get(`${ApiConstants.USER.MARQUEE}`);
+      const resp = await service.get(ApiConstants.USER.MARQUEE);
       if (resp) {
         return resp?.data;
       }
@@ -21,9 +21,11 @@ export const getBannerImage = createAsyncThunk<string, any>(
   "/user/bannerImage",
   async (requestData, thunkApi) => {
     try {
-      const resp = await service.get(
-        `${ApiConstants.USER.MARQUEE}?type=banner${requestData}`
-      );
+      const resp = await service.get(ApiConstants.USER.MARQUEE, {
+        params: {
+          type: `banner${requestData}`,
+        },
+      });
       if (resp) {
         return resp?.data;
       }
@@ -36,7 +38,7 @@ export const getBannerImage = createAsyncThunk<string, any>(
 
 export const getProfile = createAsyncThunk<any>("/user/profile", async () => {
   try {
-    const resp = await service.get(`${ApiConstants.USER.GET_PROFILE}`);
+    const resp = await service.get(ApiConstants.USER.GET_PROFILE);
     if (resp) {
       return resp?.data;
     }
@@ -51,11 +53,16 @@ export const getAccountStatement = createAsyncThunk<any, any>(
   async ({ userId, page, limit, searchBy, keyword, filter }) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.USER.ACCOUNT_STATEMENT}${userId}?page=${
-          page || 1
-        }&limit=${limit || 15}&searchBy=${searchBy}&keyword=${
-          keyword || ""
-        }&sort=transaction.createdAt:DESC,transaction.uniqueId:DESC${filter}`
+        `${ApiConstants.USER.ACCOUNT_STATEMENT}${userId}?${filter}`,
+        {
+          params: {
+            page: page || 1,
+            limit: limit || 15,
+            searchBy,
+            keyword,
+            sort: "transaction.createdAt:DESC,transaction.uniqueId:DESC",
+          },
+        }
       );
       if (resp) {
         return resp?.data;
@@ -71,11 +78,16 @@ export const getCardReport = createAsyncThunk<any, any>(
   async ({ type, page, limit, searchBy, keyword, filter }) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.USER.CARD_REPORT}${type}?page=${page || 1}&limit=${
-          limit || 15
-        }&searchBy=${searchBy}&keyword=${
-          keyword || ""
-        }&sort=cardResult.createdAt:DESC${filter}`
+        `${ApiConstants.USER.CARD_REPORT}${type}?${filter}`,
+        {
+          params: {
+            page: page || 1,
+            limit: limit || 15,
+            searchBy,
+            keyword,
+            sort: "cardResult.createdAt:DESC",
+          },
+        }
       );
       if (resp) {
         return resp?.data;
@@ -91,9 +103,11 @@ export const getButtonValue = createAsyncThunk<any>(
   "user/getButtonValue",
   async () => {
     try {
-      const { data } = await service.get(
-        `${ApiConstants.USER.GET_BTN_VALUE}?type=Match`
-      );
+      const { data } = await service.get(ApiConstants.USER.GET_BTN_VALUE, {
+        params: {
+          type: "Match",
+        },
+      });
       return data[0];
     } catch (error: any) {
       const err = error as AxiosError;
@@ -105,9 +119,11 @@ export const getCasinoButtonValue = createAsyncThunk<any>(
   "user/getCasinoButtonValue",
   async () => {
     try {
-      const { data } = await service.get(
-        `${ApiConstants.USER.GET_BTN_VALUE}?type=Casino`
-      );
+      const { data } = await service.get(ApiConstants.USER.GET_BTN_VALUE, {
+        params: {
+          type: "Casino",
+        },
+      });
       return data[0];
     } catch (error: any) {
       const err = error as AxiosError;
@@ -120,7 +136,7 @@ export const setButtonValue = createAsyncThunk<any, any>(
   async (requestData) => {
     try {
       const resp = await service.post(
-        `${ApiConstants.USER.SET_BTN_VALUE}`,
+        ApiConstants.USER.SET_BTN_VALUE,
         requestData
       );
       if (resp) {
@@ -142,7 +158,7 @@ export const getProfileInMatchDetail = createAsyncThunk<any>(
   "/user/profileInMatchDetail",
   async (_, thunkApi) => {
     try {
-      const resp = await service.get(`${ApiConstants.USER.GET_PROFILE}`);
+      const resp = await service.get(ApiConstants.USER.GET_PROFILE);
       if (resp) {
         return resp?.data;
       }
@@ -192,6 +208,12 @@ export const getLiveCasinoBets = createAsyncThunk<any, any>(
 );
 export const updateBalance = createAsyncThunk<any, any>(
   "/user/balance",
+  async (balance) => {
+    return balance;
+  }
+);
+export const updateTeamRateOnUndeclare = createAsyncThunk<any, any>(
+  "/user/updateTeamRateOnUndeclare",
   async (balance) => {
     return balance;
   }
@@ -250,12 +272,6 @@ export const updateTeamRatesOnDeleteMatch = createAsyncThunk<any, any>(
     return data;
   }
 );
-export const updateTeamRatesOnDeleteMatchOther = createAsyncThunk<any, any>(
-  "/user/profitLoss/deleteMatchBetsOther",
-  async (data) => {
-    return data;
-  }
-);
 
 export const updateDeleteReasonBet = createAsyncThunk<any, any>(
   "/deleteReason/bets",
@@ -290,14 +306,6 @@ export const updateBalanceFromSocket = createAsyncThunk<any, any>(
     return data;
   }
 );
-
-export const updateMatchRatesOnMarketUndeclare = createAsyncThunk<any, any>(
-  "/teamRates/marketUndeclare",
-  async (data) => {
-    return data;
-  }
-);
-
 export const changePasswordReset = createAction("changePassword/reset");
 export const profileReset = createAction("profile/reset");
 export const updateReset = createAction("update/reset");

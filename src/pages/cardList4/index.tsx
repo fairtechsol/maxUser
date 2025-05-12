@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 import DesktopMatchList from "../../components/home/matchList/desktop";
 import SportsFilters from "../../components/home/sportsFilters";
 import {
@@ -10,8 +11,7 @@ import {
 } from "../../socketManager";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
-import {isMobile} from "../../utils/screenDimension";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
+import { isMobile } from "../../utils/screenDimension";
 
 const CardList4 = () => {
   const { loading } = useSelector((state: RootState) => state.match.matchList);
@@ -46,9 +46,7 @@ const CardList4 = () => {
 
   useEffect(() => {
     if (type) {
-      // setTimeout(() => {       
-        dispatch(getMatchList({ matchType: type }));
-      // }, 500);
+      dispatch(getMatchList({ matchType: type }));
     }
   }, [type]);
 

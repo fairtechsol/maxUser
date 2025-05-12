@@ -1,17 +1,16 @@
-import { useState, useEffect } from "react";
+import moment from "moment";
+import { useEffect, useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
-import {isMobile} from "../../utils/screenDimension";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfitLossReport } from "../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../store/store";
+import { isMobile } from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
-import { getProfitLossReport } from "../../store/actions/match/matchListAction";
-import { useSelector } from "react-redux";
-import moment from "moment";
 
 const typeToTitle: { [key: string]: string } = {
   dt20: "20-20 DRAGON TIGER",
@@ -64,7 +63,6 @@ const ProfitLossComponent = () => {
     (state: RootState) => state.currentBetList
   );
 
-  // const formattedToDate = toDate.toLocaleDateString('en-GB');
   const handleSubmit = () => {
     try {
       if (getProfile?.id) {
@@ -85,8 +83,6 @@ const ProfitLossComponent = () => {
 
   useEffect(() => {
     if (getProfile?.id && tableConfig) {
-    
-  
       dispatch(
         getProfitLossReport({
           userId: getProfile?.id,
@@ -98,9 +94,7 @@ const ProfitLossComponent = () => {
       );
     }
   }, [getProfile?.id, tableConfig, fromDate, toDate]);
-  
 
-  
   useEffect(() => {
     const date = Math.floor(new Date().getTime() / 1000);
     const timestamp = Math.floor(new Date(fromDate).getTime() / 1000);
@@ -109,7 +103,7 @@ const ProfitLossComponent = () => {
     }
   }, [fromDate]);
 
-    return (
+  return (
     <>
       {isMobile && (
         <div className="h-100">
@@ -127,7 +121,6 @@ const ProfitLossComponent = () => {
                     minDate={minDate}
                     maxDate={new Date()}
                   />
-                  {/* <CustomInput type="date" /> */}
                 </Col>
                 <Col md={2} xs={6}>
                   <DatePicker
@@ -140,7 +133,6 @@ const ProfitLossComponent = () => {
                     minDate={minDate2}
                     maxDate={new Date()}
                   />
-                  {/* <CustomInput type="date" /> */}
                 </Col>
 
                 <Col md={2} xs={12}>
@@ -184,7 +176,10 @@ const ProfitLossComponent = () => {
                   profitLossReport?.result?.map((item: any, index: number) => {
                     return (
                       <tr className={`${isMobile && "title-12"}`} key={index}>
-                        <td> {typeToTitle[item?.eventType] || item?.eventType}</td>
+                        <td>
+                          {" "}
+                          {typeToTitle[item?.eventType] || item?.eventType}
+                        </td>
                         <td>{item?.marketType}</td>
                         <td>{item?.aggregateAmount}</td>
                       </tr>
@@ -210,7 +205,6 @@ const ProfitLossComponent = () => {
                     minDate={minDate}
                     maxDate={new Date()}
                   />
-                  {/* <CustomInput type="date" /> */}
                 </Col>
                 <Col md={2} xs={6}>
                   <DatePicker
@@ -222,9 +216,7 @@ const ProfitLossComponent = () => {
                     minDate={minDate2}
                     maxDate={new Date()}
                   />
-                  {/* <CustomInput type="date" /> */}
                 </Col>
-
                 <Col md={2} xs={12}>
                   <CustomButton
                     onClick={handleSubmit}

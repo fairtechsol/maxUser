@@ -7,12 +7,14 @@ export const getMatchList = createAsyncThunk<any, any>(
   "/match/list",
   async ({ type, searchKeyword, matchType }, thunkApi) => {
     try {
-      const resp = await service.get(
-        `${ApiConstants.MATCH.MATCHLIST}?sort=match.startAt:ASC${type == "search"
-          ? `&searchBy=title&keyword=${searchKeyword || ""}`
-          : ""
-        }${matchType ? `&match.matchType=${matchType}` : ""}`
-      );
+      const resp = await service.get(ApiConstants.MATCH.MATCHLIST, {
+        params: {
+          sort: "match.startAt:ASC",
+          searchBy: "title",
+          keyword: searchKeyword,
+          "match.matchType": matchType,
+        },
+      });
       if (resp) {
         return { data: resp?.data?.matches, type: type };
       }
@@ -27,7 +29,7 @@ export const getTabList = createAsyncThunk<any, any>(
   "/tab/list",
   async ({ }, thunkApi) => {
     try {
-      const resp = await service.get(`${ApiConstants.MATCH.TABLIST}`);
+      const resp = await service.get(ApiConstants.MATCH.TABLIST);
       if (resp) {
         return { data: resp?.data };
       }
@@ -57,10 +59,12 @@ export const SearchList = createAsyncThunk<any, any>(
   "/match/searchlist",
   async (requestData, thunkApi) => {
     try {
-      const resp = await service.get(
-        `${ApiConstants.MATCH.MATCHLIST}?searchBy=title&keyword=${requestData?.title ? requestData?.title : ""
-        }`
-      );
+      const resp = await service.get(ApiConstants.MATCH.MATCHLIST, {
+        params: {
+          searchBy: "title",
+          keyword: requestData?.title,
+        },
+      });
       if (resp) {
         return resp?.data?.matches;
       }
@@ -95,7 +99,7 @@ export const setButtonValue = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.post(
-        `${ApiConstants.USER.SET_BTN_VALUE}`,
+        ApiConstants.USER.SET_BTN_VALUE,
         requestData
       );
       if (resp) {
@@ -138,10 +142,15 @@ export const betReportList = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.CURRENTBET}?status=${requestData.status
-        }&betPlaced.eventType=${requestData?.matchType}&keyword=${requestData?.keyword || ""
-        }${requestData?.filter || ""}&page=${requestData.page || 1}&limit=${requestData.limit || 10
-        }`
+        `${ApiConstants.MATCH.CURRENTBET}?${requestData?.filter || ""}`,
+        {
+          params: {
+            status: requestData.status,
+            "betPlaced.eventType": requestData?.matchType,
+            page: requestData.page || 1,
+            limit: requestData.limit || 10,
+          },
+        }
       );
       if (resp?.data) {
         return resp?.data;
@@ -157,7 +166,7 @@ export const getProfitLossReport = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.post(
-        `${ApiConstants.MATCH.PROFIT_LOSS_REPORT}`,
+        ApiConstants.MATCH.PROFIT_LOSS_REPORT,
         requestData
       );
       if (resp?.data) {
@@ -250,6 +259,8 @@ export const updateMatchRatesFromApiOnList = createAsyncThunk<any, any>(
 export const searchListReset = createAction("search/list");
 export const matchListReset = createAction("matchList/reset");
 export const resetDataUnsettledMatch = createAction("dataUnsettledMatch/reset");
-export const resetReportBetListData = createAction("resetReportBetListData/reset");
+export const resetReportBetListData = createAction(
+  "resetReportBetListData/reset"
+);
 export const resetMarketId = createAction("marketId/reset");
 export const matchDetailReset = createAction("matchDetail/reset");

@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { updateBalanceOnBetPlaceCards } from "../../actions/cards/cardDetail";
+import { updateBalanceOnHorseBetPlace } from "../../actions/horseRacing/horseMatchDetailActions";
+import { updateUserBalanceOnPlaceBet } from "../../actions/otherMatchActions";
 import {
   getAccountStatement,
   getBannerImage,
@@ -14,9 +17,6 @@ import {
   updateBalanceOnSessionBet,
   updateBalanceOnSessionResult,
 } from "../../actions/user/userAction";
-import { updateUserBalanceOnPlaceBet } from "../../actions/otherMatchActions";
-import { updateBalanceOnHorseBetPlace } from "../../actions/horseRacing/horseMatchDetailActions";
-import { updateBalanceOnBetPlaceCards } from "../../actions/cards/cardDetail";
 
 interface InitialState {
   transactionPassword: string;
@@ -68,7 +68,7 @@ const profileSlice = createSlice({
       })
       .addCase(marqueeNotification.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getBannerImage.pending, (state) => {
         state.loading = true;
@@ -84,7 +84,7 @@ const profileSlice = createSlice({
       })
       .addCase(getBannerImage.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getProfile.pending, (state) => {
         state.loading = true;
@@ -98,7 +98,7 @@ const profileSlice = createSlice({
       })
       .addCase(getProfile.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getAccountStatement.pending, (state) => {
         state.loading = true;
@@ -112,7 +112,7 @@ const profileSlice = createSlice({
       })
       .addCase(getAccountStatement.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getButtonValue.pending, (state) => {
         state.loading = true;
@@ -126,7 +126,7 @@ const profileSlice = createSlice({
       })
       .addCase(getButtonValue.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getCasinoButtonValue.pending, (state) => {
         state.loading = true;
@@ -140,7 +140,7 @@ const profileSlice = createSlice({
       })
       .addCase(getCasinoButtonValue.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(setButtonValue.pending, (state) => {
         state.loading = true;
@@ -163,7 +163,7 @@ const profileSlice = createSlice({
       })
       .addCase(setButtonValue.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(getProfileInMatchDetail.pending, (state) => {
         state.loading = true;
@@ -177,85 +177,88 @@ const profileSlice = createSlice({
       })
       .addCase(getProfileInMatchDetail.rejected, (state, action) => {
         state.loading = false;
-        state.error = action?.error?.message;
+        state.error = action.error?.message;
       })
       .addCase(updateBalance.fulfilled, (state, action) => {
+        const { newUserExposure, exposure } = action.payload;
         state.getProfile = {
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure:
-              action.payload?.newUserExposure ?? action.payload?.exposure,
+            exposure: newUserExposure ?? exposure,
           },
         };
       })
       .addCase(updateBalanceOnHorseBetPlace.fulfilled, (state, action) => {
+        const { newUserExposure, exposure } = action.payload;
         state.getProfile = {
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure:
-              action.payload?.newUserExposure ?? action.payload?.exposure,
+            exposure: newUserExposure ?? exposure,
           },
         };
       })
       .addCase(updateUserBalanceOnPlaceBet.fulfilled, (state, action) => {
+        const { newUserExposure, exposure } = action.payload;
         state.getProfile = {
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure:
-              action.payload?.newUserExposure ?? action.payload?.exposure,
+            exposure: newUserExposure ?? exposure,
           },
         };
       })
       .addCase(updateBalanceOnSessionBet.fulfilled, (state, action) => {
+        const { newUserExposure, exposure } = action.payload;
         state.getProfile = {
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure:
-              action.payload?.newUserExposure ?? action.payload?.exposure,
+            exposure: newUserExposure ?? exposure,
           },
         };
       })
       .addCase(updateBalanceOnSessionResult.fulfilled, (state, action) => {
+        const { exposure, currentBalance } = action.payload;
         state.getProfile = {
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload?.exposure,
-            currentBalance: action.payload?.currentBalance,
+            exposure: exposure,
+            currentBalance: currentBalance,
           },
         };
       })
       .addCase(updateBalanceOnBetDelete.fulfilled, (state, action) => {
+        const { exposure, currentBalance } = action.payload;
         state.getProfile = {
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload?.exposure,
-            currentBalance: action.payload?.currentBalance,
+            exposure: exposure,
+            currentBalance: currentBalance,
           },
         };
       })
       .addCase(updateBalanceFromSocket.fulfilled, (state, action) => {
+        const { currentBalance, profitLoss } = action.payload;
         state.getProfile = {
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            currentBalance: action.payload?.currentBalance,
-            profitLoss: action.payload?.profitLoss,
+            currentBalance: currentBalance,
+            profitLoss: profitLoss,
           },
         };
       })
       .addCase(updateBalanceOnBetPlaceCards.fulfilled, (state, action) => {
+        const { newUserExposure, exposure } = action.payload;
         state.getProfile = {
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure:
-              action.payload?.newUserExposure ?? action.payload?.exposure,
+            exposure: newUserExposure ?? exposure,
           },
         };
       });

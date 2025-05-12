@@ -15,9 +15,7 @@ interface SeperateMACGamesInterface {
 const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
   const dispatch: AppDispatch = useDispatch();
   const { liveCasinoGame } = useSelector((state: RootState) => state.card);
-
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
-
   const [game, setGame] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isShow, setIsShow] = useState(false);
@@ -28,14 +26,14 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
       firstArr =
         import.meta.env.VITE_NODE_ENV == "production"
           ? liveCasinoGameList.filter(
-              (item: any) =>
-                item.game_id === "151027" || item.game_id === "151067"
-            )
+            (item: any) =>
+              item.game_id === "151027" || item.game_id === "151067"
+          )
           : mac88ListJSON.filter(
-              (item: any) =>
-                item.game_name === "AVIATORX" ||
-                item.game_name === "Aviator Blue"
-            );
+            (item: any) =>
+              item.game_name === "AVIATORX" ||
+              item.game_name === "Aviator Blue"
+          );
     } else {
       firstArr = (import.meta.env.VITE_NODE_ENV == "production"
         ? liveCasinoGameList
@@ -140,8 +138,8 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
                       {parseInt(getProfile?.userBal?.exposure) === 0
                         ? 0
                         : -parseFloat(
-                            getProfile?.userBal?.exposure || 0
-                          ).toFixed(2)}
+                          getProfile?.userBal?.exposure || 0
+                        ).toFixed(2)}
                     </b>
                   </span>
                 </div>
@@ -150,7 +148,6 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">
-          {" "}
           <div className="w-100 h-100">
             <iframe
               src={liveCasinoGame?.url}
@@ -158,7 +155,7 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
               referrerPolicy={"strict-origin-when-cross-origin"}
               width={"100%"}
               height={"100%"}
-            ></iframe>
+             />
           </div>
         </Modal.Body>
       </Modal>

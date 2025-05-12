@@ -11,9 +11,9 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Poker6Result from "../desktop/poker6Card";
 import TiePairBox from "./TiePairBox";
-import "./style.scss";
 
 const Poker6Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);

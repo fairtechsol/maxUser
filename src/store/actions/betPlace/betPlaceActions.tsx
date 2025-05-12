@@ -7,7 +7,7 @@ export const placeBet = createAsyncThunk<any, any>(
   "/placeBet",
   async (requestData, thunkApi) => {
     try {
-      const resp = await service.post(`${requestData.url}`, requestData.data);
+      const resp = await service.post(requestData.url, requestData.data);
       if (resp) {
         return resp?.data;
       }
@@ -22,12 +22,13 @@ export const getPlacedBets = createAsyncThunk<any, any>(
   "placed/bet",
   async (id, thunkApi) => {
     try {
-      const resp = await service.get(
-        `${ApiConstants.BET.GETPLACEDBETS}?result=inArr${JSON.stringify([
-          "PENDING",
-          "UNDECLARE",
-        ])}&betPlaced.matchId=${id}&sort=betPlaced.createdAt:DESC`
-      );
+      const resp = await service.get(ApiConstants.BET.GETPLACEDBETS, {
+        params: {
+          result: `inArr${JSON.stringify(["PENDING", "UNDECLARE"])}`,
+          "betPlaced.matchId": id,
+          sort: "betPlaced.createdAt:DESC",
+        },
+      });
       if (resp) {
         return resp?.data?.rows;
       }
@@ -115,7 +116,7 @@ export const getMyMarket = createAsyncThunk<any>(
   "/myMarket",
   async (_, thunkApi) => {
     try {
-      const resp = await service.get(`${ApiConstants.BET.MY_MARKET}`);
+      const resp = await service.get(ApiConstants.BET.MY_MARKET);
       if (resp) {
         return resp?.data;
       }

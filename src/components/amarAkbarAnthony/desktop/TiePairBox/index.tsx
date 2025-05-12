@@ -5,7 +5,6 @@ import PlayerButton from "../PlayerButton";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
-
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type,
@@ -17,8 +16,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -44,7 +43,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       console.log(error);
     }
   };
-  
+
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">

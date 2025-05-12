@@ -1,13 +1,12 @@
+import { useState } from "react";
 import { Modal } from "react-bootstrap";
-import "./style.scss";
-import { isMobile } from "../../../utils/screenDimension";
 import { FaSync } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { getMyMarket } from "../../../store/actions/betPlace/betPlaceActions";
 import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
+import { isMobile } from "../../../utils/screenDimension";
 import Loader from "../loader";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import "./style.scss";
 
 function CustomModal({
   show,
@@ -113,7 +112,7 @@ function CustomModal({
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShow(false)}
-          ></button>
+           />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 rounded-0">{children}</Modal.Body>
         {title === "Rules" && (

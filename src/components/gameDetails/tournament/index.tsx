@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { calculateRequiredStack, dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
+import {
+  calculateRequiredStack,
+  dummyArray,
+  formatNumber,
+  manualProfitLoss,
+} from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
@@ -26,7 +31,6 @@ const Tournament = ({ title, box, data, detail }) => {
     if (odds === 0) {
       return false;
     }
-    // alert(odds)
     let team = {
       betOnTeam: runner?.nat,
       rate: odds,
@@ -45,7 +49,6 @@ const Tournament = ({ title, box, data, detail }) => {
       min: data?.minBet,
       max: data?.maxBet,
     };
-
     dispatch(
       selectedBetAction({
         team,
@@ -54,152 +57,172 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
-  const
-    handleCashoutBet = () => {
-      const [teamAId, teamBId] = data?.runners?.map(team => team.parentRunnerId || team.id);
+  const handleCashoutBet = () => {
+    const [teamAId, teamBId] = data?.runners?.map(
+      (team) => team.parentRunnerId || team.id
+    );
 
-      const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
-      const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
-      if (profitA === profitB) {
-        toast.error("You are not eligible for cashout!", {
-          style: { backgroundColor: "#ffffff", color: "#000000" },
-        });
-        return;
-      }
-      // profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
-      const getBackAndLayRates = (team) => {
-        const back1 = team?.ex?.availableToBack?.find(item => item.oname === "back1")?.price || 0;
-        const lay1 = team?.ex?.availableToLay?.find(item => item.oname === "lay1")?.price || 0;
+    const profitA = Math.round(profitLossObj?.[teamAId] ?? 0);
+    const profitB = Math.round(profitLossObj?.[teamBId] ?? 0);
+    if (profitA === profitB) {
+      showCashoutError();
+      return;
+    }
+    // profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+    const getBackAndLayRates = (team) => {
+      const back1 =
+        team?.ex?.availableToBack?.find((item) => item.oname === "back1")
+          ?.price || 0;
+      const lay1 =
+        team?.ex?.availableToLay?.find((item) => item.oname === "lay1")
+          ?.price || 0;
 
-        return {
-          id: team?.id,
-          selectionId: team?.selectionId,
-          teamName: team?.nat || team?.runnerName,
-          back1,
-          lay1,
-          back1Price: data?.gtype === "match" ? (back1 - 1) * 100 : back1,
-          lay1Price: data?.gtype === "match" ? (lay1 - 1) * 100 : lay1,
-        };
+      return {
+        id: team?.id,
+        selectionId: team?.selectionId,
+        teamName: team?.nat || team?.runnerName,
+        back1,
+        lay1,
+        back1Price: data?.gtype === "match" ? (back1 - 1) * 100 : back1,
+        lay1Price: data?.gtype === "match" ? (lay1 - 1) * 100 : lay1,
       };
-
-      // Get back1 & lay1 values for Team A & Team B
-      const teamA = getBackAndLayRates(data?.runners[0]);
-      const teamB = getBackAndLayRates(data?.runners[1]);
-
-      let runner: any = {};
-      let odds = 0;
-      let type = "";
-      let stake = 0;
-
-      const getKeyByValue = (obj, value) => Object.keys(obj).find(key => obj[key] === value);
-
-      if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
-        odds = profitA < profitB ? teamA.back1 : teamA.lay1
-        const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamA.back1Price : teamA.lay1Price;
-
-        stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
-        runner = teamA;
-        const key = getKeyByValue(teamA, odds);
-        type = key === "lay1" ? "lay" : "back";
-
-      } else {
-        odds = profitA < profitB ? teamB.lay1 : teamB.back1
-        const perc = profitLossObj?.[teamAId] < profitLossObj?.[teamBId] ? teamB.lay1Price : teamB.back1Price;
-        stake = Math.abs(calculateRequiredStack(profitLossObj?.[teamAId], profitLossObj?.[teamBId], perc));
-        runner = teamB;
-        const key = getKeyByValue(teamB, odds);
-        type = key === "lay1" ? "lay" : "back";
-      }
-      if (odds < 1) {
-        toast.error("You are not eligible for cashout!", {
-          style: { backgroundColor: "#ffffff", color: "#000000" },
-        });
-        return;
-      }
-      if (!isFinite(stake) || stake <= 0) {
-        toast.error("You are not eligible for cashout!", {
-          style: { backgroundColor: "#ffffff", color: "#000000" },
-        });
-        return;
-      }
-
-      const [teamAStatus, teamBStatus] = data?.runners?.map(team => team.status);
-      if (teamAStatus == "SUSPENDED" || teamBStatus == "SUSPENDED") {
-        toast.error("You are not eligible for cashout!", {
-          style: { backgroundColor: "#ffffff", color: "#000000" },
-        });
-        return;
-      }
-
-      let team = {
-        betOnTeam: runner?.teamName,
-        rate: odds,
-        type: type,
-        stake: stake,
-        betId: data?.id,
-        parentBetId: data?.parentBetId,
-        eventType: data?.gtype,
-        matchId: detail?.id,
-        matchBetType: "tournament",
-        placeIndex: 0,
-        mid: data?.mid?.toString(),
-        selectionId: runner?.selectionId?.toString(),
-        runnerId: runner?.id?.toString(),
-        runners: data,
-        min: data?.minBet,
-        max: data?.maxBet,
-      };
-      dispatch(
-        selectedBetAction({
-          team,
-          data,
-        })
-      );
     };
+
+    // Get back1 & lay1 values for Team A & Team B
+    const teamA = getBackAndLayRates(data?.runners[0]);
+    const teamB = getBackAndLayRates(data?.runners[1]);
+
+    let runner: any = {};
+    let odds = 0;
+    let type = "";
+    let stake = 0;
+
+    const getKeyByValue = (obj, value) =>
+      Object.keys(obj).find((key) => obj[key] === value);
+
+    if (teamA.back1Price < 100 && teamA.lay1Price < 100) {
+      odds = profitA < profitB ? teamA.back1 : teamA.lay1;
+      const perc =
+        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+          ? teamA.back1Price
+          : teamA.lay1Price;
+
+      stake = Math.abs(
+        calculateRequiredStack(
+          profitLossObj?.[teamAId],
+          profitLossObj?.[teamBId],
+          perc
+        )
+      );
+      runner = teamA;
+      const key = getKeyByValue(teamA, odds);
+      type = key === "lay1" ? "lay" : "back";
+    } else {
+      odds = profitA < profitB ? teamB.lay1 : teamB.back1;
+      const perc =
+        profitLossObj?.[teamAId] < profitLossObj?.[teamBId]
+          ? teamB.lay1Price
+          : teamB.back1Price;
+      stake = Math.abs(
+        calculateRequiredStack(
+          profitLossObj?.[teamAId],
+          profitLossObj?.[teamBId],
+          perc
+        )
+      );
+      runner = teamB;
+      const key = getKeyByValue(teamB, odds);
+      type = key === "lay1" ? "lay" : "back";
+    }
+
+    if (odds < 1 || !isFinite(stake) || stake <= 0) {
+      showCashoutError();
+      return;
+    }
+
+    const [teamAStatus, teamBStatus] = data?.runners?.map(
+      (team) => team.status
+    );
+    if (teamAStatus == "SUSPENDED" || teamBStatus == "SUSPENDED") {
+      showCashoutError();
+      return;
+    }
+
+    let team = {
+      betOnTeam: runner?.teamName,
+      rate: odds,
+      type: type,
+      stake: stake,
+      betId: data?.id,
+      parentBetId: data?.parentBetId,
+      eventType: data?.gtype,
+      matchId: detail?.id,
+      matchBetType: "tournament",
+      placeIndex: 0,
+      mid: data?.mid?.toString(),
+      selectionId: runner?.selectionId?.toString(),
+      runnerId: runner?.id?.toString(),
+      runners: data,
+      min: data?.minBet,
+      max: data?.maxBet,
+    };
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+  };
+
+  const showCashoutError = () => {
+    toast.error("You are not eligible for cashout!", {
+      style: { backgroundColor: "#ffffff", color: "#000000" },
+    });
+  };
 
   const key = `${data.parentBetId || data.id}_profitLoss_${detail.id}`;
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
   const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
+
   return (
     <>
       <div className="tournamentContainer">
         <div className="tournamentTitleNew">
           <span
-            className={`tournamentTitleTxt ${isMobile ? "f-size13" : "f-size15"
-              }`}
+            className={`tournamentTitleTxt ${
+              isMobile ? "f-size13" : "f-size15"
+            }`}
           >
             {title}
           </span>
           {data?.runners?.length === 2 && (
             <button
-              // disabled={
-              //   selectedBet?.team?.stake == 0 ? true : false
-              // }
-              disabled={
-                Object.keys(profitLossObj).length <= 0 ? true : false
-              }
+              disabled={Object.keys(profitLossObj).length <= 0 ? true : false}
               className="submit-buttonn cursor-pointer"
               onClick={handleCashoutBet}
               style={{
                 backgroundColor:
-                  selectedBet?.team?.stake == 0
-                    ? "#198754"
-                    : "#086f3f",
+                  selectedBet?.team?.stake == 0 ? "#198754" : "#086f3f",
                 fontSize: isMobile ? "13px" : "14px",
                 padding: "0.25rem 0.5rem",
                 borderRadius: 0,
                 height: "auto",
-                // opacity: Object.keys(profitLossObj).length <= 0 || data?.id == selectedBet?.data.id ? 0.65 : 1
-                opacity: Object.keys(profitLossObj).length <= 0 ? 0.65 : data?.id == selectedBet?.data.id ? 0.85 : 1,
-                boxShadow: data?.id == selectedBet?.data.id ? "0 0 0 0.25rem rgba(60,153,110,0.5)" : "none",
+                opacity:
+                  Object.keys(profitLossObj).length <= 0
+                    ? 0.65
+                    : data?.id == selectedBet?.data?.id
+                    ? 0.85
+                    : 1,
+                boxShadow:
+                  data?.id == selectedBet?.data?.id
+                    ? "0 0 0 0.25rem rgba(60,153,110,0.5)"
+                    : "none",
               }}
             >
               Cashout
             </button>
           )}
-
-          {/* { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>} */}
         </div>
 
         <div className="tournamentBackLayTab">
@@ -208,8 +231,8 @@ const Tournament = ({ title, box, data, detail }) => {
               {data?.minBet === data?.maxBet
                 ? `Max:${formatNumber(data?.maxBet)}`
                 : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
-                  data?.maxBet
-                )}`}
+                    data?.maxBet
+                  )}`}
             </span>
           </div>
           <div
@@ -233,31 +256,32 @@ const Tournament = ({ title, box, data, detail }) => {
             >
               <span className={`f-size16 tournamentBackTxt`}>Lay</span>
             </div>
-            {box === 6 && <div className="tournamentEmptyBox"></div>}
+            {box === 6 && <div className="tournamentEmptyBox" />}
           </div>
         </div>
         {(!data?.isActive ||
           (!["ACTIVE", "OPEN", ""].includes(data?.status) &&
             data?.gtype == "match")) && (
-            <div
-              className={`outer-suspended-overlayRatestournament ${box === 6 ? "rateBoxWidth" : "rateBoxWidth2"
-                }`}
-              style={{
-                height: `${data?.runners?.length * 45}px`,
-                bottom: data?.rem ? "20px" : "0px",
-              }}
+          <div
+            className={`outer-suspended-overlayRatestournament ${
+              box === 6 ? "rateBoxWidth" : "rateBoxWidth2"
+            }`}
+            style={{
+              height: `${data?.runners?.length * 45}px`,
+              bottom: data?.rem ? "20px" : "0px",
+            }}
+          >
+            <span
+              className={`suspendTextCmmn`}
+              style={{ textTransform: "uppercase" }}
             >
-              <span
-                className={`suspendTextCmmn`}
-                style={{ textTransform: "uppercase" }}
-              >
-                {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
-                  data?.gtype == "match"
-                  ? data?.status
-                  : ""}
-              </span>
-            </div>
-          )}
+              {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
+              data?.gtype == "match"
+                ? data?.status
+                : ""}
+            </span>
+          </div>
+        )}
         {data?.runners?.length > 0 &&
           data?.runners?.map((item: any, index: any) => {
             return (
@@ -265,105 +289,70 @@ const Tournament = ({ title, box, data, detail }) => {
                 <div
                   className="tournamentTeam"
                   style={isMobile && box === 6 ? { width: "28%" } : {}}
-                // style={box === 6 ? { width: "28%" } : {}}
                 >
                   <span className={`teamFont tournamentTeamTxt`}>
                     {item?.nat || item?.runnerName}
                   </span>
                   <div className="d-flex flex-row justify-content-between w-100">
-                    {/* <span
-                      className={`${parseFloat(
-                        profitLossObj?.[item.parentRunnerId || item.id]
-                      ) +
-                        manualProfitLoss(
-                          selectedBet,
-                          item?.nat || item?.runnerName,
-                          data?.type,
-                          data?.gtype
-                        ) >
-                        0
-                        ? "color-green"
-                        : "color-red"
-                        } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-                    >
-                      {profitLossObj?.[item.parentRunnerId || item.id]
-                        ? selectedBet?.team?.betId ===
-                          (data.parentBetId || data?.id)
-                          ? (parseFloat(
-                            (profitLossObj?.[item.parentRunnerId || item.id])
-                          ) +
-                            manualProfitLoss(
-                              selectedBet,
-                              item?.nat || item?.runnerName,
-                              data?.type,
-                              data?.gtype
-                            )).toFixed(2)
-                          : profitLossObj?.[item.parentRunnerId || item.id]
-                        : ""}
-                    </span> */}
                     <span
-                      className={`${parseFloat(
-                        profitLossObj?.[item.parentRunnerId || item.id]
-                      ) >
-                        0
-                        ? "color-green"
-                        : "color-red"
-                        } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                      className={`${
+                        parseFloat(
+                          profitLossObj?.[item?.parentRunnerId || item?.id]
+                        ) > 0
+                          ? "color-green"
+                          : "color-red"
+                      } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
-                      {profitLossObj?.[item.parentRunnerId || item.id]
-                        ? selectedBet?.team?.parentBetId ===
-                          (data.parentBetId || data?.id)
-                          ? parseFloat(
-                            (profitLossObj?.[item.parentRunnerId || item.id])
-                          )
-                          : profitLossObj?.[item.parentRunnerId || item.id]
-                        : ""}
+                      {profitLossObj?.[item?.parentRunnerId || item?.id] || ""}
                     </span>
-                    {selectedBet?.team?.parentBetId || selectedBet?.team?.betId ===
+                    {selectedBet?.team?.parentBetId ||
+                    selectedBet?.team?.betId ===
                       (data.parentBetId || data?.id) ? (
                       <span
                         className="title-12 f-400"
                         style={{
-                          color:
-                            (parseFloat(
-                              (profitLossObj?.[item.parentRunnerId || item.id])
-                            ) + manualProfitLoss(
+                          color: (() => {
+                            const basePL = parseFloat(
+                              profitLossObj?.[
+                                item?.parentRunnerId || item?.id
+                              ] || 0
+                            );
+                            const manualPL = manualProfitLoss(
                               selectedBet,
                               item?.nat || item?.runnerName,
                               data?.type,
                               data?.gtype
-                            )) > 0
+                            );
+                            return basePL + manualPL > 0
                               ? "#086f3f"
-                              : "#bd1828",
+                              : "#bd1828";
+                          })(),
                         }}
                       >
-                        {/* {manualProfitLoss(
-                          selectedBet,
-                          item?.nat || item?.runnerName,
-                          data?.type,
-                          data?.gtype
-                        ) === 0
-                          ? ""
-                          : manualProfitLoss(
+                        {(() => {
+                          const betKey = item.parentRunnerId || item.id;
+                          const basePL = parseFloat(
+                            profitLossObj?.[betKey] || 0
+                          );
+                          const manualPL = manualProfitLoss(
                             selectedBet,
                             item?.nat || item?.runnerName,
                             data?.type,
                             data?.gtype
-                          )} */}
-                        {profitLossObj?.[item.parentRunnerId || item.id]
-                          ? selectedBet?.team?.betId ===
-                            (data.parentBetId || data?.id)
-                            ? (parseFloat(
-                              (profitLossObj?.[item.parentRunnerId || item.id])
-                            ) +
-                              manualProfitLoss(
-                                selectedBet,
-                                item?.nat || item?.runnerName,
-                                data?.type,
-                                data?.gtype
-                              )).toFixed(2)
-                            : profitLossObj?.[item.parentRunnerId || item.id]
-                          : ""}
+                          );
+
+                          const isSelected =
+                            selectedBet?.team?.betId ===
+                            (data.parentBetId || data?.id);
+
+                          if (profitLossObj?.[betKey]) {
+                            return isSelected
+                              ? (basePL + manualPL).toFixed(2)
+                              : basePL.toFixed(2);
+                          } else {
+                            return manualPL === 0 ? "" : manualPL.toFixed(2);
+                          }
+                        })()}
                       </span>
                     ) : (
                       ""
@@ -379,29 +368,30 @@ const Tournament = ({ title, box, data, detail }) => {
                   }
                 >
                   {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
-                    data?.gtype == "match"
+                  data?.gtype == "match"
                     ? ""
                     : item?.status !== "ACTIVE" &&
-                    item?.status !== "OPEN" &&
-                    item?.status !== "" && (
-                      <div className="suspended-overlayRatestournament">
-                        <span
-                          className={`suspendTextCmmn`}
-                          style={{ textTransform: "uppercase" }}
-                        >
-                          {item?.status}
-                        </span>
-                      </div>
-                    )}
+                      item?.status !== "OPEN" &&
+                      item?.status !== "" && (
+                        <div className="suspended-overlayRatestournament">
+                          <span
+                            className={`suspendTextCmmn`}
+                            style={{ textTransform: "uppercase" }}
+                          >
+                            {item?.status}
+                          </span>
+                        </div>
+                      )}
                   {box === 6 ? (
                     <>
                       {(item?.ex?.availableToBack?.length > 0
                         ? item?.ex?.availableToBack
                         : dummyArray
-                      )?.map((item2: any) => {
+                      )?.map((item2: any, index: number) => {
                         return (
                           <BetBox
                             data={item2}
+                            key={index}
                             type={"back"}
                             detail={detail}
                             runner={item}
@@ -412,10 +402,11 @@ const Tournament = ({ title, box, data, detail }) => {
                       {(item?.ex?.availableToLay?.length > 0
                         ? item?.ex?.availableToLay
                         : dummyArray
-                      )?.map((item2: any) => {
+                      )?.map((item2: any, index: number) => {
                         return (
                           <BetBox
                             data={item2}
+                            key={index}
                             type={"lay"}
                             detail={detail}
                             runner={item}

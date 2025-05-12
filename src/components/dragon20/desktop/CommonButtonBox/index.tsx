@@ -1,8 +1,7 @@
 
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
+import { GiSpades } from "react-icons/gi";
+import { ImClubs, ImDiamonds } from "react-icons/im";
 
 const CommonButtonBox = ({
   value1,
@@ -16,15 +15,15 @@ const CommonButtonBox = ({
 }: any) => {
 
   return (
-    <div className="commonButtonBoxContainer" style={{ width: width }}>
+    <div className="commonButtonBoxContainerNew" style={{ width: width }}>
       <div>
         <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
-          {lock ? 0 :  parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
+          {lock ? 0 : parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
         </span>
       </div>
       <div
         className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
-        style={{lineHeight:"2.5"}}
+        style={{ lineHeight: "2.5" }}
         onClick={() => (!lock ? handleBet(data) : null)}
       >
         <span>
@@ -46,15 +45,14 @@ const CommonButtonBox = ({
       <div>
         <span
           style={{ fontSize: "16px", }}
-          className={`${
-            isNaN(value3)
+          className={`${isNaN(value3)
               ? ""
               : value3 > 0
-              ? "color-green"
-              : value3 < 0
-              ? "color-red"
-              : ""
-          }`}
+                ? "color-green"
+                : value3 < 0
+                  ? "color-red"
+                  : ""
+            }`}
         >
           {isNaN(value3) ? "\u00A0" : value3}
         </span>

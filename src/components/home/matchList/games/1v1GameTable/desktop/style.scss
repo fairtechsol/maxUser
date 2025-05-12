@@ -1,4 +1,4 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
 
 .one-v-one-row td {
     padding: 0px;

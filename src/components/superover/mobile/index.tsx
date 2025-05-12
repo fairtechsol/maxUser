@@ -12,10 +12,10 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import Iframe from "../../iframe/iframe";
 import Bookmaker from "../desktop/bookmaker";
 import SuperoverResult from "../desktop/superOver";
-import "./style.scss";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -90,7 +90,7 @@ const SuperoverMobile = () => {
                     height: "90%",
                     backgroundColor: "#000",
                   }}
-                ></div>
+                 />
                 {scoreBoardData?.balls?.length > 0 && (
                   <div style={{ marginBottom: "2px" }}>
                     <Iframe data={scoreBoardData} />

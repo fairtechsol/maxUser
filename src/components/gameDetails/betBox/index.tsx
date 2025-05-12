@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { handlePrice, handleSize } from "../../../helpers";
 
-const BetBox = ({ data, type,handlePlaceBet,detail,runner }: any) => {
+const BetBox = ({ data, type, handlePlaceBet, detail, runner }: any) => {
   const [tempRate, setTempRate] = useState("0");
   const [isYellow, setIsYellow] = useState(false);
-
 
   useEffect(() => {
     if (parseFloat(data?.price) != parseFloat(tempRate)) {
@@ -16,8 +15,7 @@ const BetBox = ({ data, type,handlePlaceBet,detail,runner }: any) => {
     }
   }, [data?.price]);
 
-
-  const handleBackground = (index: any) => {
+  const handleBackground = (index: number) => {
     if (type === "back") {
       if (index === 2) {
         return isYellow ? "bg-secondary" : "back3Background";
@@ -35,24 +33,22 @@ const BetBox = ({ data, type,handlePlaceBet,detail,runner }: any) => {
         return isYellow ? "bg-secondary" : "lay1Background";
       }
     }
-  };  
+  };
   return (
     <div
       className={`matchOddBackBox ${handleBackground(data?.tno)}`}
-        onClick={() =>
-          handlePlaceBet(
-            data?.price,
-            type,
-            detail,
-            runner?.status,
-            data?.tno,
-            runner
-          )
-        }
+      onClick={() =>
+        handlePlaceBet(
+          data?.price,
+          type,
+          detail,
+          runner?.status,
+          data?.tno,
+          runner
+        )
+      }
     >
-      <span className={`rateFont`}>
-        {handlePrice(data?.price)}
-      </span>
+      <span className={`rateFont`}>{handlePrice(data?.price)}</span>
       <span className={`sizeFont matchOddRate2Box`}>
         {handleSize(data?.size)}
       </span>

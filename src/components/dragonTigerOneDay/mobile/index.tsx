@@ -11,12 +11,12 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import "../../commonStyle.scss";
 import BackLay from "../desktop/BackLay";
 import Dragon20Result from "../desktop/dragonCard";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import PairBox from "./PairBox";
-import "./style.scss";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -71,8 +71,8 @@ const DragonTigerMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
 
         {!activeTab ? (
           <>
@@ -84,7 +84,7 @@ const DragonTigerMobile = () => {
                 backgroundColor: "#000",
               }}
             >
-              <div style={{ width: "100%"}}>
+              <div style={{ width: "100%" }}>
                 <div
                   style={{
                     width: "100%",

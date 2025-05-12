@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
 import { baccarat1rules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import BaccaratStatistics from "./betTable";
-import CasinoHead from "../../commonComponent/casinoGameHeader";
-import NewLoader from "../../commonComponent/newLoader";
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -63,8 +63,12 @@ const Baccarat1Mobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <div className="horseRacingTab">
@@ -78,14 +82,13 @@ const Baccarat1Mobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  //   result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
 
             {loading ? (
-                <NewLoader />
+              <NewLoader />
             ) : (
               <div>
                 <div className="row-flex" style={{ width: "100%" }}>
@@ -100,7 +103,7 @@ const Baccarat1Mobile = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["P", "B","T"]}
+                    name={["P", "B", "T"]}
                     type={cardGamesType.baccarat}
                   />
                 </div>
@@ -108,12 +111,16 @@ const Baccarat1Mobile = () => {
             )}
           </div>
         ) : (
-          <>
-            <MobileMyBet />
-          </>
+          <MobileMyBet />
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={baccarat1rules} gameType="baccarat1" type="imageWithContent" />
+      <RulesModal
+        show={show}
+        setShow={setShow}
+        rule={baccarat1rules}
+        gameType="baccarat1"
+        type="imageWithContent"
+      />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

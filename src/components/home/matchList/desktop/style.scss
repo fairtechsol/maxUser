@@ -1,15 +1,18 @@
-@import "/src/assets/variable.scss";
+@use "/src/assets/variable" as *;
+
 .match-list-tabs {
     border-right: 1px solid $secondary !important;
     border-radius: 0px !important;
     background-color: #cccccc;
     font-size: 16px;
     padding: 2px 10px;
+
     &:hover {
         border-right: 1px solid $secondary !important;
     }
+
     &.active {
         background-color: $secondary !important;
-        border-color: transparent !important ;
+        border-color: transparent !important;
     }
 }

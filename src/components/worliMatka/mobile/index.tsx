@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
 import { abjrules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import MatkaNavTab from "../desktop/navTab";
-import CasinoHead from "../../commonComponent/casinoGameHeader";
-import NewLoader from "../../commonComponent/newLoader";
 
 const MatkaMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -100,7 +100,6 @@ const MatkaMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  // result={<Abj1Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
@@ -137,9 +136,7 @@ const MatkaMobile = () => {
             )}
           </div>
         ) : (
-          <>
-            <MobileMyBet />
-          </>
+          <MobileMyBet />
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={abjrules} />

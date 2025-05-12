@@ -93,11 +93,7 @@ const MenuCollapse: React.FC<{
             name: item?.title,
             id: item?.id,
             type: "item",
-            path: `/${
-              competitionMatches?.matchType === "cricket"
-                ? "game-detail"
-                : "other-game-detail"
-            }/${competitionMatches?.matchType}/${item?.id}`,
+            path: `/game-detail/${competitionMatches?.matchType}/${item?.id}`,
             children: [],
           }));
         setMenuItemList(tempList);
@@ -300,7 +296,6 @@ export const MenuItem: React.FC<Props> = ({
     </>
   );
 };
-
 
 // {
 //   "id": "slotgame",

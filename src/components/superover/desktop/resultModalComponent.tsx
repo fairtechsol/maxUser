@@ -35,7 +35,7 @@ const SuperOverResultComponent: React.FC<Props> = ({ data }: any) => {
         </span>
       </div>
       {/* <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
-      <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>FIRST INNINGS</span></div>
+      <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>FIRST INNINGS</span />
       <div className="resultTeamTab">
           {head?.map((item:any,index:number)=>{
             return(
@@ -47,7 +47,7 @@ const SuperOverResultComponent: React.FC<Props> = ({ data }: any) => {
       </div>
      </div>
      <div className="mt-2 mb-2" style={{width:"100%",display:"flex",flexDirection:"column"}}>
-      <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>SECOND INNINGS</span></div>
+      <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>SECOND INNINGS</span />
       <div className="resultTeamTab">
           {head?.map((item:any,index:number)=>{
             return(

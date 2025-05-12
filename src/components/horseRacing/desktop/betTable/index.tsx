@@ -73,13 +73,12 @@ const HorseRaceDetailDesktop = () => {
                 new Date(
                   new Date(matchDetail?.startAt).setMinutes(
                     new Date(matchDetail?.startAt).getMinutes() -
-                    parseInt(matchDetail?.betPlaceStartBefore)
+                      parseInt(matchDetail?.betPlaceStartBefore)
                   )
                 ).getTime() && (
-                  <div className="text-success horse-status"> open </div>
-                )}
+                <div className="text-success horse-status"> open </div>
+              )}
             </div>
-            {/* <CombinedComponent /> */}
             <MatchOddComponent data={matchDetail} />
           </Col>
 
