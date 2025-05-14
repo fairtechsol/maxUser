@@ -40,7 +40,7 @@ export const getProfile = createAsyncThunk<any>("/user/profile", async () => {
   try {
     const resp = await service.get(ApiConstants.USER.GET_PROFILE);
     if (resp) {
-      return resp?.data?.[0]?.[0];
+      return resp?.data;
     }
   } catch (error: any) {
     const err = error as AxiosError;
