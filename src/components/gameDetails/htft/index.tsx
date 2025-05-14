@@ -1,21 +1,22 @@
+import { FaLock } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import BetBox from "../../gameDetails/betBox";
 import "./style.scss";
-import { FaLock } from "react-icons/fa";
 
 const HtFt = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
-
   const handlePlaceBet = (
     odds: any,
     type: any,
+    betTeam: any,
     status: any,
     index: any,
     runner: any
   ) => {
+    console.log(index)
     if (status != "ACTIVE" && status != "OPEN") {
       return false;
     }
@@ -56,9 +57,8 @@ const HtFt = ({ title, box, data, detail }) => {
       <div className="tournamentContainer">
         <div className="tournamentTitle">
           <span
-            className={`tournamentTitleTxt ${
-              isMobile ? "f-size13" : "f-size15"
-            }`}
+            className={`tournamentTitleTxt ${isMobile ? "f-size13" : "f-size15"
+              }`}
           >
             {title}
           </span>
@@ -97,13 +97,12 @@ const HtFt = ({ title, box, data, detail }) => {
                       {item?.nat || item?.runnerName}
                     </span>
                     <span
-                      className={` ms-1 mt-1 ${
-                        profitLossObj?.[item.id] > 0
-                          ? "color-green"
-                          : profitLossObj?.[item.id] < 0
+                      className={` ms-1 mt-1 ${profitLossObj?.[item.id] > 0
+                        ? "color-green"
+                        : profitLossObj?.[item.id] < 0
                           ? "color-red"
                           : ""
-                      } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                        } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
                       {profitLossObj?.[item.id]}
                     </span>
