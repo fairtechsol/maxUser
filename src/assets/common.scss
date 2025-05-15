@@ -330,20 +330,20 @@ body table.table {
   position: relative;
 }
 
-.marquee-content {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marqueeScroll 30s linear infinite;
-}
+// .marquee-content {
+//   display: inline-block;
+//   padding-left: 100%;
+//   animation: marqueeScroll 30s linear infinite;
+// }
 
-@keyframes marqueeScroll {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
+// @keyframes marqueeScroll {
+//   0% {
+//     transform: translateX(0%);
+//   }
+//   100% {
+//     transform: translateX(-100%);
+//   }
+// }
 
 .liveDot {
   width: 10px;
@@ -436,6 +436,7 @@ body table.table {
 
 // ===== blink text ====
 @keyframes blink {
+
   0%,
   100% {
     opacity: 1;

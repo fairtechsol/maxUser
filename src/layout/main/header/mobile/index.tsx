@@ -190,7 +190,7 @@ const MobileHeader = () => {
       <div className="marquee-container text-white p-1">
         {/* <b className="marquee-content title-10">{marqueeNotification?.value}</b> */}
         <Marquee>
-          <span style={{ marginRight: "300px" }}>{marqueeNotification?.value}
+          <span style={{ marginLeft: "300px" }}>{marqueeNotification?.value}
           </span>
         </Marquee>
       </div>

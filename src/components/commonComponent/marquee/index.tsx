@@ -12,7 +12,7 @@ const MarqueeHeader = () => {
     <>
       <div className="marquee-container nav-marquee text-white">
         <Marquee>
-          <span style={{ marginRight: "300px" }}>{marqueeNotification?.value}
+          <span style={{ marginLeft: "300px" }}>{marqueeNotification?.value}
           </span>
         </Marquee>
       </div>
