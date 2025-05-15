@@ -148,10 +148,10 @@ const matchListSlice = createSlice({
         state.marketId = action.payload?.marketId;
       })
       .addCase(updateMatchRates.fulfilled, (state, action) => {
+        state.loading = false;
         const { apiSession, sessionBettings, tournament, scoreBoard } =
           action.payload;
 
-        state.loading = false;
         state.liveScoreBoardData = scoreBoard?.data;
 
         state.matchDetails = {

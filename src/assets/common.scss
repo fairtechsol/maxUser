@@ -30,10 +30,7 @@ html {
 }
 
 .bg-orange-400 {
-  background-color: rgba(245,
-      198,
-      203,
-      0.85);
+  background-color: rgba(245, 198, 203, 0.85);
   /* Example hexadecimal color code for orange */
 }
 
@@ -301,18 +298,51 @@ body table.table {
 
 /* Marquee.css */
 
+// .marquee-container {
+//   overflow: hidden;
+//   white-space: nowrap;
+//   width: 100%;
+// }
+
+// .marquee-content {
+//   display: inline-block;
+//   font-size: 14px;
+//   width: 100%;
+//   white-space: nowrap;
+//   font-style: italic;
+//   animation: marqueeAnimation 50s linear infinite;
+// }
+
+// @keyframes marqueeAnimation {
+//   0% {
+//     transform: translateX(100%);
+//   }
+
+//   100% {
+//     transform: translateX(-130%);
+//   }
+// }
+
 .marquee-container {
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
+  position: relative;
 }
 
 .marquee-content {
   display: inline-block;
-  font-size: 14px;
-  white-space: nowrap;
-  font-style: italic;
-  animation: marqueeAnimation 50s linear infinite;
+  padding-left: 100%;
+  animation: marqueeScroll 30s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .liveDot {
@@ -333,15 +363,6 @@ body table.table {
   outline: 0;
 }
 
-@keyframes marqueeAnimation {
-  0% {
-    transform: translateX(250%);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
-}
 
 /* ====== excel csv btn ======= */
 .excel {
@@ -415,7 +436,6 @@ body table.table {
 
 // ===== blink text ====
 @keyframes blink {
-
   0%,
   100% {
     opacity: 1;

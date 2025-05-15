@@ -44,7 +44,7 @@ export const initialiseMatchSocket = (matchId: string[]) => {
     ],
     query: {
       matchIdArray: matchId,
-      roleName: "user"
+      roleName: "user",
     },
   });
 };

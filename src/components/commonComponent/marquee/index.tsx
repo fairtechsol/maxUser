@@ -10,7 +10,6 @@ const MarqueeHeader = () => {
     <>
       <div className="marquee-container nav-marquee text-white">
         <div className="marquee-content title-14">
-          {/* Your scrolling content goes here */}
           <i>{marqueeNotification?.value}</i>
         </div>
       </div>
