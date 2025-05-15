@@ -30,10 +30,7 @@ html {
 }
 
 .bg-orange-400 {
-  background-color: rgba(245,
-      198,
-      203,
-      0.85);
+  background-color: rgba(245, 198, 203, 0.85);
   /* Example hexadecimal color code for orange */
 }
 
@@ -310,6 +307,7 @@ body table.table {
 .marquee-content {
   display: inline-block;
   font-size: 14px;
+  width: 100%;
   white-space: nowrap;
   font-style: italic;
   animation: marqueeAnimation 50s linear infinite;
@@ -335,11 +333,11 @@ body table.table {
 
 @keyframes marqueeAnimation {
   0% {
-    transform: translateX(250%);
+    transform: translateX(100%);
   }
 
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-130%);
   }
 }
 
@@ -415,7 +413,6 @@ body table.table {
 
 // ===== blink text ====
 @keyframes blink {
-
   0%,
   100% {
     opacity: 1;
