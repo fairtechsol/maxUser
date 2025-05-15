@@ -1,5 +1,7 @@
+import Marquee from "react-fast-marquee";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+
 
 const MarqueeHeader = () => {
   const { marqueeNotification } = useSelector(
@@ -9,9 +11,10 @@ const MarqueeHeader = () => {
   return (
     <>
       <div className="marquee-container nav-marquee text-white">
-        <div className="marquee-content title-14">
-          <i>{marqueeNotification?.value}</i>
-        </div>
+        <Marquee>
+          <span style={{ marginRight: "300px" }}>{marqueeNotification?.value}
+          </span>
+        </Marquee>
       </div>
     </>
   );
