@@ -10,7 +10,7 @@ export let expertSocket: any = null;
 export let matchSocket: any = null;
 export let cardSocket: any = null;
 
-const SOCKET_TIMEOUT = 10000;
+const SOCKET_TIMEOUT = 2000;
 
 export const initialiseSocket = () => {
   socket = io(baseUrls.socket, {
