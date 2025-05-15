@@ -112,7 +112,7 @@ const MobileGameDetail = () => {
           ?.filter(Boolean)
           .map((item, index) => (
             <Tab
-              key={item?.id}
+              key={index}
               eventKey={item?.id}
               tabClassName="m-tab border-0"
               title={

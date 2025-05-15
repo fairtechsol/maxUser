@@ -10,15 +10,19 @@ export let expertSocket: any = null;
 export let matchSocket: any = null;
 export let cardSocket: any = null;
 
+const SOCKET_TIMEOUT = 10000;
+
 export const initialiseSocket = () => {
   socket = io(baseUrls.socket, {
     transports: [`${Constants.WEBSOCKET}`, `${Constants.POLLING}`],
+    timeout: SOCKET_TIMEOUT,
     auth: {
       token: `${sessionStorage.getItem("jwtMaxUser")}`,
     },
   });
   expertSocket = io(baseUrls.expertSocket, {
     transports: [`${Constants.WEBSOCKET}`, `${Constants.POLLING}`],
+    timeout: SOCKET_TIMEOUT,
     auth: {
       token: `${sessionStorage.getItem("jwtMaxUser")}`,
     },
@@ -32,6 +36,7 @@ export const initialiseSocket = () => {
   // });
   cardSocket = io(baseUrls.cardSocket, {
     transports: [`${Constants.POLLING}`, `${Constants.WEBSOCKET}`],
+    timeout: SOCKET_TIMEOUT,
   });
 };
 
@@ -44,7 +49,7 @@ export const initialiseMatchSocket = (matchId: string[]) => {
     ],
     query: {
       matchIdArray: matchId,
-      roleName: "user"
+      roleName: "user",
     },
   });
 };
