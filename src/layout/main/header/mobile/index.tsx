@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Dropdown, Modal, Navbar } from "react-bootstrap";
+import Marquee from "react-fast-marquee";
 import { FaHome } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -154,14 +155,14 @@ const MobileHeader = () => {
                                 };
                               });
                             }}
-                            onChange={() => {}}
+                            onChange={() => { }}
                             checked={show[item.id]}
                             style={
                               show[item.id]
                                 ? {
-                                    backgroundColor: "#FFC742",
-                                    borderColor: "#FFC742",
-                                  }
+                                  backgroundColor: "#FFC742",
+                                  borderColor: "#FFC742",
+                                }
                                 : {}
                             }
                             className="custom-checkbox23"
@@ -187,7 +188,11 @@ const MobileHeader = () => {
       </div>
       <SearchBox />
       <div className="marquee-container text-white p-1">
-        <b className="marquee-content title-10">{marqueeNotification?.value}</b>
+        {/* <b className="marquee-content title-10">{marqueeNotification?.value}</b> */}
+        <Marquee>
+          <span style={{ marginLeft: "300px" }}>{marqueeNotification?.value}
+          </span>
+        </Marquee>
       </div>
       <Modal
         show={showValues}
@@ -287,9 +292,8 @@ const MobileHeader = () => {
             <div className="navvv nav-pill" role="tablist">
               {sportsRules.map((sport, index) => (
                 <div
-                  className={`nav-itemmm pt-1 px-2 ${
-                    activeSport === sport.sportName ? "active" : ""
-                  }`}
+                  className={`nav-itemmm pt-1 px-2 ${activeSport === sport.sportName ? "active" : ""
+                    }`}
                   key={index}
                 >
                   <a
@@ -325,9 +329,8 @@ const MobileHeader = () => {
                 role="tabpanel"
                 id={`rules-tabs-tabpane-${index}`}
                 aria-labelledby={`rules-tabs-tab-${index}`}
-                className={`tab-pane ${
-                  activeSport === sport.sportName ? "show active" : ""
-                }`}
+                className={`tab-pane ${activeSport === sport.sportName ? "show active" : ""
+                  }`}
               >
                 {activeSport === sport.sportName && (
                   <div
