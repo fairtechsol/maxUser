@@ -155,14 +155,14 @@ const MobileHeader = () => {
                                 };
                               });
                             }}
-                            onChange={() => { }}
+                            onChange={() => {}}
                             checked={show[item.id]}
                             style={
                               show[item.id]
                                 ? {
-                                  backgroundColor: "#FFC742",
-                                  borderColor: "#FFC742",
-                                }
+                                    backgroundColor: "#FFC742",
+                                    borderColor: "#FFC742",
+                                  }
                                 : {}
                             }
                             className="custom-checkbox23"
@@ -190,7 +190,11 @@ const MobileHeader = () => {
       <div className="marquee-container text-white p-1">
         {/* <b className="marquee-content title-10">{marqueeNotification?.value}</b> */}
         <Marquee>
-          <span style={{ marginLeft: "300px" }}>{marqueeNotification?.value}
+          <span
+            style={{ marginLeft: "300px", fontStyle: "italic" }}
+            className="title-10"
+          >
+            {marqueeNotification?.value}
           </span>
         </Marquee>
       </div>
@@ -292,8 +296,9 @@ const MobileHeader = () => {
             <div className="navvv nav-pill" role="tablist">
               {sportsRules.map((sport, index) => (
                 <div
-                  className={`nav-itemmm pt-1 px-2 ${activeSport === sport.sportName ? "active" : ""
-                    }`}
+                  className={`nav-itemmm pt-1 px-2 ${
+                    activeSport === sport.sportName ? "active" : ""
+                  }`}
                   key={index}
                 >
                   <a
@@ -329,8 +334,9 @@ const MobileHeader = () => {
                 role="tabpanel"
                 id={`rules-tabs-tabpane-${index}`}
                 aria-labelledby={`rules-tabs-tab-${index}`}
-                className={`tab-pane ${activeSport === sport.sportName ? "show active" : ""
-                  }`}
+                className={`tab-pane ${
+                  activeSport === sport.sportName ? "show active" : ""
+                }`}
               >
                 {activeSport === sport.sportName && (
                   <div
