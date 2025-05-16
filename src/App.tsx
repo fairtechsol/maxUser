@@ -25,7 +25,7 @@ function App() {
       <ToastContainer
         toastClassName={(context) =>
           contextClass[context?.type || "default"] +
-          "relative lh-1 flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer custom-toast"
+          " relative lh-1 flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer custom-toast"
         }
         bodyClassName={"text-sm font-white"}
         position="top-center"
