@@ -157,11 +157,6 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (location.pathname == "/home" || location.pathname == "/inPlay") {
-      setTimeout(() => {
-        getMatchListMarket(matchType);
-      }, 1500);
-    }
     const intervalId = setInterval(() => {
       if (location.pathname == "/home" || location.pathname == "/inPlay") {
         getMatchListMarket(matchType);
