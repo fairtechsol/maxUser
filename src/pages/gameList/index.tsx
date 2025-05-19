@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Loader from "../../components/commonComponent/loader";
 import DesktopMatchList from "../../components/home/matchList/desktop";
 import SportsFilters from "../../components/home/sportsFilters";
 import {
@@ -21,7 +20,7 @@ import { marketApiConst } from "../../utils/constants";
 import { isMobile } from "../../utils/screenDimension";
 
 const GameList = () => {
-  const { loading, matchListSuccess } = useSelector(
+  const { matchListSuccess } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -117,7 +116,7 @@ const GameList = () => {
 
   return (
     <>
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
       {isMobile ? (
         <SportsFilters type={type} />
       ) : (
