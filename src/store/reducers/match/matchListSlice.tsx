@@ -197,7 +197,9 @@ const matchListSlice = createSlice({
             ? state.matchListCricket
             : matchType === "football"
             ? state.matchListFootball
-            : state.matchListTennis;
+            : matchType === "tennis"
+            ? state.matchListTennis
+            : state.matchList;
         if (ArrayToMap.length > 0) {
           const updatedData = ArrayToMap?.map((items: any) => {
             const itemToUpdate = data?.find(
@@ -212,12 +214,12 @@ const matchListSlice = createSlice({
           });
           if (matchType === "cricket") {
             state.matchListCricket = updatedData;
-          }
-          if (matchType === "football") {
+          } else if (matchType === "football") {
             state.matchListFootball = updatedData;
-          }
-          if (matchType === "tennis") {
+          } else if (matchType === "tennis") {
             state.matchListTennis = updatedData;
+          } else {
+            state.matchList = updatedData;
           }
         }
       })
