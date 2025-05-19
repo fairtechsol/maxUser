@@ -14,6 +14,7 @@ import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/h
 import {
   getMatchList,
   getTabList,
+  resetMatchListSuccess,
   updateMatchRatesFromApiOnList,
 } from "../../store/actions/match/matchListAction";
 import { getBannerImage } from "../../store/actions/user/userAction";
@@ -25,6 +26,10 @@ const Home = () => {
   const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
   const { rulesPopShow } = useSelector((state: RootState) => state.auth);
+  const { matchListSuccess } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+
   const [matchType, setMatchType] = useState("cricket");
   const [show, setShow] = useState(false);
 
@@ -169,6 +174,15 @@ const Home = () => {
 
     return () => clearInterval(intervalId);
   }, [matchType, location.pathname]);
+
+  useEffect(() => {
+    if (matchListSuccess) {
+      if (location.pathname == "/home" || location.pathname == "/inPlay") {
+        getMatchListMarket(matchType);
+        dispatch(resetMatchListSuccess());
+      }
+    }
+  }, [matchListSuccess, matchType]);
 
   return (
     <div>
