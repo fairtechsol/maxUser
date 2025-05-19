@@ -32,6 +32,9 @@ interface InitialState {
   loading: boolean;
   error: any;
   matchList: any;
+  matchListCricket: any;
+  matchListFootball: any;
+  matchListTennis: any;
   tabList: any;
   getMatchListBySearch: any;
   matchDetails: any;
@@ -43,6 +46,9 @@ interface InitialState {
 
 const initialState: InitialState = {
   matchList: [],
+  matchListCricket: [],
+  matchListFootball: [],
+  matchListTennis: [],
   tabList: [],
   getMatchListBySearch: [],
   loading: false,
@@ -67,11 +73,17 @@ const matchListSlice = createSlice({
         state.error = null;
       })
       .addCase(getMatchList.fulfilled, (state, action) => {
-        const { type, data } = action.payload;
+        const { type, data, matchType } = action.payload;
         state.loading = false;
         state.matchListSuccess = true;
         if (type == "search") {
           state.searchedMatchList = data;
+        } else if (matchType === "cricket") {
+          state.matchListCricket = data;
+        } else if (matchType === "football") {
+          state.matchListFootball = data;
+        } else if (matchType === "tennis") {
+          state.matchListTennis = data;
         } else {
           state.matchList = data;
         }
@@ -179,10 +191,16 @@ const matchListSlice = createSlice({
         };
       })
       .addCase(updateMatchRatesFromApiOnList.fulfilled, (state, action) => {
-        let matchListFromApi = action.payload;
-        if (state.matchList.length > 0) {
-          state.matchList = state.matchList?.map((items: any) => {
-            const itemToUpdate = matchListFromApi?.find(
+        let { data, matchType } = action.payload;
+        const ArrayToMap =
+          matchType === "cricket"
+            ? state.matchListCricket
+            : matchType === "football"
+            ? state.matchListFootball
+            : state.matchListTennis;
+        if (ArrayToMap.length > 0) {
+          const updatedData = ArrayToMap?.map((items: any) => {
+            const itemToUpdate = data?.find(
               (item: any) =>
                 +item?.gameId === +items?.eventId ||
                 +item?.gmid === +items?.eventId
@@ -192,6 +210,15 @@ const matchListSlice = createSlice({
               ...itemToUpdate,
             };
           });
+          if (matchType === "cricket") {
+            state.matchListCricket = updatedData;
+          }
+          if (matchType === "football") {
+            state.matchListFootball = updatedData;
+          }
+          if (matchType === "tennis") {
+            state.matchListTennis = updatedData;
+          }
         }
       })
       .addCase(matchListReset, (state) => {

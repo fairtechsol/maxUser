@@ -33,7 +33,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   // const [_, setDataList] = useState(casinoIcons);
   const [show, setShow] = useState(false);
   const dispatch: AppDispatch = useDispatch();
-  const { matchList } = useSelector(
+  const { matchListCricket, matchListFootball, matchListTennis } = useSelector(
     (state: RootState) => state.match.matchList
   );
   const { countryWiseList } = useSelector(
@@ -182,13 +182,28 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 </>
               ) : (
                 <>
-                  {!matchList || matchList.length === 0 ? (
+                  {!(mTypeid === "cricket"
+                    ? matchListCricket
+                    : mTypeid === "football"
+                    ? matchListFootball
+                    : matchListTennis) ||
+                  (mTypeid === "cricket"
+                    ? matchListCricket
+                    : mTypeid === "football"
+                    ? matchListFootball
+                    : matchListTennis
+                  ).length === 0 ? (
                     <div className="text-center">
                       <ContactAdmin />
                     </div>
                   ) : (
                     <>
-                      {matchList.map((item: any, index: number) => {
+                      {(mTypeid === "cricket"
+                        ? matchListCricket
+                        : mTypeid === "football"
+                        ? matchListFootball
+                        : matchListTennis
+                      ).map((item: any, index: number) => {
                         return (
                           <div key={index} className="px-1 m-game-one-v-one">
                             <div className="d-flex justify-content-between">
