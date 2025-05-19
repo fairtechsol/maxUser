@@ -21,8 +21,7 @@ import {
   matchDetailReset,
   resetMarketId,
   selectedBetAction,
-  updateMatchDetailFromMatchList,
-  updateMatchRates,
+  updateMatchRates
 } from "../../store/actions/match/matchListAction";
 import {
   betDataFromSocket,
@@ -51,7 +50,7 @@ const GameDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
-  const { matchList, matchDetails } = useSelector(
+  const { matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -207,12 +206,12 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       if (id) {
-        const findMatchInList = matchList?.filter(
-          (item: any) => item?.id === id
-        );
-        if (findMatchInList) {
-          dispatch(updateMatchDetailFromMatchList(findMatchInList));
-        }
+        // const findMatchInList = matchList?.filter(
+        //   (item: any) => item?.id === id
+        // );
+        // if (findMatchInList) {
+        //   dispatch(updateMatchDetailFromMatchList(findMatchInList));
+        // }
         dispatch(selectedBetAction(null));
         dispatch(matchDetailAction(id));
         dispatch(getPlacedBets(id));
