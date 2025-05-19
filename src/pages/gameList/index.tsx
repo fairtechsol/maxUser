@@ -33,7 +33,12 @@ const GameList = () => {
         timeout: 2000,
       });
       if (resp?.status) {
-        dispatch(updateMatchRatesFromApiOnList(resp?.data));
+        dispatch(
+          updateMatchRatesFromApiOnList({
+            data: resp?.data,
+            matchType: matchType,
+          })
+        );
       }
     } catch (error: any) {
       console.log(error);
@@ -54,7 +59,7 @@ const GameList = () => {
   const getMatchListServiceOnDeclare = (event: any) => {
     try {
       if (event?.gameType === type) {
-        if (event?.betType === "quickbookmaker1") {
+        if (event?.isMatchDeclare) {
           setTimeout(() => {
             dispatch(getMatchList({ matchType: type }));
           }, 1000);

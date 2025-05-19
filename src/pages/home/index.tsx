@@ -51,7 +51,12 @@ const Home = () => {
         timeout: 2000,
       });
       if (resp?.status) {
-        dispatch(updateMatchRatesFromApiOnList(resp?.data));
+        dispatch(
+          updateMatchRatesFromApiOnList({
+            data: resp?.data,
+            matchType: matchType,
+          })
+        );
       }
     } catch (error: any) {
       console.log(error);
@@ -103,13 +108,13 @@ const Home = () => {
           getMatchListServiceOnDeclare
         );
         socketService.userBalance.matchResultUnDeclared(
-          getMatchListServiceOnDeclare
+          getMatchListServiceSocket
         );
         socketService.userBalance.declaredMatchResultAllUser(
           getMatchListServiceOnDeclare
         );
         socketService.userBalance.unDeclaredMatchResultAllUser(
-          getMatchListServiceOnDeclare
+          getMatchListServiceSocket
         );
         return () => {
           expertSocketService.match.matchAddedOff();
