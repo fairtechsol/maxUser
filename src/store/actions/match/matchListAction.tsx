@@ -237,12 +237,6 @@ export const updateMatchRates = createAsyncThunk<any, any>(
     return matchDetails;
   }
 );
-export const updateMatchOddRates = createAsyncThunk<any, any>(
-  "/matchOdd/rates",
-  async (matchDetails) => {
-    return matchDetails;
-  }
-);
 export const updateMatchDetailFromMatchList = createAsyncThunk<any, any>(
   "/matchDetailFromList/rates",
   async (data) => {
