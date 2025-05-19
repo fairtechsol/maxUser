@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Loader from "../../components/commonComponent/loader";
 import DesktopMatchList from "../../components/home/matchList/desktop";
 import SportsFilters from "../../components/home/sportsFilters";
 import {
@@ -13,6 +12,7 @@ import {
 import {
   getMatchList,
   getTabList,
+  resetMatchListSuccess,
   updateMatchRatesFromApiOnList,
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
@@ -20,7 +20,9 @@ import { marketApiConst } from "../../utils/constants";
 import { isMobile } from "../../utils/screenDimension";
 
 const GameList = () => {
-  const { loading } = useSelector((state: RootState) => state.match.matchList);
+  const { matchListSuccess } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
   const { type } = useParams();
   const dispatch: AppDispatch = useDispatch();
@@ -98,9 +100,6 @@ const GameList = () => {
   }, [socket]);
 
   useEffect(() => {
-    setTimeout(() => {
-      getMatchListMarket(type);
-    }, 1500);
     const intervalId = setInterval(() => {
       getMatchListMarket(type);
     }, 3000);
@@ -108,9 +107,16 @@ const GameList = () => {
     return () => clearInterval(intervalId);
   }, [type]);
 
+  useEffect(() => {
+    if (matchListSuccess) {
+      getMatchListMarket(type);
+      dispatch(resetMatchListSuccess());
+    }
+  }, [matchListSuccess, type]);
+
   return (
     <>
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
       {isMobile ? (
         <SportsFilters type={type} />
       ) : (

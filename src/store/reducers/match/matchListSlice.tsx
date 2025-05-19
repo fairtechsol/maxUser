@@ -9,6 +9,7 @@ import {
   matchDetailReset,
   matchListReset,
   resetMarketId,
+  resetMatchListSuccess,
   searchListReset,
   selectedBetAction,
   updateMatchDetailFromMatchList,
@@ -28,6 +29,7 @@ import {
 
 interface InitialState {
   success: boolean;
+  matchListSuccess: boolean;
   loading: boolean;
   error: any;
   matchList: any;
@@ -46,6 +48,7 @@ const initialState: InitialState = {
   getMatchListBySearch: [],
   loading: false,
   success: false,
+  matchListSuccess: false,
   error: null,
   matchDetails: null,
   selectedBet: null,
@@ -67,7 +70,7 @@ const matchListSlice = createSlice({
       .addCase(getMatchList.fulfilled, (state, action) => {
         const { type, data } = action.payload;
         state.loading = false;
-        state.success = true;
+        state.matchListSuccess = true;
         if (type == "search") {
           state.searchedMatchList = data;
         } else {
@@ -77,6 +80,9 @@ const matchListSlice = createSlice({
       .addCase(getMatchList.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error?.message;
+      })
+      .addCase(resetMatchListSuccess, (state) => {
+        state.matchListSuccess = false;
       })
       .addCase(getTabList.pending, (state) => {
         state.loading = true;

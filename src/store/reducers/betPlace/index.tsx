@@ -54,17 +54,17 @@ const placedBet = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getPlacedBets.pending, (state) => {
-        state.loading = true;
+        // state.loading = true;
         state.success = false;
         state.error = null;
       })
       .addCase(getPlacedBets.fulfilled, (state, action) => {
-        state.loading = false;
+        // state.loading = false;
         state.success = true;
         state.placedBets = action.payload;
       })
       .addCase(getPlacedBets.rejected, (state, action) => {
-        state.loading = false;
+        // state.loading = false;
         state.error = action.error?.message;
       })
       .addCase(getPlacedBetsForAccountStatement.pending, (state) => {

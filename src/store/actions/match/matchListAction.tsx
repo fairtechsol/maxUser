@@ -264,3 +264,4 @@ export const resetReportBetListData = createAction(
 );
 export const resetMarketId = createAction("marketId/reset");
 export const matchDetailReset = createAction("matchDetail/reset");
+export const resetMatchListSuccess = createAction("matchListSuccess/reset");
