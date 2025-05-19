@@ -185,14 +185,14 @@ const Home = () => {
   }, [matchListSuccess, matchType]);
 
   return (
-    <div>
+    <>
       <MatchList setMatchType={setMatchType} matchType={matchType} />
       <ImageModal
         customClass={isMobile ? "" : "modalFull-56 rule-popup"}
         show={show}
         setShow={popUpClose}
       />
-    </div>
+    </>
   );
 };
 
