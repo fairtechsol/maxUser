@@ -195,7 +195,7 @@ const matchListSlice = createSlice({
         const { apiSession, sessionBettings, tournament, scoreBoard } =
           action.payload;
 
-        state.liveScoreBoardData = scoreBoard?.data;
+        state.liveScoreBoardData = scoreBoard?.data ?? null;
 
         state.matchDetails = {
           ...state.matchDetails,
