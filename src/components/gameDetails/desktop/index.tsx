@@ -33,6 +33,26 @@ const DesktopGameDetail = () => {
     (state: RootState) => state.match.matchList
   );
 
+  const handleShowScoreboard = (e: any) => {
+    if (!showScoreboard) {
+      getTvData(
+        matchDetails?.eventId,
+        setTvData,
+        matchDetails?.matchType,
+        false,
+        true
+      );
+    } else {
+      setTvData((prev: any) => {
+        return {
+          ...prev,
+          scoreData: null,
+        };
+      });
+    }
+    setShowScoreboard(e);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
@@ -93,25 +113,7 @@ const DesktopGameDetail = () => {
                     <BetTableHeader
                       customClass="mt-1 py-1"
                       title={matchDetails?.title}
-                      setShowScoreboard={(e) => {
-                        if (!showScoreboard) {
-                          getTvData(
-                            matchDetails?.eventId,
-                            setTvData,
-                            matchDetails?.matchType,
-                            false,
-                            true
-                          );
-                        } else {
-                          setTvData((prev: any) => {
-                            return {
-                              ...prev,
-                              scoreData: null,
-                            };
-                          });
-                        }
-                        setShowScoreboard(e);
-                      }}
+                      setShowScoreboard={handleShowScoreboard}
                       rightComponent={
                         <span className="title-16 fbold text-white">
                           {matchDetails?.startAt &&
