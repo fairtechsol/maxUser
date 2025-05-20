@@ -123,38 +123,48 @@ const DesktopGameDetail = () => {
                 </Col>
                 {["cricket", "politics"].includes(matchDetails?.matchType)
                   ? liveScoreBoardData && (
-                    <Iframe data={liveScoreBoardData} width="100%" />
-                  )
+                      <Iframe data={liveScoreBoardData} width="100%" />
+                    )
                   : showScoreboard && (
-                    <div
-                      style={{
-                        height: "250px",
-                        backgroundPosition: "center",
-                        backgroundSize: "cover",
-                        position: "relative",
-                        marginLeft: "4px",
-                        marginRight: "4px",
-                        width: "calc(100%-8px)",
-                      }}
-                    >
-                      <iframe
-                        style={{
-                          height: "100%",
-                          position: "absolute",
-                          width: "100%",
-                          left: 0,
-                          top: 0,
-                        }}
-                        src={
-                          import.meta.env.VITE_NODE_ENV == "production"
+                      <>
+                        {(() => {
+                          const isProd =
+                            import.meta.env.VITE_NODE_ENV === "production";
+                          const iframeSrc = isProd
                             ? tvData?.scoreData?.iframeUrl
-                            : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`
-                        }
-                        title="Live Stream"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                      />
-                    </div>
-                  )}
+                            : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`;
+
+                          if (!iframeSrc) return null;
+
+                          return (
+                            <div
+                              style={{
+                                height: "250px",
+                                backgroundPosition: "center",
+                                backgroundSize: "cover",
+                                position: "relative",
+                                marginLeft: "4px",
+                                marginRight: "4px",
+                                width: "calc(100%-8px)",
+                              }}
+                            >
+                              <iframe
+                                style={{
+                                  height: "100%",
+                                  position: "absolute",
+                                  width: "100%",
+                                  left: 0,
+                                  top: 0,
+                                }}
+                                src={iframeSrc}
+                                title="Live Stream"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                              />
+                            </div>
+                          );
+                        })()}
+                      </>
+                    )}
                 {matchDetails?.tournament?.length > 0 &&
                   matchDetails?.tournament
                     ?.filter(
@@ -200,16 +210,16 @@ const DesktopGameDetail = () => {
                     ))}
                 {(matchDetails?.apiSession?.session?.section?.length > 0 ||
                   manualEntries?.length > 0) && (
-                    <Col md={12}>
-                      <SessionNormal
-                        title="Normal"
-                        mtype="session"
-                        data={matchDetails?.apiSession?.session}
-                        detail={matchDetails}
-                        manual={manualEntries ? manualEntries : []}
-                      />
-                    </Col>
-                  )}
+                  <Col md={12}>
+                    <SessionNormal
+                      title="Normal"
+                      mtype="session"
+                      data={matchDetails?.apiSession?.session}
+                      detail={matchDetails}
+                      manual={manualEntries ? manualEntries : []}
+                    />
+                  </Col>
+                )}
                 {matchDetails?.apiSession?.overByover?.section?.length > 0 && (
                   <Col md={12}>
                     <SessionNormal
@@ -291,8 +301,8 @@ const DesktopGameDetail = () => {
                                 length % 2 === 0
                                   ? "49.5%"
                                   : index === length - 1
-                                    ? "100%"
-                                    : "49.5%",
+                                  ? "100%"
+                                  : "49.5%",
                             }}
                           >
                             {item?.activeStatus === "live" && (
@@ -367,18 +377,28 @@ const DesktopGameDetail = () => {
               >
                 {matchDetails?.eventId &&
                   matchDetails?.matchType !== "politics" && (
-                    <div className="px-1 pt-1">
-                      <LiveStreamComponent
-                        url={
-                          import.meta.env.VITE_NODE_ENV == "production"
-                            ? tvData?.tvData?.iframeUrl
-                            : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
-                        }
-                        eventId={matchDetails?.eventId}
-                        matchType={matchDetails?.matchType}
-                        setTvData={setTvData}
-                      />
-                    </div>
+                    <>
+                      {(() => {
+                        const isProd =
+                          import.meta.env.VITE_NODE_ENV === "production";
+                        const iframeSrc = isProd
+                          ? tvData?.tvData?.iframeUrl
+                          : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`;
+
+                        if (!iframeSrc) return null;
+
+                        return (
+                          <div className="px-1 pt-1">
+                            <LiveStreamComponent
+                              url={iframeSrc}
+                              eventId={matchDetails?.eventId}
+                              matchType={matchDetails?.matchType}
+                              setTvData={setTvData}
+                            />
+                          </div>
+                        );
+                      })()}
+                    </>
                   )}
                 <div className="px-1 pt-1">
                   <PlacedBet />
