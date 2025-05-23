@@ -94,244 +94,105 @@ const DesktopGameDetail = () => {
         <Col md={8}>
           {!loading ? (
             <Container className="p-0">
-              <>
-                <Col md={12} className="p-0">
-                  {["cricket", "politics"].includes(matchDetails?.matchType) ? (
-                    <BetTableHeader
-                      customClass="mt-1 py-1 "
-                      title={matchDetails?.title}
-                      rightComponent={
-                        <span className="title-16 fbold text-white">
-                          {matchDetails?.startAt &&
-                            moment(matchDetails?.startAt).format(
-                              "DD/MM/YYYY hh:mm:ss"
-                            )}
-                        </span>
-                      }
-                    />
-                  ) : (
-                    <BetTableHeader
-                      customClass="mt-1 py-1"
-                      title={matchDetails?.title}
-                      setShowScoreboard={handleShowScoreboard}
-                      rightComponent={
-                        <span className="title-16 fbold text-white">
-                          {matchDetails?.startAt &&
-                            formatDate(matchDetails?.startAt)}
-                        </span>
-                      }
-                    />
-                  )}
-                </Col>
-                {["cricket", "politics"].includes(matchDetails?.matchType)
-                  ? liveScoreBoardData && (
-                      <Iframe data={liveScoreBoardData} width="100%" />
-                    )
-                  : showScoreboard && (
-                      <>
-                        {(() => {
-                          const isProd =
-                            import.meta.env.VITE_NODE_ENV === "production";
-                          const iframeSrc = isProd
-                            ? tvData?.scoreData?.iframeUrl
-                            : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`;
+              <Col md={12} className="p-0">
+                {["cricket", "politics"].includes(matchDetails?.matchType) ? (
+                  <BetTableHeader
+                    customClass="mt-1 py-1 "
+                    title={matchDetails?.title}
+                    rightComponent={
+                      <span className="title-16 fbold text-white">
+                        {matchDetails?.startAt &&
+                          moment(matchDetails?.startAt).format(
+                            "DD/MM/YYYY hh:mm:ss"
+                          )}
+                      </span>
+                    }
+                  />
+                ) : (
+                  <BetTableHeader
+                    customClass="mt-1 py-1"
+                    title={matchDetails?.title}
+                    setShowScoreboard={handleShowScoreboard}
+                    rightComponent={
+                      <span className="title-16 fbold text-white">
+                        {matchDetails?.startAt &&
+                          formatDate(matchDetails?.startAt)}
+                      </span>
+                    }
+                  />
+                )}
+              </Col>
+              {["cricket", "politics"].includes(matchDetails?.matchType)
+                ? liveScoreBoardData && (
+                    <Iframe data={liveScoreBoardData} width="100%" />
+                  )
+                : showScoreboard && (
+                    <>
+                      {(() => {
+                        const isProd =
+                          import.meta.env.VITE_NODE_ENV === "production";
+                        const iframeSrc = isProd
+                          ? tvData?.scoreData?.iframeUrl
+                          : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`;
 
-                          if (!iframeSrc) return null;
+                        if (!iframeSrc) return null;
 
-                          return (
-                            <div
-                              style={{
-                                height: "250px",
-                                backgroundPosition: "center",
-                                backgroundSize: "cover",
-                                position: "relative",
-                                marginLeft: "4px",
-                                marginRight: "4px",
-                                width: "calc(100%-8px)",
-                              }}
-                            >
-                              <iframe
-                                style={{
-                                  height: "100%",
-                                  position: "absolute",
-                                  width: "100%",
-                                  left: 0,
-                                  top: 0,
-                                }}
-                                src={iframeSrc}
-                                title="Live Stream"
-                                referrerPolicy="strict-origin-when-cross-origin"
-                              />
-                            </div>
-                          );
-                        })()}
-                      </>
-                    )}
-                {matchDetails?.tournament?.length > 0 &&
-                  matchDetails?.tournament
-                    ?.filter(
-                      (item: any) =>
-                        !["completed_match", "tied_match"].includes(
-                          item?.name?.toLowerCase()
-                        )
-                    )
-                    ?.sort((a: any, b: any) => a.sNo - b.sNo)
-                    ?.map((item: any, index: number) => (
-                      <div key={index}>
-                        {item?.activeStatus === "live" &&
-                          (item?.name === "HT/FT" ? (
-                            <Col md={12} style={{ marginTop: "8px" }}>
-                              <HtFt
-                                title={item?.name}
-                                box={
-                                  item?.runners?.[0]?.ex?.availableToBack
-                                    ?.length > 2
-                                    ? 6
-                                    : 2
-                                }
-                                data={item}
-                                detail={matchDetails}
-                              />
-                            </Col>
-                          ) : (
-                            <Col md={12} style={{ marginTop: "8px" }}>
-                              <Tournament
-                                title={item?.name}
-                                box={
-                                  item?.runners?.[0]?.ex?.availableToBack
-                                    ?.length > 2
-                                    ? 6
-                                    : 2
-                                }
-                                data={item}
-                                detail={matchDetails}
-                              />
-                            </Col>
-                          ))}
-                      </div>
-                    ))}
-                {(matchDetails?.apiSession?.session?.section?.length > 0 ||
-                  manualEntries?.length > 0) && (
-                  <Col md={12}>
-                    <SessionNormal
-                      title="Normal"
-                      mtype="session"
-                      data={matchDetails?.apiSession?.session}
-                      detail={matchDetails}
-                      manual={manualEntries ? manualEntries : []}
-                    />
-                  </Col>
-                )}
-                {matchDetails?.apiSession?.overByover?.section?.length > 0 && (
-                  <Col md={12}>
-                    <SessionNormal
-                      title="overByover"
-                      mtype="overByover"
-                      data={matchDetails?.apiSession?.overByover}
-                      detail={matchDetails}
-                    />
-                  </Col>
-                )}
-                {matchDetails?.apiSession?.ballByBall?.section?.length > 0 && (
-                  <Col md={12}>
-                    <SessionNormal
-                      title="Ballbyball"
-                      mtype="ballByBall"
-                      data={matchDetails?.apiSession?.ballByBall}
-                      detail={matchDetails}
-                    />
-                  </Col>
-                )}
-                {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
-                  <Col md={12}>
-                    <SessionFancy
-                      title="fancy1"
-                      data={matchDetails?.apiSession?.fancy1}
-                      detail={matchDetails}
-                    />
-                  </Col>
-                )}{" "}
-                {matchDetails?.apiSession?.khado?.section?.length > 0 && (
-                  <Col md={12}>
-                    <SessionKhado
-                      title="khado"
-                      data={matchDetails?.apiSession?.khado}
-                      detail={matchDetails}
-                    />
-                  </Col>
-                )}
-                {matchDetails?.apiSession?.meter?.section?.length > 0 && (
-                  <Col md={12}>
-                    <SessionNormal
-                      title="meter"
-                      mtype="meter"
-                      data={matchDetails?.apiSession?.meter}
-                      detail={matchDetails}
-                    />
-                  </Col>
-                )}
-                {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
-                  <Col md={12}>
-                    <SessionOddEven
-                      title="oddeven"
-                      data={matchDetails?.apiSession?.oddEven}
-                      detail={matchDetails}
-                    />
-                  </Col>
-                )}
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "wrap",
-                    gap: "1%",
-                  }}
-                >
-                  {matchDetails?.apiSession?.cricketCasino?.section?.length >
-                    0 &&
-                    matchDetails?.apiSession?.cricketCasino?.section?.map(
-                      (item: any, index: number) => {
-                        let length =
-                          matchDetails?.apiSession?.cricketCasino?.section
-                            ?.length;
                         return (
                           <div
-                            key={index}
                             style={{
-                              width:
-                                length % 2 === 0
-                                  ? "49.5%"
-                                  : index === length - 1
-                                  ? "100%"
-                                  : "49.5%",
+                              height: "250px",
+                              backgroundPosition: "center",
+                              backgroundSize: "cover",
+                              position: "relative",
+                              marginLeft: "4px",
+                              marginRight: "4px",
+                              width: "calc(100%-8px)",
                             }}
                           >
-                            {item?.activeStatus === "live" && (
-                              <Col md={12}>
-                                <SessionCricketCasino
-                                  title={item?.RunnerName}
-                                  data={item}
-                                  detail={matchDetails}
-                                />
-                              </Col>
-                            )}
+                            <iframe
+                              style={{
+                                height: "100%",
+                                position: "absolute",
+                                width: "100%",
+                                left: 0,
+                                top: 0,
+                              }}
+                              src={iframeSrc}
+                              title="Live Stream"
+                              referrerPolicy="strict-origin-when-cross-origin"
+                            />
                           </div>
                         );
-                      }
-                    )}
-                </div>
-                {matchDetails?.tournament?.length > 0 &&
-                  matchDetails?.tournament
-                    ?.filter((item: any) =>
-                      ["completed_match", "tied_match"].includes(
+                      })()}
+                    </>
+                  )}
+              {matchDetails?.tournament?.length > 0 &&
+                matchDetails?.tournament
+                  ?.filter(
+                    (item: any) =>
+                      !["completed_match", "tied_match"].includes(
                         item?.name?.toLowerCase()
                       )
-                    )
-                    ?.sort((a: any, b: any) => a.sNo - b.sNo)
-                    ?.map((item: any, index: number) => (
-                      <div key={index}>
-                        {item?.activeStatus === "live" && item?.isActive && (
+                  )
+                  ?.sort((a: any, b: any) => a.sNo - b.sNo)
+                  ?.map((item: any, index: number) => (
+                    <div key={index}>
+                      {item?.activeStatus === "live" &&
+                        (item?.name === "HT/FT" ? (
+                          <Col md={12} style={{ marginTop: "8px" }}>
+                            <HtFt
+                              title={item?.name}
+                              box={
+                                item?.runners?.[0]?.ex?.availableToBack
+                                  ?.length > 2
+                                  ? 6
+                                  : 2
+                              }
+                              data={item}
+                              detail={matchDetails}
+                            />
+                          </Col>
+                        ) : (
                           <Col md={12} style={{ marginTop: "8px" }}>
                             <Tournament
                               title={item?.name}
@@ -345,10 +206,146 @@ const DesktopGameDetail = () => {
                               detail={matchDetails}
                             />
                           </Col>
-                        )}
-                      </div>
-                    ))}
-              </>
+                        ))}
+                    </div>
+                  ))}
+              {(matchDetails?.apiSession?.session?.section?.length > 0 ||
+                manualEntries?.length > 0) && (
+                <Col md={12}>
+                  <SessionNormal
+                    title="Normal"
+                    mtype="session"
+                    data={matchDetails?.apiSession?.session}
+                    detail={matchDetails}
+                    manual={manualEntries ? manualEntries : []}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.overByover?.section?.length > 0 && (
+                <Col md={12}>
+                  <SessionNormal
+                    title="overByover"
+                    mtype="overByover"
+                    data={matchDetails?.apiSession?.overByover}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.ballByBall?.section?.length > 0 && (
+                <Col md={12}>
+                  <SessionNormal
+                    title="Ballbyball"
+                    mtype="ballByBall"
+                    data={matchDetails?.apiSession?.ballByBall}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
+                <Col md={12}>
+                  <SessionFancy
+                    title="fancy1"
+                    data={matchDetails?.apiSession?.fancy1}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.khado?.section?.length > 0 && (
+                <Col md={12}>
+                  <SessionKhado
+                    title="khado"
+                    data={matchDetails?.apiSession?.khado}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.meter?.section?.length > 0 && (
+                <Col md={12}>
+                  <SessionNormal
+                    title="meter"
+                    mtype="meter"
+                    data={matchDetails?.apiSession?.meter}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
+                <Col md={12}>
+                  <SessionOddEven
+                    title="oddeven"
+                    data={matchDetails?.apiSession?.oddEven}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  gap: "1%",
+                }}
+              >
+                {matchDetails?.apiSession?.cricketCasino?.section?.length > 0 &&
+                  matchDetails?.apiSession?.cricketCasino?.section?.map(
+                    (item: any, index: number) => {
+                      let length =
+                        matchDetails?.apiSession?.cricketCasino?.section
+                          ?.length;
+                      return (
+                        <div
+                          key={index}
+                          style={{
+                            width:
+                              length % 2 === 0
+                                ? "49.5%"
+                                : index === length - 1
+                                ? "100%"
+                                : "49.5%",
+                          }}
+                        >
+                          {item?.activeStatus === "live" && (
+                            <Col md={12}>
+                              <SessionCricketCasino
+                                title={item?.RunnerName}
+                                data={item}
+                                detail={matchDetails}
+                              />
+                            </Col>
+                          )}
+                        </div>
+                      );
+                    }
+                  )}
+              </div>
+              {matchDetails?.tournament?.length > 0 &&
+                matchDetails?.tournament
+                  ?.filter((item: any) =>
+                    ["completed_match", "tied_match"].includes(
+                      item?.name?.toLowerCase()
+                    )
+                  )
+                  ?.sort((a: any, b: any) => a.sNo - b.sNo)
+                  ?.map((item: any, index: number) => (
+                    <div key={index}>
+                      {item?.activeStatus === "live" && item?.isActive && (
+                        <Col md={12} style={{ marginTop: "8px" }}>
+                          <Tournament
+                            title={item?.name}
+                            box={
+                              item?.runners?.[0]?.ex?.availableToBack?.length >
+                              2
+                                ? 6
+                                : 2
+                            }
+                            data={item}
+                            detail={matchDetails}
+                          />
+                        </Col>
+                      )}
+                    </div>
+                  ))}
             </Container>
           ) : (
             <div
