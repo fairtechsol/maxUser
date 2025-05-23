@@ -302,22 +302,14 @@ const PlacedBet = () => {
     let profit: any;
     if (selectedBet?.team?.matchBetType === "session") {
       profit = 0;
-    } else if (
-      selectedBet?.data?.type === matchBettingType.matchOdd ||
-      selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
-      selectedBet?.data?.type === matchBettingType.completeMatch ||
-      selectedBet?.data?.type === matchBettingType.halfTime ||
-      selectedBet?.data?.type?.includes("overUnder") ||
-      selectedBet?.data?.type?.includes("firstHalfGoal") ||
-      selectedBet?.data?.type?.includes("setWinner")
-    ) {
+    } else if (selectedBet?.data?.gtype === "match") {
       profit =
-        selectedBet?.team?.type === "BACK" || selectedBet?.team?.type === "back"
+        selectedBet?.team?.type?.toLowerCase() === "back"
           ? (value * ((matchOddRate - 1) * 100)) / 100
           : value;
     } else {
       profit =
-        selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK"
+        selectedBet?.team?.type?.toLowerCase() === "back"
           ? (value * matchOddRate) / 100
           : value;
     }
