@@ -83,54 +83,34 @@ export const manualProfitLoss = (
   type: any,
   gType: any
 ) => {
-  if (type === selectedBet?.team?.matchBetType && selectedBet?.team?.stake) {
-    if (gType === "match") {
-      if (selectedBet?.team?.type?.toLowerCase() === "back") {
-        if (team === selectedBet?.team?.betOnTeam) {
-          let profit = selectedBet?.team?.stake * (selectedBet?.team?.rate - 1);
-          return parseFloat(profit.toFixed(2)) ?? 0;
-        } else {
-          let loss = -selectedBet?.team?.stake;
-          return loss ?? 0;
-        }
-      } else {
-        if (team === selectedBet?.team?.betOnTeam) {
-          let loss = -(
-            selectedBet?.team?.stake *
-            (selectedBet?.team?.rate - 1)
-          );
-          return parseFloat(loss.toFixed(2)) ?? 0;
-        } else {
-          let profit = selectedBet?.team?.stake;
-          return profit ?? 0;
-        }
-      }
+  const bet = selectedBet?.team;
+  if (type !== bet?.matchBetType || !bet?.stake) return 0;
+
+  const isBack = bet?.type?.toLowerCase() === "back";
+  const isMatch = gType === "match";
+  const isSameTeam = team === bet?.betOnTeam;
+
+  const stake = parseFloat(bet.stake) || 0;
+  const rate = parseFloat(bet.rate) || 0;
+
+  let result = 0;
+
+  if (isMatch) {
+    if (isBack) {
+      result = isSameTeam ? stake * (rate - 1) : -stake;
     } else {
-      if (selectedBet?.team?.type?.toLowerCase() === "back") {
-        if (team === selectedBet?.team?.betOnTeam) {
-          let profit =
-            (selectedBet?.team?.stake * selectedBet?.team?.rate) / 100;
-          return parseFloat(profit.toFixed(2)) ?? 0;
-        } else {
-          let loss = -selectedBet?.team?.stake;
-          return loss ?? 0;
-        }
-      } else {
-        if (team === selectedBet?.team?.betOnTeam) {
-          let loss = -(
-            (selectedBet?.team?.stake * selectedBet?.team?.rate) /
-            100
-          );
-          return parseFloat(loss.toFixed(2)) ?? 0;
-        } else {
-          let profit = selectedBet?.team?.stake;
-          return profit ?? 0;
-        }
-      }
+      result = isSameTeam ? -(stake * (rate - 1)) : stake;
     }
   } else {
-    return 0;
+    const profitOrLoss = (stake * rate) / 100;
+    if (isBack) {
+      result = isSameTeam ? profitOrLoss : -stake;
+    } else {
+      result = isSameTeam ? -profitOrLoss : stake;
+    }
   }
+
+  return parseFloat(result.toFixed(2)) || 0;
 };
 
 export const calculateRequiredStack = (
