@@ -85,10 +85,7 @@ export const manualProfitLoss = (
 ) => {
   if (type === selectedBet?.team?.matchBetType && selectedBet?.team?.stake) {
     if (gType === "match") {
-      if (
-        selectedBet?.team?.type === "back" ||
-        selectedBet?.team?.type === "BACK"
-      ) {
+      if (selectedBet?.team?.type?.toLowerCase() === "back") {
         if (team === selectedBet?.team?.betOnTeam) {
           let profit = selectedBet?.team?.stake * (selectedBet?.team?.rate - 1);
           return parseFloat(profit.toFixed(2)) ?? 0;
@@ -109,10 +106,7 @@ export const manualProfitLoss = (
         }
       }
     } else {
-      if (
-        selectedBet?.team?.type === "back" ||
-        selectedBet?.team?.type === "BACK"
-      ) {
+      if (selectedBet?.team?.type?.toLowerCase() === "back") {
         if (team === selectedBet?.team?.betOnTeam) {
           let profit =
             (selectedBet?.team?.stake * selectedBet?.team?.rate) / 100;
