@@ -1,13 +1,17 @@
 import { FaLock } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { manualProfitLoss } from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import BetBox from "../../gameDetails/betBox";
 import "./style.scss";
 
 const HtFt = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -16,7 +20,7 @@ const HtFt = ({ title, box, data, detail }) => {
     index: any,
     runner: any
   ) => {
-    console.log(index)
+    console.log(index);
     if (status != "ACTIVE" && status != "OPEN") {
       return false;
     }
@@ -57,8 +61,9 @@ const HtFt = ({ title, box, data, detail }) => {
       <div className="tournamentContainer">
         <div className="tournamentTitle">
           <span
-            className={`tournamentTitleTxt ${isMobile ? "f-size13" : "f-size15"
-              }`}
+            className={`tournamentTitleTxt ${
+              isMobile ? "f-size13" : "f-size15"
+            }`}
           >
             {title}
           </span>
@@ -83,7 +88,7 @@ const HtFt = ({ title, box, data, detail }) => {
                 >
                   <div
                     className="htftTeam"
-                    style={box === 6 ? { width: "28%" } : {}}
+                    style={box === 6 ? { width: "28%" } : { width: "77%" }}
                   >
                     {item?.status !== "OPEN" &&
                       item?.status !== "ACTIVE" &&
@@ -96,16 +101,71 @@ const HtFt = ({ title, box, data, detail }) => {
                     <span className={`teamFont tournamentTeamTxt ms-1`}>
                       {item?.nat || item?.runnerName}
                     </span>
-                    <span
-                      className={` ms-1 mt-1 ${profitLossObj?.[item.id] > 0
-                        ? "color-green"
-                        : profitLossObj?.[item.id] < 0
-                          ? "color-red"
-                          : ""
+                    <div className="d-flex flex-row justify-content-between w-100">
+                      <span
+                        className={` ms-1 mt-1 ${
+                          profitLossObj?.[item.id] > 0
+                            ? "color-green"
+                            : profitLossObj?.[item.id] < 0
+                            ? "color-red"
+                            : ""
                         } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-                    >
-                      {profitLossObj?.[item.id]}
-                    </span>
+                      >
+                        {profitLossObj?.[item.id]}
+                      </span>
+                      {selectedBet?.team?.parentBetId ||
+                      selectedBet?.team?.betId ===
+                        (data.parentBetId || data?.id) ? (
+                        <span
+                          className="title-12 f-400 d-flex justify-content-center align-center"
+                          style={{
+                            color: (() => {
+                              const basePL = parseFloat(
+                                profitLossObj?.[
+                                  item?.parentRunnerId || item?.id
+                                ] || 0
+                              );
+                              const manualPL = manualProfitLoss(
+                                selectedBet,
+                                item?.nat || item?.runnerName,
+                                data?.type,
+                                data?.gtype
+                              );
+                              return basePL + manualPL > 0
+                                ? "#086f3f"
+                                : "#bd1828";
+                            })(),
+                          }}
+                        >
+                          {(() => {
+                            const betKey = item.parentRunnerId || item.id;
+                            const basePL = parseFloat(
+                              profitLossObj?.[betKey] || 0
+                            );
+                            const manualPL = manualProfitLoss(
+                              selectedBet,
+                              item?.nat || item?.runnerName,
+                              data?.type,
+                              data?.gtype
+                            );
+
+                            const isSelected =
+                              selectedBet?.team?.betId ===
+                              (data.parentBetId || data?.id);
+
+                            if (profitLossObj?.[betKey]) {
+                              return isSelected
+                                ? (basePL + manualPL).toFixed(2)
+                                : basePL.toFixed(2);
+                            } else {
+                              return manualPL === 0 ? "" : manualPL.toFixed(2);
+                            }
+                          })()}
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
                   <div className={"tournament2RateBox rateBoxWidth3"}>
                     <BetBox
