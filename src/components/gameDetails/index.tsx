@@ -206,12 +206,6 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       if (id) {
-        // const findMatchInList = matchList?.filter(
-        //   (item: any) => item?.id === id
-        // );
-        // if (findMatchInList) {
-        //   dispatch(updateMatchDetailFromMatchList(findMatchInList));
-        // }
         dispatch(selectedBetAction(null));
         dispatch(matchDetailAction(id));
         dispatch(getPlacedBets(id));
