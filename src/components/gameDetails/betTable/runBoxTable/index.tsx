@@ -25,24 +25,22 @@ const RunBoxTable = ({ runAmount }: any) => {
         </tr>
       </thead>
       <tbody>
-        {runAmount?.betPlaced?.map((item: any, index: number) => {
-          return (
-            <tr key={index}>
-              <td style={{ textAlign: "start", backgroundColor: "#f2f2f2" }}>
-                {item?.odds}
-              </td>
-              <td
-                style={{
-                  textAlign: "end",
-                  backgroundColor: "#f2f2f2",
-                  color: item?.profitLoss < 0 ? "#bd1828" : "#086f3f",
-                }}
-              >
-                {parseFloat(item?.profitLoss).toFixed(2)}
-              </td>
-            </tr>
-          );
-        })}
+        {runAmount?.betPlaced?.map((item: any, index: number) => (
+          <tr key={index}>
+            <td style={{ textAlign: "start", backgroundColor: "#f2f2f2" }}>
+              {item?.odds}
+            </td>
+            <td
+              style={{
+                textAlign: "end",
+                backgroundColor: "#f2f2f2",
+                color: item?.profitLoss < 0 ? "#bd1828" : "#086f3f",
+              }}
+            >
+              {parseFloat(item?.profitLoss).toFixed(2)}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );

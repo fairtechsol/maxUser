@@ -126,24 +126,33 @@ const MobileGameDetail = () => {
                   <div style={{ width: "98%" }}>
                     <Row className="ms-0">
                       {!sessionStorage.getItem("isDemo") && showVideo && (
-                        <Container className="px-0">
-                          <Row className="justify-content-md-center">
-                            <Col md={12}>
-                              <Ratio aspectRatio="16x9">
-                                <iframe
-                                  src={
-                                    import.meta.env.VITE_NODE_ENV ==
-                                    "production"
-                                      ? tvData?.tvData?.iframeUrl
-                                      : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`
-                                  }
-                                  title="Live Stream"
-                                  referrerPolicy="strict-origin-when-cross-origin"
-                                />
-                              </Ratio>
-                            </Col>
-                          </Row>
-                        </Container>
+                        <>
+                          {(() => {
+                            const isProd =
+                              import.meta.env.VITE_NODE_ENV === "production";
+                            const iframeSrc = isProd
+                              ? tvData?.tvData?.iframeUrl
+                              : `${liveStreamPageUrl}${matchDetails?.eventId}/${matchDetails?.matchType}`;
+
+                            if (!iframeSrc) return null;
+
+                            return (
+                              <Container className="px-0">
+                                <Row className="justify-content-md-center">
+                                  <Col md={12}>
+                                    <Ratio aspectRatio="16x9">
+                                      <iframe
+                                        src={iframeSrc}
+                                        title="Live Stream"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                      />
+                                    </Ratio>
+                                  </Col>
+                                </Row>
+                              </Container>
+                            );
+                          })()}
+                        </>
                       )}
                       {["cricket", "politics"].includes(
                         matchDetails?.matchType
@@ -152,34 +161,44 @@ const MobileGameDetail = () => {
                           <Iframe data={liveScoreBoardData} width="100%" />
                         )
                       ) : (
-                        <div
-                          style={{
-                            height: "250px",
-                            backgroundPosition: "center",
-                            backgroundSize: "cover",
-                            position: "relative",
-                            marginLeft: "4px",
-                            marginRight: "4px",
-                            width: "calc(100%-8px)",
-                          }}
-                        >
-                          <iframe
-                            style={{
-                              height: "100%",
-                              position: "absolute",
-                              width: "100%",
-                              left: 0,
-                              top: 0,
-                            }}
-                            src={
-                              import.meta.env.VITE_NODE_ENV == "production"
-                                ? tvData?.scoreData?.iframeUrl
-                                : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`
-                            }
-                            title="Live Stream"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                          />
-                        </div>
+                        <>
+                          {(() => {
+                            const isProd =
+                              import.meta.env.VITE_NODE_ENV === "production";
+                            const iframeSrc = isProd
+                              ? tvData?.scoreData?.iframeUrl
+                              : `${scoreBoardUrlMain}${matchDetails?.eventId}/${matchDetails?.matchType}`;
+
+                            if (!iframeSrc) return null;
+
+                            return (
+                              <div
+                                style={{
+                                  height: "250px",
+                                  backgroundPosition: "center",
+                                  backgroundSize: "cover",
+                                  position: "relative",
+                                  marginLeft: "4px",
+                                  marginRight: "4px",
+                                  width: "calc(100% - 8px)",
+                                }}
+                              >
+                                <iframe
+                                  style={{
+                                    height: "100%",
+                                    position: "absolute",
+                                    width: "100%",
+                                    left: 0,
+                                    top: 0,
+                                  }}
+                                  src={iframeSrc}
+                                  title="Live Stream"
+                                  referrerPolicy="strict-origin-when-cross-origin"
+                                />
+                              </div>
+                            );
+                          })()}
+                        </>
                       )}
                       {matchDetails?.tournament?.length > 0 &&
                         matchDetails?.tournament

@@ -141,41 +141,47 @@ const SessionKhado = ({ title, data, detail }) => {
                                 id: item?.id,
                               })
                             );
-                          dispatch(getRunAmountMeter(item?.id));
+                          dispatch(
+                            getRunAmountMeter({
+                              id: item?.id,
+                              matchId: detail?.id,
+                            })
+                          );
                         }}
                       >
                         {item?.RunnerName}-
                         {item?.ex?.availableToLay?.[0]?.price}
                       </span>{" "}
                       <span
-                        className={`${calculateMaxLoss(
-                          detail?.profitLossDataSession,
-                          item?.id
-                        ) < 0
+                        className={`${
+                          calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) < 0
                             ? "color-red"
                             : "color-red"
-                          } title-14 fbold`}
+                        } title-14 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) !== 0
                           ? `-${calculateMaxLoss(
-                            detail?.profitLossDataSession,
-                            item?.id
-                          )}`
+                              detail?.profitLossDataSession,
+                              item?.id
+                            )}`
                           : ""}
                       </span>
                     </div>
                     <div className="sessionRateBoxContainer rateBoxWidthKhado">
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
-                          <div className="suspended-overlayRates">
-                            <span className={`suspendTextCmmn`}>
-                              {item?.GameStatus ?? "SUSPENDED"}
-                            </span>
-                          </div>
-                        )}
+                        <div className="suspended-overlayRates">
+                          <span className={`suspendTextCmmn`}>
+                            {item?.GameStatus ?? "SUSPENDED"}
+                          </span>
+                        </div>
+                      )}
                       <div
                         className={`sessionRateBox rateFont back1Background`}
                         style={{ cursor: "pointer" }}
@@ -246,7 +252,7 @@ const SessionKhado = ({ title, data, detail }) => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => handleModal(false)}
-           />
+          />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <div
