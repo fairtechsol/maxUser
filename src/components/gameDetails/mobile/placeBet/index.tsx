@@ -339,7 +339,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       profit = isBack ? profitLoss - stakeAmount : profitLoss + stakeAmount;
     }
 
-    return isNaN(profit) ? "" : profit;
+    return isNaN(profit) || !stake ? "" : profit;
   };
 
   const handleName = (selected: any) => {
@@ -572,13 +572,19 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                                   : "color-green"
                               }`}
                             >
-                              {Number(
-                                handleProfitLoss(
-                                  selectedBet?.team?.runners?.parentBetId ||
-                                    selectedBet?.team?.runners?.id,
-                                  item?.parentRunnerId || item?.id
-                                )
-                              ).toFixed(2)}
+                              {handleProfitLoss(
+                                selectedBet?.team?.runners?.parentBetId ||
+                                  selectedBet?.team?.runners?.id,
+                                item?.parentRunnerId || item?.id
+                              )
+                                ? Number(
+                                    handleProfitLoss(
+                                      selectedBet?.team?.runners?.parentBetId ||
+                                        selectedBet?.team?.runners?.id,
+                                      item?.parentRunnerId || item?.id
+                                    )
+                                  ).toFixed(2)
+                                : ""}
                             </span>
                           </div>
                         </div>
@@ -601,12 +607,17 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                                   : "color-red"
                               }
                             >
-                              {Number(
-                                handleTounamentProLoss(
-                                  selectedBet?.team,
-                                  item?.parentRunnerId || item?.id
-                                )
-                              ).toFixed(2)}
+                              {handleTounamentProLoss(
+                                selectedBet?.team,
+                                item?.parentRunnerId || item?.id
+                              )
+                                ? Number(
+                                    handleTounamentProLoss(
+                                      selectedBet?.team,
+                                      item?.parentRunnerId || item?.id
+                                    )
+                                  ).toFixed(2)
+                                : ""}
                             </span>
                           </div>
                         </div>
