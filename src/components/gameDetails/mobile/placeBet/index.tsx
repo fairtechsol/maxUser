@@ -111,69 +111,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     return isNaN(profit) ? 0 : parseFloat(profit).toFixed(2) ?? 0;
   };
 
-  const handleProLoss = (data: any, type: string) => {
-    let profit: any;
-    if (data?.betOnTeam === data[`team${type}`]) {
-      profit = (
-        Number(handleProfit(parseFloat(stake))) +
-        Number(handleTeamRates(data?.matchBetType, type))
-      ).toFixed(2);
-    } else {
-      profit =
-        data?.type === "back" || data?.type === "BACK"
-          ? (
-              -Number(data?.stake) +
-              Number(handleTeamRates(data?.matchBetType, type))
-            ).toFixed(2)
-          : (
-              Number(data?.stake) +
-              Number(handleTeamRates(data?.matchBetType, type))
-            ).toFixed(2);
-    }
-    return isNaN(profit)
-      ? Number(
-          handleTeamRates(data?.matchBetType, type)
-            ? Number(handleTeamRates(data?.matchBetType, type))
-            : 0
-        ).toFixed(2)
-      : parseFloat(profit).toFixed(2);
-  };
-
-  const handleTeamRates = (type: any, team: string) => {
-    let rate;
-    if (
-      type === "matchOdd" ||
-      type === "bookmaker" ||
-      type === "bookmaker2" ||
-      type === "quickbookmaker1" ||
-      type === "quickbookmaker2" ||
-      type === "quickbookmaker3"
-    ) {
-      rate =
-        matchDetails?.profitLossDataMatch[
-          `team${team}Rate_${matchDetails?.id}`
-        ];
-    } else if (
-      type === "completeMatch" ||
-      type === "completeMatch1" ||
-      type === "completeManual"
-    ) {
-      rate =
-        team === "A"
-          ? matchDetails?.profitLossDataMatch[
-              `yesRateComplete_${matchDetails?.id}`
-            ]
-          : matchDetails?.profitLossDataMatch[
-              `noRateComplete_${matchDetails?.id}`
-            ];
-    } else {
-      rate =
-        team === "A"
-          ? matchDetails?.profitLossDataMatch[`yesRateTie_${matchDetails?.id}`]
-          : matchDetails?.profitLossDataMatch[`noRateTie_${matchDetails?.id}`];
-    }
-    return rate || 0;
-  };
   const handleProfitLoss = (id: any, r_id: any) => {
     const key = `${id}_profitLoss_${matchDetails.id}`;
 
@@ -402,7 +339,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       profit = isBack ? profitLoss - stakeAmount : profitLoss + stakeAmount;
     }
 
-    return isNaN(profit) ? "" : profit;
+    return isNaN(profit) || !stake ? "" : profit;
   };
 
   const handleName = (selected: any) => {
@@ -604,220 +541,91 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 Edit
               </div>
             </Col>
-            {selectedBet?.team?.matchBetType === "tournament" ? (
-              selectedBet?.team?.runners?.runners?.map(
-                (item: any, index: number) => {
-                  return (
-                    <div
-                      className="container d-flex justify-content-between mt-2"
-                      key={index}
-                    >
-                      <div className="row" style={{ width: "40%" }}>
-                        <div className="col-md-4 flex-start">
-                          <div className="row">
-                            <div className="col-md-12">
-                              <span className="f400 title-12">{item?.nat}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="row row5" style={{ width: "30%" }}>
-                        <div className="col-md-4">
-                          <div className="row">
-                            <div className="col-md-12 text-center">
-                              <span
-                                className={`f400 title-12 ${
-                                  handleProfitLoss(
-                                    selectedBet?.team?.runners?.parentBetId ||
-                                      selectedBet?.team?.runners?.id,
-                                    item?.parentRunnerId || item?.id
-                                  ) < 0
-                                    ? "color-red"
-                                    : "color-green"
-                                }`}
-                              >
-                                {Number(
-                                  handleProfitLoss(
-                                    selectedBet?.team?.runners?.parentBetId ||
-                                      selectedBet?.team?.runners?.id,
-                                    item?.parentRunnerId || item?.id
-                                  )
-                                ).toFixed(2)}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="row" style={{ width: "30%" }}>
-                        <div className="col-md-4">
-                          <div className="row">
-                            <div className="col-md-12 text-end">
-                              <span
-                                style={{ fontSize: "12px", fontWeight: "400" }}
-                                className={
-                                  Number(
-                                    handleTounamentProLoss(
-                                      selectedBet?.team,
-                                      item?.parentRunnerId || item?.id
-                                    )
-                                  ) > 0
-                                    ? "color-green"
-                                    : "color-red"
-                                }
-                              >
-                                {Number(
-                                  handleTounamentProLoss(
-                                    selectedBet?.team,
-                                    item?.parentRunnerId || item?.id
-                                  )
-                                ).toFixed(2)}
-                              </span>
-                            </div>
+            {selectedBet?.team?.runners?.runners?.map(
+              (item: any, index: number) => {
+                return (
+                  <div
+                    className="container d-flex justify-content-between mt-2"
+                    key={index}
+                  >
+                    <div className="row" style={{ width: "40%" }}>
+                      <div className="col-md-4 flex-start">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span className="f400 title-12">{item?.nat}</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  );
-                }
-              )
-            ) : (
-              <div className="container d-flex justify-content-between mt-2">
-                {selectedBet?.data?.type &&
-                  selectedBet.data.type !== "session" &&
-                  selectedBet.team.matchBetType !== "apiSession" &&
-                  selectedBet?.team?.eventType !== "horseRacing" &&
-                  selectedBet?.team?.eventType !== "greyHound" && (
-                    <>
-                      <div className="row">
-                        <div className="col-md-4 flex-start">
-                          <div className="row">
-                            <div className="col-md-12">
-                              <span className="f400 title-12">
-                                {selectedBet?.team?.teamA}
-                              </span>
-                            </div>
+                    <div className="row row5" style={{ width: "30%" }}>
+                      <div className="col-md-4">
+                        <div className="row">
+                          <div className="col-md-12 text-center">
+                            <span
+                              className={`f400 title-12 ${
+                                handleProfitLoss(
+                                  selectedBet?.team?.runners?.parentBetId ||
+                                    selectedBet?.team?.runners?.id,
+                                  item?.parentRunnerId || item?.id
+                                ) < 0
+                                  ? "color-red"
+                                  : "color-green"
+                              }`}
+                            >
+                              {handleProfitLoss(
+                                selectedBet?.team?.runners?.parentBetId ||
+                                  selectedBet?.team?.runners?.id,
+                                item?.parentRunnerId || item?.id
+                              )
+                                ? Number(
+                                    handleProfitLoss(
+                                      selectedBet?.team?.runners?.parentBetId ||
+                                        selectedBet?.team?.runners?.id,
+                                      item?.parentRunnerId || item?.id
+                                    )
+                                  ).toFixed(2)
+                                : ""}
+                            </span>
                           </div>
-                          <div className="row">
-                            <div className="col-md-12">
-                              <span className="f400 title-12">
-                                {selectedBet?.team?.teamB}
-                              </span>
-                            </div>
-                          </div>
-                          {selectedBet?.team?.teamC && (
-                            <div className="row">
-                              <div className="col-md-12">
-                                <span className="f400 title-12">
-                                  {selectedBet?.team?.teamC}
-                                </span>
-                              </div>
-                            </div>
-                          )}
                         </div>
                       </div>
-                      <div className="row row5">
-                        <div className="col-md-4">
-                          <div className="row">
-                            <div className="col-md-12">
-                              <span className="f400 title-12">
-                                {handleTeamRates(
-                                  selectedBet?.team?.matchBetType,
-                                  "A"
-                                )}
-                              </span>
-                            </div>
+                    </div>
+                    <div className="row" style={{ width: "30%" }}>
+                      <div className="col-md-4">
+                        <div className="row">
+                          <div className="col-md-12 text-end">
+                            <span
+                              style={{ fontSize: "12px", fontWeight: "400" }}
+                              className={
+                                Number(
+                                  handleTounamentProLoss(
+                                    selectedBet?.team,
+                                    item?.parentRunnerId || item?.id
+                                  )
+                                ) > 0
+                                  ? "color-green"
+                                  : "color-red"
+                              }
+                            >
+                              {handleTounamentProLoss(
+                                selectedBet?.team,
+                                item?.parentRunnerId || item?.id
+                              )
+                                ? Number(
+                                    handleTounamentProLoss(
+                                      selectedBet?.team,
+                                      item?.parentRunnerId || item?.id
+                                    )
+                                  ).toFixed(2)
+                                : ""}
+                            </span>
                           </div>
-                          <div className="row">
-                            <div className="col-md-12">
-                              <span className="f400 title-12">
-                                {handleTeamRates(
-                                  selectedBet?.team?.matchBetType,
-                                  "B"
-                                )}
-                              </span>
-                            </div>
-                          </div>
-                          {selectedBet?.team?.teamC && (
-                            <div className="row">
-                              <div className="col-md-12">
-                                <span className="f400 title-12">
-                                  {handleTeamRates(
-                                    selectedBet?.team?.matchBetType,
-                                    "C"
-                                  )}
-                                </span>
-                              </div>
-                            </div>
-                          )}
                         </div>
                       </div>
-                      <div className="row">
-                        <div className="col-md-4">
-                          <div className="row">
-                            <div className="col-md-12">
-                              <span
-                                style={{ fontSize: "12px", fontWeight: "400" }}
-                                className={
-                                  Number(
-                                    handleProLoss(selectedBet?.team, "A")
-                                  ) > 0
-                                    ? "color-green"
-                                    : "color-red"
-                                }
-                              >
-                                {selectedBet?.team?.stake > 0
-                                  ? handleProLoss(selectedBet?.team, "A")
-                                  : ""}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="col-md-12">
-                              <span
-                                style={{ fontSize: "12px", fontWeight: "400" }}
-                                className={
-                                  Number(
-                                    handleProLoss(selectedBet?.team, "B")
-                                  ) > 0
-                                    ? "color-green"
-                                    : "color-red"
-                                }
-                              >
-                                {selectedBet?.team?.stake > 0
-                                  ? handleProLoss(selectedBet?.team, "B")
-                                  : ""}
-                              </span>
-                            </div>
-                          </div>
-
-                          {selectedBet?.team?.teamC && (
-                            <div className="row">
-                              <div className="col-md-12">
-                                <span
-                                  style={{
-                                    fontSize: "12px",
-                                    fontWeight: "600",
-                                  }}
-                                  className={
-                                    Number(
-                                      handleProLoss(selectedBet?.team, "C")
-                                    ) > 0
-                                      ? "color-green"
-                                      : "color-red"
-                                  }
-                                >
-                                  {selectedBet?.team?.stake > 0
-                                    ? handleProLoss(selectedBet?.team, "C")
-                                    : ""}
-                                </span>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )}
-              </div>
+                    </div>
+                  </div>
+                );
+              }
             )}
           </Row>
         </Container>
