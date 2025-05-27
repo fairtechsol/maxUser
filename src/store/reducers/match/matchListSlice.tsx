@@ -230,7 +230,7 @@ const matchListSlice = createSlice({
           const updatedData = ArrayToMap?.map((items: any) => {
             const itemToUpdate = data?.find(
               (item: any) =>
-                +item?.gameId === +items?.eventId ||
+                +item?.beventId === +items?.eventId ||
                 +item?.gmid === +items?.eventId
             );
             return {
