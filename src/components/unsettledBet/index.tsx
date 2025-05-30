@@ -471,13 +471,13 @@ const UnsettledBetComponent = () => {
               >
                 <th
                   className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                  style={{ width: "12%" }}
+                  style={{ width: "8%" }}
                 >
                   Sports
                 </th>
                 <th
                   className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                  style={{ width: "20%", borderLeft: "1px solid #c7c8ca" }}
+                  style={{ width: "22%", borderLeft: "1px solid #c7c8ca" }}
                 >
                   Event Name
                 </th>
@@ -489,7 +489,7 @@ const UnsettledBetComponent = () => {
                 </th>
                 <th
                   className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                  style={{ width: "18%", borderLeft: "1px solid #c7c8ca" }}
+                  style={{ width: "20%", borderLeft: "1px solid #c7c8ca" }}
                 >
                   Nation
                 </th>
@@ -630,14 +630,14 @@ const UnsettledBetComponent = () => {
                         >
                           <td
                             className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                            style={{ width: "12%" }}
+                            style={{ width: "8%" }}
                           >
                             {item.eventType}
                           </td>
                           <td
                             className="ps-2 justify-content-start h-100 d-flex align-items-center"
                             style={{
-                              width: "20%",
+                              width: "22%",
                               borderLeft: "1px solid #c7c8ca",
                             }}
                           >
@@ -650,12 +650,12 @@ const UnsettledBetComponent = () => {
                               borderLeft: "1px solid #c7c8ca",
                             }}
                           >
-                            {item?.marketType}
+                            {item?.bettingName || item?.marketType}
                           </td>
                           <td
                             className="ps-2 justify-content-start h-100 d-flex align-items-center"
                             style={{
-                              width: "18%",
+                              width: "20%",
                               borderLeft: "1px solid #c7c8ca",
                             }}
                           >
