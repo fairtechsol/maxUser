@@ -483,7 +483,7 @@ const UnsettledBetComponent = () => {
                 </th>
                 <th
                   className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                  style={{ width: "20%", borderLeft: "1px solid #c7c8ca" }}
+                  style={{ width: "18%", borderLeft: "1px solid #c7c8ca" }}
                 >
                   Market Name
                 </th>
@@ -507,7 +507,7 @@ const UnsettledBetComponent = () => {
                 </th>
                 <th
                   className="ps-1 justify-content-start h-100 d-flex align-items-center"
-                  style={{ width: "12%", borderLeft: "1px solid #c7c8ca" }}
+                  style={{ width: "14%", borderLeft: "1px solid #c7c8ca" }}
                 >
                   Place Date
                 </th>
@@ -646,7 +646,7 @@ const UnsettledBetComponent = () => {
                           <td
                             className="ps-2 justify-content-start h-100 d-flex align-items-center"
                             style={{
-                              width: "20%",
+                              width: "18%",
                               borderLeft: "1px solid #c7c8ca",
                             }}
                           >
@@ -682,7 +682,7 @@ const UnsettledBetComponent = () => {
                           <td
                             className="ps-1 justify-content-start h-100 d-flex align-items-center"
                             style={{
-                              width: "12%",
+                              width: "14%",
                               borderLeft: "1px solid #c7c8ca",
                             }}
                           >
