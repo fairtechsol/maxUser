@@ -382,6 +382,7 @@ const matchListSlice = createSlice({
                 ...item,
                 maxLoss: profitLoss?.maxLoss,
                 totalBet: profitLoss?.totalBet,
+                profitLoss: profitLoss?.betPlaced,
               };
             });
 
