@@ -112,9 +112,9 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
       >
         <Container
           className={`${selectedBet?.team?.bettingType === "LAY" ||
-              selectedBet?.team?.bettingType === "NO"
-              ? "bg-red1"
-              : "placeBet-bg-blue"
+            selectedBet?.team?.bettingType === "NO"
+            ? "bg-red1"
+            : "placeBet-bg-blue"
             }`}
           fluid
         >
@@ -298,7 +298,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             className="btn-close btn-close-white"
             aria-label="Close"
             onClick={() => setShow(false)}
-           />
+          />
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <ButtonValues />
