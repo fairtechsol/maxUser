@@ -23,9 +23,6 @@ function BackLayBox({ bgColor, rate, active }: props) {
       setTempRate(rate);
     }
   }, [rate]);
-  const handleRate = (rate: any) => {
-    return rate;
-  };
   return (
     <div className={`backLay bg-${isYellow ? "secondary" : bgColor}`}>
       {location.pathname == "/home" ? (
@@ -62,7 +59,7 @@ function BackLayBox({ bgColor, rate, active }: props) {
                 ? isMobile
                   ? "-"
                   : "-"
-                : handleRate(rate)}{" "}
+                : rate}{" "}
             </span>
           </div>
         </BetStatusOverlay>
