@@ -296,12 +296,13 @@ const Tournament = ({ title, box, data, detail }) => {
                   </span>
                   <div className="d-flex flex-row justify-content-between w-100">
                     <span
-                      className={`${parseFloat(
-                        profitLossObj?.[item?.parentRunnerId || item?.id]
-                      ) > 0
-                        ? "color-green"
-                        : "color-red"
-                        } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                      className={`${
+                        parseFloat(
+                          profitLossObj?.[item?.parentRunnerId || item?.id]
+                        ) >= 0
+                          ? "color-green"
+                          : "color-red"
+                      } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
                       {profitLossObj?.[item?.parentRunnerId || item?.id] || ""}
                     </span>
