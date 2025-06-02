@@ -173,6 +173,9 @@ const Tournament = ({ title, box, data, detail }) => {
       })
     );
   };
+  console.log("selectedBet :", selectedBet)
+
+  console.log("data :", data)
 
   const showCashoutError = () => {
     toast.error("You are not eligible for cashout!", {
@@ -302,9 +305,8 @@ const Tournament = ({ title, box, data, detail }) => {
                     >
                       {profitLossObj?.[item?.parentRunnerId || item?.id] || ""}
                     </span>
-                    {selectedBet?.team?.parentBetId ||
-                      selectedBet?.team?.betId ===
-                      (data.parentBetId || data?.id) ? (
+                    {(selectedBet?.team?.parentBetId === (data.parentBetId || data?.id) ||
+                      selectedBet?.team?.betId === (data.parentBetId || data?.id)) ? (
                       <span
                         className="title-12 f-400"
                         style={{
@@ -339,8 +341,8 @@ const Tournament = ({ title, box, data, detail }) => {
                           );
 
                           const isSelected =
-                            selectedBet?.team?.betId ===
-                            (data.parentBetId || data?.id);
+                            selectedBet?.team?.betId === (data.parentBetId || data?.id) ||
+                            selectedBet?.team?.parentBetId === (data.parentBetId || data?.id);
 
                           if (profitLossObj?.[betKey]) {
                             return isSelected
@@ -441,7 +443,7 @@ const Tournament = ({ title, box, data, detail }) => {
             <div className="remark-content1">{data?.rem}</div>
           </div>
         )}
-      </div>
+      </div >
     </>
   );
 };
