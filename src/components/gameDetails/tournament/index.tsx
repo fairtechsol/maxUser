@@ -298,7 +298,7 @@ const Tournament = ({ title, box, data, detail }) => {
                       className={`${
                         parseFloat(
                           profitLossObj?.[item?.parentRunnerId || item?.id]
-                        ) > 0
+                        ) >= 0
                           ? "color-green"
                           : "color-red"
                       } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
