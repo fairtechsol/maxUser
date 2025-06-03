@@ -190,8 +190,9 @@ const Tournament = ({ title, box, data, detail }) => {
       <div className="tournamentContainer">
         <div className="tournamentTitleNew">
           <span
-            className={`tournamentTitleTxt ${isMobile ? "f-size13" : "f-size15"
-              }`}
+            className={`tournamentTitleTxt ${
+              isMobile ? "f-size13" : "f-size15"
+            }`}
           >
             {title}
           </span>
@@ -211,8 +212,8 @@ const Tournament = ({ title, box, data, detail }) => {
                   Object.keys(profitLossObj).length <= 0
                     ? 0.65
                     : data?.id == selectedBet?.data?.id
-                      ? 0.85
-                      : 1,
+                    ? 0.85
+                    : 1,
                 boxShadow:
                   data?.id == selectedBet?.data?.id
                     ? "0 0 0 0.25rem rgba(60,153,110,0.5)"
@@ -230,8 +231,8 @@ const Tournament = ({ title, box, data, detail }) => {
               {data?.minBet === data?.maxBet
                 ? `Max:${formatNumber(data?.maxBet)}`
                 : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
-                  data?.maxBet
-                )}`}
+                    data?.maxBet
+                  )}`}
             </span>
           </div>
           <div
@@ -261,25 +262,26 @@ const Tournament = ({ title, box, data, detail }) => {
         {(!data?.isActive ||
           (!["ACTIVE", "OPEN", ""].includes(data?.status) &&
             data?.gtype == "match")) && (
-            <div
-              className={`outer-suspended-overlayRatestournament ${box === 6 ? "rateBoxWidth" : "rateBoxWidth2"
-                }`}
-              style={{
-                height: `${data?.runners?.length * 45}px`,
-                bottom: data?.rem ? "20px" : "0px",
-              }}
+          <div
+            className={`outer-suspended-overlayRatestournament ${
+              box === 6 ? "rateBoxWidth" : "rateBoxWidth2"
+            }`}
+            style={{
+              height: `${data?.runners?.length * 45}px`,
+              bottom: data?.rem ? "20px" : "0px",
+            }}
+          >
+            <span
+              className={`suspendTextCmmn`}
+              style={{ textTransform: "uppercase" }}
             >
-              <span
-                className={`suspendTextCmmn`}
-                style={{ textTransform: "uppercase" }}
-              >
-                {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
-                  data?.gtype == "match"
-                  ? data?.status
-                  : ""}
-              </span>
-            </div>
-          )}
+              {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
+              data?.gtype == "match"
+                ? data?.status
+                : ""}
+            </span>
+          </div>
+        )}
         {data?.runners?.length > 0 &&
           data?.runners?.map((item: any, index: any) => {
             return (
@@ -293,33 +295,36 @@ const Tournament = ({ title, box, data, detail }) => {
                   </span>
                   <div className="d-flex flex-row justify-content-between w-100">
                     <span
-                      className={`${parseFloat(
-                        profitLossObj?.[item?.parentRunnerId || item?.id]
-                      ) > 0
-                        ? "color-green"
-                        : "color-red"
-                        } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                      className={`${
+                        parseFloat(
+                          profitLossObj?.[item?.parentRunnerId || item?.id]
+                        ) > 0
+                          ? "color-green"
+                          : "color-red"
+                      } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
                       {profitLossObj?.[item?.parentRunnerId || item?.id] || ""}
                     </span>
-                    {(selectedBet?.team?.parentBetId
-                      ? selectedBet?.team?.parentBetId === (data.parentBetId || data?.id)
-                      : selectedBet?.team?.betId === (data.parentBetId || data?.id)) ? (
-
+                    {(
+                      selectedBet?.team?.parentBetId
+                        ? selectedBet?.team?.parentBetId ===
+                          (data.parentBetId || data?.id)
+                        : selectedBet?.team?.betId ===
+                          (data.parentBetId || data?.id)
+                    ) ? (
                       <span
                         className="title-12 f-400"
                         style={{
                           color: (() => {
                             const basePL = parseFloat(
                               profitLossObj?.[
-                              item?.parentRunnerId || item?.id
+                                item?.parentRunnerId || item?.id
                               ] || 0
                             );
                             const manualPL = manualProfitLoss(
                               selectedBet,
                               item?.nat || item?.runnerName,
-                              data?.type,
-                              data?.gtype
+                              data?.type
                             );
                             return basePL + manualPL > 0
                               ? "#086f3f"
@@ -335,12 +340,13 @@ const Tournament = ({ title, box, data, detail }) => {
                           const manualPL = manualProfitLoss(
                             selectedBet,
                             item?.nat || item?.runnerName,
-                            data?.type,
-                            data?.gtype
+                            data?.type
                           );
                           const isSelected = selectedBet?.team?.parentBetId
-                            ? selectedBet.team.parentBetId === (data.parentBetId || data?.id)
-                            : selectedBet?.team?.betId === (data.parentBetId || data?.id);
+                            ? selectedBet.team.parentBetId ===
+                              (data.parentBetId || data?.id)
+                            : selectedBet?.team?.betId ===
+                              (data.parentBetId || data?.id);
 
                           if (profitLossObj?.[betKey]) {
                             return isSelected
@@ -364,20 +370,20 @@ const Tournament = ({ title, box, data, detail }) => {
                   }
                 >
                   {!["ACTIVE", "OPEN", ""].includes(data?.status) &&
-                    data?.gtype == "match"
+                  data?.gtype == "match"
                     ? ""
                     : item?.status !== "ACTIVE" &&
-                    item?.status !== "OPEN" &&
-                    item?.status !== "" && (
-                      <div className="suspended-overlayRatestournament">
-                        <span
-                          className={`suspendTextCmmn`}
-                          style={{ textTransform: "uppercase" }}
-                        >
-                          {item?.status}
-                        </span>
-                      </div>
-                    )}
+                      item?.status !== "OPEN" &&
+                      item?.status !== "" && (
+                        <div className="suspended-overlayRatestournament">
+                          <span
+                            className={`suspendTextCmmn`}
+                            style={{ textTransform: "uppercase" }}
+                          >
+                            {item?.status}
+                          </span>
+                        </div>
+                      )}
                   {box === 6 ? (
                     <>
                       {(item?.ex?.availableToBack?.length > 0
@@ -440,7 +446,7 @@ const Tournament = ({ title, box, data, detail }) => {
             <div className="remark-content1">{data?.rem}</div>
           </div>
         )}
-      </div >
+      </div>
     </>
   );
 };

@@ -77,17 +77,22 @@ const matchListSlice = createSlice({
         state.loading = false;
         state.matchListSuccess = true;
         const mergeMatchLists = (existing: any[], incoming: any[]) => {
+          const incomingIds = new Set(incoming.map((match) => match.id));
+
+          const filteredExisting = existing.filter((match) =>
+            incomingIds.has(match.id)
+          );
+
           const existingMap = new Map(
-            existing.map((match) => [match.id, match])
+            filteredExisting.map((match) => [match.id, match])
           );
 
           incoming.forEach((newMatch) => {
             const oldMatch = existingMap.get(newMatch.id);
-            if (oldMatch) {
-              existingMap.set(newMatch.id, { ...oldMatch, ...newMatch });
-            } else {
-              existingMap.set(newMatch.id, newMatch);
-            }
+            existingMap.set(
+              newMatch.id,
+              oldMatch ? { ...oldMatch, ...newMatch } : newMatch
+            );
           });
 
           return Array.from(existingMap.values());
