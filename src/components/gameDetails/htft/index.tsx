@@ -103,10 +103,10 @@ const HtFt = ({ title, box, data, detail }) => {
                     <div className="d-flex flex-row justify-content-between w-100">
                       <span
                         className={` ms-1 mt-1 ${profitLossObj?.[item.id] > 0
-                            ? "color-green"
-                            : profitLossObj?.[item.id] < 0
-                              ? "color-red"
-                              : ""
+                          ? "color-green"
+                          : profitLossObj?.[item.id] < 0
+                            ? "color-red"
+                            : ""
                           } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                       >
                         {profitLossObj?.[item.id]}
@@ -126,7 +126,7 @@ const HtFt = ({ title, box, data, detail }) => {
                               const manualPL = manualProfitLoss(
                                 selectedBet,
                                 item?.nat || item?.runnerName,
-                                data?.type,
+                                data?.type
                               );
                               return basePL + manualPL > 0
                                 ? "#086f3f"

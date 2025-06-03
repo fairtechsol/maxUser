@@ -302,10 +302,13 @@ const Tournament = ({ title, box, data, detail }) => {
                     >
                       {profitLossObj?.[item?.parentRunnerId || item?.id] || ""}
                     </span>
-                    {(selectedBet?.team?.parentBetId
-                      ? selectedBet?.team?.parentBetId === (data.parentBetId || data?.id)
-                      : selectedBet?.team?.betId === (data.parentBetId || data?.id)) ? (
-
+                    {(
+                      selectedBet?.team?.parentBetId
+                        ? selectedBet?.team?.parentBetId ===
+                        (data.parentBetId || data?.id)
+                        : selectedBet?.team?.betId ===
+                        (data.parentBetId || data?.id)
+                    ) ? (
                       <span
                         className="title-12 f-400"
                         style={{
@@ -318,7 +321,7 @@ const Tournament = ({ title, box, data, detail }) => {
                             const manualPL = manualProfitLoss(
                               selectedBet,
                               item?.nat || item?.runnerName,
-                              data?.type,
+                              data?.type
                             );
                             return basePL + manualPL > 0
                               ? "#086f3f"
@@ -334,11 +337,13 @@ const Tournament = ({ title, box, data, detail }) => {
                           const manualPL = manualProfitLoss(
                             selectedBet,
                             item?.nat || item?.runnerName,
-                            data?.type,
+                            data?.type
                           );
                           const isSelected = selectedBet?.team?.parentBetId
-                            ? selectedBet.team.parentBetId === (data.parentBetId || data?.id)
-                            : selectedBet?.team?.betId === (data.parentBetId || data?.id);
+                            ? selectedBet.team.parentBetId ===
+                            (data.parentBetId || data?.id)
+                            : selectedBet?.team?.betId ===
+                            (data.parentBetId || data?.id);
 
                           if (profitLossObj?.[betKey]) {
                             return isSelected
@@ -438,7 +443,7 @@ const Tournament = ({ title, box, data, detail }) => {
             <div className="remark-content1">{data?.rem}</div>
           </div>
         )}
-      </div >
+      </div>
     </>
   );
 };
