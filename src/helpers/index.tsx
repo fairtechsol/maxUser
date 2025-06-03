@@ -85,9 +85,8 @@ export const manualProfitLoss = (
 ) => {
   const bet = selectedBet?.team;
   if (type !== bet?.matchBetType || !bet?.stake) return 0;
-
   const isBack = bet?.type?.toLowerCase() === "back";
-  const isMatch = gType === "match";
+  const isMatch = selectedBet?.data?.gtype === "match";
   const isSameTeam = team === bet?.betOnTeam;
 
   const stake = parseFloat(bet.stake) || 0;

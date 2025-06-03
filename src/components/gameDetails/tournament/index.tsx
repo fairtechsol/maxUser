@@ -362,7 +362,6 @@ const Tournament = ({ title, box, data, detail }) => {
                     ) : (
                       ""
                     )}
-                    {/* {selectedBet?.team?.betId} */}
                   </div>
                 </div>
                 <div
