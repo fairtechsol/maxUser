@@ -81,7 +81,6 @@ export const manualProfitLoss = (
   selectedBet: any,
   team: any,
   type: any,
-  gType: any
 ) => {
   const bet = selectedBet?.team;
   if (type !== bet?.matchBetType || !bet?.stake) return 0;
