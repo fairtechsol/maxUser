@@ -173,9 +173,6 @@ const Tournament = ({ title, box, data, detail }) => {
       })
     );
   };
-  console.log("selectedBet :", selectedBet)
-
-  console.log("data :", data)
 
   const showCashoutError = () => {
     toast.error("You are not eligible for cashout!", {
@@ -357,7 +354,6 @@ const Tournament = ({ title, box, data, detail }) => {
                     ) : (
                       ""
                     )}
-                    {/* {selectedBet?.team?.betId} */}
                   </div>
                 </div>
                 <div
