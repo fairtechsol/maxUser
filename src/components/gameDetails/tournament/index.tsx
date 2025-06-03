@@ -324,8 +324,7 @@ const Tournament = ({ title, box, data, detail }) => {
                             const manualPL = manualProfitLoss(
                               selectedBet,
                               item?.nat || item?.runnerName,
-                              data?.type,
-                              data?.gtype
+                              data?.type
                             );
                             return basePL + manualPL > 0
                               ? "#086f3f"
@@ -341,8 +340,7 @@ const Tournament = ({ title, box, data, detail }) => {
                           const manualPL = manualProfitLoss(
                             selectedBet,
                             item?.nat || item?.runnerName,
-                            data?.type,
-                            data?.gtype
+                            data?.type
                           );
                           const isSelected = selectedBet?.team?.parentBetId
                             ? selectedBet.team.parentBetId ===

@@ -77,12 +77,7 @@ export const dummyArray = [
   },
 ];
 
-export const manualProfitLoss = (
-  selectedBet: any,
-  team: any,
-  type: any,
-  gType: any
-) => {
+export const manualProfitLoss = (selectedBet: any, team: any, type: any) => {
   const bet = selectedBet?.team;
   if (type !== bet?.matchBetType || !bet?.stake) return 0;
   const isBack = bet?.type?.toLowerCase() === "back";
