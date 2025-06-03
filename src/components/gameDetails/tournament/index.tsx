@@ -296,18 +296,19 @@ const Tournament = ({ title, box, data, detail }) => {
                   </span>
                   <div className="d-flex flex-row justify-content-between w-100">
                     <span
-                      className={`${
-                        parseFloat(
-                          profitLossObj?.[item?.parentRunnerId || item?.id]
-                        ) >= 0
-                          ? "color-green"
-                          : "color-red"
-                      } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                      className={`${parseFloat(
+                        profitLossObj?.[item?.parentRunnerId || item?.id]
+                      ) > 0
+                        ? "color-green"
+                        : "color-red"
+                        } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
                       {profitLossObj?.[item?.parentRunnerId || item?.id] || ""}
                     </span>
-                    {(selectedBet?.team?.parentBetId === (data.parentBetId || data?.id) ||
-                      selectedBet?.team?.betId === (data.parentBetId || data?.id)) ? (
+                    {(selectedBet?.team?.parentBetId
+                      ? selectedBet?.team?.parentBetId === (data.parentBetId || data?.id)
+                      : selectedBet?.team?.betId === (data.parentBetId || data?.id)) ? (
+
                       <span
                         className="title-12 f-400"
                         style={{
@@ -340,10 +341,9 @@ const Tournament = ({ title, box, data, detail }) => {
                             data?.type,
                             data?.gtype
                           );
-
-                          const isSelected =
-                            selectedBet?.team?.betId === (data.parentBetId || data?.id) ||
-                            selectedBet?.team?.parentBetId === (data.parentBetId || data?.id);
+                          const isSelected = selectedBet?.team?.parentBetId
+                            ? selectedBet.team.parentBetId === (data.parentBetId || data?.id)
+                            : selectedBet?.team?.betId === (data.parentBetId || data?.id);
 
                           if (profitLossObj?.[betKey]) {
                             return isSelected
