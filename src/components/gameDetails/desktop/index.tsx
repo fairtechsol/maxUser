@@ -387,7 +387,7 @@ const DesktopGameDetail = () => {
                         if (!iframeSrc) return null;
 
                         return (
-                          <div className="px-1 pt-1">
+                          <div className="pt-1">
                             <LiveStreamComponent
                               url={iframeSrc}
                               eventId={matchDetails?.eventId}
@@ -399,10 +399,10 @@ const DesktopGameDetail = () => {
                       })()}
                     </>
                   )}
-                <div className="px-1 pt-1">
+                <div className="pt-1">
                   <PlacedBet />
                 </div>
-                <div className="px-1 pt-1">
+                <div className="pt-1">
                   <MyBet />
                 </div>
               </div>
