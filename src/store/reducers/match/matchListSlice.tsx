@@ -273,7 +273,7 @@ const matchListSlice = createSlice({
           ...state.matchDetails,
           profitLossDataMatch: {
             ...state.matchDetails.profitLossDataMatch,
-            [betId + "_profitLoss_" + matchId]: newTeamRateData,
+            [betId + "_profitLoss_" + matchId]: JSON.stringify(newTeamRateData),
           },
         };
       })
@@ -283,7 +283,7 @@ const matchListSlice = createSlice({
           ...state.matchDetails,
           profitLossDataMatch: {
             ...state.matchDetails.profitLossDataMatch,
-            [betId + "_profitLoss_" + matchId]: profitLoss,
+            [betId + "_profitLoss_" + matchId]: JSON.stringify(profitLoss),
           },
         };
       })
@@ -295,9 +295,9 @@ const matchListSlice = createSlice({
               if (item?.betId !== betPlaced?.placedBet?.betId) return item;
               return {
                 ...item,
-                maxLoss: profitLossData?.maxLoss,
+                maxLoss: JSON.parse(profitLossData)?.maxLoss,
                 totalBet: +item?.totalBet + 1,
-                profitLoss: profitLossData?.betPlaced,
+                profitLoss: JSON.parse(profitLossData)?.betPlaced,
               };
             });
 
@@ -307,8 +307,8 @@ const matchListSlice = createSlice({
           if (betIndex === -1) {
             updatedProfitLossDataSession?.push({
               betId: betPlaced?.placedBet?.betId,
-              maxLoss: profitLossData?.maxLoss,
-              profitLoss: profitLossData?.betPlaced,
+              maxLoss: JSON.parse(profitLossData)?.maxLoss,
+              profitLoss: JSON.parse(profitLossData)?.betPlaced,
               totalBet: 1,
             });
           }
@@ -373,7 +373,7 @@ const matchListSlice = createSlice({
           ...state.matchDetails,
           profitLossDataMatch: {
             ...state.matchDetails.profitLossDataMatch,
-            [betId + "_profitLoss_" + matchId]: teamRate,
+            [betId + "_profitLoss_" + matchId]: JSON.stringify(teamRate),
           },
         };
       })
