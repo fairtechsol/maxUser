@@ -302,7 +302,7 @@ const Tournament = ({ title, box, data, detail }) => {
                     >
                       {profitLossObj?.[item?.parentRunnerId || item?.id] || ""}
                     </span>
-                    {(
+                    {selectedBet?.team?.stake > 0 && (
                       selectedBet?.team?.parentBetId
                         ? selectedBet?.team?.parentBetId ===
                         (data.parentBetId || data?.id)
