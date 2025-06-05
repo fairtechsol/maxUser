@@ -1,5 +1,4 @@
 import React from "react";
-import { FiMonitor } from "react-icons/fi";
 import BetTableHeader from "../BetTableHeader";
 interface RightPanelContainerProps {
   title: string;
@@ -12,17 +11,15 @@ const RightPanelContainer = ({
   children,
 }: RightPanelContainerProps) => {
   return (
-    <div>
-      <div>
-        <BetTableHeader
-          customClass=" rounded-0 py-1 mt-1"
-          customTextClass="cursor-pointer"
-          title={title}
-          setShowVideo={setShowVideo}
-        />
-      </div>
+    <>
+      <BetTableHeader
+        customClass=" rounded-0 py-1"
+        customTextClass="cursor-pointer"
+        title={title}
+        setShowVideo={setShowVideo}
+      />
       <div className="borderTable border rounded-bottom-1">{children}</div>
-    </div>
+    </>
   );
 };
 

@@ -54,7 +54,7 @@ const HtFt = ({ title, box, data, detail }) => {
 
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
-  const profitLossObj = profitLossJson ? profitLossJson : {};
+  const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
 
   return (
     <>

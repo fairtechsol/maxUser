@@ -183,7 +183,7 @@ const Tournament = ({ title, box, data, detail }) => {
   const key = `${data.parentBetId || data.id}_profitLoss_${detail.id}`;
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
-  const profitLossObj = profitLossJson ? profitLossJson : {};
+  const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
 
   return (
     <>
