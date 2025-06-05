@@ -295,9 +295,9 @@ const matchListSlice = createSlice({
               if (item?.betId !== betPlaced?.placedBet?.betId) return item;
               return {
                 ...item,
-                maxLoss: JSON.parse(profitLossData)?.maxLoss,
+                maxLoss: profitLossData?.maxLoss,
                 totalBet: +item?.totalBet + 1,
-                profitLoss: JSON.parse(profitLossData)?.betPlaced,
+                profitLoss: profitLossData?.betPlaced,
               };
             });
 
@@ -307,8 +307,8 @@ const matchListSlice = createSlice({
           if (betIndex === -1) {
             updatedProfitLossDataSession?.push({
               betId: betPlaced?.placedBet?.betId,
-              maxLoss: JSON.parse(profitLossData)?.maxLoss,
-              profitLoss: JSON.parse(profitLossData)?.betPlaced,
+              maxLoss: profitLossData?.maxLoss,
+              profitLoss: profitLossData?.betPlaced,
               totalBet: 1,
             });
           }
