@@ -54,15 +54,16 @@ const HtFt = ({ title, box, data, detail }) => {
 
   const profitLossJson = detail?.profitLossDataMatch?.[key];
 
-  const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
+  const profitLossObj = profitLossJson ? profitLossJson : {};
 
   return (
     <>
       <div className="tournamentContainer">
         <div className="tournamentTitle">
           <span
-            className={`tournamentTitleTxt ${isMobile ? "f-size13" : "f-size15"
-              }`}
+            className={`tournamentTitleTxt ${
+              isMobile ? "f-size13" : "f-size15"
+            }`}
           >
             {title}
           </span>
@@ -102,17 +103,18 @@ const HtFt = ({ title, box, data, detail }) => {
                     </span>
                     <div className="d-flex flex-row justify-content-between w-100">
                       <span
-                        className={` ms-1 mt-1 ${profitLossObj?.[item.id] > 0
-                          ? "color-green"
-                          : profitLossObj?.[item.id] < 0
+                        className={` ms-1 mt-1 ${
+                          profitLossObj?.[item.id] > 0
+                            ? "color-green"
+                            : profitLossObj?.[item.id] < 0
                             ? "color-red"
                             : ""
-                          } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                        } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                       >
                         {profitLossObj?.[item.id]}
                       </span>
                       {selectedBet?.team?.parentBetId ||
-                        selectedBet?.team?.betId ===
+                      selectedBet?.team?.betId ===
                         (data.parentBetId || data?.id) ? (
                         <span
                           className="title-12 f-400 d-flex justify-content-center align-center"
@@ -120,7 +122,7 @@ const HtFt = ({ title, box, data, detail }) => {
                             color: (() => {
                               const basePL = parseFloat(
                                 profitLossObj?.[
-                                item?.parentRunnerId || item?.id
+                                  item?.parentRunnerId || item?.id
                                 ] || 0
                               );
                               const manualPL = manualProfitLoss(
@@ -142,7 +144,7 @@ const HtFt = ({ title, box, data, detail }) => {
                             const manualPL = manualProfitLoss(
                               selectedBet,
                               item?.nat || item?.runnerName,
-                              data?.type,
+                              data?.type
                             );
 
                             const isSelected =
