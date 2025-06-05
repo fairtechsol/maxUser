@@ -22,7 +22,7 @@ const LiveStreamComponent = ({ url, eventId, marketType, setTvData }: any) => {
         setShowVideo((prev: boolean) => !prev);
       }}
     >
-      {!sessionStorage.getItem("isDemo") && showVideo && (
+      {!sessionStorage.getItem("isDemo") && showVideo && url && (
         <Container>
           <Row className="justify-content-md-center">
             <Col md={12} className="p-0">
