@@ -82,9 +82,7 @@ export const getRunAmount = createAsyncThunk<any, any>(
       if (resp?.data?.profitLoss) {
         let data = {
           id: id,
-          arr: JSON.parse(resp?.data?.profitLoss[0])
-            ? JSON.parse(resp?.data?.profitLoss).betPlaced
-            : [],
+          arr: resp?.data?.profitLoss ? resp?.data?.profitLoss.betPlaced : [],
         };
         return data;
       }
@@ -104,9 +102,7 @@ export const getRunAmountMeter = createAsyncThunk<any, any>(
       if (resp?.data?.profitLoss) {
         let data = {
           id: id,
-          arr: JSON.parse(resp?.data?.profitLoss[0])
-            ? JSON.parse(resp?.data?.profitLoss).betPlaced
-            : [],
+          arr: resp?.data?.profitLoss ? resp?.data?.profitLoss.betPlaced : [],
         };
         return data;
       }
