@@ -1,12 +1,6 @@
 // import { } from "react";
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layout/main";
-import Cards32 from "../pages/cards32";
-import CasinoWar from "../pages/casinoWar";
-import Cricket5 from "../pages/cricket5";
-import Lucky7B from "../pages/lucky7B";
-import Poker1day from "../pages/poker1day";
-import Poker20 from "../pages/poker20";
 import Loadable from "../utils/loadable";
 
 // ==============================|| Main ROUTING ||============================== //
@@ -23,35 +17,7 @@ const LiveCasinoBets = Loadable(
 );
 const Mobile = Loadable(() => import("../components/rules/mobile"));
 const RaceDetail = Loadable(() => import("../pages/horseRacingDetails"));
-const TeenPatti20 = Loadable(() => import("../pages/teenPatti20"));
-const TeenPatti1D = Loadable(() => import("../pages/teenPatti1D"));
-const TeenPattiTest = Loadable(() => import("../pages/teenPattiTest"));
-const TeenPattiOpen = Loadable(() => import("../pages/teenPattiOpen"));
-const Lucky7 = Loadable(() => import("../pages/lucky7"));
-const AmarAkbarAnthony = Loadable(() => import("../pages/amarAkbarAnthony"));
-const BollywoodTable = Loadable(() => import("../pages/bollywoodTable"));
-const Superover = Loadable(() => import("../pages/superover"));
-const DragonTiger20 = Loadable(() => import("../pages/dragon20"));
-const DragonTigerSecond20 = Loadable(() => import("../pages/dragonSecond20"));
-const DragonTigerLion = Loadable(() => import("../pages/dragonTigerLion"));
-const DragonTigerOneDay = Loadable(() => import("../pages/dragonTigerOneDay"));
-const CardList3 = Loadable(() => import("../pages/cardList3"));
-const CardList4 = Loadable(() => import("../pages/cardList4"));
-const Poker6 = Loadable(() => import("../pages/poker"));
-const Abj2 = Loadable(() => import("../pages/abj2"));
-const Abj1 = Loadable(() => import("../pages/abj"));
-const Worli = Loadable(() => import("../pages/worli"));
-const Cards32B = Loadable(() => import("../pages/cards32B"));
-const Race20 = Loadable(() => import("../pages/race20"));
-const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
-const Baccarat2 = Loadable(() => import("../pages/baccarat2"));
-const CasinoMeter = Loadable(() => import("../pages/casinoMeter"));
-const CardJ = Loadable(() => import("../pages/3cardJ"));
-const LiveCasino = Loadable(() => import("../pages/casinoSubTab"));
-const CricketMatch20 = Loadable(() => import("../pages/cricketMatch_20"));
-const Queen = Loadable(() => import("../pages/queen"));
-const BallByBall = Loadable(() => import("../pages/ballbyball"));
-const WorliMatka = Loadable(() => import("../pages/worliMatka"));
+
 const ChangeButtonValue = Loadable(() => import("../pages/changeButtonValues"));
 
 const SecureAuthVerification = Loadable(
@@ -132,155 +98,11 @@ const MainRoutes = {
       path: "game-list/:type",
       element: <GameList />,
     },
-    {
-      path: "card3-list/:type",
-      element: <CardList3 />,
-    },
-    {
-      path: "card4-list/:type",
-      element: <CardList4 />,
-    },
+
     {
       path: "contact-admin/:type",
       element: <ContactAdmin />,
     },
-    {
-      path: "teen20",
-      element: <TeenPatti20 />, //
-    },
-
-    {
-      path: "teen",
-      element: <TeenPatti1D />, //
-    },
-
-    {
-      path: "teen8",
-      element: <TeenPattiOpen />,
-    },
-
-    {
-      path: "teen9",
-      element: <TeenPattiTest />,
-    },
-
-    {
-      path: "war",
-      element: <CasinoWar />,
-    },
-
-    {
-      path: "lucky7-A",
-      element: <Lucky7 />, //
-    },
-    {
-      path: "lucky7eu",
-      element: <Lucky7B />, //
-    },
-    {
-      path: "32cards-A",
-      element: <Cards32 />, //
-    },
-    {
-      path: "abj2",
-      element: <Abj2 />, //
-    },
-    {
-      path: "dt20",
-      element: <DragonTiger20 />, //
-    },
-    {
-      path: "dt202",
-      element: <DragonTigerSecond20 />, //
-    },
-    {
-      path: "dtl20",
-      element: <DragonTigerLion />, //
-    },
-    {
-      path: "dt6",
-      element: <DragonTigerOneDay />, //
-    },
-
-    {
-      path: "32cards-B",
-      element: <Cards32B />,
-    },
-    {
-      path: "ab20",
-      element: <Abj1 />,
-    },
-    {
-      path: "race20",
-      element: <Race20 />,
-    },
-    {
-      path: "superover",
-      element: <Superover />,
-    },
-    {
-      path: "poker6",
-      element: <Poker6 />,
-    },
-    {
-      path: "poker",
-      element: <Poker1day />,
-    },
-    {
-      path: "poker20",
-      element: <Poker20 />,
-    },
-    {
-      path: "cricketv3",
-      element: <Cricket5 />,
-    },
-    {
-      path: "baccarat",
-      element: <Baccarat1 />,
-    },
-    {
-      path: "baccarat2",
-      element: <Baccarat2 />,
-    },
-    {
-      path: "aaa",
-      element: <AmarAkbarAnthony />,
-    },
-    {
-      path: "btable",
-      element: <BollywoodTable />,
-    },
-
-    {
-      path: "worli2",
-      element: <Worli />,
-    },
-    {
-      path: "3cardj",
-      element: <CardJ />,
-    },
-    {
-      path: "cmatch20",
-      element: <CricketMatch20 />,
-    },
-    {
-      path: "ballbyball",
-      element: <BallByBall />,
-    },
-    {
-      path: "cmeter",
-      element: <CasinoMeter />,
-    },
-    {
-      path: "live-casino",
-      element: <LiveCasino />,
-    },
-    {
-      path: "casino",
-      element: <LiveCasino />,
-    },
-    { path: "queen", element: <Queen /> },
-    { path: "worli", element: <WorliMatka /> },
     {
       path: "*",
       element: <Navigate to={"/home"} replace />,
