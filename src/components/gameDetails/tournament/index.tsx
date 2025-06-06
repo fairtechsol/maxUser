@@ -442,6 +442,7 @@ const Tournament = ({ title, box, data, detail }) => {
                     <div className="tournamentRemarkTab">
                         <div className="remark-content1">{data?.rem}</div>
                     </div>
+                    //dd
                 )}
             </div>
         </>
