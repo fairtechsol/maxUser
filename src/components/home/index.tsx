@@ -1,17 +1,14 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-// import {isMobile} from "../../utils/screenDimension";
-import Loader from "../commonComponent/loader";
+import { useEffect, useState } from "react";
 import DesktopMatchList from "./matchList/desktop";
 import SportsFilters from "./sportsFilters";
-import { useEffect, useState } from "react";
 
 const MatchList = ({ setMatchType, matchType }: any) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1199);
+      setIsMobile(
+        window.innerWidth <= 1199);
     };
 
     // Add event listener to update isMobile on window resize
