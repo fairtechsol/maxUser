@@ -1,7 +1,6 @@
 import { Form } from "react-bootstrap";
 import Select from "react-select";
 import CustomErrorMessage from "../customErrorMessage";
-import "./style.scss";
 
 const SelectSearch = (props: any) => {
   const {
@@ -37,9 +36,8 @@ const SelectSearch = (props: any) => {
   return (
     <>
       <Form.Group
-        className={`customSelect ${SelectInline ? "SelectInline" : ""} ${
-          customClass ?? ""
-        }`}
+        className={`customSelect ${SelectInline ? "SelectInline" : ""} ${customClass ?? ""
+          }`}
       >
         {label ? <Form.Label>{label}</Form.Label> : ""}
         <Select

@@ -3,7 +3,6 @@ import { Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store/store";
 import DeleteBetOverlay from "../../../betComponents/deleteBetRow";
-import "./style.scss";
 
 
 const placeBetHeader = [

@@ -1,10 +1,9 @@
+import moment from "moment";
 import { memo, useEffect, useState } from "react";
 import { Col, Container, Ratio, Row, Tab } from "react-bootstrap";
+import { FaTv } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-// import { formatDate } from "../../../utils/dateUtils";
-import moment from "moment";
-import { FaTv } from "react-icons/fa";
 import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
 import { getTvData } from "../../../utils/tvUrlGet";
 import BetTableHeader from "../../commonComponent/betTableHeader";
@@ -74,40 +73,39 @@ const MobileGameDetail = () => {
           {
             id: "matchedBet",
             name: (
-              <div className="ps-5 border-end pe-2">{`MATCHED BET(${
-                Array.from(new Set(placedBets))?.length
-              })`}</div>
+              <div className="ps-5 border-end pe-2">{`MATCHED BET(${Array.from(new Set(placedBets))?.length
+                })`}</div>
             ),
           },
           matchDetails?.eventId &&
-            matchDetails?.matchType !== "politics" && {
-              name: (
-                <div
-                  onClick={() => {
-                    if (!showVideo) {
-                      getTvData(
-                        matchDetails?.eventId,
-                        setTvData,
-                        matchDetails?.matchType,
-                        true
-                      );
-                      setShowVideo(!showVideo);
-                    } else {
-                      setTvData((prev: any) => {
-                        return {
-                          ...prev,
-                          tvData: null,
-                        };
-                      });
-                    }
+          matchDetails?.matchType !== "politics" && {
+            name: (
+              <div
+                onClick={() => {
+                  if (!showVideo) {
+                    getTvData(
+                      matchDetails?.eventId,
+                      setTvData,
+                      matchDetails?.matchType,
+                      true
+                    );
                     setShowVideo(!showVideo);
-                  }}
-                  className="ps-5"
-                >
-                  <FaTv size={15} />
-                </div>
-              ),
-            },
+                  } else {
+                    setTvData((prev: any) => {
+                      return {
+                        ...prev,
+                        tvData: null,
+                      };
+                    });
+                  }
+                  setShowVideo(!showVideo);
+                }}
+                className="ps-5"
+              >
+                <FaTv size={15} />
+              </div>
+            ),
+          },
         ]
           ?.filter(Boolean)
           .map((item, index) => (
@@ -247,49 +245,49 @@ const MobileGameDetail = () => {
                       {(matchDetails?.apiSession?.session?.section?.length >
                         0 ||
                         manualEntries?.length > 0) && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionNormal
-                            title="Normal"
-                            mtype="session"
-                            data={matchDetails?.apiSession?.session}
-                            detail={matchDetails}
-                            manual={manualEntries ? manualEntries : []}
-                          />
-                        </Col>
-                      )}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionNormal
+                              title="Normal"
+                              mtype="session"
+                              data={matchDetails?.apiSession?.session}
+                              detail={matchDetails}
+                              manual={manualEntries ? manualEntries : []}
+                            />
+                          </Col>
+                        )}
                       {matchDetails?.apiSession?.overByover?.section?.length >
                         0 && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionNormal
-                            title="overByover"
-                            mtype="overByover"
-                            data={matchDetails?.apiSession?.overByover}
-                            detail={matchDetails}
-                          />
-                        </Col>
-                      )}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionNormal
+                              title="overByover"
+                              mtype="overByover"
+                              data={matchDetails?.apiSession?.overByover}
+                              detail={matchDetails}
+                            />
+                          </Col>
+                        )}
                       {matchDetails?.apiSession?.ballByBall?.section?.length >
                         0 && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionNormal
-                            title="Ballbyball"
-                            mtype="ballByBall"
-                            data={matchDetails?.apiSession?.ballByBall}
-                            detail={matchDetails}
-                          />
-                        </Col>
-                      )}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionNormal
+                              title="Ballbyball"
+                              mtype="ballByBall"
+                              data={matchDetails?.apiSession?.ballByBall}
+                              detail={matchDetails}
+                            />
+                          </Col>
+                        )}
 
                       {matchDetails?.apiSession?.fancy1?.section?.length >
                         0 && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionFancy
-                            title="fancy1"
-                            data={matchDetails?.apiSession?.fancy1}
-                            detail={matchDetails}
-                          />
-                        </Col>
-                      )}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionFancy
+                              title="fancy1"
+                              data={matchDetails?.apiSession?.fancy1}
+                              detail={matchDetails}
+                            />
+                          </Col>
+                        )}
 
                       {matchDetails?.apiSession?.khado?.section?.length > 0 && (
                         <Col className="g-0" md={12}>
@@ -312,14 +310,14 @@ const MobileGameDetail = () => {
                       )}
                       {matchDetails?.apiSession?.oddEven?.section?.length >
                         0 && (
-                        <Col className="g-0" md={12}>
-                          <MobileSessionOddEven
-                            title="oddeven"
-                            data={matchDetails?.apiSession?.oddEven}
-                            detail={matchDetails}
-                          />
-                        </Col>
-                      )}
+                          <Col className="g-0" md={12}>
+                            <MobileSessionOddEven
+                              title="oddeven"
+                              data={matchDetails?.apiSession?.oddEven}
+                              detail={matchDetails}
+                            />
+                          </Col>
+                        )}
                       {matchDetails?.apiSession?.cricketCasino?.section
                         ?.length > 0 &&
                         matchDetails?.apiSession?.cricketCasino?.section?.map(
