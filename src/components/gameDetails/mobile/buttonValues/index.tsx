@@ -7,7 +7,6 @@ import { AppDispatch, RootState } from "../../../../store/store";
 import { isMobile } from "../../../../utils/screenDimension";
 import CustomButton from "../../../commonComponent/button";
 import CustomInput from "../../../commonComponent/input";
-import "./style.scss";
 
 interface ButtonProps {
   label: string;

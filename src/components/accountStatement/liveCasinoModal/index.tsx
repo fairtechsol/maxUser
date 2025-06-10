@@ -1,12 +1,12 @@
+import moment from "moment";
+import { useState } from "react";
 import { Col, Modal } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { transactionProviderBets } from "../../../store/actions/cards/cardDetail";
+import { AppDispatch } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import SelectSearch from "../../commonComponent/SelectSearch";
 import CustomButton from "../../commonComponent/button";
-import moment from "moment";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
-import { transactionProviderBets } from "../../../store/actions/cards/cardDetail";
 
 const LiveCasinoModal = ({
   selected,
@@ -37,10 +37,8 @@ const LiveCasinoModal = ({
     <Modal
       show={liveCasinoModal}
       onHide={handleCloseLiveCasinoModal}
-      // size="xl"
-      dialogClassName={`${
-        isMobile ? "provider-modal-m m-0" : "provider-modal custom-modal"
-      }`}
+      dialogClassName={`${isMobile ? "provider-modal-m m-0" : "provider-modal custom-modal"
+        }`}
     >
       <Modal.Header
         closeButton

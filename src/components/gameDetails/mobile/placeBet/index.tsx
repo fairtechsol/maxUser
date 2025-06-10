@@ -14,7 +14,6 @@ import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";
 import ButtonValues from "../buttonValues";
-import "./style.scss";
 interface PlaceBetProps {
   show: boolean;
   setShow: any;
@@ -253,14 +252,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               placeBet({
                 url:
                   selectedBet?.data?.type === "session" ||
-                  selectedBet?.data?.SelectionId
+                    selectedBet?.data?.SelectionId
                     ? ApiConstants.BET.PLACEBETSESSION
                     : selectedBet?.team?.gameType === "other"
-                    ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
-                    : ApiConstants.BET.PLACEBETMATCHBETTING,
+                      ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
+                      : ApiConstants.BET.PLACEBETMATCHBETTING,
                 data:
                   selectedBet?.data?.type === "session" ||
-                  selectedBet?.data?.SelectionId
+                    selectedBet?.data?.SelectionId
                     ? JSON.stringify(payloadForSession)
                     : JSON.stringify(payloadForBettings),
               })
@@ -292,12 +291,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           placeBet({
             url:
               selectedBet?.team?.matchBetType === "session" ||
-              selectedBet?.data?.SelectionId
+                selectedBet?.data?.SelectionId
                 ? ApiConstants.BET.PLACEBETSESSION
                 : ApiConstants.BET.PLACEBETMATCHBETTING,
             data:
               selectedBet?.team?.matchBetType === "session" ||
-              selectedBet?.data?.SelectionId
+                selectedBet?.data?.SelectionId
                 ? JSON.stringify(payloadForSession)
                 : JSON.stringify(payloadForBettings),
           })
@@ -318,7 +317,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     const runnerId = data?.runnerId;
     const profitLoss = parseFloat(
       handleProfitLoss(data?.runners?.parentBetId || data?.runners?.id, id) ||
-        "0"
+      "0"
     );
 
     let profit = 0;
@@ -362,13 +361,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
         }}
       >
         <Container
-          className={`${
-            selectedBet?.team?.type === "lay" ||
-            selectedBet?.team?.type === "LAY" ||
-            selectedBet?.team?.type === "no"
+          className={`${selectedBet?.team?.type === "lay" ||
+              selectedBet?.team?.type === "LAY" ||
+              selectedBet?.team?.type === "no"
               ? "bg-red1"
               : "placeBet-bg-blue"
-          }`}
+            }`}
           fluid
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
@@ -408,14 +406,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 style={{
                   border:
                     selectedBet?.team?.type === "lay" ||
-                    selectedBet?.team?.type === "LAY" ||
-                    selectedBet?.team?.type === "no"
+                      selectedBet?.team?.type === "LAY" ||
+                      selectedBet?.team?.type === "no"
                       ? "1px solid #faa9ba"
                       : "1px solid #72bbef",
                   backgroundColor:
                     selectedBet?.team?.type === "lay" ||
-                    selectedBet?.team?.type === "LAY" ||
-                    selectedBet?.team?.type === "no"
+                      selectedBet?.team?.type === "LAY" ||
+                      selectedBet?.team?.type === "no"
                       ? "#f7dde2"
                       : "#cbe3f3",
                 }}
@@ -469,9 +467,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             <Col xs={4} className="f800 title-12">
               <CustomButton
                 style={{ height: "28px" }}
-                className={`f600 w-100 br-5 ${
-                  selectedBet?.team?.stake === 0 ? "btnbg-red" : "btnbg-blue"
-                }`}
+                className={`f600 w-100 br-5 ${selectedBet?.team?.stake === 0 ? "btnbg-red" : "btnbg-blue"
+                  }`}
                 onClick={handleSubmit}
                 disabled={selectedBet?.team?.stake === 0 ? true : false}
               >
@@ -490,7 +487,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             </Col>
             <Col xs={4} className="title-12 text-center">
               {selectedBet?.team?.eventType === "horseRacing" ||
-              selectedBet?.team?.eventType === "greyHound"
+                selectedBet?.team?.eventType === "greyHound"
                 ? 0
                 : handleProfit(stake)}
             </Col>
@@ -562,28 +559,27 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                         <div className="row">
                           <div className="col-md-12 text-center">
                             <span
-                              className={`f400 title-12 ${
-                                handleProfitLoss(
-                                  selectedBet?.team?.runners?.parentBetId ||
-                                    selectedBet?.team?.runners?.id,
-                                  item?.parentRunnerId || item?.id
-                                ) < 0
+                              className={`f400 title-12 ${handleProfitLoss(
+                                selectedBet?.team?.runners?.parentBetId ||
+                                selectedBet?.team?.runners?.id,
+                                item?.parentRunnerId || item?.id
+                              ) < 0
                                   ? "color-red"
                                   : "color-green"
-                              }`}
+                                }`}
                             >
                               {handleProfitLoss(
                                 selectedBet?.team?.runners?.parentBetId ||
-                                  selectedBet?.team?.runners?.id,
+                                selectedBet?.team?.runners?.id,
                                 item?.parentRunnerId || item?.id
                               )
                                 ? Number(
-                                    handleProfitLoss(
-                                      selectedBet?.team?.runners?.parentBetId ||
-                                        selectedBet?.team?.runners?.id,
-                                      item?.parentRunnerId || item?.id
-                                    )
-                                  ).toFixed(2)
+                                  handleProfitLoss(
+                                    selectedBet?.team?.runners?.parentBetId ||
+                                    selectedBet?.team?.runners?.id,
+                                    item?.parentRunnerId || item?.id
+                                  )
+                                ).toFixed(2)
                                 : ""}
                             </span>
                           </div>
@@ -612,11 +608,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                                 item?.parentRunnerId || item?.id
                               )
                                 ? Number(
-                                    handleTounamentProLoss(
-                                      selectedBet?.team,
-                                      item?.parentRunnerId || item?.id
-                                    )
-                                  ).toFixed(2)
+                                  handleTounamentProLoss(
+                                    selectedBet?.team,
+                                    item?.parentRunnerId || item?.id
+                                  )
+                                ).toFixed(2)
                                 : ""}
                             </span>
                           </div>

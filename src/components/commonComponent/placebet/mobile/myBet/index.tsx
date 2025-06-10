@@ -14,7 +14,6 @@ import ButtonValues from "../../../../gameDetails/mobile/buttonValues";
 import CustomButton from "../../../button";
 import Loader from "../../../loader";
 import CustomModal from "../../../modal";
-import "./style.scss";
 
 interface PlaceBetProps {
   show: boolean;
