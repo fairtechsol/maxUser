@@ -27,6 +27,7 @@ const ContactAdmin = Loadable(
   () => import("../components/commonComponent/contactAdmin")
 );
 const GameList = Loadable(() => import("../pages/gameList/index"));
+const LiveCasino = Loadable(() => import("../pages/casinoSubTab"));
 
 const MainRoutes = {
   path: "/",
@@ -47,6 +48,14 @@ const MainRoutes = {
     {
       path: "casino-slot",
       element: <Home />,
+    },
+    {
+      path: "live-casino",
+      element: <LiveCasino />,
+    },
+    {
+      path: "casino",
+      element: <LiveCasino />,
     },
     {
       path: "live-casinom",
