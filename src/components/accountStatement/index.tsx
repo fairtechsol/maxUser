@@ -281,10 +281,6 @@ const AccountStatementComponent = () => {
                       label: "Sport Report",
                     },
                     {
-                      value: "2",
-                      label: "Casino Reports",
-                    },
-                    {
                       value: "3",
                       label: "Third-Party Casino Reports",
                     },
