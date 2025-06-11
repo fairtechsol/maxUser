@@ -8,13 +8,13 @@
         "id": "horseRacing",
         "name": "Horse Racing",
         "type": "liveItem",
-        "path": "/contact-admin/88"
+        "path": "/contact-admin/98"
       },
       {
         "id": "grehoundRacing",
         "name": "GreyHound Racing",
         "type": "liveItem",
-        "path": "/contact-admin/87"
+        "path": "/contact-admin/98"
       }
     ]
   },
