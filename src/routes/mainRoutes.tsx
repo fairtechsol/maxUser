@@ -11,7 +11,6 @@ const AccountStatement = Loadable(() => import("../pages/accountStatement"));
 const ProfitLoss = Loadable(() => import("../pages/profitLoss"));
 const BetHistory = Loadable(() => import("../pages/betHistory"));
 const UnsettledBet = Loadable(() => import("../pages/unsettledBet"));
-const CasinoReports = Loadable(() => import("../pages/reports/casinoReport"));
 const LiveCasinoBets = Loadable(
   () => import("../pages/reports/liveCasinoBets")
 );
@@ -28,6 +27,7 @@ const ContactAdmin = Loadable(
   () => import("../components/commonComponent/contactAdmin")
 );
 const GameList = Loadable(() => import("../pages/gameList/index"));
+const LiveCasino = Loadable(() => import("../pages/casinoSubTab"));
 
 const MainRoutes = {
   path: "/",
@@ -48,6 +48,14 @@ const MainRoutes = {
     {
       path: "casino-slot",
       element: <Home />,
+    },
+    {
+      path: "live-casino",
+      element: <LiveCasino />,
+    },
+    {
+      path: "casino",
+      element: <LiveCasino />,
     },
     {
       path: "live-casinom",
@@ -76,7 +84,6 @@ const MainRoutes = {
     { path: "profit-loss", element: <ProfitLoss /> },
     { path: "bet-history", element: <BetHistory /> },
     { path: "unsettled-bet", element: <UnsettledBet /> },
-    { path: "casino-report", element: <CasinoReports /> },
     { path: "live-casino-bets", element: <LiveCasinoBets /> },
     { path: "change-btn-value", element: <ChangeButtonValue /> },
 

@@ -24,12 +24,6 @@
     "type": "any"
   },
   {
-    "id": "casinoReportHistory",
-    "name": "Casino Results",
-    "link": "/casino-report",
-    "type": "any"
-  },
-  {
     "id": "liveCasinoBets",
     "name": "Live Casino Bets",
     "link": "/live-casino-bets",
