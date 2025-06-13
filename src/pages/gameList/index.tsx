@@ -121,11 +121,10 @@ const GameList = () => {
 
   return (
     <>
-      {/* {loading && <Loader />} */}
       {isMobile ? (
         <SportsFilters type={type} />
       ) : (
-        <DesktopMatchList matchTypeGameList={type} setMatchType={() => {}} />
+        <DesktopMatchList matchTypeGameList={type} setMatchType={() => { }} />
       )}
     </>
   );

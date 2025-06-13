@@ -225,11 +225,7 @@ const LiveCasinoDesktop = () => {
         </div>
       </div>
       <Modal show={isShow} fullscreen={true} onHide={() => setIsShow(false)}>
-        <Modal.Header
-          // closeButton
-          // closeVariant={"white"}
-          style={{ color: "#fff", backgroundColor: "#004A25" }}
-        >
+        <Modal.Header style={{ color: "#fff", backgroundColor: "#004A25" }} >
           <Modal.Title className="w-100">
             <div className="w-100 d-flex justify-content-between align-items-center">
               <div
@@ -269,8 +265,8 @@ const LiveCasinoDesktop = () => {
                       {parseInt(getProfile?.userBal?.exposure) === 0
                         ? 0
                         : -parseFloat(
-                            getProfile?.userBal?.exposure || 0
-                          ).toFixed(2)}
+                          getProfile?.userBal?.exposure || 0
+                        ).toFixed(2)}
                     </b>
                   </span>
                 </div>
