@@ -1,16 +1,5 @@
 import { isMobile } from "../../utils/screenDimension";
 import "./style.scss";
-// interface CricketData {
-//   spnnation1: string;
-//   spnnation2: string;
-//   score1: string;
-//   score2: string;
-//   spnrunrate1?: string;
-//   spnrunrate2?: string;
-//   spnmessage?: string;
-//   balls: string[];
-//   dayno: string;
-// }
 
 const Iframe = ({ data, width }: any) => {
   return (
@@ -51,7 +40,7 @@ const Iframe = ({ data, width }: any) => {
                 {/* Match Message */}
                 {data?.spnmessage && (
                   <div className="text-xl-end" style={{ fontSize: "16px" }}>
-                    {data?.dayno ? `${data?.dayno} | `:""}  {data?.spnmessage}
+                    {data?.dayno ? `${data?.dayno} | ` : ""}  {data?.spnmessage}
                   </div>
                 )}
 
@@ -65,18 +54,17 @@ const Iframe = ({ data, width }: any) => {
                         ) : (
                           <span
                             key={index}
-                            className={`ball-runs ${
-                              ball === "4" || ball === "6" ? "four" : ""
-                            }`}
+                            className={`ball-runs ${ball === "4" || ball === "6" ? "four" : ""
+                              }`}
                             style={{
                               backgroundColor:
                                 ball === "ww"
                                   ? "#ff0000"
                                   : ball === "4"
-                                  ? "#087f23"
-                                  : ball === "6"
-                                  ? "#883997"
-                                  : "#08c",
+                                    ? "#087f23"
+                                    : ball === "6"
+                                      ? "#883997"
+                                      : "#08c",
                               color: "#fff",
                               borderRadius: "50%",
                               display: "inline-block",
@@ -140,7 +128,7 @@ const Iframe = ({ data, width }: any) => {
                       fontSize: "12px",
                     }}
                   >
-                    {data?.dayno ? `${data?.dayno} | `:""} {data?.spnmessage}
+                    {data?.dayno ? `${data?.dayno} | ` : ""} {data?.spnmessage}
                   </div>
                 )}
 
@@ -154,18 +142,17 @@ const Iframe = ({ data, width }: any) => {
                         ) : (
                           <span
                             key={index}
-                            className={`ball-runs ${
-                              ball === "4" || ball === "6" ? "four" : ""
-                            }`}
+                            className={`ball-runs ${ball === "4" || ball === "6" ? "four" : ""
+                              }`}
                             style={{
                               backgroundColor:
                                 ball === "ww"
                                   ? "#ff0000"
                                   : ball === "4"
-                                  ? "#087f23"
-                                  : ball === "6"
-                                  ? "#883997"
-                                  : "#08c",
+                                    ? "#087f23"
+                                    : ball === "6"
+                                      ? "#883997"
+                                      : "#08c",
                               fontSize: "12px",
                             }}
                           >

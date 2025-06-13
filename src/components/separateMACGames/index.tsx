@@ -94,7 +94,6 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
       <LiveCasinoGames data3={game ?? []} />
       <Modal show={isShow} fullscreen={true} onHide={() => setIsShow(false)}>
         <Modal.Header
-          // closeButton
           className="p-2"
           style={{ color: "#fff", backgroundColor: "#004A25" }}
         >
@@ -155,7 +154,7 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
               referrerPolicy={"strict-origin-when-cross-origin"}
               width={"100%"}
               height={"100%"}
-             />
+            />
           </div>
         </Modal.Body>
       </Modal>
